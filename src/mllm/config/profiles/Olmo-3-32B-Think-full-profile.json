@@ -1,0 +1,14 @@
+{
+    "model_name": "Olmo-3-32B-Think",
+    "developer": "AllenAI",
+    "parameters": "32B",
+    "precision": "q4",
+    "engine_type": "mlx",
+    "context_window": 128000,
+    "input_length_supported": 128000,
+    "prompt_template": "olmo",
+    "temperature": 0.7,
+    "max_tokens_default": 32768,
+    "availability": "verified",
+    "api_key": "mlx-server"
+}

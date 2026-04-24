@@ -1,0 +1,10 @@
+{
+    "model_name": "mistral-nemo-12b-thinking-mlx",
+    "context_window": 1024000,
+    "api_url": "http://localhost:4474/v1/chat/completions",
+    "api_key": "mlx-server",
+    "temperature": 0.0,
+    "max_tokens": 4096,
+    "engine_type": "mlx",
+    "lms-test": true
+}

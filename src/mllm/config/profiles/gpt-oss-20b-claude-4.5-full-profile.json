@@ -1,0 +1,10 @@
+{
+    "model_name": "gpt-oss-20b-claude-4.5",
+    "context_window": 128000,
+    "provider": "mlx",
+    "quantization": "q8_0",
+    "hpc_eval_optimized": true,
+    "lms-test": true,
+    "engine_type": "mlx",
+    "api_key": "mlx-server"
+}

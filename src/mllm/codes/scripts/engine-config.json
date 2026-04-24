@@ -1,0 +1,32 @@
+{
+    "defaults": {
+        "model_root": "/Users/HN/mllm_models/mlx_models",
+        "api_key": "YOUR_ENGINE_API_KEY",
+        "port": 4474
+    },
+    "models": [
+        {
+            "name": "Phi-4-reasoning-plus-8bit",
+            "path": "Phi-4-reasoning-plus-8bit",
+            "params": "14B",
+            "context_window": 128000,
+            "type": "lms",
+            "precision": "q8"
+        },
+        {
+            "name": "Olmo-3-32B-Think",
+            "path": "Olmo-3-32B-Think",
+            "params": "32B",
+            "context_window": 128000,
+            "type": "lms",
+            "precision": "q4"
+        },
+        {
+            "name": "DeepSeek-R1-Distill-Llama-70B",
+            "path": "deepseek-r1-distill-llama-70b",
+            "params": "70B",
+            "context_window": 128000,
+            "type": "lms"
+        }
+    ]
+}

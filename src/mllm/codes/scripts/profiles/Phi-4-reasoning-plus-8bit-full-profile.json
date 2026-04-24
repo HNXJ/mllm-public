@@ -1,0 +1,13 @@
+{
+    "model_name": "Phi-4-reasoning-plus-8bit",
+    "developer": "mlx-community",
+    "parameters": "14.7B",
+    "precision": "q8",
+    "engine_type": "lms",
+    "context_window": 128000,
+    "input_length_supported": 128000,
+    "prompt_template": "chatml",
+    "temperature": 0.8,
+    "max_tokens_default": 32768,
+    "availability": "verified"
+}

@@ -1,0 +1,11 @@
+
+__pycache__/
+.DS_Store
+*.pdf
+*.pyc
+/data/
+/draft/
+/output/
+/results/
+mllm-profile-*.json
+.gemini

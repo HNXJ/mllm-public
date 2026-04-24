@@ -1,0 +1,13 @@
+{
+    "model_name": "DeepSeek-R1-Distill-Llama-70B",
+    "developer": "DeepSeek",
+    "parameters": "70B",
+    "precision": "q4",
+    "engine_type": "lms",
+    "context_window": 128000,
+    "input_length_supported": 128000,
+    "prompt_template": "deepseek",
+    "temperature": 0.6,
+    "max_tokens_default": 32768,
+    "availability": "verified"
+}

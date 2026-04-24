@@ -1,0 +1,54 @@
+{
+  "workstation_id": "default-dummy-workstation",
+  "workspace_root": "/Users/USER/workspace/mllm/",
+  "repo_root": "/Users/USER/workspace/mllm/mllm/",
+  "vlm_model_id": "dummy-vlm-v1",
+  "compute_capabilities": {
+    "max_vram_gb": 16,
+    "max_context_window": 32000,
+    "supported_quantizations": [
+      "q4_k_m"
+    ]
+  },
+  "pipeline_requirements": {
+    "required_context_window": 128000,
+    "required_input_tokens": 64000
+  },
+  "compute_preferences": {
+    "preferred_quantization": "q4_k_m"
+  },
+  "networking": {
+    "llm_engine_url": "http://localhost:1234",
+    "vlm_engine_url": "http://localhost:1235",
+    "monitor_port": 8081,
+    "ssh_relay_config": {
+      "enabled": false,
+      "remote_ip": null,
+      "ssh_user": null,
+      "identity_file_path": null
+    }
+  },
+  "tooling": {
+    "python_bin": "/usr/bin/python3",
+    "lms_bin": "/usr/local/bin/lms",
+    "git_commit_pull_push_enabled": false
+  },
+  "storage": {
+    "model_warehouse_path": "/path/to/warehouse/mlx_models/",
+    "artifact_retention_days": 30
+  },
+  "pipeline_logic": {
+    "vlm_validation_required": true,
+    "concurrency_limit": 1,
+    "expected_factor_count": 36,
+    "require_json_output": true,
+    "max_retries": 2,
+    "request_timeout_seconds": 300
+  },
+  "paths": {
+    "inputs_dir": "inputs/",
+    "outputs_dir": "outputs/",
+    "glossary_dir": "src/mllm/skills/glossary/",
+    "prompts_dir": "src/mllm/skills/instructions/"
+  }
+}

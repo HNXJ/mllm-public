@@ -1,0 +1,10 @@
+{
+    "model_name": "phi-4-reasoning-plus-mlx",
+    "context_window": 32768,
+    "api_url": "http://localhost:4474/v1/chat/completions",
+    "api_key": "mlx-server",
+    "temperature": 0.1,
+    "max_tokens": 16384,
+    "engine_type": "mlx",
+    "lms-test": true
+}

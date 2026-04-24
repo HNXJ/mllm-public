@@ -1,0 +1,6 @@
+model_list:
+  - model_name: gemini-3-flash-preview # The name the CLI asks for
+    litellm_params:
+      model: openai/qwen2.5-coder-7b-instruct # The actual local model
+      api_base: http://localhost:4474/v1 # LM Studio default port
+      api_key: "local-dummy-key"
