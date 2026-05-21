@@ -4,7 +4,7 @@ import json
 import time
 from pathlib import Path
 
-LOG_DIR = Path("/Users/HN/MLLM/logs")
+LOG_DIR = Path(os.environ.get("MLLM_LOG_DIR", "./logs"))
 OUTPUT_FILE = LOG_DIR / "global_log.jsonl"
 CHAR_LIMIT = 20000
 

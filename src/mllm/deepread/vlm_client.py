@@ -36,10 +36,11 @@ class VLMClient:
             print(f"🚀 Loading VLM via mlx_vlm: {self.model}")
             try:
                 import mlx_vlm
-                # Resolve model path (assuming they are in ~/MLLM/mlx_models/)
-                model_path = f"/Users/HN/MLLM/mlx_models/{self.model}"
+                # Resolve model path: users should set MLX_MODEL_ROOT env var or use model ID directly
+                mlx_model_root = os.environ.get("MLX_MODEL_ROOT", "./mlx_models")
+                model_path = f"{mlx_model_root}/{self.model}"
                 if not os.path.exists(model_path):
-                    model_path = self.model # Try direct name if path doesn't exist
+                    model_path = self.model # Try direct model ID if local path doesn't exist
                 
                 self._vmlx_model, self._vmlx_processor = mlx_vlm.load(model_path)
                 self._mlx_vlm = mlx_vlm

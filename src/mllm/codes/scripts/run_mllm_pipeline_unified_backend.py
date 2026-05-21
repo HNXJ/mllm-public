@@ -60,11 +60,12 @@ class PipelineController:
     def __init__(self, args):
         import json
         # LOAD PROFILE (Priority 1)
-        profile_path = "/Users/HN/MLLM/mllm-profile-office-mac.json"
+        # Users can set MLLM_PROFILE_PATH or use default relative path
+        profile_path = os.environ.get("MLLM_PROFILE_PATH", "mllm-profile-office-mac.json")
         if not os.path.exists(profile_path):
-            # Fallback for local dev
-            profile_path = "mllm-profile-office-mac.json"
-            
+            # Try repo root fallback
+            profile_path = Path(args.mllm_repo_path) / "mllm-profile-office-mac.json"
+
         with open(profile_path, "r") as f:
             self.profile = json.load(f)
 
@@ -466,11 +467,11 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--glossary_path",
-        default="/Users/HN/MLLM/mllm/src/mllm/skills/glossary/HPC/hpc-36-reference.md",
+        default=str(Path(__file__).parent.parent.parent / "skills/glossary/HPC/hpc-36-reference.md"),
     )
     parser.add_argument(
         "--instructions_path",
-        default="/Users/HN/MLLM/mllm/src/mllm/skills/instructions/hpc_eval_prompt.md",
+        default=str(Path(__file__).parent.parent.parent / "skills/instructions/hpc_eval_prompt.md"),
     )
     parser.add_argument(
         "--output_format",

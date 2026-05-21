@@ -14,12 +14,13 @@ INPUT_LIMIT_TOKENS = 64000
 TIMEOUT_SEC = 3600
 
 # --- Dynamic Path Resolution ---
-REPO_DIR = Path("/Users/HN/MLLM/mllm")
-INPUT_DIR = Path("/Users/HN/MLLM/inputs")
-OUTPUT_DIR = Path("/Users/HN/MLLM/outputs")
-LOG_DIR = Path("/Users/HN/MLLM/logs")
+# Users should set these environment variables or use relative defaults
+REPO_DIR = Path(os.environ.get("MLLM_REPO_PATH", "./mllm"))
+INPUT_DIR = Path(os.environ.get("MLLM_INPUT_DIR", "./inputs"))
+OUTPUT_DIR = Path(os.environ.get("MLLM_OUTPUT_DIR", "./outputs"))
+LOG_DIR = Path(os.environ.get("MLLM_LOG_DIR", "./logs"))
 LOG_FILE = LOG_DIR / "monitor.txt"
-MODEL_MANAGER = '/Users/HN/hnxj-gemini/scripts/model_manager.sh'
+MODEL_MANAGER = os.environ.get("MODEL_MANAGER_SCRIPT", "./scripts/model_manager.sh")
 
 def log(msg):
     timestamp = time.ctime()

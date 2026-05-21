@@ -1,7 +1,7 @@
 {
   "workstation_id": "default-dummy-workstation",
-  "workspace_root": "/Users/USER/workspace/mllm/",
-  "repo_root": "/Users/USER/workspace/mllm/mllm/",
+  "workspace_root": "./",
+  "repo_root": "./",
   "vlm_model_id": "dummy-vlm-v1",
   "compute_capabilities": {
     "max_vram_gb": 16,

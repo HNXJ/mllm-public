@@ -10,7 +10,8 @@ import fitz  # PyMuPDF
 import base64
 
 # --- Constants & Configuration ---
-BASE_DIR = Path("/Users/HN/mllm_pipeline_core")
+# Users should set MLLM_WORKSPACE_ROOT or use default relative path
+BASE_DIR = Path(os.environ.get("MLLM_WORKSPACE_ROOT", "./mllm_workspace"))
 SCRIPTS_DIR = BASE_DIR / "scripts"
 GLOSSARY_DIR = BASE_DIR / "glossary"
 PAPERS_DIR = BASE_DIR / "papers"
@@ -37,8 +38,10 @@ SUBJECT_CONFIG = {
 # --- Core Functions ---
 
 def run_manager(action, model_name="", port=None):
-    if os.path.exists("/Users/HN"):
-        cmd = ["bash", "/Users/HN/hnxj-gemini/scripts/model_manager.sh", action]
+    # Model manager script path: users should set MODEL_MANAGER_SCRIPT env var
+    manager_script = os.environ.get("MODEL_MANAGER_SCRIPT")
+    if manager_script and os.path.exists(manager_script):
+        cmd = ["bash", manager_script, action]
         if model_name: cmd.append(model_name)
         if port: cmd.append(str(port))
         res = subprocess.run(cmd, capture_output=True, text=True)

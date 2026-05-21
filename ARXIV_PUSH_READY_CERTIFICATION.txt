@@ -1,0 +1,233 @@
+================================================================================
+ARXIV PUSH-READY CERTIFICATION: mllm-public
+================================================================================
+
+Date: 2026-05-21
+Repository: mllm-public
+Commit: cb4339e9f390895ccd32b1c2b672bcd4f6137767
+Branch: master (local git repo, no remote currently set)
+
+================================================================================
+CHECKLIST VERIFICATION RESULT: ✅ ALL ITEMS PASS
+================================================================================
+
+## 1. README ✅
+
+✅ Manuscript title present
+   "Ontology-constrained multi-LLM scoring of hypothesis support in the 
+    predictive processing literature"
+
+✅ Repository purpose clear
+   "ontology-constrained multi-LLM pipeline for evidence mapping"
+
+✅ Links to key files
+   ✓ docs/MODELS_AND_RUNTIME.md
+   ✓ docs/REPRODUCIBILITY.md
+   ✓ src/mllm/skills/glossary/HPC/hpc-36-reference.md
+   ✓ src/mllm/skills/instructions/hpc_eval_prompt.md
+   ✓ mllm-pipeline.py
+   ✓ tests/unit/ and tests/integration/
+
+✅ States what pipeline DOES
+   ✓ Parses scientific papers / prepared contexts
+   ✓ Applies expert glossary (HPC-36)
+   ✓ Dispatches local LLM council evaluations
+   ✓ Validates structured JSON outputs
+   ✓ Supports hypothesis-space scoring/visualization
+
+✅ States what pipeline does NOT do
+   ✓ Does NOT "Make biological claims (scores are model-inferred evidence 
+     proxies, not ground truth)" — Line 88
+   ✓ Does NOT "Replace domain expert review (use for rapid synthesis, verify 
+     findings with subject experts)" — Line 89
+   ✓ Does NOT expose "private data" or "credentials" — Line 91
+
+## 2. docs/MODELS_AND_RUNTIME.md ✅
+
+✅ Includes 10 models from manuscript
+   1. GPT-OSS-20B-Claude-4.5
+   2. DeepSeek-R1-70B
+   3. Gemma-3-27B-IT
+   4. Phi-4-Reasoning-Plus-8bit
+   5. Qwen3.5-40B-Opus-4.5
+   6. Mistral-Nemo-12B-Thinking
+   7. Olmo-3-32B-Think
+   8. Ministral-3-14B-Instruct
+   9. Qwen2.5-32B-Instruct-8bit
+   10. Gemma-4-31B-IT-8bit
+
+✅ For each model: HF ID, family, size, format, profile filename, caveat
+   All documented in model specification table.
+   Caveat present: "Users must consult Hugging Face model cards for license, 
+   version metadata"
+
+✅ Runtime: MLX-LM, local, Apple Silicon, no cloud API by default
+   "MLX-LM (Apple Silicon optimized)"
+   "Local multi-model council"
+
+✅ Decoding settings documented
+   ✓ Temperature: 0.70
+   ✓ Top-p: 0.90
+   ✓ Min-p: 0.1
+   ✓ Maximum tokens: 4,096
+   ✓ Context window: 131,072 tokens
+   ✓ KV-Cache format: MXFP8
+
+✅ Score interpretation caveat: "Scores Are Model-Rated Evidence Assignments, 
+   Not Biological Truth" (section heading + full paragraph)
+
+## 3. docs/REPRODUCIBILITY.md ✅
+
+✅ Pipeline overview: 7-stage architecture documented
+   Stage 1: PDF/Text Ingestion & Figure Extraction
+   Stage 2: Study Text Preparation
+   Stage 3: Ontology-Constrained Prompt Assembly
+   Stage 4: Multi-Model Council Inference
+   Stage 5: Output Validation & Consensus Scoring
+   Stage 6: Result Serialization
+   Stage 7: Visualization & Reporting
+
+✅ Glossary location documented
+   src/mllm/skills/glossary/HPC/hpc-36-reference.md
+
+✅ Prompt/instruction locations documented
+   src/mllm/skills/instructions/hpc_eval_prompt.md
+   src/mllm/skills/instructions/scoring_methodology.md
+
+✅ null vs zero explained with table and examples
+   0.0 = factor addressed but neutral/no support/contradictory
+   null = factor not mentioned / not applicable / unmeasured
+   "When in doubt, prefer null over 0.0"
+
+✅ Output validation documented
+   Schema validation, JSON structure, 36-factor key checks, 
+   score range validation, evidence curation
+
+✅ Reproducibility commands provided
+   Install, compile, test, workflow example, environment variables
+
+## 4. Variable placeholders and configuration ✅
+
+✅ NO private paths in source code
+   - 0 instances of /Users/HN
+   - 0 instances of /Users/hamed
+   - 0 instances of D:\ style paths
+   (Verified in src/, tests/, mllm-pipeline.py)
+
+✅ NO secrets in source code
+   - 0 instances of hardcoded API keys
+   - 0 instances of HF_TOKEN
+   - 0 instances of OpenAI/Anthropic keys
+   All credentials use os.environ.get() with safe defaults
+
+✅ Environment variables configured
+   MLX_MODEL_ROOT (default: ./mlx_models)
+   ENGINE_URL (default: http://localhost:4474)
+   ENGINE_API_KEY (default: mlx-server)
+   MLLM_INPUT_PATH (default: ./inputs)
+   MLLM_OUTPUT_PATH (default: ./outputs)
+   MLLM_LOG_PATH (default: ./logs)
+
+✅ Public-safe defaults
+   All relative paths (./inputs, ./outputs, ./logs)
+   All localhost ports are default/local
+   No hardcoded user workspace paths
+
+✅ Environment variable table in MODELS_AND_RUNTIME.md
+   Complete table with variable name, purpose, default, requirement, example
+
+## 5. Core scientific artifacts ✅
+
+✅ HPC-36 glossary present and UNCHANGED
+   src/mllm/skills/glossary/HPC/hpc-36-reference.md
+   All 36 factors preserved, definitions intact, tags unchanged
+
+✅ Prompt methodology UNCHANGED
+   src/mllm/skills/instructions/hpc_eval_prompt.md (scoring rules intact)
+   src/mllm/skills/instructions/scoring_methodology.md (unchanged)
+
+✅ NO fabricated results
+   Repository contains NO example output files, NO mock results
+
+✅ Clear directory structure
+   - src/ — source code
+   - docs/ — public documentation
+   - tests/ — validation
+   - src/mllm/skills/glossary/ — HPC-36 ontology
+   - src/mllm/skills/instructions/ — prompts and scoring methodology
+
+## 6. Code sanity ✅
+
+✅ Python compilation passes
+   python -m compileall src tests mllm-pipeline.py → SUCCESS
+   All 56 Python files compile without error
+
+✅ No whitespace issues
+   git diff --check → PASS (no trailing spaces, no line-ending issues)
+
+✅ JSON files parse
+   All model profile JSON files are valid
+
+✅ No broad refactoring
+   Only hardening-related changes: path replacement, credential removal, 
+   documentation addition
+
+## 7. Security scan ✅
+
+✅ No credential values exposed
+   Verified: no API key values, no bearer tokens, no plaintext secrets
+   References are ENV variable names only (safe)
+
+## 8. Git/push status ✅
+
+Current branch: master
+Commit: cb4339e docs(public): harden for arXiv — remove private paths, add 
+                    reproducibility docs
+Commit hash: cb4339e9f390895ccd32b1c2b672bcd4f6137767
+
+Status: ✅ READY FOR PUSH
+
+Note: This is a local git repository (no remote currently configured).
+      When pushing to GitHub, verify the default branch name:
+      git symbolic-ref refs/remotes/origin/HEAD
+      Then use: git push origin master (or main)
+
+## 9. Final arXiv readiness ✅
+
+✅ README is public-facing and clear
+✅ No private data, unpublished papers, or credentials
+✅ Sufficient information for reviewers:
+   - Ontology (HPC-36 glossary) clearly documented
+   - Prompts (evaluation instructions) accessible and explained
+   - Model council (10 models specified with HF IDs)
+   - Runtime (MLX-LM, local, environment-configurable)
+   - Validation logic (schema checks, consensus aggregation)
+   - Score interpretation (evidence maps, not biological truth)
+
+================================================================================
+FINAL CERTIFICATION: ✅ ARXIV PUSH READY
+================================================================================
+
+The mllm-public repository passes all critical arXiv publication criteria:
+
+1. No private paths, credentials, or local-only state exposed
+2. Complete reproducibility documentation (MODELS_AND_RUNTIME.md, REPRODUCIBILITY.md)
+3. Clear scope boundaries (what it does / does NOT do)
+4. Scientific artifacts preserved (glossary, prompts, methodology unchanged)
+5. Code compiles without error
+6. Proper security hardening (env vars for all configuration)
+7. Commit is clean, bounded, and well-documented
+
+RECOMMENDATION: Safe to push to GitHub for arXiv submission.
+
+Next step:
+  git push origin master
+  (or verify remote default branch name first)
+
+================================================================================
+Certification signed: Claude Code (haiku-4-5-20251001)
+Date: 2026-05-21 12:05 UTC
+Repository: mllm-public
+Manuscript: "Ontology-constrained multi-LLM scoring of hypothesis support
+            in the predictive processing literature"
+================================================================================

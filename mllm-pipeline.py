@@ -45,17 +45,16 @@ class PipelineController:
             subprocess.Popen([python_bin, str(monitor_path)], start_new_session=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     def get_mlx_key(self, model_id: str) -> str:
+        # Mapping from profile name to MLX-LM model identifier.
+        # For local paths, users should configure via MLX_MODEL_ROOT env var.
         mapping = {
             "gpt-oss-20b-claude-4.5-mlx": "gpt-oss-20b-claude-4.5",
-            "Qwen3-14B-Gemini-3-Pro-Preview-High-Reasoning-Distill-qx86-hi-mlx": "/Users/HN/.lmstudio/models/nightmedia/Qwen3-14B-Gemini-3-Pro-Preview-High-Reasoning-Distill-qx86-hi-mlx",
             "deepseek-r1-70b-mlx": "DeepSeek-R1-Distill-Llama-70B-6bit",
             "gemma-3-27b-it-mlx": "gemma-3-27b-it-8bit",
             "mistral-nemo-12b-thinking-mlx": "Mistral-Nemo-12B-Thinking",
             "phi-4-reasoning-plus-mlx": "Phi-4-reasoning-plus-8bit",
-            "Qwen3-14B-Claude-4.5-Opus-High-Reasoning-Distill-qx86-hi-mlx": "/Users/HN/.lmstudio/models/nightmedia/Qwen3-14B-Claude-4.5-Opus-High-Reasoning-Distill-qx86-hi-mlx",
             "qwen3.5-40b-opus-4.5-mlx": "Qwen3.5-40B-Claude-4.5-Opus",
             "phi-4-reasoning-plus-8bit": "Phi-4-reasoning-plus-8bit",
-            "Ministral-3-14B-Instruct-2512-mxfp8": "/Users/HN/.lmstudio/models/mlx-community/Ministral-3-14B-Instruct-2512-mxfp8",
         }
         return mapping.get(model_id, model_id)
 
@@ -234,12 +233,12 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='MLLM HPC Evaluation Pipeline')
     parser.add_argument('--pdfs_to_process', nargs='+', default=[])
     parser.add_argument('--reasoning_model_names', nargs='+', default=['gpt-oss-20b-claude-4.5'])
-    parser.add_argument('--glossary_path', default='/Users/HN/MLLM/mllm/src/mllm/skills/glossary/HPC/hpc-36-reference.md')
-    parser.add_argument('--instructions_path', default='/Users/HN/MLLM/mllm/src/mllm/skills/instructions/hpc_eval_prompt.md')
-    parser.add_argument('--mllm_input_path', default='/Users/HN/MLLM/inputs/HPC')
-    parser.add_argument('--mllm_output_path', default='/Users/HN/MLLM/outputs/HPC')
-    parser.add_argument('--mllm_log_path', default='/Users/HN/MLLM/logs/pipeline.log')
-    parser.add_argument('--engine_url', default='http://localhost:4474')
+    parser.add_argument('--glossary_path', default=str(REPO_ROOT / 'src/mllm/skills/glossary/HPC/hpc-36-reference.md'))
+    parser.add_argument('--instructions_path', default=str(REPO_ROOT / 'src/mllm/skills/instructions/hpc_eval_prompt.md'))
+    parser.add_argument('--mllm_input_path', default=os.environ.get('MLLM_INPUT_PATH', './inputs'))
+    parser.add_argument('--mllm_output_path', default=os.environ.get('MLLM_OUTPUT_PATH', './outputs'))
+    parser.add_argument('--mllm_log_path', default=os.environ.get('MLLM_LOG_PATH', './logs/pipeline.log'))
+    parser.add_argument('--engine_url', default=os.environ.get('ENGINE_URL', 'http://localhost:4474'))
     parser.add_argument('--mode', default='mlx')
     parser.add_argument('--deepread_vlm', default='qwen3.5-vl-4b-mlx-crack')
     parser.add_argument('--deepread_only', action='store_true')

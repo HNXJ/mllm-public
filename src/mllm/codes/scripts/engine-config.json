@@ -1,7 +1,7 @@
 {
     "defaults": {
-        "model_root": "/Users/HN/mllm_models/mlx_models",
-        "api_key": "YOUR_ENGINE_API_KEY",
+        "model_root": "./mlx_models",
+        "api_key": "[REDACTED_SECRET_LIKE_VALUE]",
         "port": 4474
     },
     "models": [

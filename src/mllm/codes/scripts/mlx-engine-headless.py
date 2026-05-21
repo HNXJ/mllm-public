@@ -26,8 +26,8 @@ class EngineManager:
         self.tokenizer = None
         self.current_model_name = None
         self.status = "idle"
-        # Force correct paths for this environment
-        self.model_root = os.environ.get("MLX_MODEL_ROOT", "/Users/HN/MLLM/mlx_models")
+        # Model root path: users must set MLX_MODEL_ROOT env var or use model IDs directly
+        self.model_root = os.environ.get("MLX_MODEL_ROOT", "./mlx_models")
         self.api_key = os.environ.get("ENGINE_API_KEY", "mlx-server")
         logger.info(f"Engine initialized. Root: {self.model_root}, Key: {self.api_key}")
 

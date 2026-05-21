@@ -9,8 +9,8 @@ import re
 import argparse
 
 # --- Configuration ---
-ENGINE_URL = 'http://127.0.0.1:4474'
-API_KEY = 'hnxj-m3max-key'
+ENGINE_URL = os.environ.get('ENGINE_URL', 'http://127.0.0.1:4474')
+API_KEY = os.environ.get('ENGINE_API_KEY', 'mlx-server')
 REASONING_AGENT_URL = f'{ENGINE_URL}/v1/chat/completions'
 INPUT_LIMIT_TOKENS = 64000
 TIMEOUT_SEC = 3600
