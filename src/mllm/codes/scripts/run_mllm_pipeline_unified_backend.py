@@ -105,7 +105,7 @@ class PipelineController:
         self.deepread_loader = DeepReadLoader(
             engine_url=os.environ.get("MLLM_ENGINE_URL", "http://localhost:4474"),
             vlm_model=self.deepread_vlm,
-            api_key="sk-lm-QATqSEkb:NDovwFt8HbYh4z7TIjcu",
+            api_key=os.environ.get("ENGINE_API_KEY", "mlx-server"),
             max_workers=concurrency,  # PERFORMANCE: Strengthening via parallel extraction
             vlm_deepread=vlm_deepread
         )

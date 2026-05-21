@@ -36,10 +36,15 @@ This repository supports the paper:
 ## Repository Layout
 
 ```
-docs/                      Manuscript, reproducibility, and runtime documentation
+data/                       Example data files and reference tables
+├── hpc_table_final.csv     HPC-36 factor reference table for analysis
+docs/                       Manuscript, reproducibility, and runtime documentation
 ├── MODELS_AND_RUNTIME.md   10-model specifications, decoding params, MLX-LM setup
 ├── REPRODUCIBILITY.md      7-stage pipeline architecture, scoring methodology, examples
+├── examples/               Generated examples and runtime logs
 └── runtime/                Runtime guides (e.g., LMS hardening)
+examples/                   Reproducibility notebooks and analysis scripts
+├── MLLM_HPCA_ORG.ipynb     Colab notebook with HPC-36 analysis and visualization
 scripts/                    Public reusable scripts (queue runners, status checks)
 ├── maintenance/            Maintenance utilities (profile updates, etc.)
 ├── overnight_hpc_queue.sh  Example HPC paper evaluation queue
@@ -56,6 +61,12 @@ pyproject.toml              Package metadata and dependencies
 mllm-pipeline.py            Public CLI entrypoint for pipeline execution
 ```
 
+### Directory Notes
+
+- **data/**: Public example/reference files (small CSVs, lookup tables).
+- **examples/**: Reproducibility notebooks and analysis scripts. Intended for Colab or Jupyter with relative paths to `data/`.
+- **outputs/**: Generated locally when running notebooks; not tracked by default unless included as examples.
+
 ## Installation & Setup
 
 ### Requirements
@@ -67,7 +78,7 @@ mllm-pipeline.py            Public CLI entrypoint for pipeline execution
 ### Installation
 
 ```bash
-git clone https://github.com/your-org/mllm-public.git
+git clone https://github.com/HNXJ/mllm-public.git
 cd mllm-public
 pip install -r requirements.txt  # or use pyproject.toml
 export MLX_MODEL_ROOT=./mlx_models  # or your model directory
