@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+title: "MLLM: Multi-LLM Ontology-Constrained Evidence-Mapping Pipeline"
+abstract: "A local, privacy-preserving pipeline for rapid evidence synthesis in neuroscience literature using a council of reasoning models and ontology-constrained structured scoring."
+authors:
+  - name: "HNXJ"
+    orcid: ""
+repository-code: "https://github.com/HNXJ/mllm-public"
+license: MIT
+keywords:
+  - "evidence mapping"
+  - "multi-LLM"
+  - "ontology-constrained"
+  - "predictive coding"
+  - "neuroscience"
+  - "literature synthesis"
+version: 1.0
+date-released: 2026-05-21
+references:
+  - authors:
+      - family-names: "Author"
+        given-names: "A."
+      - family-names: "Coauthor"
+        given-names: "B."
+    title: "Ontology-constrained multi-LLM scoring of hypothesis support in the predictive processing literature"
+    year: 2026
+    journal: "arXiv"
+    type: article
