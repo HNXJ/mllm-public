@@ -33,6 +33,29 @@ This repository supports the paper:
 - Unit Tests: `tests/unit/`
 - Integration Tests: `tests/integration/test_hpc_eval.py`
 
+## Repository Layout
+
+```
+docs/                      Manuscript, reproducibility, and runtime documentation
+├── MODELS_AND_RUNTIME.md   10-model specifications, decoding params, MLX-LM setup
+├── REPRODUCIBILITY.md      7-stage pipeline architecture, scoring methodology, examples
+└── runtime/                Runtime guides (e.g., LMS hardening)
+scripts/                    Public reusable scripts (queue runners, status checks)
+├── maintenance/            Maintenance utilities (profile updates, etc.)
+├── overnight_hpc_queue.sh  Example HPC paper evaluation queue
+└── mllm_status.sh          Pipeline status monitoring (configurable via env vars)
+src/mllm/                   Pipeline package source
+├── skills/glossary/HPC/    HPC-36 ontology and factor definitions
+├── skills/instructions/    Evaluation prompts and scoring rules
+├── data/                   Data loaders (PDF extraction, figure handling)
+├── codes/scripts/          Internal pipeline scripts
+└── config/profiles/        Model configuration profiles
+tests/                      Unit and integration tests
+config/                     Configuration templates
+pyproject.toml              Package metadata and dependencies
+mllm-pipeline.py            Public CLI entrypoint for pipeline execution
+```
+
 ## Installation & Setup
 
 ### Requirements

@@ -1,13 +1,17 @@
 #!/bin/bash
 
-REMOTE_USER="HN"
-REMOTE_HOST="100.69.184.42"
-REMOTE_PASS="apple"
-REMOTE_WORK_DIR="/Users/HN/MLLM"
-REMOTE_PYTHONPATH="/Users/HN/MLLM/mllm/src"
-REMOTE_PYTHON="/Users/HN/miniconda3/envs/mllm/bin/python"
-REMOTE_SCRIPT="/Users/HN/MLLM/mllm-pipeline.py"
-SSH_CMD="sshpass -p '$REMOTE_PASS' ssh"
+# Overnight Queue Configuration (use environment variables or defaults)
+MLLM_REMOTE_USER="${MLLM_REMOTE_USER:-user}"
+MLLM_REMOTE_HOST="${MLLM_REMOTE_HOST:-localhost}"
+MLLM_REMOTE_ROOT="${MLLM_REMOTE_ROOT:-.}"
+MLLM_REMOTE_PYTHON="${MLLM_REMOTE_PYTHON:-python}"
+MLLM_INPUT_PATH="${MLLM_INPUT_PATH:-./inputs/HPC}"
+MLLM_OUTPUT_PATH="${MLLM_OUTPUT_PATH:-./outputs/HPC}"
+ENGINE_URL="${ENGINE_URL:-http://localhost:4474}"
+
+REMOTE_PYTHONPATH="$MLLM_REMOTE_ROOT/src"
+REMOTE_SCRIPT="$MLLM_REMOTE_ROOT/mllm-pipeline.py"
+SSH_CMD="ssh"
 
 PAPERS="Attinger2017 Bakhtiari2021 Bastos2012 Bastos2020 Bekinschtein2009 Chao2019 Friston2010 Furutachi2024 Garret2020 Greedy2022 Hertag2020 JiangRao2024 Keller2012 Keller2018 Kiebel2008 LaoRodriguez2023 LeeMejias2025 Mikulasch2023 Nejad2025 Payeur2021 Rao2024 RaoBallard1999 Sacramento2018 Spratling2008 Spratling2010 Srinivasan1982 VanDerveer2021 Wacogne2012 Wacongne2011 Westerberg2025 Yamins2014"
 
@@ -37,11 +41,22 @@ for agent in "${AGENTS[@]}"; do
     
     # 1. Verification Step (Load-Test-Unload)
     echo "🧪 Verifying profile functionality..."
-    $SSH_CMD "$REMOTE_USER@$REMOTE_HOST" "cd $REMOTE_WORK_DIR && export PYTHONPATH=$REMOTE_PYTHONPATH && $REMOTE_PYTHON $REMOTE_SCRIPT --mode mlx --test_profile --reasoning_model_names $agent"
-    
+    $SSH_CMD "$MLLM_REMOTE_USER@$MLLM_REMOTE_HOST" \
+        "cd $MLLM_REMOTE_ROOT && \
+         export PYTHONPATH=$REMOTE_PYTHONPATH && \
+         $MLLM_REMOTE_PYTHON $REMOTE_SCRIPT \
+         --mode mlx --test_profile --reasoning_model_names $agent"
+
     # 2. Sequential Evaluation Step
-    echo "🧠 Running batch evaluations for all 31 papers..."
-    $SSH_CMD "$REMOTE_USER@$REMOTE_HOST" "cd $REMOTE_WORK_DIR && export PYTHONPATH=$REMOTE_PYTHONPATH && $REMOTE_PYTHON $REMOTE_SCRIPT --mode mlx --engine_url http://localhost:4474 --mllm_input_path /Users/HN/MLLM/inputs/HPC --mllm_output_path /Users/HN/MLLM/outputs/HPC --reasoning_model_names $agent --pdfs_to_process $PAPERS"
+    echo "🧠 Running batch evaluations for all papers..."
+    $SSH_CMD "$MLLM_REMOTE_USER@$MLLM_REMOTE_HOST" \
+        "cd $MLLM_REMOTE_ROOT && \
+         export PYTHONPATH=$REMOTE_PYTHONPATH && \
+         $MLLM_REMOTE_PYTHON $REMOTE_SCRIPT \
+         --mode mlx --engine_url $ENGINE_URL \
+         --mllm_input_path $MLLM_INPUT_PATH \
+         --mllm_output_path $MLLM_OUTPUT_PATH \
+         --reasoning_model_names $agent --pdfs_to_process $PAPERS"
     
     echo "✅ [$(date)] Agent $agent complete."
     echo "--------------------------------------------------------------------------"
