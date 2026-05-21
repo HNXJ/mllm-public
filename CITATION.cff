@@ -15,13 +15,3 @@ keywords:
   - "literature synthesis"
 version: 1.0
 date-released: 2026-05-21
-references:
-  - authors:
-      - family-names: "Author"
-        given-names: "A."
-      - family-names: "Coauthor"
-        given-names: "B."
-    title: "Ontology-constrained multi-LLM scoring of hypothesis support in the predictive processing literature"
-    year: 2026
-    journal: "arXiv"
-    type: article

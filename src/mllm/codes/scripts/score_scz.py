@@ -6,7 +6,7 @@ import numpy as np
 from pathlib import Path
 
 # --- Configuration ---
-REMOTE_IP = "100.69.184.42"
+REMOTE_IP = os.environ.get("MLLM_REMOTE_HOST", "localhost")
 AGENTS = {
     "Qwen-32B": {"url": f"http://{REMOTE_IP}:4474/v1/chat/completions", "port": 4474},
     "DeepSeek-R1-70B": {"url": f"http://{REMOTE_IP}:4475/v1/chat/completions", "port": 4475},

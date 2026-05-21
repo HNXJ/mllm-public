@@ -8,7 +8,7 @@ description: MLLM-orchestrator for the unified DeepRead (VLM/Port 4475) + Evalua
 Unified control for the DeepRead (VLM) + Evaluation (Agent-E) pipeline.
 
 ## 1. Backend Connectivity
-- **Primary Node**: `HN@100.69.184.42` (Tailscale).
+- **Primary Node**: Configured by `MLLM_REMOTE_USER` and `MLLM_REMOTE_HOST` environment variables.
 - **Control Interface**: `mlxEngine` (FastAPI).
 - **Main API (Port 4474)**: Reasoning and text-based evaluation.
 - **VLM API (Port 4475)**: Figure parsing and multimodal synthesis.
