@@ -6,9 +6,9 @@ build-backend = "setuptools.build_meta"
 name = "mllm"
 version = "1.0.1"
 authors = [
-  { name="Generic Contributor", email="contributor@email.com" },
+  { name="Hamed Nejat" },
 ]
-description = "Canonical implementation of the MLLM pipeline for neuroscientific discovery."
+description = "Ontology-constrained multi-LLM evidence-mapping pipeline for predictive-processing literature synthesis."
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [

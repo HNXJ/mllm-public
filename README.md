@@ -1,24 +1,24 @@
 # MLLM: Multi-LLM Ontology-Constrained Evidence-Mapping Pipeline
 
-A local, privacy-preserving pipeline for rapid evidence synthesis in neuroscience literature using a council of reasoning models and ontology-constrained structured scoring.
+A local ontology-constrained pipeline for mapping heterogeneous neuroscience literatures into auditable model-derived evidence spaces using a council of large language models.
 
 ## Overview
 
 This repository provides an **ontology-constrained multi-LLM pipeline** for evidence mapping in scientific literature, with particular application to predictive coding hypothesis evaluation. It includes:
 
-- **Pipeline Controller** (`mllm-pipeline.py`): Orchestrates document ingestion, multi-model inference, consensus scoring, and result serialization
-- **HPC-36 Glossary** (`src/mllm/skills/glossary/HPC/hpc-36-reference.md`): 36-factor neuroscience ontology for Hierarchical Predictive Coding
-- **Unified Evaluation Prompt** (`src/mllm/skills/instructions/hpc_eval_prompt.md`): Structured reasoning instructions for 10 reasoning models
-- **DeepRead Extraction** (`src/mllm/data/loaders.py`): Parallel text + figure extraction from PDF
-- **Model Profiles** (`src/mllm/config/profiles/`): Configuration templates for 10 reasoning models
-- **Consensus Aggregation**: Consensus scoring across model council with agreement metrics
+- **Pipeline Controller** (`mllm-pipeline.py`): Orchestrates document ingestion, multimodal extraction, model-council inference, output validation, and result serialization
+- **HPC-36 Glossary** (`src/mllm/skills/glossary/HPC/hpc-36-reference.md`): 36-factor ontology for hierarchical predictive coding, organized into predictive suppression, feedforward error propagation, and ubiquity
+- **Unified Evaluation Prompt** (`src/mllm/skills/instructions/hpc_eval_prompt.md`): Structured scoring instructions for local and global oddball contexts
+- **DeepRead Extraction** (`src/mllm/data/loaders.py`): PDF text extraction with figure-aware document consolidation
+- **Model Profiles** (`src/mllm/config/profiles/`): Configuration templates for local MLX-LM model execution
+- **Agreement and Geometry Metrics**: Agent Consistency, Literature Consistency, Literature-Agent Consistency, and hypothesis-space dispersion analysis
 
 ## Manuscript
 
 This repository supports the paper:
 
 > **"Ontology-constrained multi-LLM scoring of hypothesis support in the predictive processing literature"**
-> *Evaluating evidence for predictive coding mechanisms using a structured multi-model council*
+> A local multi-model system for scoring 31 predictive-processing studies against a 36-factor ontology across local and global oddball contexts.
 
 ### Reproducibility Resources
 
@@ -110,26 +110,18 @@ python mllm-pipeline.py \
 
 ## Important Notes
 
-### What This Pipeline Does
+### Scope and Interpretation
 
-✓ Maps neuroscience literature against an ontology of predictive coding mechanisms
-✓ Uses local LLMs (privacy-preserving, no data sent to cloud)
-✓ Aggregates multi-model perspectives into consensus scores
-✓ Provides rapid evidence synthesis for literature triage
+This repository implements the public, reusable components of an ontology-constrained evidence-mapping workflow. It maps papers onto the HPC-36 predictive-coding ontology, preserves local execution where configured, records structured model outputs, and supports downstream agreement and dispersion analyses.
 
-### What This Pipeline Does NOT Do
-
-✗ Make biological claims (scores are model-inferred evidence proxies, not ground truth)
-✗ Replace domain expert review (use for rapid synthesis, verify findings with subject experts)
-✗ Guarantee correctness (models can hallucinate; requires human validation)
-✗ Provide licensing or legal advice (consult model cards on Hugging Face for license terms)
+The resulting scores are model-derived evidence annotations. They are intended for auditable literature mapping, corpus comparison, and hypothesis-space analysis; they are not biological ground truth and should be interpreted together with the underlying papers, reasoning logs, and domain expertise.
 
 ### Scoring Interpretation
 
 - **Scores range from −1.0 to +1.0**, with **null** for unaddressed factors
 - **0.0** = factor explicitly tested but unsupported
 - **null** = factor not mentioned (absence of evidence ≠ evidence of absence)
-- **Consensus** = mean/median across 10 models; reflects agreement strength, not truth
+- **Council aggregate** = mean/median across models; reflects model agreement over extracted evidence, not biological truth
 
 See [Reproducibility Guide](docs/REPRODUCIBILITY.md) for detailed scoring methodology.
 

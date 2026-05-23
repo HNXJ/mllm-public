@@ -6,7 +6,7 @@ This document explains how to reproduce the multi-LLM evidence-mapping pipeline 
 
 ## Pipeline Overview
 
-The MLLM (Multi-LLM) pipeline is a **seven-stage ontology-constrained reasoning system** for rapid literature synthesis:
+The MLLM (Multi-LLM) pipeline is a **seven-stage ontology-constrained evidence-mapping system**. In the manuscript, it maps a 31-study predictive-processing corpus onto the HPC-36 ontology across local and global oddball contexts:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -29,10 +29,10 @@ The MLLM (Multi-LLM) pipeline is a **seven-stage ontology-constrained reasoning 
 │ └─ Decoding params: temp=0.70, top-p=0.9, min-p=0.1           │
 │ └─ Collect structured JSON outputs                            │
 ├─────────────────────────────────────────────────────────────────┤
-│ STAGE 5: Output Validation & Consensus Scoring                  │
+│ STAGE 5: Output Validation & Score-Table Construction                  │
 │ └─ Validate JSON structure (all 36 factors present)            │
 │ └─ Validate score ranges [-1.0, +1.0] and null                │
-│ └─ Compute consensus (mean, median, variance) across council   │
+│ └─ Compute model aggregates and agreement metrics across council   │
 ├─────────────────────────────────────────────────────────────────┤
 │ STAGE 6: Result Serialization                                   │
 │ └─ Write per-model scores (JSON)                               │
@@ -40,7 +40,7 @@ The MLLM (Multi-LLM) pipeline is a **seven-stage ontology-constrained reasoning 
 │ └─ Preserve reasoning logs and evidence citations              │
 ├─────────────────────────────────────────────────────────────────┤
 │ STAGE 7: Visualization & Reporting (Optional)                   │
-│ └─ Generate consensus heat maps (H1, H2, H3 hypothesis groups) │
+│ └─ Generate score distributions, agreement matrices, and hypothesis-space visualizations │
 │ └─ Export statistics tables (mean, std, n-sample per factor)   │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -232,7 +232,7 @@ Every model output is validated for:
 
 If validation fails, the entry is logged but does not halt the pipeline.
 
-### 2. **Consensus Aggregation**
+### 2. **Council Aggregation**
 
 After all models have evaluated a paper:
 
@@ -294,7 +294,7 @@ The evaluation prompt uses **explicit schema enforcement**:
 5. **Rule restatement:** Evidence priority, null vs. 0.0 distinction, context independence all stated in prompt
 
 This design minimizes:
-- Factor hallucination (models inventing new factors)
+- Factor invention (models introducing keys outside the ontology)
 - Schema drift (output structure changes mid-evaluation)
 - Context mixing (LO findings misattributed to GO context)
 - Unjustified factorization (breaking a single paper result into multiple factor scores)
@@ -309,32 +309,20 @@ This design minimizes:
 
 Example: `Smith-2024_gpt-oss-20b-claude-4.5-mlx_eval.json`
 
-**Interpretation:** Represents what this single model inferred about evidence support from the paper. Not a ground truth, not a binding vote, but one perspective from the council.
+**Interpretation:** Represents one model-specific annotation of evidence support from the paper. It is one auditable council member output and is interpreted through the accompanying reasoning log.
 
 ### Consensus Output
 
 **File format:** `{paper_stem}_consensus_hpc36.json` (or similar)
 
 **Interpretation:**
-- **High consensus (agreement ≥ 7/10 models):** Pattern is robust; likely evidence is clear in the paper
-- **Mixed consensus (4–6 models agree):** Evidence is ambiguous or models differ on interpretation
-- **Low consensus (≤ 3 models agree):** Paper is likely inconclusive, underpowered, or uses non-standard paradigm
+- **High agreement (agreement ≥ 7/10 models):** The extracted evidence is consistently mapped by the council.
+- **Mixed agreement (4–6 models agree):** The paper or factor requires closer inspection because model interpretations diverge.
+- **Low agreement (≤ 3 models agree):** The evidence is sparse, indirect, or strongly dependent on model-specific interpretation.
 
-### Caveats
+### Interpretation Boundaries
 
-⚠ **Models can hallucinate or misread:**
-- Models may cite figures or sections that do not exist
-- Models may apply incorrect biological priors
-- Models are not immune to adversarial or misleading text
-
-⚠ **Consensus ≠ Truth:**
-- 10 models agreeing does not make a biological claim true
-- Ground truth requires biological validation (e.g., electrophysiology, genetic manipulation, clinical trials)
-
-⚠ **Scores guide literature mapping, not research conclusions:**
-- Use these scores to identify candidate papers for rapid triage
-- Follow up with expert domain review before making mechanistic claims
-- Cite the original papers, not the model scores, in research publications
+Model outputs are structured annotations over the supplied paper text, figure descriptions, and ontology. Council agreement is evidence about reproducibility of the annotation process, not direct biological validation. Mechanistic conclusions should remain grounded in the source studies and, where relevant, independent empirical validation.
 
 ---
 
@@ -376,13 +364,11 @@ python scripts/visualize_consensus.py --input_dir ./results
 If you use this pipeline in your research, please cite:
 
 ```bibtex
-@article{author2026ontology,
-  title={Ontology-constrained multi-LLM scoring of hypothesis support 
-         in the predictive processing literature},
-  author={Author, A. and Coauthor, B.},
-  journal={arXiv},
+@misc{nejat2026ontology,
+  title={Ontology-constrained multi-LLM scoring of hypothesis support in the predictive processing literature},
+  author={Nejat, Hamed and Maier, Alexander and Spencer-Smith, Jesse and Bastos, Andre M.},
   year={2026},
-  note={Code: https://github.com/your-org/mllm-public}
+  note={Code: https://github.com/HNXJ/mllm-public}
 }
 ```
 
@@ -390,5 +376,5 @@ Also cite the individual models and their original papers (see model cards on Hu
 
 ---
 
-**Last Updated:** 2026-05-21  
-**Pipeline Version:** 1.0 (Public Release)
+**Last Updated:** 2026-05-23
+**Pipeline Version:** 1.0.1 (manuscript-aligned public release)

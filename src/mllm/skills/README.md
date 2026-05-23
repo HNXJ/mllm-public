@@ -1,4 +1,4 @@
-# MLLM Skills: Agentic Reasoning for Neuroscience
+# MLLM Skills: Ontology-Constrained Evidence Mapping
 
 ## Skill Categories
 
@@ -8,13 +8,14 @@ These skills provide the foundational ontology for evaluation.
 - **HPC-Ontogram**: A high-fidelity 3D visualization of the glossary's structure and logical relationships (created March 28, 2026).
 
 ### 2. Instructions (`instructions/`)
-Guidelines for agentic behavior and scoring.
-- **Scoring Methodology**: Mandatory guidelines for evidence-based factor scoring, requiring specific figure/text citations and preventing LLM "hallucinations."
-- **Multi-Agent Consensus**: Protocol for calculating the "Noise Floor" (MSD) and scientific consensus across the ensemble.
+Guidelines for structured scoring, context separation, and output validation.
+- **Scoring Methodology**: Mandatory guidelines for evidence-based factor scoring, requiring specific figure/text evidence for non-null scores.
+- **Multi-Agent Consensus**: Protocol for calculating mean-square-distance references and council-level agreement metrics.
 
 ### 3. Prompts (`prompts/`)
-Optimized system messages for different model architectures (DeepSeek-R1, Qwen2.5, Mistral-Nemo).
+Prompt templates and system messages for model-council evaluation.
 
-## Recent Progress
-- **HPC-36 Ontogram Implementation**: A new visual skill for mapping the knowledge manifold.
-- **Factor Specificity Update**: Improved grounding of H1/H2 interneuron logic (PV/SST mapping).
+## Manuscript Alignment
+- **HPC-36 ontology**: Maintains the three hypothesis families used in the manuscript: predictive suppression, feedforward error propagation, and ubiquity.
+- **Local/global context separation**: Preserves separate scoring for local oddball and global oddball evidence.
+- **Council analysis**: Supports downstream Agent Consistency, Literature Consistency, Literature-Agent Consistency, and hypothesis-space geometry analyses.

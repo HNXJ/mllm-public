@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document describes the large language models (LLMs) used in the manuscript "Ontology-constrained multi-LLM scoring of hypothesis support in the predictive processing literature" and the runtime environment required to reproduce the evaluation pipeline.
+This document records the model-council and runtime assumptions used by the manuscript "Ontology-constrained multi-LLM scoring of hypothesis support in the predictive processing literature." The manuscript evaluates a 31-study predictive-processing corpus using a 36-factor ontology across local and global oddball contexts.
 
 **Runtime Platform:** MLX-LM (Apple Silicon optimized)  
 **Inference Engine:** MLX (Machine Learning Accelerated)  
@@ -14,18 +14,18 @@ This document describes the large language models (LLMs) used in the manuscript 
 
 The manuscript evaluates predictive coding hypotheses using a council of 10 diverse reasoning models, each selected for different reasoning and quantitative capabilities:
 
-| Model ID | Model Name | Hugging Face ID | Size | Family | Quantization | Context Window | Paper Alias |
-|----------|-----------|-----------------|------|--------|--------------|----------------|----|
-| 1 | GPT-OSS-20B-Claude-4.5 | gpt-oss-20b-claude-4.5-mlx | 20B | OpenAI OSS | MLX-native | 131,072 | M1 |
-| 2 | DeepSeek-R1-70B | deepseek-r1-distill-llama-70b-6bit-mlx | 70B | DeepSeek | MXFP6 | 131,072 | M2 |
-| 3 | Gemma-3-27B-IT | gemma-3-27b-it-8bit-mlx | 27B | Google Gemma | MXFP8 | 131,072 | M3 |
-| 4 | Phi-4-Reasoning-Plus-8bit | phi-4-reasoning-plus-8bit | 14B | Microsoft Phi | MXFP8 | 131,072 | M4 |
-| 5 | Qwen3.5-40B-Opus-4.5 | qwen3.5-40b-opus-4.5-mlx | 40B | Alibaba Qwen | MLX-native | 131,072 | M5 |
-| 6 | Mistral-Nemo-12B-Thinking | mistral-nemo-12b-thinking-mlx | 12B | Mistral AI | MLX-native | 128,000 | M6 |
-| 7 | Olmo-3-32B-Think | olmo-3-32b-think-mlx | 32B | Allen Institute | MLX-native | 128,000 | M7 |
-| 8 | Ministral-3-14B-Instruct | ministral-3-14b-instruct-2512-mxfp8-mlx | 14B | Mistral AI | MXFP8 | 131,072 | M8 |
-| 9 | Qwen2.5-32B-Instruct-8bit | qwen2.5-32b-instruct-8bit-mlx | 32B | Alibaba Qwen | MXFP8 | 131,072 | M9 |
-| 10 | Gemma-4-31B-IT-8bit | gemma-4-31b-8bit-mlx | 31B | Google Gemma | MXFP8 | 131,072 | M10 |
+| Model ID | Manuscript Handle | Size | Family / Source | Runtime Notes |
+|----------|-------------------|------|-----------------|---------------|
+| 1 | `gemma-3-27b-it` | 27B | Google DeepMind | Local MLX-LM profile |
+| 2 | `gemma-4-31b-it` | 31B | Google DeepMind | Local MLX-LM profile |
+| 3 | `deepseek-r1-distill-llama-70b` | 70B | DeepSeek-AI / Meta Llama base | Local MLX-LM profile |
+| 4 | `gpt-oss-claude-4.5-sonnet` | 20B | Community distillation | Local MLX-LM profile |
+| 5 | `mistral-nemo-12b-thinking` | 12B | Mistral AI / NVIDIA | Local MLX-LM profile |
+| 6 | `olmo-3-32b-think` | 32B | Allen AI | Local MLX-LM profile |
+| 7 | `phi-4-reasoning-plus` | 14B | Microsoft | Local MLX-LM profile |
+| 8 | `qwen3-14b-gemini-3-pro` | 14B | Qwen community fine-tune | Local MLX-LM profile |
+| 9 | `qwen3-14b-claude-4.5-sonnet` | 14B | Qwen community fine-tune | Local MLX-LM profile |
+| 10 | `qwen3.5-40b-claude-4.5-opus` | 40B | Qwen community fine-tune | Local MLX-LM profile |
 
 ---
 

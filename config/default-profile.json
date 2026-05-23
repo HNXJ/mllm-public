@@ -1,21 +1,21 @@
 {
-  "workstation_id": "default-dummy-workstation",
+  "workstation_id": "default-local-workstation",
   "workspace_root": "./",
   "repo_root": "./",
-  "vlm_model_id": "dummy-vlm-v1",
+  "vlm_model_id": "local-vlm-placeholder",
   "compute_capabilities": {
     "max_vram_gb": 16,
-    "max_context_window": 32000,
+    "max_context_window": 131072,
     "supported_quantizations": [
-      "q4_k_m"
+      "mxfp8"
     ]
   },
   "pipeline_requirements": {
-    "required_context_window": 128000,
+    "required_context_window": 131072,
     "required_input_tokens": 64000
   },
   "compute_preferences": {
-    "preferred_quantization": "q4_k_m"
+    "preferred_quantization": "mxfp8"
   },
   "networking": {
     "llm_engine_url": "http://localhost:1234",
