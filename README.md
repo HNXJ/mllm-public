@@ -15,12 +15,12 @@ This repository provides an **ontology-constrained multi-LLM pipeline** for evid
 
 ## Manuscript
 
-This repository supports the paper:
+This repository is for the paper:
 
 > **"Ontology-constrained multi-LLM scoring of hypothesis support in the predictive processing literature"**
 > A local multi-model system for scoring 31 predictive-processing studies against a 36-factor ontology across local and global oddball contexts.
 
-### Reproducibility Resources
+### Resources
 
 - **[Models & Runtime](docs/MODELS_AND_RUNTIME.md)** — 10-model specification, decoding parameters, installation, and model licensing caveats
 - **[Reproducibility Guide](docs/REPRODUCIBILITY.md)** — Complete pipeline architecture, ontology, scoring methodology, examples, and interpretation guidelines
