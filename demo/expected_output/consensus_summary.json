@@ -1,0 +1,146 @@
+[
+  {
+    "Study": "DemoStudyA",
+    "Context": "GO",
+    "Factor": "Activity Suppression",
+    "n_models": 2,
+    "mean_score": 0.6,
+    "median_score": 0.6,
+    "std_score": 0.0
+  },
+  {
+    "Study": "DemoStudyA",
+    "Context": "GO",
+    "Factor": "Divisive Inhibition (PV)",
+    "n_models": 1,
+    "mean_score": -0.2,
+    "median_score": -0.2,
+    "std_score": 0.0
+  },
+  {
+    "Study": "DemoStudyA",
+    "Context": "GO",
+    "Factor": "Subtractive Inhibition (SST)",
+    "n_models": 2,
+    "mean_score": 0.2,
+    "median_score": 0.2,
+    "std_score": 0.0
+  },
+  {
+    "Study": "DemoStudyA",
+    "Context": "GO",
+    "Factor": "VIP-Mediated Disinhibition",
+    "n_models": 1,
+    "mean_score": 0.0,
+    "median_score": 0.0,
+    "std_score": 0.0
+  },
+  {
+    "Study": "DemoStudyA",
+    "Context": "LO",
+    "Factor": "Activity Suppression",
+    "n_models": 2,
+    "mean_score": 0.7,
+    "median_score": 0.7,
+    "std_score": 0.1414213562
+  },
+  {
+    "Study": "DemoStudyA",
+    "Context": "LO",
+    "Factor": "Divisive Inhibition (PV)",
+    "n_models": 2,
+    "mean_score": 0.2,
+    "median_score": 0.2,
+    "std_score": 0.0
+  },
+  {
+    "Study": "DemoStudyA",
+    "Context": "LO",
+    "Factor": "Subtractive Inhibition (SST)",
+    "n_models": 2,
+    "mean_score": 0.7,
+    "median_score": 0.7,
+    "std_score": 0.1414213562
+  },
+  {
+    "Study": "DemoStudyA",
+    "Context": "LO",
+    "Factor": "VIP-Mediated Disinhibition",
+    "n_models": 1,
+    "mean_score": 0.0,
+    "median_score": 0.0,
+    "std_score": 0.0
+  },
+  {
+    "Study": "DemoStudyB",
+    "Context": "GO",
+    "Factor": "Activity Suppression",
+    "n_models": 0,
+    "mean_score": null,
+    "median_score": null,
+    "std_score": 0.0
+  },
+  {
+    "Study": "DemoStudyB",
+    "Context": "GO",
+    "Factor": "Divisive Inhibition (PV)",
+    "n_models": 1,
+    "mean_score": 0.6,
+    "median_score": 0.6,
+    "std_score": 0.0
+  },
+  {
+    "Study": "DemoStudyB",
+    "Context": "GO",
+    "Factor": "Subtractive Inhibition (SST)",
+    "n_models": 1,
+    "mean_score": 0.0,
+    "median_score": 0.0,
+    "std_score": 0.0
+  },
+  {
+    "Study": "DemoStudyB",
+    "Context": "GO",
+    "Factor": "VIP-Mediated Disinhibition",
+    "n_models": 1,
+    "mean_score": 0.2,
+    "median_score": 0.2,
+    "std_score": 0.0
+  },
+  {
+    "Study": "DemoStudyB",
+    "Context": "LO",
+    "Factor": "Activity Suppression",
+    "n_models": 0,
+    "mean_score": null,
+    "median_score": null,
+    "std_score": 0.0
+  },
+  {
+    "Study": "DemoStudyB",
+    "Context": "LO",
+    "Factor": "Divisive Inhibition (PV)",
+    "n_models": 1,
+    "mean_score": 0.6,
+    "median_score": 0.6,
+    "std_score": 0.0
+  },
+  {
+    "Study": "DemoStudyB",
+    "Context": "LO",
+    "Factor": "Subtractive Inhibition (SST)",
+    "n_models": 1,
+    "mean_score": -0.2,
+    "median_score": -0.2,
+    "std_score": 0.0
+  },
+  {
+    "Study": "DemoStudyB",
+    "Context": "LO",
+    "Factor": "VIP-Mediated Disinhibition",
+    "n_models": 1,
+    "mean_score": 0.2,
+    "median_score": 0.2,
+    "std_score": 0.0
+  }
+]

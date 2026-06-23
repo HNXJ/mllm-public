@@ -4,6 +4,56 @@ This document explains how to reproduce the multi-LLM evidence-mapping pipeline 
 
 ---
 
+## Start Here: Minimal Reproducible Path (no models, no GPU)
+
+If you have never seen this repository before, are not an MLX expert,
+and do not have access to the 10-model council described below, start
+with the **offline demo** instead of the full pipeline:
+
+```bash
+git clone https://github.com/HNXJ/mllm-public.git
+cd mllm-public
+pip install -e .
+python demo/run_demo.py
+```
+
+This exercises the real `mllm.data.preprocessors.aggregate_scores_from_json`
+and `parse_llm_output_as_json` functions — the same code that builds
+the manuscript's result tables — on small synthetic data, in under a
+second, with no network access, no GPU, and no model weights. See
+[`demo/README.md`](../demo/README.md) for the exact expected output
+and a diff-based correctness check against [`demo/expected_output/`](../demo/expected_output/).
+
+The rest of this document describes the **full** manuscript pipeline,
+which additionally requires Apple Silicon hardware and a local MLX
+model council (see [docs/MODELS_AND_RUNTIME.md](MODELS_AND_RUNTIME.md)).
+
+---
+
+## Manuscript ↔ Repository Mapping
+
+This repository accompanies Nejat, Maier, Spencer-Smith & Bastos (2026),
+[arXiv:2606.05206](https://arxiv.org/abs/2606.05206). The table below maps
+each major manuscript component to the concrete repository artifact that
+implements it. A row marked **not in this repository** means the
+manuscript-reported result depends on inputs (the 31-paper corpus,
+downloaded model weights, or post-hoc analysis notebooks) that are not
+shipped here, even though the code that *would* process them is. See
+[docs/MANUSCRIPT_MAPPING.md](MANUSCRIPT_MAPPING.md) for the figure-by-figure
+traceability matrix.
+
+| Manuscript Component | Repository Component | Evidence |
+|---|---|---|
+| Ontology definition (HPC-36, 3 hypotheses × 12 factors) | [`src/mllm/skills/glossary/HPC/hpc-36-reference.md`](../src/mllm/skills/glossary/HPC/hpc-36-reference.md) | File present; full 36-row factor table verified by direct read |
+| Evidence extraction (PDF → text + figure-aware markdown) | [`src/mllm/data/loaders.py`](../src/mllm/data/loaders.py) (`DeepReadLoader`) | Class present and importable; **requires a live VLM engine to execute — not run in this pass** |
+| Figure processing (figure detection / description) | `src/mllm/deepread/` (VLM-based figure extraction invoked via `--deepread_vlm` / `--deepread_only` in `mllm-pipeline.py`) | Flag present in [`mllm-pipeline.py`](../mllm-pipeline.py) CLI; **VLM execution not independently re-verified this pass — requires Apple Silicon + model weights, see [docs/TESTED_ENVIRONMENTS.md](TESTED_ENVIRONMENTS.md) §2** |
+| Multi-LLM council (10-model ensemble inference) | [`docs/MODELS_AND_RUNTIME.md`](MODELS_AND_RUNTIME.md) (model list + decoding params) + `--reasoning_model_names` in `mllm-pipeline.py` | Model list and decoding parameters documented; **live inference not run this pass (no MLX hardware in verification environment)** |
+| Agreement analysis (cross-model consensus, agreement-bucket counts, mean-square-distance heatmaps) | [`src/mllm/data/preprocessors.py`](../src/mllm/data/preprocessors.py) (`aggregate_scores_from_json`) for consensus tables, **plus** [`src/mllm-visualization.py`](../src/mllm-visualization.py) (`agent_compare_summary_ordered`, `study_compare_summary_ordered`) and [`examples/MLLM_HPCA_ORG.ipynb`](../examples/MLLM_HPCA_ORG.ipynb) for the pairwise mean-square-distance ("MSD") agreement heatmaps referenced in `src/mllm/skills/README.md` as Agent/Literature/Literature-Agent Consistency | `preprocessors.py` path exercised end-to-end by [`demo/run_demo.py`](../demo/run_demo.py), output byte-identical to [`demo/expected_output/consensus_summary.csv`](../demo/expected_output/consensus_summary.csv). The result table that `mllm-visualization.py` and the notebook depend on now ships at [`examples/hpc_table_final.csv`](../examples/hpc_table_final.csv) (previously missing); the script's hardcoded path was fixed to point at it, and both the script and the notebook were re-run end-to-end in a clean venv producing all of their figures with no errors — see [`examples/README.md`](../examples/README.md) and [docs/MANUSCRIPT_MAPPING.md §5](MANUSCRIPT_MAPPING.md#5-output-validation--score-table-construction) for the run receipts |
+| Hypothesis-space mapping (score tables and 3D scatter across H1/H2/H3 × LO/GO) | `lo_evaluations` / `go_evaluations` schema in [`src/mllm/schemas.py`](../src/mllm/schemas.py) (`HpcEvaluationResponse`) for score tables; [`src/mllm-visualization.py`](../src/mllm-visualization.py) (`plot_3d_scatter`, `plot_2d_h_comparison`) and [`examples/MLLM_HPCA_ORG.ipynb`](../examples/MLLM_HPCA_ORG.ipynb) for the "HPC Hypothesis Space" 3D/2D plots | Schema validated by [`tests/unit/test_schemas.py`](../tests/unit/test_schemas.py); demo produces a real aggregated score table. The 3D/2D plotting functions in `mllm-visualization.py` were re-run against the now-shipped `examples/hpc_table_final.csv`, producing all figures with no errors; the notebook required one pandas-compatibility bug fix (see [`examples/README.md`](../examples/README.md#known-issue-fixed-during-integration)) before it also produced all 14 figures — see [docs/MANUSCRIPT_MAPPING.md §6](MANUSCRIPT_MAPPING.md#6-hypothesis-space-mapping--visualization) |
+| Hypothesis-space "temperature" metric (geometric dispersion of council scores) | **Not located in this repository as a named function or script** | Grepped for `temperature`, `dispersion`, and related terms in `src/mllm/`; no implementing code found in the current snapshot. The manuscript abstract describes this as a geometric metric over the council's score distribution — it is **not shipped in this repository as of this audit**. See [docs/MANUSCRIPT_MAPPING.md](MANUSCRIPT_MAPPING.md) for the explicit gap entry. |
+
+---
+
 ## Pipeline Overview
 
 The MLLM (Multi-LLM) pipeline is a **seven-stage ontology-constrained evidence-mapping system**. In the manuscript, it maps a 31-study predictive-processing corpus onto the HPC-36 ontology across local and global oddball contexts:
@@ -191,6 +241,8 @@ python mllm-pipeline.py \
 
 ### 5. **Tests & Validation**
 
+**Demo (no models required, < 1 second):** `demo/run_demo.py` — see [demo/README.md](../demo/README.md) and the [Minimal Reproducible Path](#start-here-minimal-reproducible-path-no-models-no-gpu) above. This is the fastest way to confirm a working installation.
+
 **Unit Tests:** `tests/unit/`
 
 - `test_schemas.py` — Validate output JSON structure against expected schema
@@ -361,18 +413,11 @@ python scripts/visualize_consensus.py --input_dir ./results
 
 ## Citation
 
-If you use this pipeline in your research, please cite:
-
-```bibtex
-@misc{nejat2026ontology,
-  title={Ontology-constrained multi-LLM scoring of hypothesis support in the predictive processing literature},
-  author={Nejat, Hamed and Maier, Alexander and Spencer-Smith, Jesse and Bastos, Andre M.},
-  year={2026},
-  note={Code: https://github.com/HNXJ/mllm-public}
-}
-```
-
-Also cite the individual models and their original papers (see model cards on Hugging Face).
+See [README.md → Citation](../README.md#citation) for the canonical BibTeX
+entry, plain-text citation, and citation instructions (kept in one place
+to avoid drift between copies). Also cite the individual models and their
+original papers — see [docs/MODELS_AND_RUNTIME.md → Model Cards and
+Licensing](MODELS_AND_RUNTIME.md#1-model-cards-and-licensing).
 
 ---
 

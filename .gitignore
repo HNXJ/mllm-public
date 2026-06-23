@@ -9,3 +9,8 @@ __pycache__/
 /results/
 mllm-profile-*.json
 .gemini
+demo/demo_output/
+.demo_venv/
+*.egg-info/
+examples/reports/
+hpc_figures/

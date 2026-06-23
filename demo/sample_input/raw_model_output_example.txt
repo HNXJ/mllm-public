@@ -1,0 +1,21 @@
+Sure thing — here is the structured evaluation you requested:
+
+```json
+{
+  "lo_evaluations": {
+    "Subtractive Inhibition (SST)": 0.6,
+    "Divisive Inhibition (PV)": "null"
+  },
+  "go_evaluations": {
+    "Subtractive Inhibition (SST)": 0.0,
+    "Divisive Inhibition (PV)": "null"
+  },
+  "first_author": "Demo",
+  "publication_year": "2026",
+  "study_type": "Synthetic-Demo",
+  "agent_name": "demo-model-gamma",
+  "reasoning_log_text": "Raw, unparsed example of what a model actually returns: markdown code fences, leading prose, and the string \"null\" instead of JSON null."
+}
+```
+
+Let me know if you need anything else!

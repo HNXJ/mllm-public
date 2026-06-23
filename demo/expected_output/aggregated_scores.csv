@@ -1,0 +1,25 @@
+Study,Model,Context,Factor,Score
+DemoStudyA,demo-model-beta,LO,Subtractive Inhibition (SST),0.8
+DemoStudyA,demo-model-beta,LO,Divisive Inhibition (PV),0.2
+DemoStudyA,demo-model-beta,LO,Activity Suppression,0.6
+DemoStudyA,demo-model-beta,LO,VIP-Mediated Disinhibition,0.0
+DemoStudyA,demo-model-beta,GO,Subtractive Inhibition (SST),0.2
+DemoStudyA,demo-model-beta,GO,Divisive Inhibition (PV),-0.2
+DemoStudyA,demo-model-beta,GO,Activity Suppression,0.6
+DemoStudyA,demo-model-beta,GO,VIP-Mediated Disinhibition,
+DemoStudyB,demo-model-alpha,LO,Subtractive Inhibition (SST),-0.2
+DemoStudyB,demo-model-alpha,LO,Divisive Inhibition (PV),0.6
+DemoStudyB,demo-model-alpha,LO,Activity Suppression,
+DemoStudyB,demo-model-alpha,LO,VIP-Mediated Disinhibition,0.2
+DemoStudyB,demo-model-alpha,GO,Subtractive Inhibition (SST),0.0
+DemoStudyB,demo-model-alpha,GO,Divisive Inhibition (PV),0.6
+DemoStudyB,demo-model-alpha,GO,Activity Suppression,
+DemoStudyB,demo-model-alpha,GO,VIP-Mediated Disinhibition,0.2
+DemoStudyA,demo-model-alpha,LO,Subtractive Inhibition (SST),0.6
+DemoStudyA,demo-model-alpha,LO,Divisive Inhibition (PV),0.2
+DemoStudyA,demo-model-alpha,LO,Activity Suppression,0.8
+DemoStudyA,demo-model-alpha,LO,VIP-Mediated Disinhibition,
+DemoStudyA,demo-model-alpha,GO,Subtractive Inhibition (SST),0.2
+DemoStudyA,demo-model-alpha,GO,Divisive Inhibition (PV),
+DemoStudyA,demo-model-alpha,GO,Activity Suppression,0.6
+DemoStudyA,demo-model-alpha,GO,VIP-Mediated Disinhibition,0.0

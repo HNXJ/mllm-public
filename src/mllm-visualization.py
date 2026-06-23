@@ -15,8 +15,9 @@ except ImportError:
 # =============================================================================
 # CONFIGURATION & PATHS
 # =============================================================================
-CSV_PATH = "./workspace/analysis/hpc/hpc_table_final.csv"
-REPORTS_DIR = "./workspace/analysis/gllm/reports/"
+REPO_ROOT = Path(__file__).resolve().parent.parent
+CSV_PATH = str(REPO_ROOT / "examples" / "hpc_table_final.csv")
+REPORTS_DIR = str(REPO_ROOT / "examples" / "reports") + "/"
 os.makedirs(REPORTS_DIR, exist_ok=True)
 
 # Aesthetics
@@ -166,7 +167,7 @@ def study_compare_summary_ordered(df_melted, title="Study-Study Distance (MSD)",
     _safe_write_plot(fig, output_html, output_svg)
     return msd_mat
 
-def one_to_other_summary_plot(df_melted, paper_selected="Westerberg2025", avg_msd_line=None):
+def one_to_other_summary_plot(df_melted, paper_selected="Westerberg&Xiong2025", avg_msd_line=None):
     df_agg = df_melted.groupby(['Base Study ID', 'Context']).agg({'H1':'mean', 'H2':'mean', 'H3':'mean'}).reset_index()
     df_pivot = df_agg.pivot(index='Base Study ID', columns='Context', values=['H1', 'H2', 'H3'])
     
@@ -243,7 +244,7 @@ def run_all():
     lc_matrix = study_compare_summary_ordered(df_melted, output_html=os.path.join(REPORTS_DIR, "study_study_compare.html"), output_svg=os.path.join(REPORTS_DIR, "study_study_compare.svg"))
 
     print("[*] Generating Literature Consensus Analysis...")
-    one_to_other_summary_plot(df_melted, paper_selected="Westerberg2025", avg_msd_line=avg_model_diff)
+    one_to_other_summary_plot(df_melted, paper_selected="Westerberg&Xiong2025", avg_msd_line=avg_model_diff)
 
     print("[*] Generating 2D Hypothesis Overlays...")
     plot_2d_h_comparison(df_melted)

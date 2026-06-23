@@ -21,3 +21,23 @@ keywords:
   - "hypothesis mapping"
 version: 1.0.1
 date-released: 2026-05-23
+identifiers:
+  - type: other
+    value: "arXiv:2606.05206"
+    description: "arXiv preprint corresponding to this software"
+preferred-citation:
+  type: generic
+  title: "Ontology-constrained multi-LLM scoring of hypothesis support in the predictive processing literature"
+  authors:
+    - family-names: "Nejat"
+      given-names: "Hamed"
+    - family-names: "Maier"
+      given-names: "Alexander"
+    - family-names: "Spencer-Smith"
+      given-names: "Jesse"
+    - family-names: "Bastos"
+      given-names: "Andre M."
+  year: 2026
+  doi: "10.48550/arXiv.2606.05206"
+  url: "https://arxiv.org/abs/2606.05206"
+  notes: "arXiv preprint DOI shown; no journal DOI on record as of this writing."

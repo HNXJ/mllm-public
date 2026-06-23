@@ -1,0 +1,19 @@
+{
+  "lo_evaluations": {
+    "Subtractive Inhibition (SST)": 0.8,
+    "Divisive Inhibition (PV)": 0.2,
+    "Activity Suppression": 0.6,
+    "VIP-Mediated Disinhibition": 0.0
+  },
+  "go_evaluations": {
+    "Subtractive Inhibition (SST)": 0.2,
+    "Divisive Inhibition (PV)": -0.2,
+    "Activity Suppression": 0.6,
+    "VIP-Mediated Disinhibition": null
+  },
+  "first_author": "Demo",
+  "publication_year": "2026",
+  "study_type": "Synthetic-Demo",
+  "agent_name": "demo-model-beta",
+  "reasoning_log_text": "SYNTHETIC DEMO RECORD (not real model output, not a real study). Second council member for DemoStudyA, used to demonstrate cross-model consensus aggregation."
+}

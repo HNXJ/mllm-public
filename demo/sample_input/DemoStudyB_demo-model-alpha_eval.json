@@ -1,0 +1,19 @@
+{
+  "lo_evaluations": {
+    "Subtractive Inhibition (SST)": -0.2,
+    "Divisive Inhibition (PV)": 0.6,
+    "Activity Suppression": null,
+    "VIP-Mediated Disinhibition": 0.2
+  },
+  "go_evaluations": {
+    "Subtractive Inhibition (SST)": 0.0,
+    "Divisive Inhibition (PV)": 0.6,
+    "Activity Suppression": null,
+    "VIP-Mediated Disinhibition": 0.2
+  },
+  "first_author": "Example",
+  "publication_year": "2025",
+  "study_type": "Synthetic-Demo",
+  "agent_name": "demo-model-alpha",
+  "reasoning_log_text": "SYNTHETIC DEMO RECORD (not real model output, not a real study). Single-model evaluation for a second demo paper, illustrating null vs. 0.0 handling."
+}

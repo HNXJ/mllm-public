@@ -1,0 +1,19 @@
+{
+  "lo_evaluations": {
+    "Subtractive Inhibition (SST)": 0.6,
+    "Divisive Inhibition (PV)": 0.2,
+    "Activity Suppression": 0.8,
+    "VIP-Mediated Disinhibition": null
+  },
+  "go_evaluations": {
+    "Subtractive Inhibition (SST)": 0.2,
+    "Divisive Inhibition (PV)": null,
+    "Activity Suppression": 0.6,
+    "VIP-Mediated Disinhibition": 0.0
+  },
+  "first_author": "Demo",
+  "publication_year": "2026",
+  "study_type": "Synthetic-Demo",
+  "agent_name": "demo-model-alpha",
+  "reasoning_log_text": "SYNTHETIC DEMO RECORD (not real model output, not a real study). Illustrates the per-model evaluation JSON schema consumed by aggregate_scores_from_json()."
+}

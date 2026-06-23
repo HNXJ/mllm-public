@@ -1,0 +1,17 @@
+Study,Context,Factor,n_models,mean_score,median_score,std_score
+DemoStudyA,GO,Activity Suppression,2,0.6,0.6,0.0
+DemoStudyA,GO,Divisive Inhibition (PV),1,-0.2,-0.2,0.0
+DemoStudyA,GO,Subtractive Inhibition (SST),2,0.2,0.2,0.0
+DemoStudyA,GO,VIP-Mediated Disinhibition,1,0.0,0.0,0.0
+DemoStudyA,LO,Activity Suppression,2,0.7,0.7,0.1414213562373096
+DemoStudyA,LO,Divisive Inhibition (PV),2,0.2,0.2,0.0
+DemoStudyA,LO,Subtractive Inhibition (SST),2,0.7,0.7,0.14142135623730953
+DemoStudyA,LO,VIP-Mediated Disinhibition,1,0.0,0.0,0.0
+DemoStudyB,GO,Activity Suppression,0,,,0.0
+DemoStudyB,GO,Divisive Inhibition (PV),1,0.6,0.6,0.0
+DemoStudyB,GO,Subtractive Inhibition (SST),1,0.0,0.0,0.0
+DemoStudyB,GO,VIP-Mediated Disinhibition,1,0.2,0.2,0.0
+DemoStudyB,LO,Activity Suppression,0,,,0.0
+DemoStudyB,LO,Divisive Inhibition (PV),1,0.6,0.6,0.0
+DemoStudyB,LO,Subtractive Inhibition (SST),1,-0.2,-0.2,0.0
+DemoStudyB,LO,VIP-Mediated Disinhibition,1,0.2,0.2,0.0
