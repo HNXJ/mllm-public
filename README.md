@@ -10,7 +10,7 @@ This repository provides an **ontology-constrained multi-LLM pipeline** for evid
 - **HPC-36 Glossary** (`src/mllm/skills/glossary/HPC/hpc-36-reference.md`): 36-factor ontology for hierarchical predictive coding, organized into predictive suppression, feedforward error propagation, and ubiquity
 - **Unified Evaluation Prompt** (`src/mllm/skills/instructions/hpc_eval_prompt.md`): Structured scoring instructions for local and global oddball contexts
 - **DeepRead Extraction** (`src/mllm/data/loaders.py`): PDF text extraction with figure-aware document consolidation
-- **Model Profiles** (`src/mllm/config/profiles/`): Configuration templates for local MLX-LM model execution
+- **Model Profiles** (`src/mllm/config/profiles/`): Configuration templates for local MLX-LM / LMS-MLX model execution (LM-studio with GGUF is Also compatible, few adjustments may be required)
 - **Agreement and Geometry Metrics**: Agent Consistency, Literature Consistency, Literature-Agent Consistency, and hypothesis-space dispersion analysis
 
 ## Associated Publication
