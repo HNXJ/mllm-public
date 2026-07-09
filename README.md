@@ -56,11 +56,13 @@ jmllm.add_model(
     name="gemma-4-e4b-it-mxfp8",
     url="http://localhost:1234",
     temperature=0.7,
-    context_window=128000
+    context_window=128000,
+    top_p=0.95,
+    min_p=0.05
 )
 
-# 3. Execute evaluation pipeline on inputs
-jmllm.run(inputs=["Bastos2012.pdf", "RaoBallard1999.pdf"])
+# 3. Execute evaluation pipeline on inputs concurrently
+jmllm.run(inputs=["Bastos2012.pdf", "RaoBallard1999.pdf"], parallel_workers=2)
 
 # 4. Generate visual consensus reports
 jmllm.visualize()
