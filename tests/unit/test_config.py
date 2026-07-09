@@ -1,7 +1,7 @@
 """Unit tests for configuration validation."""
 
 import pytest
-from mllm.util.config.model_config import ModelProfile, PipelineConfig, InferenceConfig
+from jmllm.util.config.model_config import ModelProfile, PipelineConfig, InferenceConfig
 
 def test_model_profile_validation():
     # Valid profile

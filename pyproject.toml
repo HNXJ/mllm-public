@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "mllm"
+name = "jmllm"
 version = "1.0.1"
 authors = [
   { name="Hamed Nejat" },
@@ -47,14 +47,16 @@ viz = [
 ]
 
 [project.scripts]
-deepread = "mllm.pipeline.deepread.cli:main"
+jmllm-run = "jmllm.pipeline.cli:main"
+jmllm-vis = "jmllm.vis.cli:main"
+jmllm-deepread = "jmllm.pipeline.deepread.cli:main"
 
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests", "src/mllm/pipeline/deepread/tests"]
+testpaths = ["tests", "src/jmllm/pipeline/deepread/tests"]
 markers = [
     "integration: tests requiring configured external services",
     "hardware: hardware-specific or local-engine tests",

@@ -1,4 +1,4 @@
-"""Golden tests for core scientific operators in mllm."""
+"""Golden tests for core scientific operators in jmllm."""
 
 import pytest
 import numpy as np
@@ -40,7 +40,7 @@ def test_agent_name_cleaning_operator():
 
 def test_release_manifest_generation():
     """Verify that every test run generates a valid ReleaseManifest."""
-    from mllm.util.helpers import generate_release_snapshot
+    from jmllm.util.helpers import generate_release_snapshot
     manifest = generate_release_snapshot()
     # Relaxed assertion for zip/archive workspaces where .git might be missing
     assert isinstance(manifest.commit_hash, str)
@@ -49,7 +49,7 @@ def test_release_manifest_generation():
 
 def test_git_commit_hash_fallback():
     """Verify git commit hash fallback when git is not available."""
-    from mllm.util.helpers import get_git_commit
+    from jmllm.util.helpers import get_git_commit
     import subprocess
     with patch("subprocess.check_output", side_effect=subprocess.SubprocessError("no git")):
         assert get_git_commit() == "unknown"

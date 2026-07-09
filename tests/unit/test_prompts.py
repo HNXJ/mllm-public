@@ -1,4 +1,4 @@
-from mllm.util.prompts import get_glossary_instruction_block, build_hpc_prompt
+from jmllm.util.prompts import get_glossary_instruction_block, build_hpc_prompt
 
 
 def test_get_glossary_instruction_block_from_list():
