@@ -1,4 +1,4 @@
-from mllm.data.preprocessors import parse_llm_output_as_json
+from mllm.util.helpers import parse_llm_output_as_json
 
 def test_parse_json_response_smoke():
     payload = parse_llm_output_as_json('{"scores": []}')

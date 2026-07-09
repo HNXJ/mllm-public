@@ -1,4 +1,4 @@
-from mllm.schemas import FactorScoringResponse, HpcEvaluationResponse
+from mllm.util.schemas import FactorScoringResponse, HpcEvaluationResponse
 
 
 def test_factor_scoring_response_validates():

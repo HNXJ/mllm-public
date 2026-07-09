@@ -4,10 +4,10 @@ from pathlib import Path
 
 import pytest
 
-from mllm.prompts import parse_glossary, build_hpc_prompt
-from mllm.models.llm_wrapper import get_llm_thinking
-from mllm.config.model_config import ModelProfile, InferenceConfig
-from mllm.schemas import HpcEvaluationResponse
+from mllm.util.prompts import parse_glossary, build_hpc_prompt
+from mllm.pipeline.models.llm_wrapper import get_llm_thinking
+from mllm.util.config.model_config import ModelProfile, InferenceConfig
+from mllm.util.schemas import HpcEvaluationResponse
 
 pytestmark = pytest.mark.integration
 

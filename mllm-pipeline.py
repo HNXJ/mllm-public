@@ -3,11 +3,11 @@ from pathlib import Path
 from typing import Optional, List
 
 # MLLM Package Imports
-from mllm.config.model_config import ModelProfile, InferenceConfig
-from mllm.config.profiles import get_model_manifest
-from mllm.data.loaders import DeepReadLoader
-from mllm.models.llm_wrapper import get_llm_thinking
-from mllm.utils.global_logger import generate_global_log
+from mllm.util.config.model_config import ModelProfile, InferenceConfig
+from mllm.util.config.profiles import get_model_manifest
+from mllm.pipeline.loaders import DeepReadLoader
+from mllm.pipeline.models.llm_wrapper import get_llm_thinking
+from mllm.util.helpers import generate_global_log
 
 REPO_ROOT = Path(__file__).parent.resolve()
 
@@ -22,6 +22,8 @@ class PipelineController:
         self.vlm_model_id = args.deepread_vlm
         
         # Paths verification
+        self.mllm_markdown_path = REPO_ROOT / 'content' / 'markdowns'
+        self.mllm_markdown_path.mkdir(parents=True, exist_ok=True)
         self.mllm_output_path.mkdir(parents=True, exist_ok=True)
         self.mllm_log_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -59,6 +61,9 @@ class PipelineController:
         return mapping.get(model_id, model_id)
 
     def load_model(self, model_id: str) -> bool:
+        if getattr(self.args, "no_load", False):
+            self.log(f"⏩ Skipping model load for {model_id} (no-load mode).")
+            return True
         mlx_key = self.get_mlx_key(model_id)
         self.log(f"🚀 Requesting MLX load for {mlx_key} (from {model_id})...")
         url = f"{self.engine_url}/load_model"
@@ -77,6 +82,9 @@ class PipelineController:
 
     def unload_all(self):
         """Unload all models to free VRAM."""
+        if getattr(self.args, "no_load", False):
+            self.log("⏩ Skipping model unload (no-load mode).")
+            return
         self.log("🧹 Unloading all models...")
         url = f"{self.engine_url}/unload_all"
         headers = {"Authorization": "Bearer mlx-server"}
@@ -153,14 +161,17 @@ class PipelineController:
                 self.log(f"Paper not found: {base_name} in {self.mllm_input_path}", is_error=True)
                 continue
 
-            out_md_path = self.mllm_output_path / f'{base_name}-vllm-deepread.md'
+            out_md_path = self.mllm_markdown_path / f'{base_name}-vllm-deepread.md'
             safe_model_id = self.active_model_id.replace("/", "_")
-            out_eval_path = self.mllm_output_path / f'{base_name}_{safe_model_id}_eval.json'
-
-            # 1. Check if reasoning already exists
-            if out_eval_path.exists():
-                self.log(f"⏩ Evaluation already exists for {base_name} with {self.active_model_id}. Skipping.")
+            glossary_name = Path(self.args.glossary_path).parent.name
+            
+            # 1. Check if reasoning already exists for this literature, agent, and glossary combination
+            existing_runs = list(self.mllm_output_path.glob(f'{base_name}_{safe_model_id}_{glossary_name}_run*.json'))
+            if existing_runs:
+                self.log(f"⏩ Evaluation already exists for {base_name} with {self.active_model_id} ({glossary_name}). Skipping.")
                 continue
+                
+            out_eval_path = self.mllm_output_path / f'{base_name}_{safe_model_id}_{glossary_name}_run1.json'
 
             # 2. DeepRead Phase
             study_text = ""
@@ -171,15 +182,17 @@ class PipelineController:
                 self.log(f"⏩ Repair mode: skipping {base_name} (no DeepRead cache).")
                 continue
             else:
-                # Load VLM
-                if not self.load_model(self.vlm_model_id): continue
+                # Load VLM if not disabled
+                if not self.args.no_vlm:
+                    if not self.load_model(self.vlm_model_id): continue
                 self.log(f"📥 Extracting: {base_name}")
                 try:
                     loader = DeepReadLoader(
                         engine_url=self.engine_url,
                         vlm_model=self.get_mlx_key(self.vlm_model_id),
                         api_key="mlx-server",
-                        vlm_engine="mlx"
+                        vlm_engine="mlx",
+                        vlm_deepread=not self.args.no_vlm
                     )
                     artifact = loader.extract_parallel(str(pdf_path))
                     study_text = artifact.study_text
@@ -207,14 +220,16 @@ class PipelineController:
                     "api_url": f"{self.engine_url}/v1/chat/completions",
                     "api_key": "mlx-server",
                     "max_tokens": 16384,
-                    "engine_type": "mlx"
+                    "engine_type": "mlx",
+                    "temperature": self.args.temperature
                 }
                 profile_data.update(manifest)
                 profile_data["model_name"] = self.get_mlx_key(self.active_model_id)
                 profile_data["api_key"] = "mlx-server"
+                profile_data["temperature"] = self.args.temperature
                 profile = ModelProfile(**profile_data)
                 
-                config = InferenceConfig(request_timeout_seconds=2400)
+                config = InferenceConfig(request_timeout_seconds=self.args.timeout)
                 full_prompt = f'{instructions}\n\n**GLOSSARY:**\n{glossary}\n\n**DOCUMENT:**\n{study_text}\n\n**FILL IN THE SCORES:**'
                 
                 eval_json_text = get_llm_thinking(unified_prompt=full_prompt, config=config, profile=profile, response_model=None)
@@ -226,6 +241,19 @@ class PipelineController:
             # Refresh global log
             generate_global_log()
 
+        # Consolidate outputs to CSV table
+        self.log("📊 Consolidating scores into CSV table...")
+        from mllm.util.helpers import aggregate_scores_from_json
+        df = aggregate_scores_from_json(self.mllm_output_path)
+        if not df.empty:
+            tables_dir = REPO_ROOT / 'content' / 'tables'
+            tables_dir.mkdir(parents=True, exist_ok=True)
+            csv_file = tables_dir / 'aggregated_scores.csv'
+            df.to_csv(csv_file, index=False)
+            self.log(f"✅ Consolidated table written to {csv_file}")
+        else:
+            self.log("⚠️ No evaluations found to aggregate.", is_error=True)
+
         self.log("🎯 Pipeline run complete. Final cleanup...")
         self.unload_all()
 
@@ -233,10 +261,10 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='MLLM HPC Evaluation Pipeline')
     parser.add_argument('--pdfs_to_process', nargs='+', default=[])
     parser.add_argument('--reasoning_model_names', nargs='+', default=['gpt-oss-20b-claude-4.5'])
-    parser.add_argument('--glossary_path', default=str(REPO_ROOT / 'src/mllm/skills/glossary/HPC/hpc-36-reference.md'))
-    parser.add_argument('--instructions_path', default=str(REPO_ROOT / 'src/mllm/skills/instructions/hpc_eval_prompt.md'))
-    parser.add_argument('--mllm_input_path', default=os.environ.get('MLLM_INPUT_PATH', './inputs'))
-    parser.add_argument('--mllm_output_path', default=os.environ.get('MLLM_OUTPUT_PATH', './outputs'))
+    parser.add_argument('--glossary_path', default=str(REPO_ROOT / 'ontology/glossary/HPC/hpc-36-reference.md'))
+    parser.add_argument('--instructions_path', default=str(REPO_ROOT / 'ontology/instructions/hpc_eval_prompt.md'))
+    parser.add_argument('--mllm_input_path', default=os.environ.get('MLLM_INPUT_PATH', 'content/inputs'))
+    parser.add_argument('--mllm_output_path', default=os.environ.get('MLLM_OUTPUT_PATH', 'content/outputs'))
     parser.add_argument('--mllm_log_path', default=os.environ.get('MLLM_LOG_PATH', './logs/pipeline.log'))
     parser.add_argument('--engine_url', default=os.environ.get('ENGINE_URL', 'http://localhost:4474'))
     parser.add_argument('--mode', default='mlx')
@@ -244,5 +272,9 @@ if __name__ == '__main__':
     parser.add_argument('--deepread_only', action='store_true')
     parser.add_argument('--test_profile', action='store_true')
     parser.add_argument('--repair', action='store_true')
+    parser.add_argument('--no_vlm', action='store_true')
+    parser.add_argument('--no_load', action='store_true')
+    parser.add_argument('--timeout', type=int, default=120)
+    parser.add_argument('--temperature', type=float, default=0.7)
     args = parser.parse_args()
     PipelineController(args).run_pipeline()

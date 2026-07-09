@@ -47,14 +47,14 @@ viz = [
 ]
 
 [project.scripts]
-deepread = "mllm.deepread.cli:main"
+deepread = "mllm.pipeline.deepread.cli:main"
 
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests", "src/mllm/deepread/tests"]
+testpaths = ["tests", "src/mllm/pipeline/deepread/tests"]
 markers = [
     "integration: tests requiring configured external services",
     "hardware: hardware-specific or local-engine tests",
