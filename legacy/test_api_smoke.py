@@ -10,18 +10,21 @@ jmllm.add_model(
     name="gemma-4-e4b-it-mxfp8",
     url="http://localhost:1234",
     temperature=0.7,
-    context_window=128000
+    context_window=128000,
+    top_p=0.95,
+    min_p=0.05
 )
 
-# Clean output for Bastos2012 to make sure it runs the reasoning phase programmatically
+# Clean outputs to force concurrent re-evaluation
 import pathlib
-out_eval = pathlib.Path("content/outputs/Bastos2012_gemma-4-e4b-it-mxfp8_HPC_run1.json")
-if out_eval.exists():
-    out_eval.unlink()
-    print("Cleaned Bastos2012 JSON output to force re-evaluation.")
+for paper in ["Bastos2012", "RaoBallard1999"]:
+    out_eval = pathlib.Path(f"content/outputs/{paper}_gemma-4-e4b-it-mxfp8_HPC_run1.json")
+    if out_eval.exists():
+        out_eval.unlink()
+        print(f"Cleaned {paper} JSON output to force re-evaluation.")
 
-print("3. Running pipeline...")
-jmllm.run(inputs=["Bastos2012.pdf"])
+print("3. Running pipeline concurrently...")
+jmllm.run(inputs=["Bastos2012.pdf", "RaoBallard1999.pdf"], parallel_workers=2)
 
 print("4. Running visualizations...")
 jmllm.visualize()

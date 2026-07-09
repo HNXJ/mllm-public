@@ -26,17 +26,19 @@ def set_path(path: str):
     global _content_path
     _content_path = str(Path(path).resolve())
 
-def add_model(name: str, url: str, temperature: float = 0.7, context_window: int = 131072):
+def add_model(name: str, url: str, temperature: float = 0.7, context_window: int = 131072, top_p: Optional[float] = None, min_p: Optional[float] = None):
     """Register an LLM model card with its endpoint configuration."""
     global _models
     _models.append({
         "name": name,
         "url": url,
         "temperature": temperature,
-        "context_window": context_window
+        "context_window": context_window,
+        "top_p": top_p,
+        "min_p": min_p
     })
 
-def run(inputs: Optional[List[str]] = None):
+def run(inputs: Optional[List[str]] = None, parallel_workers: Optional[int] = None, no_vlm: bool = True):
     """Run the evaluation pipeline with the current programmatic configuration."""
     global _instructions_path, _glossary_path, _content_path, _models
     
@@ -70,6 +72,9 @@ def run(inputs: Optional[List[str]] = None):
     reasoning_models = [m["name"] for m in _models] if _models else ["gemma-4-e4b-it-mxfp8"]
     engine_url = _models[0]["url"] if _models else "http://localhost:1234"
     temp = _models[0]["temperature"] if _models else 0.7
+    top_p = _models[0].get("top_p") if _models else None
+    min_p = _models[0].get("min_p") if _models else None
+    c_win = _models[0].get("context_window", 131072) if _models else 131072
     
     # Mock namespace class to emulate parsed argparse arguments
     class ProgrammaticArgs:
@@ -87,10 +92,14 @@ def run(inputs: Optional[List[str]] = None):
             self.deepread_only = False
             self.test_profile = False
             self.repair = False
-            self.no_vlm = True # reasoning-only by default for API runs
+            self.no_vlm = no_vlm
             self.no_load = True # assume loaded in local server by default
             self.timeout = 600
             self.temperature = temp
+            self.top_p = top_p
+            self.min_p = min_p
+            self.parallel_workers = parallel_workers or 1
+            self.context_window = c_win
 
     args = ProgrammaticArgs()
     controller = PipelineController(args)

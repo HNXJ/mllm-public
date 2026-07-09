@@ -13,8 +13,18 @@ class InferenceError(Exception):
     pass
 
 def _call_llm_api(prompt, profile, timeout=300):
-    print("[VERBOSITY] Executing: payload = {'model': profile.model_name, 'messages': [{'ro...")
-    payload = {'model': profile.model_name, 'messages': [{'role': 'user', 'content': prompt}], 'temperature': profile.temperature, 'max_tokens': profile.max_tokens, 'top_p': 0.9}
+    payload = {
+        'model': profile.model_name,
+        'messages': [{'role': 'user', 'content': prompt}],
+        'temperature': profile.temperature,
+        'max_tokens': profile.max_tokens,
+    }
+    if getattr(profile, 'top_p', None) is not None:
+        payload['top_p'] = profile.top_p
+    else:
+        payload['top_p'] = 0.9
+    if getattr(profile, 'min_p', None) is not None:
+        payload['min_p'] = profile.min_p
     print("[VERBOSITY] Executing: headers = {'Authorization': f'Bearer {profile.api_key}', ...")
     headers = {'Authorization': f'Bearer {profile.api_key}', 'Content-Type': 'application/json'}
     print('[VERBOSITY] Executing: response = requests.post(profile.api_url, timeout=(10, 36...')

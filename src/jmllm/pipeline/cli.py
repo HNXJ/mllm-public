@@ -24,6 +24,10 @@ def main():
     parser.add_argument('--no_load', action='store_true')
     parser.add_argument('--timeout', type=int, default=120)
     parser.add_argument('--temperature', type=float, default=0.7)
+    parser.add_argument('--top_p', type=float, default=0.9)
+    parser.add_argument('--min_p', type=float, default=None)
+    parser.add_argument('--parallel_workers', type=int, default=1)
+    parser.add_argument('--context_window', type=int, default=131072)
     
     args = parser.parse_args()
     PipelineController(args).run_pipeline()

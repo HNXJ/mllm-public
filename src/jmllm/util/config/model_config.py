@@ -93,6 +93,8 @@ class ModelProfile(BaseConfig):
     api_key: str = Field("none", description="The API key if required")
     max_tokens: int = Field(32768, description="Maximum tokens for generation")
     temperature: float = Field(0.8, ge=0.0, le=2.0)
+    top_p: Optional[float] = Field(None, description="Top-p sampling parameter")
+    min_p: Optional[float] = Field(None, description="Min-p sampling parameter")
     context_window: int = Field(131072, description="Maximum context window size")
     engine_type: str = Field("lms", description="Engine type (lms, vlm, mlx)")
 

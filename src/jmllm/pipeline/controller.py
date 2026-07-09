@@ -69,8 +69,16 @@ class PipelineController:
         self.log(f"🚀 Requesting MLX load for {mlx_key} (from {model_id})...")
         url = f"{self.engine_url}/load_model"
         headers = {"Authorization": "Bearer mlx-server"}
+        payload = {"model": mlx_key}
+        
+        # Pass context length to LMS if configured
+        context_window = getattr(self.args, "context_window", None)
+        if context_window:
+            payload["context_length"] = context_window
+            payload["n_ctx"] = context_window
+
         try:
-            res = requests.post(url, json={"model": mlx_key}, headers=headers, timeout=600)
+            res = requests.post(url, json=payload, headers=headers, timeout=600)
             if res.status_code == 200:
                 self.log(f"✅ Model {mlx_key} is LOADED and READY.")
                 return True
@@ -140,10 +148,9 @@ class PipelineController:
 
         self.log(f"🚀 Starting MLLM Pipeline. Mode: {self.args.mode} | Agent: {self.active_model_id}")
         
-        # Initial Load
-        if not self.load_model(self.active_model_id):
-            return
-
+        # Phase 1: DeepRead / Extraction (Sequential to avoid VRAM thrashing)
+        papers_to_evaluate = []
+        
         for pdf_name in self.args.pdfs_to_process:
             base_name = Path(pdf_name).stem
             pdf_path = self.mllm_input_path / f'{base_name}.pdf'
@@ -169,7 +176,6 @@ class PipelineController:
                 
             out_eval_path = self.mllm_output_path / f'{base_name}_{safe_model_id}_{glossary_name}_run1.json'
 
-            # 2. DeepRead Phase
             study_text = ""
             if out_md_path.exists():
                 self.log(f"✅ Using cached DeepRead: {out_md_path.name}")
@@ -193,7 +199,6 @@ class PipelineController:
                     study_text = artifact.study_text
                     with open(out_md_path, 'w') as f: f.write(study_text)
                     self.log(f"✅ DeepRead complete: {out_md_path.name}")
-                    if not self.load_model(self.active_model_id): continue
                 except Exception as e:
                     self.log(f"DeepRead failed for {base_name}: {e}", is_error=True)
                     continue
@@ -201,28 +206,63 @@ class PipelineController:
             if self.args.deepread_only: 
                 generate_global_log()
                 continue
+            
+            papers_to_evaluate.append({
+                "base_name": base_name,
+                "study_text": study_text,
+                "out_eval_path": out_eval_path
+            })
 
-            # 3. Reasoning Phase
+        if self.args.deepread_only or not papers_to_evaluate:
+            self.unload_all()
+            return
+
+        # Phase 2: Load Reasoning Model Once
+        if not self.load_model(self.active_model_id):
+            return
+
+        # Phase 3: Reasoning (Concurrent using ThreadPoolExecutor)
+        parallel_workers = getattr(self.args, "parallel_workers", 1) or 1
+        self.log(f"🧠 Starting concurrent reasoning phase on {len(papers_to_evaluate)} papers with {parallel_workers} workers...")
+
+        import concurrent.futures
+        
+        def evaluate_paper(paper_info):
+            base_name = paper_info["base_name"]
+            study_text = paper_info["study_text"]
+            out_eval_path = paper_info["out_eval_path"]
+            
             try:
                 self.log(f"🧠 Reasoning: {base_name} via {self.active_model_id}")
                 with open(self.args.glossary_path, 'r') as f: glossary = f.read()
                 with open(self.args.instructions_path, 'r') as f: instructions = f.read()
                 
                 manifest = get_model_manifest(self.active_model_id) or {}
+                
+                top_p = getattr(self.args, "top_p", None)
+                min_p = getattr(self.args, "min_p", None)
+
                 profile_data = {
                     "model_name": self.get_mlx_key(self.active_model_id),
                     "api_url": f"{self.engine_url}/v1/chat/completions",
                     "api_key": "mlx-server",
                     "max_tokens": 16384,
                     "engine_type": "mlx",
-                    "temperature": self.args.temperature
+                    "temperature": self.args.temperature,
+                    "top_p": top_p,
+                    "min_p": min_p,
+                    "context_window": getattr(self.args, "context_window", 131072)
                 }
                 profile_data.update(manifest)
                 profile_data["model_name"] = self.get_mlx_key(self.active_model_id)
                 profile_data["api_key"] = "mlx-server"
                 profile_data["temperature"] = self.args.temperature
+                if top_p is not None:
+                    profile_data["top_p"] = top_p
+                if min_p is not None:
+                    profile_data["min_p"] = min_p
+
                 profile = ModelProfile(**profile_data)
-                
                 config = InferenceConfig(request_timeout_seconds=self.args.timeout)
                 full_prompt = f'{instructions}\n\n**GLOSSARY:**\n{glossary}\n\n**DOCUMENT:**\n{study_text}\n\n**FILL IN THE SCORES:**'
                 
@@ -233,6 +273,13 @@ class PipelineController:
                 self.log(f'Reasoning failed for {base_name}: {e}', is_error=True)
             
             generate_global_log()
+
+        if parallel_workers > 1 and len(papers_to_evaluate) > 1:
+            with concurrent.futures.ThreadPoolExecutor(max_workers=parallel_workers) as executor:
+                list(executor.map(evaluate_paper, papers_to_evaluate))
+        else:
+            for p in papers_to_evaluate:
+                evaluate_paper(p)
 
         # Consolidate outputs to CSV table
         self.log("📊 Consolidating scores into CSV table...")
