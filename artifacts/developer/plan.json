@@ -1,0 +1,55 @@
+{
+  "brainstorm": "Optimize literature evaluation pipeline for thread safety, dynamic parameters, and robust metadata parsing. Standardize programmatic modules under jmllm package conventions.",
+  "table": [
+    {
+      "file": "src/jmllm/__init__.py",
+      "purpose": "Package programmatic entry points, pathing, and model configurations setup.",
+      "score": 100,
+      "actions": "1. Expose high-level functional APIs. 2. Verify settings propagation.",
+      "rules": "No state leak, keep methods stateless/global-fallback.",
+      "edits": "Completed high-level jmllm configuration setters and runner.",
+      "notes": "Allows simple imports and direct programmatic workflows.",
+      "cautions": "None"
+    },
+    {
+      "file": "src/jmllm/pipeline/controller.py",
+      "purpose": "Core orchestrator running sequential DeepRead and parallel ThreadPoolExecutor evaluations.",
+      "score": 100,
+      "actions": "1. Run sequental caption extraction. 2. Load model. 3. Concurrently run reasoning. 4. Compile results.",
+      "rules": "Thread-safe logs and model loading. Dynamic parameter passing.",
+      "edits": "Integrated threading.RLock and self._model_api_lock. Dynamic log path resolution.",
+      "notes": "Verified parallel executions do not cause race conditions.",
+      "cautions": "Check VRAM constraints on local LM Studio servers."
+    },
+    {
+      "file": "src/jmllm/pipeline/models/llm_wrapper.py",
+      "purpose": "Wrapper communicating with LMS API via HTTP completions request payload.",
+      "score": 100,
+      "actions": "1. Map prompt and sampling options to parameters. 2. Handle HTTP errors.",
+      "rules": "Safely forward top_p and min_p parameters if present.",
+      "edits": "Added optional top_p and min_p mapping properties.",
+      "notes": "Passed all integration and mock testing.",
+      "cautions": "None"
+    },
+    {
+      "file": "src/jmllm/util/helpers.py",
+      "purpose": "Support helpers, JSON parsing, output aggregation, and global log compilation.",
+      "score": 100,
+      "actions": "1. Parse JSON with robust markdown extraction. 2. Compile thread-safe logs. 3. Aggregates dataframes.",
+      "rules": "Use threading.Lock for global log updating. Robust right-split stem name parsing.",
+      "edits": "Implemented thread-safe generate_global_log and right-aligned stem split logic.",
+      "notes": "Ensures underscore-heavy study names parse correctly.",
+      "cautions": "None"
+    },
+    {
+      "file": "src/jmllm/vis/plotting.py",
+      "purpose": "Consensus visualizations of evaluations.",
+      "score": 100,
+      "actions": "1. Parse aggregated CSV. 2. Plot heatmaps, PCA, and 3D scatter projections.",
+      "rules": "Follow dargold black/gold theme options where requested.",
+      "edits": "Consolidated visualization layouts.",
+      "notes": "Verified correct figure output layout.",
+      "cautions": "None"
+    }
+  ]
+}

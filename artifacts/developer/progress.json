@@ -1,0 +1,50 @@
+{
+  "summary": "Completed core namespace migrations, root cleanup, programmatic APIs, concurrency controls, thread-safety, dynamic sampling parameters, and robust metadata parsing.",
+  "table": [
+    {
+      "file": "src/jmllm/__init__.py",
+      "purpose": "Package programmatic entry points, pathing, and model configurations setup.",
+      "score": 100,
+      "staged_edits": "Exposed programmatic endpoints in package init.",
+      "status": "done",
+      "notes": "Verified API works as expected.",
+      "cautions": "None"
+    },
+    {
+      "file": "src/jmllm/pipeline/controller.py",
+      "purpose": "Core orchestrator running sequential DeepRead and parallel ThreadPoolExecutor evaluations.",
+      "score": 100,
+      "staged_edits": "Implemented thread pools, thread-safe logger, and model API locking mechanism.",
+      "status": "done",
+      "notes": "Verified parallel execution stability.",
+      "cautions": "None"
+    },
+    {
+      "file": "src/jmllm/pipeline/models/llm_wrapper.py",
+      "purpose": "Wrapper communicating with LMS API via HTTP completions request payload.",
+      "score": 100,
+      "staged_edits": "Supported optional top_p and min_p parameters dynamically.",
+      "status": "done",
+      "notes": "Verified parameter serialization.",
+      "cautions": "None"
+    },
+    {
+      "file": "src/jmllm/util/helpers.py",
+      "purpose": "Support helpers, JSON parsing, output aggregation, and global log compilation.",
+      "score": 100,
+      "staged_edits": "Added thread lock to generate_global_log, and right-aligned filename splits.",
+      "status": "done",
+      "notes": "Verified metadata extraction.",
+      "cautions": "None"
+    },
+    {
+      "file": "src/jmllm/vis/plotting.py",
+      "purpose": "Consensus visualizations of evaluations.",
+      "score": 100,
+      "staged_edits": "Verified plotting function correctness.",
+      "status": "done",
+      "notes": "Verified reports compilation.",
+      "cautions": "None"
+    }
+  ]
+}
