@@ -69,3 +69,30 @@ def test_env_api_key_fallback():
         requests.post = original_post
         
     assert captured_headers.get("Authorization") == "Bearer sk-fakeopenai"
+
+def test_get_available_models():
+    import requests
+    from jmllm.util.helpers import get_available_models
+    
+    original_get = requests.get
+    
+    class MockResponse:
+        status_code = 200
+        def json(self):
+            return {
+                "data": [
+                    {"id": "model-1"},
+                    {"id": "model-2"}
+                ]
+            }
+            
+    def mock_get(url, timeout):
+        assert "/v1/models" in url
+        return MockResponse()
+        
+    requests.get = mock_get
+    try:
+        models = get_available_models("http://localhost:1234")
+        assert models == ["model-1", "model-2"]
+    finally:
+        requests.get = original_get

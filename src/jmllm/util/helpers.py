@@ -470,3 +470,16 @@ def estimate_tokens(text: str) -> int:
         return 0
     return len(text) // 4
 
+def get_available_models(engine_url: str = "http://localhost:1234") -> List[str]:
+    """Fetch the list of available loaded or loadable models from the local server."""
+    try:
+        import requests
+        url = f"{engine_url.rstrip('/')}/v1/models"
+        res = requests.get(url, timeout=10)
+        if res.status_code == 200:
+            data = res.json()
+            return [m["id"] for m in data.get("data", [])]
+    except Exception as e:
+        print(f"⚠️ Warning: failed to fetch available models from {engine_url}: {e}")
+    return []
+

@@ -4,6 +4,7 @@ from typing import List, Optional
 
 from jmllm.pipeline.controller import PipelineController
 from jmllm.vis.plotting import run_all_visualizations
+from jmllm.util.helpers import get_available_models
 
 # Global Configuration State
 _instructions_path = None
