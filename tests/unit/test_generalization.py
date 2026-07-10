@@ -1,9 +1,11 @@
 import tempfile
 import sqlite3
 import pandas as pd
+import os
 from pathlib import Path
 from jmllm.util.helpers import estimate_tokens
 from jmllm.util.config.model_config import ModelProfile
+from jmllm.pipeline.models.llm_wrapper import _call_llm_api_raw, InferenceError
 
 def test_estimate_tokens():
     assert estimate_tokens("hello world") == 2
@@ -35,3 +37,35 @@ def test_sqlite_export():
         
         assert len(res) == 1
         assert res.iloc[0]["score"] == 90
+
+def test_env_api_key_fallback():
+    # Set fake env keys
+    os.environ["OPENAI_API_KEY"] = "sk-fakeopenai"
+    os.environ["GEMINI_API_KEY"] = "fakegemini"
+    os.environ["ANTHROPIC_API_KEY"] = "fakeanthropic"
+    
+    profile_openai = ModelProfile(
+        model_name="gpt-4o",
+        api_url="http://localhost:1234",
+        api_key="none",
+        provider="openai"
+    )
+    
+    import requests
+    original_post = requests.post
+    captured_headers = {}
+    
+    def mock_post(url, timeout, headers, json):
+        nonlocal captured_headers
+        captured_headers = headers
+        raise ValueError("mock_stop")
+        
+    requests.post = mock_post
+    try:
+        _call_llm_api_raw("test", profile_openai)
+    except ValueError as e:
+        assert str(e) == "mock_stop"
+    finally:
+        requests.post = original_post
+        
+    assert captured_headers.get("Authorization") == "Bearer sk-fakeopenai"

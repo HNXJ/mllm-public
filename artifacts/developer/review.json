@@ -1,54 +1,54 @@
 {
-  "summary": "Evaluated codebase status. Core files are fully stable and test-passed. Future review points will check HTTP request builders for remote APIs and context estimation limits.",
+  "summary": "Evaluated codebase for the new planned features (decoupling local/remote loads, absolute path ingestion, and env variable key fallbacks).",
   "table": [
     {
       "file": "src/jmllm/__init__.py",
       "purpose": "Package programmatic entry points, pathing, and model configurations setup.",
-      "score": 100,
-      "assessment": "Excellent state: exposed getters, setters, and runner are stateless and easily callable.",
-      "warnings": "Ensure path configuration occurs before calling run().",
-      "design_choices": "Global variables store state in a simple wrapper class.",
-      "notes": "Verified programmatic usage workflow in smoke tests.",
+      "score": 95,
+      "assessment": "Needs run() updates to accept absolute path inputs and dynamically map them to the controller.",
+      "warnings": "Ensure absolute files exist before passing them to run().",
+      "design_choices": "Will support passing a list of absolute PDF file paths.",
+      "notes": "Simplifies package usage by removing local directory copy constraints.",
       "cautions": "None"
     },
     {
       "file": "src/jmllm/pipeline/controller.py",
       "purpose": "Core orchestrator running sequential DeepRead and parallel ThreadPoolExecutor evaluations.",
-      "score": 100,
-      "assessment": "Fully robust: sequential caption description extraction avoids GPU switches; thread pool evaluates concurrently.",
-      "warnings": "Ensure port 1234 is open and server is running with active loaded model.",
-      "design_choices": "Implemented locks to serialize logging (RLock) and model load/unload operations.",
-      "notes": "Verified parallel runs successfully finish with no errors.",
+      "score": 90,
+      "assessment": "Needs local/remote load decoupling and absolute path folder resolvers.",
+      "warnings": "Ensure VLM is skipped or model load skipped for remote model providers.",
+      "design_choices": "Decouple load_model() and unload_all() from Remote Mode. Resolve output folders correctly for absolute files.",
+      "notes": "Prevents redundant localhost requests.",
       "cautions": "None"
     },
     {
       "file": "src/jmllm/pipeline/models/llm_wrapper.py",
       "purpose": "Wrapper communicating with LMS API via HTTP completions request payload.",
-      "score": 100,
-      "assessment": "Completed: parameters are mapped dynamically and correctly to completions body.",
-      "warnings": "None",
-      "design_choices": "Requests maps optionally configured top_p and min_p parameters into the JSON post request.",
-      "notes": "Fully verified.",
+      "score": 95,
+      "assessment": "Needs env var API key loading logic inside headers initialization.",
+      "warnings": "Ensure keys are read securely from environment variables.",
+      "design_choices": "Fallback to OPENAI_API_KEY, GEMINI_API_KEY, or ANTHROPIC_API_KEY based on provider name.",
+      "notes": "Enhances out-of-the-box developer experience.",
       "cautions": "None"
     },
     {
       "file": "src/jmllm/util/helpers.py",
       "purpose": "Support helpers, JSON parsing, output aggregation, and global log compilation.",
       "score": 100,
-      "assessment": "Excellent state: generate_global_log is protected against race conditions.",
+      "assessment": "Optimal state: helper modules fully robust.",
       "warnings": "None",
-      "design_choices": "Used split from the right side robustly, handling studies like Bastos_2012 correctly.",
-      "notes": "Verified correct file row aggregation output.",
+      "design_choices": "None",
+      "notes": "Verified.",
       "cautions": "None"
     },
     {
       "file": "src/jmllm/vis/plotting.py",
       "purpose": "Consensus visualizations of evaluations.",
       "score": 100,
-      "assessment": "Good layout design: generates comparisons, consensus analyses, overlays, and 3D context charts.",
-      "warnings": "Requires matplotlib, seaborn, scikit-learn, scipy.",
-      "design_choices": "Matplotlib figures are generated and written to content/reports.",
-      "notes": "Plots generated cleanly on test dataset.",
+      "assessment": "Optimal state: fully correct visualizations.",
+      "warnings": "None",
+      "design_choices": "None",
+      "notes": "Verified.",
       "cautions": "None"
     }
   ]

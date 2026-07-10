@@ -70,6 +70,11 @@ class PipelineController:
         if getattr(self.args, "no_load", False):
             self.log(f"⏩ Skipping model load for {model_id} (no-load mode).")
             return True
+        provider = getattr(self.args, "provider", "mlx").lower()
+        if provider != "mlx":
+            self.log(f"⏩ Skipping model load for {model_id} (remote provider: {provider}).")
+            return True
+            
         mlx_key = self.get_mlx_key(model_id)
         
         with self._model_api_lock:
@@ -100,6 +105,9 @@ class PipelineController:
         """Unload all models to free VRAM."""
         if getattr(self.args, "no_load", False):
             self.log("⏩ Skipping model unload (no-load mode).")
+            return
+        provider = getattr(self.args, "provider", "mlx").lower()
+        if provider != "mlx":
             return
         
         with self._model_api_lock:
@@ -161,14 +169,17 @@ class PipelineController:
         papers_to_evaluate = []
         
         for pdf_name in self.args.pdfs_to_process:
-            base_name = Path(pdf_name).stem
-            pdf_path = self.mllm_input_path / f'{base_name}.pdf'
-            
-            if not pdf_path.exists():
-                possible = list(self.mllm_input_path.glob(f'{base_name}*.pdf'))
-                if possible:
-                    pdf_path = possible[0]
-                    self.log(f"Fuzzy matched {base_name} to {pdf_path.name}")
+            pdf_path = Path(pdf_name)
+            if pdf_path.is_absolute() and pdf_path.exists():
+                base_name = pdf_path.stem
+            else:
+                base_name = Path(pdf_name).stem
+                pdf_path = self.mllm_input_path / f'{base_name}.pdf'
+                if not pdf_path.exists():
+                    possible = list(self.mllm_input_path.glob(f'{base_name}*.pdf'))
+                    if possible:
+                        pdf_path = possible[0]
+                        self.log(f"Fuzzy matched {base_name} to {pdf_path.name}")
             
             if not pdf_path.exists():
                 self.log(f"Paper not found: {base_name} in {self.mllm_input_path}", is_error=True)
@@ -254,14 +265,22 @@ class PipelineController:
                 
                 # Resolve provider specific API URLs if default is used
                 api_url = self.engine_url
-                if provider == "openai" and api_url == "http://localhost:1234":
-                    api_url = "https://api.openai.com/v1/chat/completions"
-                elif provider == "google" and api_url == "http://localhost:1234":
-                    api_url = "https://generativelanguage.googleapis.com/v1beta/openai/v1/chat/completions"
+                if provider == "openai":
+                    if api_url == "http://localhost:1234":
+                        api_url = "https://api.openai.com/v1/chat/completions"
+                    elif not api_url.endswith("/v1/chat/completions"):
+                        api_url = f"{api_url.rstrip('/')}/v1/chat/completions"
+                elif provider == "google":
+                    if api_url == "http://localhost:1234":
+                        api_url = "https://generativelanguage.googleapis.com/v1beta/openai/v1/chat/completions"
+                    elif not api_url.endswith("/v1/chat/completions"):
+                        api_url = f"{api_url.rstrip('/')}/v1/chat/completions"
                 elif provider == "anthropic" and api_url == "http://localhost:1234":
                     api_url = "https://api.anthropic.com/v1/messages"
                 elif provider == "ollama" and api_url == "http://localhost:1234":
                     api_url = "http://localhost:11434/api/chat"
+                elif provider == "mlx" and not api_url.endswith("/v1/chat/completions"):
+                    api_url = f"{api_url.rstrip('/')}/v1/chat/completions"
 
                 profile_data = {
                     "model_name": self.get_mlx_key(self.active_model_id),

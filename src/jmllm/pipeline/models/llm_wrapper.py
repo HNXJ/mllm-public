@@ -19,8 +19,18 @@ def _call_llm_api_raw(prompt, profile, timeout=300):
     headers = {"Content-Type": "application/json"}
     payload = {}
     
+    import os
+    api_key = profile.api_key
+    if api_key == "none" or api_key == "none":
+        if provider == "openai":
+            api_key = os.getenv("OPENAI_API_KEY", "none")
+        elif provider == "google":
+            api_key = os.getenv("GEMINI_API_KEY", "none")
+        elif provider == "anthropic":
+            api_key = os.getenv("ANTHROPIC_API_KEY", "none")
+
     if provider == "anthropic":
-        headers["x-api-key"] = profile.api_key
+        headers["x-api-key"] = api_key
         headers["anthropic-version"] = "2023-06-01"
         payload = {
             "model": profile.model_name,
@@ -42,7 +52,7 @@ def _call_llm_api_raw(prompt, profile, timeout=300):
             payload["options"]["top_p"] = profile.top_p
     else:
         # Default MLX / LM Studio / OpenAI / Google (OpenAI compatible)
-        headers["Authorization"] = f"Bearer {profile.api_key}"
+        headers["Authorization"] = f"Bearer {api_key}"
         payload = {
             "model": profile.model_name,
             "messages": [{"role": "user", "content": prompt}],
