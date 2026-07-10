@@ -14,9 +14,5 @@ demo/demo_output/
 *.egg-info/
 examples/reports/
 hpc_figures/
-/content/inputs/
-/content/markdowns/
-/content/outputs/
-/content/tables/
-/content/reports/
+/content/
 /logs/
