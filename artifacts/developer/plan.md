@@ -1,7 +1,7 @@
 # Developer Plan
 
 ## Section 1: Brainstorm
-1. Universal Model Adapter Interface: Generalize llm_wrapper.py to support multiple providers (LM Studio, OpenAI, Anthropic, Google Gemini, Ollama) via unified configurations. 2. Decoupled VLM Preprocessor: Abstract the DeepRead preprocessing phase to cleanly separate text extraction from optional VLM figure-to-text operations. 3. Structured JSON Schema Enforcement: Integrate standard response_format payload mapping or schema validation. 4. Flexible Input and Output Formats: Support custom target paths, recursive directories, and sqlite/dataframe exports.
+Achieved: core package migrations, programmatic APIs, concurrency stability, thread-safe logger/api locks, multi-provider mappings, and sqlite exports. Next steps: 1. Explicitly decouple Local Mode (local load parameters via MLX/LM Studio CLI) from Remote Mode (API-key + URL gateway). 2. Generalize jmllm.run() inputs to accept direct absolute PDF file paths from anywhere on the filesystem. 3. Simplify installation and environment configurations to make jmllm a professional, lightweight standard package for ontology-constrained literature evaluations.
 
 ## Section 2: Execution Plan Table
 
