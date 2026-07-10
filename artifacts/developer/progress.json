@@ -1,11 +1,11 @@
 {
-  "summary": "Completed core namespace migrations, root cleanup, programmatic APIs, concurrency controls, thread-safety, dynamic sampling parameters, robust metadata parsing, generalized remote API adapters, exponential backoff retries, token estimation checks, and SQLite exports.",
+  "summary": "Completed core namespace migrations, root cleanup, programmatic APIs, concurrency controls, thread-safety, dynamic sampling parameters, robust metadata parsing, generalized remote API adapters, exponential backoff retries, token estimation checks, SQLite exports, and the available models listing utility.",
   "table": [
     {
       "file": "src/jmllm/__init__.py",
       "purpose": "Package programmatic entry points, pathing, and model configurations setup.",
       "score": 100,
-      "staged_edits": "Added set_sqlite() and extended add_model() signature to specify provider and response_format.",
+      "staged_edits": "Added set_sqlite(), extended add_model() to specify provider and response_format, and exported get_available_models.",
       "status": "done",
       "notes": "Verified API config setters work as expected.",
       "cautions": "None"
@@ -14,7 +14,7 @@
       "file": "src/jmllm/pipeline/controller.py",
       "purpose": "Core orchestrator running sequential DeepRead and parallel ThreadPoolExecutor evaluations.",
       "score": 100,
-      "staged_edits": "Integrated context window check_context_window guard, provider URL resolver mappings, and sqlite evaluations table export.",
+      "staged_edits": "Integrated context window limit guard, provider URL resolver mappings, remote provider load bypass, absolute path ingestion, and sqlite evaluations table export.",
       "status": "done",
       "notes": "Verified parallel execution and sqlite export stability.",
       "cautions": "None"
@@ -23,7 +23,7 @@
       "file": "src/jmllm/pipeline/models/llm_wrapper.py",
       "purpose": "Wrapper communicating with LMS API via HTTP completions request payload.",
       "score": 100,
-      "staged_edits": "Refactored HTTP payload builder for multiple providers (Anthropic, Ollama, Google Gemini, OpenAI), and added exponential backoff retry handler.",
+      "staged_edits": "Refactored HTTP payload builder for multiple providers, added exponential backoff retry handler, and implemented env variable auth fallback.",
       "status": "done",
       "notes": "Verified provider mapping and retry logic.",
       "cautions": "None"
@@ -32,9 +32,9 @@
       "file": "src/jmllm/util/helpers.py",
       "purpose": "Support helpers, JSON parsing, output aggregation, and global log compilation.",
       "score": 100,
-      "staged_edits": "Added estimate_tokens() helper.",
+      "staged_edits": "Added estimate_tokens() helper and get_available_models() LMS interface tool.",
       "status": "done",
-      "notes": "Provides accurate character-to-token count heuristics.",
+      "notes": "Provides accurate character-to-token count heuristics and LM Studio model listing.",
       "cautions": "None"
     },
     {
