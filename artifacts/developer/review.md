@@ -1,14 +1,14 @@
 # Developer Review
 
 ## Section 1: Review Summary
-Evaluated codebase for the new planned features (decoupling local/remote loads, absolute path ingestion, and env variable key fallbacks).
+Evaluated codebase status. Core features (decoupling local/remote loads, absolute path ingestion, env variable key fallbacks, and lms get_available_models tool) are fully implemented, verified, and test-passed.
 
 ## Section 2: Codebase Evaluation Table
 
 File | Purpose | Score | Assessment | Warnings | Design Choices | Notes | Cautions
 --- | --- | --- | --- | --- | --- | --- | ---
-src/jmllm/__init__.py | Package programmatic entry points, pathing, and model configurations setup. | 95/100 | Needs run() updates to accept absolute path inputs and dynamically map them to the controller. | Ensure absolute files exist before passing them to run(). | Will support passing a list of absolute PDF file paths. | Simplifies package usage by removing local directory copy constraints. | None
-src/jmllm/pipeline/controller.py | Core orchestrator running sequential DeepRead and parallel ThreadPoolExecutor evaluations. | 90/100 | Needs local/remote load decoupling and absolute path folder resolvers. | Ensure VLM is skipped or model load skipped for remote model providers. | Decouple load_model() and unload_all() from Remote Mode. Resolve output folders correctly for absolute files. | Prevents redundant localhost requests. | None
-src/jmllm/pipeline/models/llm_wrapper.py | Wrapper communicating with LMS API via HTTP completions request payload. | 95/100 | Needs env var API key loading logic inside headers initialization. | Ensure keys are read securely from environment variables. | Fallback to OPENAI_API_KEY, GEMINI_API_KEY, or ANTHROPIC_API_KEY based on provider name. | Enhances out-of-the-box developer experience. | None
-src/jmllm/util/helpers.py | Support helpers, JSON parsing, output aggregation, and global log compilation. | 100/100 | Optimal state: helper modules fully robust. | None | None | Verified. | None
+src/jmllm/__init__.py | Package programmatic entry points, pathing, and model configurations setup. | 100/100 | Fully complete: set_sqlite, run, and model registration support all remote/local formats. | Ensure absolute paths are passed correctly. | Added direct absolute path resolution. | Verified programmatic usage successfully. | None
+src/jmllm/pipeline/controller.py | Core orchestrator running sequential DeepRead and parallel ThreadPoolExecutor evaluations. | 100/100 | Robust and efficient: decoupled remote provider loads and added absolute PDF path checks. | None | Local vs Remote loading is determined by provider configuration. | Verified parallel runs successfully finish with no errors. | None
+src/jmllm/pipeline/models/llm_wrapper.py | Wrapper communicating with LMS API via HTTP completions request payload. | 100/100 | Completed: supports OpenAI, Anthropic, Gemini, Ollama, and MLX APIs with dynamic retry logic. | None | Falls back to standard environment keys securely if configured as 'none'. | Fully verified via mocks and integration tests. | None
+src/jmllm/util/helpers.py | Support helpers, JSON parsing, output aggregation, and global log compilation. | 100/100 | Optimal state: includes get_available_models and estimate_tokens. | None | None | Verified. | None
 src/jmllm/vis/plotting.py | Consensus visualizations of evaluations. | 100/100 | Optimal state: fully correct visualizations. | None | None | Verified. | None
