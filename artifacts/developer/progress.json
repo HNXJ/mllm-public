@@ -1,49 +1,40 @@
 {
-  "summary": "Completed core namespace migrations, root cleanup, programmatic APIs, concurrency controls, thread-safety, dynamic sampling parameters, robust metadata parsing, generalized remote API adapters, exponential backoff retries, token estimation checks, SQLite exports, and the available models listing utility.",
+  "summary": "Completed batch VLM layout extraction across all 31 studies, reference stripping parser, mathematical bracket cleaning maps, OpenAI-compatible local client setup, and structured scientific layout breakdown prompts.",
   "table": [
     {
-      "file": "src/jmllm/__init__.py",
-      "purpose": "Package programmatic entry points, pathing, and model configurations setup.",
-      "score": 100,
-      "staged_edits": "Added set_sqlite(), extended add_model() to specify provider and response_format, and exported get_available_models.",
-      "status": "done",
-      "notes": "Verified API config setters work as expected.",
-      "cautions": "None"
-    },
-    {
-      "file": "src/jmllm/pipeline/controller.py",
-      "purpose": "Core orchestrator running sequential DeepRead and parallel ThreadPoolExecutor evaluations.",
-      "score": 100,
-      "staged_edits": "Integrated context window limit guard, provider URL resolver mappings, remote provider load bypass, absolute path ingestion, and sqlite evaluations table export.",
-      "status": "done",
-      "notes": "Verified parallel execution and sqlite export stability.",
-      "cautions": "None"
-    },
-    {
-      "file": "src/jmllm/pipeline/models/llm_wrapper.py",
-      "purpose": "Wrapper communicating with LMS API via HTTP completions request payload.",
-      "score": 100,
-      "staged_edits": "Refactored HTTP payload builder for multiple providers, added exponential backoff retry handler, and implemented env variable auth fallback.",
-      "status": "done",
-      "notes": "Verified provider mapping and retry logic.",
-      "cautions": "None"
-    },
-    {
       "file": "src/jmllm/util/helpers.py",
-      "purpose": "Support helpers, JSON parsing, output aggregation, and global log compilation.",
+      "purpose": "Support helpers, character cleaning, and bibliography/references stripping.",
       "score": 100,
-      "staged_edits": "Added estimate_tokens() helper and get_available_models() LMS interface tool.",
+      "staged_edits": "Added remove_references() and clean_text() mapping mathematical brackets, quote characters, and typographical ligatures to standard ASCII.",
       "status": "done",
-      "notes": "Provides accurate character-to-token count heuristics and LM Studio model listing.",
+      "notes": "Verified regex logic against multiple section header formats.",
       "cautions": "None"
     },
     {
-      "file": "src/jmllm/vis/plotting.py",
-      "purpose": "Consensus visualizations of evaluations.",
+      "file": "src/jmllm/pipeline/loaders.py",
+      "purpose": "PDF layouter and DeepRead extraction loader integrating visual detection.",
       "score": 100,
-      "staged_edits": "Verified plotting function correctness.",
+      "staged_edits": "Applied remove_references and clean_text to loader outputs, and enabled VLM deepread and page parallel processing.",
       "status": "done",
-      "notes": "Verified reports compilation.",
+      "notes": "Verified layout text flows smoothly without references section.",
+      "cautions": "None"
+    },
+    {
+      "file": "src/jmllm/pipeline/deepread/vlm_client.py",
+      "purpose": "Encodes image crops and sends visual description requests to active VLM.",
+      "score": 100,
+      "staged_edits": "Allowed 'mlx' alias engine parameter to route requests to LMS completions client properly.",
+      "status": "done",
+      "notes": "Ensured local server completions compatibility.",
+      "cautions": "None"
+    },
+    {
+      "file": "src/jmllm/pipeline/deepread/prompts.py",
+      "purpose": "Prompts configuration template for the visual descriptions.",
+      "score": 100,
+      "staged_edits": "Expanded the VLM figure description prompt to request detailed structured summaries of circuit symbols, layout panels, keys, and trends.",
+      "status": "done",
+      "notes": "Significantly enriched description quality.",
       "cautions": "None"
     }
   ]

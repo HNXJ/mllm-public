@@ -1,14 +1,13 @@
 # Developer Progress
 
 ## Section 1: Progress Summary
-Completed core namespace migrations, root cleanup, programmatic APIs, concurrency controls, thread-safety, dynamic sampling parameters, robust metadata parsing, generalized remote API adapters, exponential backoff retries, token estimation checks, SQLite exports, and the available models listing utility.
+Completed batch VLM layout extraction across all 31 studies, reference stripping parser, mathematical bracket cleaning maps, OpenAI-compatible local client setup, and structured scientific layout breakdown prompts.
 
 ## Section 2: Implementation Progress Table
 
 File | Purpose | Score | Staged Edits | Status | Notes | Cautions
 --- | --- | --- | --- | --- | --- | ---
-src/jmllm/__init__.py | Package programmatic entry points, pathing, and model configurations setup. | 100/100 | Added set_sqlite(), extended add_model() to specify provider and response_format, and exported get_available_models. | done | Verified API config setters work as expected. | None
-src/jmllm/pipeline/controller.py | Core orchestrator running sequential DeepRead and parallel ThreadPoolExecutor evaluations. | 100/100 | Integrated context window limit guard, provider URL resolver mappings, remote provider load bypass, absolute path ingestion, and sqlite evaluations table export. | done | Verified parallel execution and sqlite export stability. | None
-src/jmllm/pipeline/models/llm_wrapper.py | Wrapper communicating with LMS API via HTTP completions request payload. | 100/100 | Refactored HTTP payload builder for multiple providers, added exponential backoff retry handler, and implemented env variable auth fallback. | done | Verified provider mapping and retry logic. | None
-src/jmllm/util/helpers.py | Support helpers, JSON parsing, output aggregation, and global log compilation. | 100/100 | Added estimate_tokens() helper and get_available_models() LMS interface tool. | done | Provides accurate character-to-token count heuristics and LM Studio model listing. | None
-src/jmllm/vis/plotting.py | Consensus visualizations of evaluations. | 100/100 | Verified plotting function correctness. | done | Verified reports compilation. | None
+src/jmllm/util/helpers.py | Support helpers, character cleaning, and bibliography/references stripping. | 100/100 | Added remove_references() and clean_text() mapping mathematical brackets, quote characters, and typographical ligatures to standard ASCII. | done | Verified regex logic against multiple section header formats. | None
+src/jmllm/pipeline/loaders.py | PDF layouter and DeepRead extraction loader integrating visual detection. | 100/100 | Applied remove_references and clean_text to loader outputs, and enabled VLM deepread and page parallel processing. | done | Verified layout text flows smoothly without references section. | None
+src/jmllm/pipeline/deepread/vlm_client.py | Encodes image crops and sends visual description requests to active VLM. | 100/100 | Allowed 'mlx' alias engine parameter to route requests to LMS completions client properly. | done | Ensured local server completions compatibility. | None
+src/jmllm/pipeline/deepread/prompts.py | Prompts configuration template for the visual descriptions. | 100/100 | Expanded the VLM figure description prompt to request detailed structured summaries of circuit symbols, layout panels, keys, and trends. | done | Significantly enriched description quality. | None

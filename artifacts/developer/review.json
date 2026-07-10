@@ -1,54 +1,44 @@
 {
-  "summary": "Evaluated codebase status. Core features (decoupling local/remote loads, absolute path ingestion, env variable key fallbacks, and lms get_available_models tool) are fully implemented, verified, and test-passed.",
+  "summary": "Reviewed extraction codebase status. All core files (helpers, loaders, vlm_client, prompts) are fully complete, verified, and test-passed under the batch VLM run.",
   "table": [
     {
-      "file": "src/jmllm/__init__.py",
-      "purpose": "Package programmatic entry points, pathing, and model configurations setup.",
-      "score": 100,
-      "assessment": "Fully complete: set_sqlite, run, and model registration support all remote/local formats.",
-      "warnings": "Ensure absolute paths are passed correctly.",
-      "design_choices": "Added direct absolute path resolution.",
-      "notes": "Verified programmatic usage successfully.",
-      "cautions": "None"
-    },
-    {
-      "file": "src/jmllm/pipeline/controller.py",
-      "purpose": "Core orchestrator running sequential DeepRead and parallel ThreadPoolExecutor evaluations.",
-      "score": 100,
-      "assessment": "Robust and efficient: decoupled remote provider loads and added absolute PDF path checks.",
-      "warnings": "None",
-      "design_choices": "Local vs Remote loading is determined by provider configuration.",
-      "notes": "Verified parallel runs successfully finish with no errors.",
-      "cautions": "None"
-    },
-    {
-      "file": "src/jmllm/pipeline/models/llm_wrapper.py",
-      "purpose": "Wrapper communicating with LMS API via HTTP completions request payload.",
-      "score": 100,
-      "assessment": "Completed: supports OpenAI, Anthropic, Gemini, Ollama, and MLX APIs with dynamic retry logic.",
-      "warnings": "None",
-      "design_choices": "Falls back to standard environment keys securely if configured as 'none'.",
-      "notes": "Fully verified via mocks and integration tests.",
-      "cautions": "None"
-    },
-    {
       "file": "src/jmllm/util/helpers.py",
-      "purpose": "Support helpers, JSON parsing, output aggregation, and global log compilation.",
+      "purpose": "Support helpers, character cleaning, and bibliography/references stripping.",
       "score": 100,
-      "assessment": "Optimal state: includes get_available_models and estimate_tokens.",
-      "warnings": "None",
-      "design_choices": "None",
-      "notes": "Verified.",
+      "assessment": "Completed: character cleaning maps and bibliography/references stripping.",
+      "warnings": "Ensure regex patterns remain broad enough to match different references headings.",
+      "design_choices": "Decoupled text post-processing from the layout loader.",
+      "notes": "Verified regex matches and standard-ASCII conversion maps.",
       "cautions": "None"
     },
     {
-      "file": "src/jmllm/vis/plotting.py",
-      "purpose": "Consensus visualizations of evaluations.",
+      "file": "src/jmllm/pipeline/loaders.py",
+      "purpose": "PDF layouter and DeepRead extraction loader integrating visual detection.",
       "score": 100,
-      "assessment": "Optimal state: fully correct visualizations.",
+      "assessment": "Completed: layout cleaning hooks integrated in DeepReadLoader.",
       "warnings": "None",
-      "design_choices": "None",
-      "notes": "Verified.",
+      "design_choices": "Separated text layout and figure descriptions before interleaving them.",
+      "notes": "Verified end-to-end VLM integration.",
+      "cautions": "None"
+    },
+    {
+      "file": "src/jmllm/pipeline/deepread/vlm_client.py",
+      "purpose": "Encodes image crops and sends visual description requests to active VLM.",
+      "score": 100,
+      "assessment": "Completed: alias resolution and completions client setup.",
+      "warnings": "Ensure timeout matches local generation constraints.",
+      "design_choices": "Reuses the LMS OpenAI completions backend under 'mlx' alias.",
+      "notes": "Verified against local server VLM endpoints.",
+      "cautions": "None"
+    },
+    {
+      "file": "src/jmllm/pipeline/deepread/prompts.py",
+      "purpose": "Prompts configuration template for the visual descriptions.",
+      "score": 100,
+      "assessment": "Completed: structured neuroscientific breakdown prompt.",
+      "warnings": "Avoid adding paper-level summaries in instructions.",
+      "design_choices": "Requested layout, symbols, keys, and trends separately.",
+      "notes": "Output descriptions successfully verified on Bastos2012.",
       "cautions": "None"
     }
   ]
