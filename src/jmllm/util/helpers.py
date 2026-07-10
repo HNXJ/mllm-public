@@ -463,3 +463,10 @@ def generate_global_log(log_dir: Optional[Path] = None):
             print(f"✅ Global log generated with {len(global_entries)} sources.")
         except Exception as e:
             print(f"Error writing global log: {e}")
+
+def estimate_tokens(text: str) -> int:
+    """Estimates the number of tokens in a text string based on character length."""
+    if not text:
+        return 0
+    return len(text) // 4
+

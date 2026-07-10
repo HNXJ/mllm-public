@@ -250,21 +250,35 @@ class PipelineController:
                 
                 top_p = getattr(self.args, "top_p", None)
                 min_p = getattr(self.args, "min_p", None)
+                provider = getattr(self.args, "provider", "mlx")
+                
+                # Resolve provider specific API URLs if default is used
+                api_url = self.engine_url
+                if provider == "openai" and api_url == "http://localhost:1234":
+                    api_url = "https://api.openai.com/v1/chat/completions"
+                elif provider == "google" and api_url == "http://localhost:1234":
+                    api_url = "https://generativelanguage.googleapis.com/v1beta/openai/v1/chat/completions"
+                elif provider == "anthropic" and api_url == "http://localhost:1234":
+                    api_url = "https://api.anthropic.com/v1/messages"
+                elif provider == "ollama" and api_url == "http://localhost:1234":
+                    api_url = "http://localhost:11434/api/chat"
 
                 profile_data = {
                     "model_name": self.get_mlx_key(self.active_model_id),
-                    "api_url": f"{self.engine_url}/v1/chat/completions",
-                    "api_key": "mlx-server",
+                    "api_url": api_url,
+                    "api_key": "mlx-server" if provider == "mlx" else os.getenv("API_KEY", "none"),
                     "max_tokens": 16384,
                     "engine_type": "mlx",
                     "temperature": self.args.temperature,
                     "top_p": top_p,
                     "min_p": min_p,
-                    "context_window": getattr(self.args, "context_window", 131072)
+                    "context_window": getattr(self.args, "context_window", 131072),
+                    "provider": provider,
+                    "response_format": getattr(self.args, "response_format", None)
                 }
                 profile_data.update(manifest)
                 profile_data["model_name"] = self.get_mlx_key(self.active_model_id)
-                profile_data["api_key"] = "mlx-server"
+                profile_data["api_url"] = api_url
                 profile_data["temperature"] = self.args.temperature
                 if top_p is not None:
                     profile_data["top_p"] = top_p
@@ -273,7 +287,19 @@ class PipelineController:
 
                 profile = ModelProfile(**profile_data)
                 config = InferenceConfig(request_timeout_seconds=self.args.timeout)
+                
+                from jmllm.util.helpers import estimate_tokens
                 full_prompt = f'{instructions}\n\n**GLOSSARY:**\n{glossary}\n\n**DOCUMENT:**\n{study_text}\n\n**FILL IN THE SCORES:**'
+                prompt_tokens = estimate_tokens(full_prompt)
+                context_limit = getattr(profile, "context_window", 131072)
+                
+                if prompt_tokens > context_limit:
+                    self.log(f"⚠️ Warning: prompt length ({prompt_tokens} tokens) exceeds context limit ({context_limit} tokens) for {base_name}. Truncating input...", is_error=True)
+                    reserved_tokens = estimate_tokens(instructions) + estimate_tokens(glossary) + 8000
+                    allowed_text_tokens = context_limit - reserved_tokens
+                    if allowed_text_tokens > 0:
+                        study_text = study_text[:allowed_text_tokens * 4]
+                        full_prompt = f'{instructions}\n\n**GLOSSARY:**\n{glossary}\n\n**DOCUMENT:**\n{study_text}\n\n**FILL IN THE SCORES:**'
                 
                 eval_json_text = get_llm_thinking(unified_prompt=full_prompt, config=config, profile=profile, response_model=None)
                 with open(out_eval_path, 'w') as f: f.write(eval_json_text)
@@ -300,6 +326,20 @@ class PipelineController:
             csv_file = tables_dir / 'aggregated_scores.csv'
             df.to_csv(csv_file, index=False)
             self.log(f"✅ Consolidated table written to {csv_file}")
+            
+            # Export to SQLite if configured
+            sqlite_path = getattr(self.args, "sqlite_path", None)
+            if sqlite_path:
+                sqlite_file = Path(sqlite_path)
+                sqlite_file.parent.mkdir(parents=True, exist_ok=True)
+                try:
+                    import sqlite3
+                    conn = sqlite3.connect(sqlite_file)
+                    df.to_sql("evaluations", conn, if_exists="replace", index=False)
+                    conn.close()
+                    self.log(f"✅ Consolidated table exported to SQLite at {sqlite_file}")
+                except Exception as e:
+                    self.log(f"❌ Failed to export to SQLite: {e}", is_error=True)
         else:
             self.log("⚠️ No evaluations found to aggregate.", is_error=True)
 

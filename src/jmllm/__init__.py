@@ -9,6 +9,7 @@ from jmllm.vis.plotting import run_all_visualizations
 _instructions_path = None
 _glossary_path = None
 _content_path = None
+_sqlite_path = None
 _models = []
 
 def set_instructions(path: str):
@@ -26,21 +27,37 @@ def set_path(path: str):
     global _content_path
     _content_path = str(Path(path).resolve())
 
-def add_model(name: str, url: str, temperature: float = 0.7, context_window: int = 131072, top_p: Optional[float] = None, min_p: Optional[float] = None):
-    """Register an LLM model card with its endpoint configuration."""
+def set_sqlite(path: str):
+    """Set the target SQLite database path for exports."""
+    global _sqlite_path
+    _sqlite_path = str(Path(path).resolve())
+
+def add_model(
+    name: str, 
+    url: str, 
+    provider: str = "mlx", 
+    temperature: float = 0.7, 
+    context_window: int = 131072, 
+    top_p: Optional[float] = None, 
+    min_p: Optional[float] = None, 
+    response_format: Optional[dict] = None
+):
+    """Register an LLM model card with its endpoint configuration and provider."""
     global _models
     _models.append({
         "name": name,
         "url": url,
+        "provider": provider,
         "temperature": temperature,
         "context_window": context_window,
         "top_p": top_p,
-        "min_p": min_p
+        "min_p": min_p,
+        "response_format": response_format
     })
 
 def run(inputs: Optional[List[str]] = None, parallel_workers: Optional[int] = None, no_vlm: bool = True):
     """Run the evaluation pipeline with the current programmatic configuration."""
-    global _instructions_path, _glossary_path, _content_path, _models
+    global _instructions_path, _glossary_path, _content_path, _sqlite_path, _models
     
     # Resolve project root
     repo_root = Path(__file__).resolve().parents[2]
@@ -71,10 +88,12 @@ def run(inputs: Optional[List[str]] = None, parallel_workers: Optional[int] = No
     # Use loaded models or default
     reasoning_models = [m["name"] for m in _models] if _models else ["gemma-4-e4b-it-mxfp8"]
     engine_url = _models[0]["url"] if _models else "http://localhost:1234"
+    provider = _models[0]["provider"] if _models else "mlx"
     temp = _models[0]["temperature"] if _models else 0.7
     top_p = _models[0].get("top_p") if _models else None
     min_p = _models[0].get("min_p") if _models else None
     c_win = _models[0].get("context_window", 131072) if _models else 131072
+    res_fmt = _models[0].get("response_format") if _models else None
     
     # Mock namespace class to emulate parsed argparse arguments
     class ProgrammaticArgs:
@@ -100,6 +119,9 @@ def run(inputs: Optional[List[str]] = None, parallel_workers: Optional[int] = No
             self.min_p = min_p
             self.parallel_workers = parallel_workers or 1
             self.context_window = c_win
+            self.provider = provider
+            self.response_format = res_fmt
+            self.sqlite_path = _sqlite_path
 
     args = ProgrammaticArgs()
     controller = PipelineController(args)

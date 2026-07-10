@@ -97,6 +97,8 @@ class ModelProfile(BaseConfig):
     min_p: Optional[float] = Field(None, description="Min-p sampling parameter")
     context_window: int = Field(131072, description="Maximum context window size")
     engine_type: str = Field("lms", description="Engine type (lms, vlm, mlx)")
+    provider: str = Field("mlx", description="API provider type (mlx, openai, google, anthropic, ollama)")
+    response_format: Optional[Dict[str, Any]] = Field(None, description="Optional structured JSON output format")
 
 class InferenceConfig(BaseConfig):
     """Configuration for an inference run."""

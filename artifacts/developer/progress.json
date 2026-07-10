@@ -1,40 +1,40 @@
 {
-  "summary": "Completed core namespace migrations, root cleanup, programmatic APIs, concurrency controls, thread-safety, dynamic sampling parameters, and robust metadata parsing.",
+  "summary": "Completed core namespace migrations, root cleanup, programmatic APIs, concurrency controls, thread-safety, dynamic sampling parameters, robust metadata parsing, generalized remote API adapters, exponential backoff retries, token estimation checks, and SQLite exports.",
   "table": [
     {
       "file": "src/jmllm/__init__.py",
       "purpose": "Package programmatic entry points, pathing, and model configurations setup.",
       "score": 100,
-      "staged_edits": "Exposed programmatic endpoints in package init.",
+      "staged_edits": "Added set_sqlite() and extended add_model() signature to specify provider and response_format.",
       "status": "done",
-      "notes": "Verified API works as expected.",
+      "notes": "Verified API config setters work as expected.",
       "cautions": "None"
     },
     {
       "file": "src/jmllm/pipeline/controller.py",
       "purpose": "Core orchestrator running sequential DeepRead and parallel ThreadPoolExecutor evaluations.",
       "score": 100,
-      "staged_edits": "Implemented thread pools, thread-safe logger, and model API locking mechanism.",
+      "staged_edits": "Integrated context window check_context_window guard, provider URL resolver mappings, and sqlite evaluations table export.",
       "status": "done",
-      "notes": "Verified parallel execution stability.",
+      "notes": "Verified parallel execution and sqlite export stability.",
       "cautions": "None"
     },
     {
       "file": "src/jmllm/pipeline/models/llm_wrapper.py",
       "purpose": "Wrapper communicating with LMS API via HTTP completions request payload.",
       "score": 100,
-      "staged_edits": "Supported optional top_p and min_p parameters dynamically.",
+      "staged_edits": "Refactored HTTP payload builder for multiple providers (Anthropic, Ollama, Google Gemini, OpenAI), and added exponential backoff retry handler.",
       "status": "done",
-      "notes": "Verified parameter serialization.",
+      "notes": "Verified provider mapping and retry logic.",
       "cautions": "None"
     },
     {
       "file": "src/jmllm/util/helpers.py",
       "purpose": "Support helpers, JSON parsing, output aggregation, and global log compilation.",
       "score": 100,
-      "staged_edits": "Added thread lock to generate_global_log, and right-aligned filename splits.",
+      "staged_edits": "Added estimate_tokens() helper.",
       "status": "done",
-      "notes": "Verified metadata extraction.",
+      "notes": "Provides accurate character-to-token count heuristics.",
       "cautions": "None"
     },
     {

@@ -12,41 +12,92 @@ logger = setup_logger(__name__)
 class InferenceError(Exception):
     pass
 
-def _call_llm_api(prompt, profile, timeout=300):
-    payload = {
-        'model': profile.model_name,
-        'messages': [{'role': 'user', 'content': prompt}],
-        'temperature': profile.temperature,
-        'max_tokens': profile.max_tokens,
-    }
-    if getattr(profile, 'top_p', None) is not None:
-        payload['top_p'] = profile.top_p
+import time
+
+def _call_llm_api_raw(prompt, profile, timeout=300):
+    provider = getattr(profile, "provider", "mlx").lower()
+    headers = {"Content-Type": "application/json"}
+    payload = {}
+    
+    if provider == "anthropic":
+        headers["x-api-key"] = profile.api_key
+        headers["anthropic-version"] = "2023-06-01"
+        payload = {
+            "model": profile.model_name,
+            "messages": [{"role": "user", "content": prompt}],
+            "max_tokens": profile.max_tokens,
+            "temperature": profile.temperature
+        }
+    elif provider == "ollama":
+        payload = {
+            "model": profile.model_name,
+            "messages": [{"role": "user", "content": prompt}],
+            "stream": False,
+            "options": {
+                "temperature": profile.temperature,
+                "num_predict": profile.max_tokens
+            }
+        }
+        if profile.top_p is not None:
+            payload["options"]["top_p"] = profile.top_p
     else:
-        payload['top_p'] = 0.9
-    if getattr(profile, 'min_p', None) is not None:
-        payload['min_p'] = profile.min_p
-    print("[VERBOSITY] Executing: headers = {'Authorization': f'Bearer {profile.api_key}', ...")
-    headers = {'Authorization': f'Bearer {profile.api_key}', 'Content-Type': 'application/json'}
-    print('[VERBOSITY] Executing: response = requests.post(profile.api_url, timeout=(10, 36...')
-    response = requests.post(profile.api_url, timeout=(10, 3600), headers=headers, json=payload)
-    print('[VERBOSITY] Executing: if response.status_code != 200:')
+        # Default MLX / LM Studio / OpenAI / Google (OpenAI compatible)
+        headers["Authorization"] = f"Bearer {profile.api_key}"
+        payload = {
+            "model": profile.model_name,
+            "messages": [{"role": "user", "content": prompt}],
+            "temperature": profile.temperature,
+            "max_tokens": profile.max_tokens
+        }
+        if getattr(profile, 'top_p', None) is not None:
+            payload['top_p'] = profile.top_p
+        if getattr(profile, 'min_p', None) is not None:
+            payload['min_p'] = profile.min_p
+        if getattr(profile, 'response_format', None) is not None:
+            payload['response_format'] = profile.response_format
+
+    url = profile.api_url
+    print(f"[VERBOSITY] Executing API request to {url} for provider {provider}...")
+    response = requests.post(url, timeout=timeout, headers=headers, json=payload)
+    
     if response.status_code != 200:
         logger.error(f'❌ API Error ({response.status_code}) for model {profile.model_name}: {response.text}')
-    print('[VERBOSITY] Executing: response.raise_for_status()')
-    response.raise_for_status()
-    print('[VERBOSITY] Executing: result_json = response.json()')
+        response.raise_for_status()
+        
     result_json = response.json()
-    print("[VERBOSITY] Executing: if 'choices' not in result_json or not result_json['choic...")
-    if 'choices' not in result_json or not result_json['choices']:
-        raise InferenceError(f'Unexpected LLM response format: {result_json}')
-    print("[VERBOSITY] Executing: choice = result_json['choices'][0]")
-    choice = result_json['choices'][0]
-    print("[VERBOSITY] Executing: content = choice.get('message', {}).get('content') or cho...")
-    content = choice.get('message', {}).get('content') or choice.get('content') or choice.get('text')
-    print('[VERBOSITY] Executing: if content:')
-    if content:
-        return content
+    
+    if provider == "anthropic":
+        content = result_json.get("content", [{}])[0].get("text")
+        if content:
+            return content
+    elif provider == "ollama":
+        content = result_json.get("message", {}).get("content")
+        if content:
+            return content
+    else:
+        if 'choices' not in result_json or not result_json['choices']:
+            raise InferenceError(f'Unexpected LLM response format: {result_json}')
+        choice = result_json['choices'][0]
+        content = choice.get('message', {}).get('content') or choice.get('content') or choice.get('text')
+        if content:
+            return content
+            
     raise InferenceError(f'LLM response missing content field. JSON: {result_json}')
+
+def _call_llm_api(prompt, profile, timeout=300):
+    max_retries = 3
+    backoff_factor = 2
+    last_exception = None
+    
+    for attempt in range(max_retries):
+        try:
+            return _call_llm_api_raw(prompt, profile, timeout)
+        except (requests.exceptions.RequestException, InferenceError) as e:
+            last_exception = e
+            logger.warning(f"⚠️ API call attempt {attempt+1} failed: {e}. Retrying in {backoff_factor ** attempt}s...")
+            time.sleep(backoff_factor ** attempt)
+            
+    raise InferenceError(f"API call failed after {max_retries} attempts. Last error: {last_exception}")
 
 def get_llm_thinking(unified_prompt, config, profile, response_model=HpcEvaluationResponse):
     print("[VERBOSITY] Executing: prompt = f'{unified_prompt}\\n\\nReturn exactly one valid J...")
