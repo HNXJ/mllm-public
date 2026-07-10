@@ -1,4 +1,4 @@
-import os, sys, json, time, requests, re, subprocess
+import os, sys, json, time, requests, re, subprocess, threading
 from pathlib import Path
 from typing import Optional, List
 
@@ -21,6 +21,10 @@ class PipelineController:
         self.active_model_id = args.reasoning_model_names[0]
         self.vlm_model_id = args.deepread_vlm
         
+        # Thread locks
+        self._log_lock = threading.RLock()
+        self._model_api_lock = threading.Lock()
+        
         # Paths verification
         self.mllm_markdown_path = REPO_ROOT / 'content' / 'markdowns'
         self.mllm_markdown_path.mkdir(parents=True, exist_ok=True)
@@ -32,8 +36,9 @@ class PipelineController:
         level = "ERROR" if is_error else "INFO"
         formatted_msg = f"[{timestamp}] [{level}] {message}"
         print(formatted_msg)
-        with open(self.mllm_log_path, 'a') as f:
-            f.write(formatted_msg + '\n')
+        with self._log_lock:
+            with open(self.mllm_log_path, 'a') as f:
+                f.write(formatted_msg + '\n')
 
     def ensure_monitor_running(self):
         """Verify or start the mllm monitor on port 8081."""
@@ -66,40 +71,44 @@ class PipelineController:
             self.log(f"⏩ Skipping model load for {model_id} (no-load mode).")
             return True
         mlx_key = self.get_mlx_key(model_id)
-        self.log(f"🚀 Requesting MLX load for {mlx_key} (from {model_id})...")
-        url = f"{self.engine_url}/load_model"
-        headers = {"Authorization": "Bearer mlx-server"}
-        payload = {"model": mlx_key}
         
-        # Pass context length to LMS if configured
-        context_window = getattr(self.args, "context_window", None)
-        if context_window:
-            payload["context_length"] = context_window
-            payload["n_ctx"] = context_window
+        with self._model_api_lock:
+            self.log(f"🚀 Requesting MLX load for {mlx_key} (from {model_id})...")
+            url = f"{self.engine_url}/load_model"
+            headers = {"Authorization": "Bearer mlx-server"}
+            payload = {"model": mlx_key}
+            
+            # Pass context length to LMS if configured
+            context_window = getattr(self.args, "context_window", None)
+            if context_window:
+                payload["context_length"] = context_window
+                payload["n_ctx"] = context_window
 
-        try:
-            res = requests.post(url, json=payload, headers=headers, timeout=600)
-            if res.status_code == 200:
-                self.log(f"✅ Model {mlx_key} is LOADED and READY.")
-                return True
-            else:
-                self.log(f"❌ Engine failed to load model: {res.text}", is_error=True)
+            try:
+                res = requests.post(url, json=payload, headers=headers, timeout=600)
+                if res.status_code == 200:
+                    self.log(f"✅ Model {mlx_key} is LOADED and READY.")
+                    return True
+                else:
+                    self.log(f"❌ Engine failed to load model: {res.text}", is_error=True)
+                    return False
+            except Exception as e:
+                self.log(f"❌ API Error during load: {e}", is_error=True)
                 return False
-        except Exception as e:
-            self.log(f"❌ API Error during load: {e}", is_error=True)
-            return False
 
     def unload_all(self):
         """Unload all models to free VRAM."""
         if getattr(self.args, "no_load", False):
             self.log("⏩ Skipping model unload (no-load mode).")
             return
-        self.log("🧹 Unloading all models...")
-        url = f"{self.engine_url}/unload_all"
-        headers = {"Authorization": "Bearer mlx-server"}
-        try:
-            requests.post(url, headers=headers, timeout=60)
-        except: pass
+        
+        with self._model_api_lock:
+            self.log("🧹 Unloading all models...")
+            url = f"{self.engine_url}/unload_all"
+            headers = {"Authorization": "Bearer mlx-server"}
+            try:
+                requests.post(url, headers=headers, timeout=60)
+            except: pass
 
     def test_model_profile(self, model_id: str):
         """Verify model functionality and mark as verified."""
@@ -204,7 +213,7 @@ class PipelineController:
                     continue
 
             if self.args.deepread_only: 
-                generate_global_log()
+                generate_global_log(self.mllm_log_path.parent)
                 continue
             
             papers_to_evaluate.append({
@@ -272,7 +281,7 @@ class PipelineController:
             except Exception as e:
                 self.log(f'Reasoning failed for {base_name}: {e}', is_error=True)
             
-            generate_global_log()
+            generate_global_log(self.mllm_log_path.parent)
 
         if parallel_workers > 1 and len(papers_to_evaluate) > 1:
             with concurrent.futures.ThreadPoolExecutor(max_workers=parallel_workers) as executor:

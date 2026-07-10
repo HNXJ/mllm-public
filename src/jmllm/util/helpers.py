@@ -6,6 +6,7 @@ import json
 import time
 import platform
 import subprocess
+import threading
 import pandas as pd
 from datetime import datetime
 from pathlib import Path
@@ -293,10 +294,14 @@ def aggregate_scores_from_json(json_dir: Path) -> pd.DataFrame:
             with open(json_file, 'r') as f:
                 data = json.load(f)
             
-            # Extract basic metadata
+            # Extract basic metadata robustly from the right side of the split
             name_parts = json_file.stem.split('_')
-            study = name_parts[0]
-            model = name_parts[1] if len(name_parts) > 1 else "unknown"
+            if len(name_parts) >= 4:
+                study = "_".join(name_parts[:-3])
+                model = name_parts[-3]
+            else:
+                study = name_parts[0]
+                model = name_parts[1] if len(name_parts) > 1 else "unknown"
             
             # Extract year from study name (first 4 digits)
             import re
@@ -412,39 +417,49 @@ def aggregate_scores_from_json(json_dir: Path) -> pd.DataFrame:
 # GLOBAL LOGGER COMPILATION
 # =============================================================================
 
-def generate_global_log():
-    log_dir = Path("./logs")
+_global_log_lock = threading.Lock()
+
+def generate_global_log(log_dir: Optional[Path] = None):
+    global _global_log_lock
+    if log_dir is None:
+        log_dir = Path("./logs")
+    else:
+        log_dir = Path(log_dir)
+        
     output_file = log_dir / "global_log.jsonl"
     char_limit = 20000
     
     if not log_dir.exists():
         return
         
-    log_files = glob.glob(str(log_dir / "*.log")) + glob.glob(str(log_dir / "*.txt"))
-    log_files = [f for f in log_files if "global_log.jsonl" not in f]
-    log_files.sort(key=os.path.getmtime, reverse=True)
-    
-    global_entries = []
-    
-    for log_path in log_files:
-        try:
-            file_size = os.path.getsize(log_path)
-            with open(log_path, "r", errors="ignore") as f:
-                if file_size > char_limit:
-                    f.seek(file_size - char_limit)
-                content = f.read()
-            
-            entry = {
-                "timestamp": time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(os.path.getmtime(log_path))),
-                "source": os.path.basename(log_path),
-                "content": content
-            }
-            global_entries.append(entry)
-        except Exception as e:
-            print(f"Error reading {log_path}: {e}")
+    with _global_log_lock:
+        log_files = glob.glob(str(log_dir / "*.log")) + glob.glob(str(log_dir / "*.txt"))
+        log_files = [f for f in log_files if "global_log.jsonl" not in f]
+        log_files.sort(key=os.path.getmtime, reverse=True)
+        
+        global_entries = []
+        
+        for log_path in log_files:
+            try:
+                file_size = os.path.getsize(log_path)
+                with open(log_path, "r", errors="ignore") as f:
+                    if file_size > char_limit:
+                        f.seek(file_size - char_limit)
+                    content = f.read()
+                
+                entry = {
+                    "timestamp": time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(os.path.getmtime(log_path))),
+                    "source": os.path.basename(log_path),
+                    "content": content
+                }
+                global_entries.append(entry)
+            except Exception as e:
+                print(f"Error reading {log_path}: {e}")
 
-    with open(output_file, "w") as f:
-        for entry in global_entries:
-            f.write(json.dumps(entry) + "\n")
-    
-    print(f"✅ Global log generated with {len(global_entries)} sources.")
+        try:
+            with open(output_file, "w") as f:
+                for entry in global_entries:
+                    f.write(json.dumps(entry) + "\n")
+            print(f"✅ Global log generated with {len(global_entries)} sources.")
+        except Exception as e:
+            print(f"Error writing global log: {e}")
