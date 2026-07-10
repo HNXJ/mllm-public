@@ -17,6 +17,7 @@ from jmllm.pipeline.deepread.vlm_client import VLMClient
 from jmllm.pipeline.deepread.interleave import Interleaver
 from jmllm.pipeline.deepread.io_utils import save_figure_crop
 from jmllm.util.schemas import ExtractedDocumentArtifact
+from jmllm.util.helpers import remove_references
 
 class DeepReadLoader:
     """Canonical loader for 'DeepRead' PDF extraction.
@@ -116,6 +117,7 @@ class DeepReadLoader:
         extractor.close()
         print("[VERBOSITY] Executing: study_text = '\\n\\n---\\n\\n'.join(page_markdowns)")
         study_text = '\n\n---\n\n'.join(page_markdowns)
+        study_text = remove_references(study_text)
         print('[VERBOSITY] Executing: word_count = len(study_text.split())')
         word_count = len(study_text.split())
         print('[VERBOSITY] Executing: return ExtractedDocumentArtifact(study_text=study_text, p...')

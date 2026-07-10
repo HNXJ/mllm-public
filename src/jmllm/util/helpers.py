@@ -483,3 +483,14 @@ def get_available_models(engine_url: str = "http://localhost:1234") -> List[str]
         print(f"⚠️ Warning: failed to fetch available models from {engine_url}: {e}")
     return []
 
+def remove_references(text: str) -> str:
+    """Removes the References/Bibliography section from the extracted study text."""
+    import re
+    pattern = re.compile(
+        r'(?i)\n(?:##?\s*)?(?:References|Bibliography|Literature\s+Cited|References\s+and\s+Notes)\b'
+    )
+    match = pattern.search(text)
+    if match:
+        return text[:match.start()].strip()
+    return text
+
