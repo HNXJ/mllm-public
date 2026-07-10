@@ -16,7 +16,7 @@ class VLMClient:
         self.base_url = base_url
         self.api_key = api_key
         
-        if self.engine == "lms":
+        if self.engine in ("lms", "mlx"):
             self.client = OpenAI(base_url=base_url, api_key=api_key)
         elif self.engine == "vmlx":
             self._vmlx_model = None # Lazy load
