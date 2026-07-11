@@ -1,13 +1,13 @@
 # Developer Review
 
 ## Section 1: Review Summary
-Reviewed extraction codebase status. All core files (helpers, loaders, vlm_client, prompts) are fully complete, verified, and test-passed under the batch VLM run.
+Initiating review of upcoming roadmap implementation designs. The planned features focus on caching, JSON extraction resilience, prompt size optimization, and pre-run diagnostics.
 
 ## Section 2: Codebase Evaluation Table
 
 File | Purpose | Score | Assessment | Warnings | Design Choices | Notes | Cautions
 --- | --- | --- | --- | --- | --- | --- | ---
-src/jmllm/util/helpers.py | Support helpers, character cleaning, and bibliography/references stripping. | 100/100 | Completed: character cleaning maps and bibliography/references stripping. | Ensure regex patterns remain broad enough to match different references headings. | Decoupled text post-processing from the layout loader. | Verified regex matches and standard-ASCII conversion maps. | None
-src/jmllm/pipeline/loaders.py | PDF layouter and DeepRead extraction loader integrating visual detection. | 100/100 | Completed: layout cleaning hooks integrated in DeepReadLoader. | None | Separated text layout and figure descriptions before interleaving them. | Verified end-to-end VLM integration. | None
-src/jmllm/pipeline/deepread/vlm_client.py | Encodes image crops and sends visual description requests to active VLM. | 100/100 | Completed: alias resolution and completions client setup. | Ensure timeout matches local generation constraints. | Reuses the LMS OpenAI completions backend under 'mlx' alias. | Verified against local server VLM endpoints. | None
-src/jmllm/pipeline/deepread/prompts.py | Prompts configuration template for the visual descriptions. | 100/100 | Completed: structured neuroscientific breakdown prompt. | Avoid adding paper-level summaries in instructions. | Requested layout, symbols, keys, and trends separately. | Output descriptions successfully verified on Bastos2012. | None
+src/jmllm/util/helpers.py | Support helpers, text cleaners, JSON parsing, MD5 hashing, and prompt compression logic. | 85/100 | Staged: Adding new parsing, hashing, and compression tools. | Ensure nested brackets parser can handle complex nested dictionaries. | Use count-based brace balancing for JSON extraction rather than standard regex splits. | Staged. | None
+src/jmllm/pipeline/loaders.py | PDF layouter and DeepRead extraction loader integrating visual detection and VLM caching. | 80/100 | Staged: Cache read/write implementation in DeepReadLoader. | None | Cache directory will reside under .cache/deepread/ to prevent pollution of workspace root. | Staged. | Ensure correct directory permissions.
+src/jmllm/pipeline/controller.py | Core orchestrator running sequential DeepRead and parallel ThreadPoolExecutor evaluations. | 80/100 | Staged: Preflight checks and token limit constraints validation. | Do not bypass pipeline run unless preflight checks are strictly violated. | Clipping threshold will adapt dynamically to active model profile's context window size. | Staged. | None
+src/jmllm/pipeline/cli.py | CLI interface options parsing. | 90/100 | Staged: Argument parsing for pre-run options. | None | Add options standard default value mappings. | Staged. | None

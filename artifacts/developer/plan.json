@@ -1,44 +1,44 @@
 {
-  "brainstorm": "Achieved: Batch visual and layout extraction of all 31 study PDFs with non-standard character cleaning, automated reference stripping, and high-fidelity VLM-generated figure descriptions. Next steps: 1. Set up the evaluation loop processing the 31 unified markdowns through selected LLMs. 2. Implement the prompt compilation step merging the unified markdown with the target instruction and glossary templates. 3. Manage model cards (Ollama/LMS/Cloud endpoints) and save output evaluations to JSON. 4. Populate evaluation tables with NaN placeholders for missing parameters to avoid false zeros.",
+  "brainstorm": "Roadmap: 1. VLM Caching: Save figure crops and generated visual descriptions in `.cache/deepread/` mapped by the PDF MD5 hash. 2. Robust JSON Extractor: Build a helper using regex and curly brace count parsing to locate and cleanly parse JSON output blocks from LLM responses even with markdown wrapping. 3. Smart Prompt Compression: If the prompt exceeds the model's context-window limit, dynamically compress the least critical sections (like Methods) while keeping Abstract/Results/Glossary intact. 5. Pre-flight checks: Add a --preflight CLI switch to query server readiness, list loaded models, and verify local resources before starting evaluation runs.",
   "table": [
     {
       "file": "src/jmllm/util/helpers.py",
-      "purpose": "Support helpers, character cleaning, and bibliography/references stripping.",
-      "score": 100,
-      "actions": "1. Implement remove_references() to parse and strip literature sections. 2. Add robust clean_text() mapping mathematical brackets, typography ligatures, and quote characters to standard ASCII.",
-      "rules": "Must remain stateless and highly robust.",
-      "edits": "Completed: reference stripping and character maps.",
-      "notes": "Ensures clean output layout text without references.",
+      "purpose": "Support helpers, text cleaners, JSON parsing, MD5 hashing, and prompt compression logic.",
+      "score": 85,
+      "actions": "1. Add extract_json_block() to robustly extract and parse nested JSON string blocks from markdown tags. 2. Implement calculate_pdf_hash() for cache lookups. 3. Add compress_prompt() to truncate/summarize methods if token limit is exceeded.",
+      "rules": "Must remain stateless and robust.",
+      "edits": "Planned: JSON extraction, PDF hashing, and prompt compression helpers.",
+      "notes": "Optimal token management and parsing helpers.",
       "cautions": "None"
     },
     {
       "file": "src/jmllm/pipeline/loaders.py",
-      "purpose": "PDF layouter and DeepRead extraction loader integrating visual detection.",
-      "score": 100,
-      "actions": "1. Apply remove_references and clean_text to layouts. 2. Enable VLM-based deepread figure detection and parallel page extraction.",
-      "rules": "Handle visual region watermarks dynamically.",
-      "edits": "Completed: layout cleaning hooks integrated in DeepReadLoader.",
-      "notes": "Verified end-to-end VLM integration.",
+      "purpose": "PDF layouter and DeepRead extraction loader integrating visual detection and VLM caching.",
+      "score": 80,
+      "actions": "1. Integrate MD5 caching checks: check if visual descriptions exist under .cache/deepread/{pdf_hash}/ before calling VLM. 2. Save generated crops and descriptions to cache directory on success.",
+      "rules": "Avoid redundant VLM completions calls.",
+      "edits": "Planned: DeepReadLoader cache lookup and save logic.",
+      "notes": "Reduces extraction time for cached files to near-zero.",
+      "cautions": "Handle directory permissions correctly."
+    },
+    {
+      "file": "src/jmllm/pipeline/controller.py",
+      "purpose": "Core orchestrator running sequential DeepRead and parallel ThreadPoolExecutor evaluations.",
+      "score": 80,
+      "actions": "1. Implement preflight check routines: ping server, check active models, verify inputs/glossary. 2. Add context-length check on prompt before LLM invocation, calling helper's prompt compressor if limit is exceeded.",
+      "rules": "Do not execute evaluations if preflight checks fail.",
+      "edits": "Planned: Preflight checks and token length validation controls.",
+      "notes": "Ensures prompt size is within model's context limit.",
       "cautions": "None"
     },
     {
-      "file": "src/jmllm/pipeline/deepread/vlm_client.py",
-      "purpose": "Encodes image crops and sends visual description requests to active VLM.",
-      "score": 100,
-      "actions": "1. Allow 'mlx' alias engine type. 2. Configure OpenAI client endpoints for LMS API.",
-      "rules": "Provide robust timeouts and retry logic.",
-      "edits": "Completed: alias resolution and completions client setup.",
-      "notes": "Verified against local server VLM endpoints.",
-      "cautions": "None"
-    },
-    {
-      "file": "src/jmllm/pipeline/deepread/prompts.py",
-      "purpose": "Prompts configuration template for the visual descriptions.",
-      "score": 100,
-      "actions": "1. Enrich prompts to request detailed visual breakdowns, legends, flow directions, and data trends.",
-      "rules": "Avoid summarizing paper context.",
-      "edits": "Completed: structured neuroscientific breakdown prompt.",
-      "notes": "Output descriptions successfully verified on Bastos2012.",
+      "file": "src/jmllm/pipeline/cli.py",
+      "purpose": "CLI interface options parsing.",
+      "score": 90,
+      "actions": "Add --preflight boolean flag parameter option.",
+      "rules": "Follow standard argparse convention.",
+      "edits": "Planned: add --preflight parameter flag.",
+      "notes": "Enables sanity check checks CLI execution.",
       "cautions": "None"
     }
   ]

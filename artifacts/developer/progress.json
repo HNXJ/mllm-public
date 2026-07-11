@@ -1,40 +1,40 @@
 {
-  "summary": "Completed batch VLM layout extraction across all 31 studies, reference stripping parser, mathematical bracket cleaning maps, OpenAI-compatible local client setup, and structured scientific layout breakdown prompts.",
+  "summary": "Completed batch VLM layout extraction. Commencing development on new roadmap features: VLM caching, robust JSON extraction parsing, smart prompt compression, and pre-flight check options.",
   "table": [
     {
       "file": "src/jmllm/util/helpers.py",
-      "purpose": "Support helpers, character cleaning, and bibliography/references stripping.",
-      "score": 100,
-      "staged_edits": "Added remove_references() and clean_text() mapping mathematical brackets, quote characters, and typographical ligatures to standard ASCII.",
-      "status": "done",
-      "notes": "Verified regex logic against multiple section header formats.",
+      "purpose": "Support helpers, text cleaners, JSON parsing, MD5 hashing, and prompt compression logic.",
+      "score": 85,
+      "staged_edits": "Planning extract_json_block(), calculate_pdf_hash(), and compress_prompt() helpers.",
+      "status": "staged",
+      "notes": "Adding core mathematical and parsing tools.",
       "cautions": "None"
     },
     {
       "file": "src/jmllm/pipeline/loaders.py",
-      "purpose": "PDF layouter and DeepRead extraction loader integrating visual detection.",
-      "score": 100,
-      "staged_edits": "Applied remove_references and clean_text to loader outputs, and enabled VLM deepread and page parallel processing.",
-      "status": "done",
-      "notes": "Verified layout text flows smoothly without references section.",
+      "purpose": "PDF layouter and DeepRead extraction loader integrating visual detection and VLM caching.",
+      "score": 80,
+      "staged_edits": "Planning MD5-based check on cache directory before invoking VLM.",
+      "status": "staged",
+      "notes": "Reduces layout processing overhead.",
       "cautions": "None"
     },
     {
-      "file": "src/jmllm/pipeline/deepread/vlm_client.py",
-      "purpose": "Encodes image crops and sends visual description requests to active VLM.",
-      "score": 100,
-      "staged_edits": "Allowed 'mlx' alias engine parameter to route requests to LMS completions client properly.",
-      "status": "done",
-      "notes": "Ensured local server completions compatibility.",
+      "file": "src/jmllm/pipeline/controller.py",
+      "purpose": "Core orchestrator running sequential DeepRead and parallel ThreadPoolExecutor evaluations.",
+      "score": 80,
+      "staged_edits": "Planning preflight checks execution and pre-evaluation context limit validation checks.",
+      "status": "staged",
+      "notes": "Prevents out-of-memory or out-of-bounds context window runs.",
       "cautions": "None"
     },
     {
-      "file": "src/jmllm/pipeline/deepread/prompts.py",
-      "purpose": "Prompts configuration template for the visual descriptions.",
-      "score": 100,
-      "staged_edits": "Expanded the VLM figure description prompt to request detailed structured summaries of circuit symbols, layout panels, keys, and trends.",
-      "status": "done",
-      "notes": "Significantly enriched description quality.",
+      "file": "src/jmllm/pipeline/cli.py",
+      "purpose": "CLI interface options parsing.",
+      "score": 90,
+      "staged_edits": "Planning adding the --preflight CLI parameter.",
+      "status": "staged",
+      "notes": "Provides standard pre-flight diagnostic mode.",
       "cautions": "None"
     }
   ]

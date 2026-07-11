@@ -1,44 +1,44 @@
 {
-  "summary": "Reviewed extraction codebase status. All core files (helpers, loaders, vlm_client, prompts) are fully complete, verified, and test-passed under the batch VLM run.",
+  "summary": "Initiating review of upcoming roadmap implementation designs. The planned features focus on caching, JSON extraction resilience, prompt size optimization, and pre-run diagnostics.",
   "table": [
     {
       "file": "src/jmllm/util/helpers.py",
-      "purpose": "Support helpers, character cleaning, and bibliography/references stripping.",
-      "score": 100,
-      "assessment": "Completed: character cleaning maps and bibliography/references stripping.",
-      "warnings": "Ensure regex patterns remain broad enough to match different references headings.",
-      "design_choices": "Decoupled text post-processing from the layout loader.",
-      "notes": "Verified regex matches and standard-ASCII conversion maps.",
+      "purpose": "Support helpers, text cleaners, JSON parsing, MD5 hashing, and prompt compression logic.",
+      "score": 85,
+      "assessment": "Staged: Adding new parsing, hashing, and compression tools.",
+      "warnings": "Ensure nested brackets parser can handle complex nested dictionaries.",
+      "design_choices": "Use count-based brace balancing for JSON extraction rather than standard regex splits.",
+      "notes": "Staged.",
       "cautions": "None"
     },
     {
       "file": "src/jmllm/pipeline/loaders.py",
-      "purpose": "PDF layouter and DeepRead extraction loader integrating visual detection.",
-      "score": 100,
-      "assessment": "Completed: layout cleaning hooks integrated in DeepReadLoader.",
+      "purpose": "PDF layouter and DeepRead extraction loader integrating visual detection and VLM caching.",
+      "score": 80,
+      "assessment": "Staged: Cache read/write implementation in DeepReadLoader.",
       "warnings": "None",
-      "design_choices": "Separated text layout and figure descriptions before interleaving them.",
-      "notes": "Verified end-to-end VLM integration.",
+      "design_choices": "Cache directory will reside under .cache/deepread/ to prevent pollution of workspace root.",
+      "notes": "Staged.",
+      "cautions": "Ensure correct directory permissions."
+    },
+    {
+      "file": "src/jmllm/pipeline/controller.py",
+      "purpose": "Core orchestrator running sequential DeepRead and parallel ThreadPoolExecutor evaluations.",
+      "score": 80,
+      "assessment": "Staged: Preflight checks and token limit constraints validation.",
+      "warnings": "Do not bypass pipeline run unless preflight checks are strictly violated.",
+      "design_choices": "Clipping threshold will adapt dynamically to active model profile's context window size.",
+      "notes": "Staged.",
       "cautions": "None"
     },
     {
-      "file": "src/jmllm/pipeline/deepread/vlm_client.py",
-      "purpose": "Encodes image crops and sends visual description requests to active VLM.",
-      "score": 100,
-      "assessment": "Completed: alias resolution and completions client setup.",
-      "warnings": "Ensure timeout matches local generation constraints.",
-      "design_choices": "Reuses the LMS OpenAI completions backend under 'mlx' alias.",
-      "notes": "Verified against local server VLM endpoints.",
-      "cautions": "None"
-    },
-    {
-      "file": "src/jmllm/pipeline/deepread/prompts.py",
-      "purpose": "Prompts configuration template for the visual descriptions.",
-      "score": 100,
-      "assessment": "Completed: structured neuroscientific breakdown prompt.",
-      "warnings": "Avoid adding paper-level summaries in instructions.",
-      "design_choices": "Requested layout, symbols, keys, and trends separately.",
-      "notes": "Output descriptions successfully verified on Bastos2012.",
+      "file": "src/jmllm/pipeline/cli.py",
+      "purpose": "CLI interface options parsing.",
+      "score": 90,
+      "assessment": "Staged: Argument parsing for pre-run options.",
+      "warnings": "None",
+      "design_choices": "Add options standard default value mappings.",
+      "notes": "Staged.",
       "cautions": "None"
     }
   ]
