@@ -16,3 +16,4 @@ examples/reports/
 hpc_figures/
 /content/
 /logs/
+.cache/

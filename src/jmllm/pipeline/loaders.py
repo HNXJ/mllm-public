@@ -17,7 +17,7 @@ from jmllm.pipeline.deepread.vlm_client import VLMClient
 from jmllm.pipeline.deepread.interleave import Interleaver
 from jmllm.pipeline.deepread.io_utils import save_figure_crop
 from jmllm.util.schemas import ExtractedDocumentArtifact
-from jmllm.util.helpers import remove_references
+from jmllm.util.helpers import remove_references, clean_text, calculate_pdf_hash
 
 class DeepReadLoader:
     """Canonical loader for 'DeepRead' PDF extraction.
@@ -72,6 +72,27 @@ class DeepReadLoader:
     def extract_parallel(self, pdf_path: str) -> ExtractedDocumentArtifact:
         print("[VERBOSITY] Executing: 'Perform text and targeted visual extraction for the whol...")
         'Perform text and targeted visual extraction for the whole PDF.'
+        
+        # Check MD5 cache
+        pdf_hash = calculate_pdf_hash(pdf_path)
+        cache_dir = Path(".cache/deepread") / pdf_hash
+        cache_file = cache_dir / "document.json"
+        
+        if cache_file.exists():
+            logger.info(f"⏳ Cache HIT: Loading cached DeepRead extraction for {pdf_path} (hash: {pdf_hash})")
+            try:
+                with open(cache_file, "r") as f:
+                    data = json.load(f)
+                return ExtractedDocumentArtifact(
+                    study_text=data["study_text"],
+                    page_segments=data["page_segments"],
+                    word_count=data["word_count"],
+                    token_count=data["token_count"],
+                    metadata=data["metadata"]
+                )
+            except Exception as e:
+                logger.warning(f"⚠️ Failed to load cache file: {e}. Re-extracting...")
+
         print("[VERBOSITY] Executing: logger.info(f'Starting high-fidelity DeepRead extraction ...")
         logger.info(f'Starting high-fidelity DeepRead extraction for: {pdf_path}')
         print('[VERBOSITY] Executing: extractor = PDFExtractor(pdf_path)')
@@ -118,10 +139,35 @@ class DeepReadLoader:
         print("[VERBOSITY] Executing: study_text = '\\n\\n---\\n\\n'.join(page_markdowns)")
         study_text = '\n\n---\n\n'.join(page_markdowns)
         study_text = remove_references(study_text)
+        study_text = clean_text(study_text)
         print('[VERBOSITY] Executing: word_count = len(study_text.split())')
         word_count = len(study_text.split())
+        token_count = int(word_count * 1.3)
+        metadata = {
+            'source': Path(pdf_path).name,
+            'pages': total_pages,
+            'engine': 'jmllm.deepread.v2.1',
+            'vlm_model': self.vlm_model,
+            'hash': pdf_hash
+        }
+        
+        # Save to cache
+        try:
+            cache_dir.mkdir(parents=True, exist_ok=True)
+            with open(cache_file, "w") as f:
+                json.dump({
+                    "study_text": study_text,
+                    "page_segments": all_descriptions,
+                    "word_count": word_count,
+                    "token_count": token_count,
+                    "metadata": metadata
+                }, f, indent=2)
+            logger.info(f"💾 Cached DeepRead extraction saved to {cache_file}")
+        except Exception as e:
+            logger.warning(f"⚠️ Failed to save cache: {e}")
+
         print('[VERBOSITY] Executing: return ExtractedDocumentArtifact(study_text=study_text, p...')
-        return ExtractedDocumentArtifact(study_text=study_text, page_segments=all_descriptions, word_count=word_count, token_count=int(word_count * 1.3), metadata={'source': Path(pdf_path).name, 'pages': total_pages, 'engine': 'jmllm.deepread.v2.1'})
+        return ExtractedDocumentArtifact(study_text=study_text, page_segments=all_descriptions, word_count=word_count, token_count=token_count, metadata=metadata)
 
     def _detect_repetitive_bboxes(self, all_page_bboxes: List[List[Tuple[float, float, float, float]]]) -> List[Tuple[float, float, float, float]]:
         print("[VERBOSITY] Executing: 'Identifies bboxes that appear at the same coordinates on...")

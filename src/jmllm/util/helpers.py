@@ -196,6 +196,15 @@ def parse_llm_output_as_json(
     except json.JSONDecodeError as exc:
         last_exception = exc
 
+    # Stage 2.3: Balanced Brace Extraction (Robust rescue for surrounding text)
+    if compatibility_mode:
+        extracted = extract_json_block(text)
+        if extracted:
+            try:
+                return json.loads(extracted, strict=False)
+            except json.JSONDecodeError as exc:
+                last_exception = exc
+
     # Stage 2.5: Markdown Code Block Extraction (Rescue for wrapped output)
     if compatibility_mode and "```" in cleaned:
         try:
@@ -493,4 +502,120 @@ def remove_references(text: str) -> str:
     if match:
         return text[:match.start()].strip()
     return text
+
+def extract_json_block(text: str) -> str:
+    """Finds the first balanced curly-brace bounded JSON object in the text.
+    Returns the JSON string or empty string if not found.
+    """
+    if not text:
+        return ""
+    
+    # Strip <think>...</think> first
+    text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL)
+    
+    # Find the first occurrence of '{'
+    start_idx = text.find("{")
+    if start_idx == -1:
+        return ""
+        
+    brace_count = 0
+    in_string = False
+    escape = False
+    
+    for i in range(start_idx, len(text)):
+        char = text[i]
+        
+        # Track string literals to avoid counting braces inside string values
+        if char == '"' and not escape:
+            in_string = not in_string
+            
+        if not in_string:
+            if char == '{':
+                brace_count += 1
+            elif char == '}':
+                brace_count -= 1
+                if brace_count == 0:
+                    # Found a complete balanced block
+                    return text[start_idx:i+1]
+        
+        # Handle string character escapes
+        if char == '\\' and in_string:
+            escape = not escape
+        else:
+            escape = False
+            
+    return ""
+
+def calculate_pdf_hash(file_path: str) -> str:
+    """Calculate the MD5 checksum of a file."""
+    import hashlib
+    hasher = hashlib.md5()
+    with open(file_path, "rb") as f:
+        # Read in 64kb chunks
+        for chunk in iter(lambda: f.read(65536), b""):
+            hasher.update(chunk)
+    return hasher.hexdigest()
+
+def clean_text(text: str) -> str:
+    """Cleans non-standard characters from text, mapping them to standard ASCII equivalents."""
+    if not text:
+        return ""
+    
+    char_map = {
+        "ð": "(",
+        "Þ": ")",
+        "ﬁ": "fi",
+        "ﬂ": "fl",
+        "–": "-",  # en-dash
+        "—": "-",  # em-dash
+        "’": "'",  # curly apostrophe
+        "‘": "'",
+        "”": '"',  # curly double quotes
+        "“": '"',
+        "…": "...", # ellipsis
+        " ": " ",   # non-breaking space
+    }
+    
+    cleaned = text
+    for non_std, std in char_map.items():
+        cleaned = cleaned.replace(non_std, std)
+        
+    return cleaned
+
+def compress_prompt(prompt: str, max_tokens: int) -> str:
+    """If prompt length exceeds max_tokens, dynamically compress sections of the prompt."""
+    if not prompt:
+        return ""
+        
+    current_tokens = estimate_tokens(prompt)
+    if current_tokens <= max_tokens:
+        return prompt
+        
+    logger.info(f"⚠️ Prompt size ({current_tokens} tokens) exceeds limit ({max_tokens}). Compressing sections...")
+    
+    target_sections = ["Discussion", "Methods", "Materials and Methods", "Materials & Methods"]
+    
+    compressed_prompt = prompt
+    for section_name in target_sections:
+        pattern = re.compile(
+            r'(##\s*' + re.escape(section_name) + r'\b[\s\S]*?)(?=\n## |\n---|$)'
+        )
+        match = pattern.search(compressed_prompt)
+        if match:
+            section_text = match.group(1)
+            lines = section_text.split("\n")
+            header = lines[0]
+            truncated_body = f"\n*[Section truncated to satisfy model context window limits of {max_tokens} tokens]*\n"
+            replacement = header + truncated_body
+            compressed_prompt = compressed_prompt.replace(section_text, replacement)
+            
+            if estimate_tokens(compressed_prompt) <= max_tokens:
+                logger.info(f"✅ Successfully compressed prompt to {estimate_tokens(compressed_prompt)} tokens.")
+                return compressed_prompt
+
+    if estimate_tokens(compressed_prompt) > max_tokens:
+        logger.warning(f"⚠️ Prompt still exceeds limit after section truncation. Truncating to {max_tokens} tokens.")
+        compressed_prompt = compressed_prompt[:max_tokens * 4]
+        
+    return compressed_prompt
 

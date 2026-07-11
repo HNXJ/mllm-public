@@ -155,7 +155,53 @@ class PipelineController:
             self.unload_all()
         return False
 
+    def run_preflight_checks(self) -> bool:
+        """Run diagnostic preflight sanity checks."""
+        self.log("📋 Running pipeline preflight diagnostic checks...")
+        
+        # 1. Check local server port / heartbeat
+        try:
+            res = requests.get(f"{self.engine_url.rstrip('/')}/v1/models", timeout=5)
+            if res.status_code == 200:
+                self.log(f"✅ Local model server is alive on {self.engine_url}")
+                models = [m["id"] for m in res.json().get("data", [])]
+                self.log(f"📋 Available models on server: {models}")
+            else:
+                self.log(f"⚠️ Local server returned status {res.status_code} on {self.engine_url}", is_error=True)
+        except Exception as e:
+            self.log(f"❌ Cannot connect to local server on {self.engine_url}: {e}", is_error=True)
+            self.log("⚠️ If running remote models, ensure the API endpoint is correct.", is_error=True)
+            
+        # 2. Check input directory
+        if not self.mllm_input_path.exists():
+            self.log(f"❌ Input directory does not exist: {self.mllm_input_path}", is_error=True)
+            return False
+        else:
+            pdfs = list(self.mllm_input_path.glob("*.pdf"))
+            self.log(f"✅ Input directory exists with {len(pdfs)} PDFs.")
+            
+        # 3. Check glossary and instruction files
+        glossary = Path(self.args.glossary_path)
+        instructions = Path(self.args.instructions_path)
+        if not glossary.exists():
+            self.log(f"❌ Glossary file not found: {glossary}", is_error=True)
+            return False
+        else:
+            self.log(f"✅ Glossary file found: {glossary}")
+            
+        if not instructions.exists():
+            self.log(f"❌ Instructions file not found: {instructions}", is_error=True)
+            return False
+        else:
+            self.log(f"✅ Instructions file found: {instructions}")
+            
+        self.log("✨ Preflight checks completed successfully!")
+        return True
+
     def run_pipeline(self):
+        if getattr(self.args, "preflight", False):
+            self.run_preflight_checks()
+            return
         self.ensure_monitor_running()
         
         if self.args.test_profile:
@@ -307,18 +353,14 @@ class PipelineController:
                 profile = ModelProfile(**profile_data)
                 config = InferenceConfig(request_timeout_seconds=self.args.timeout)
                 
-                from jmllm.util.helpers import estimate_tokens
+                from jmllm.util.helpers import estimate_tokens, compress_prompt
                 full_prompt = f'{instructions}\n\n**GLOSSARY:**\n{glossary}\n\n**DOCUMENT:**\n{study_text}\n\n**FILL IN THE SCORES:**'
                 prompt_tokens = estimate_tokens(full_prompt)
                 context_limit = getattr(profile, "context_window", 131072)
                 
                 if prompt_tokens > context_limit:
-                    self.log(f"⚠️ Warning: prompt length ({prompt_tokens} tokens) exceeds context limit ({context_limit} tokens) for {base_name}. Truncating input...", is_error=True)
-                    reserved_tokens = estimate_tokens(instructions) + estimate_tokens(glossary) + 8000
-                    allowed_text_tokens = context_limit - reserved_tokens
-                    if allowed_text_tokens > 0:
-                        study_text = study_text[:allowed_text_tokens * 4]
-                        full_prompt = f'{instructions}\n\n**GLOSSARY:**\n{glossary}\n\n**DOCUMENT:**\n{study_text}\n\n**FILL IN THE SCORES:**'
+                    self.log(f"⚠️ Warning: prompt length ({prompt_tokens} tokens) exceeds context limit ({context_limit} tokens) for {base_name}. Compressing prompt...", is_error=True)
+                    full_prompt = compress_prompt(full_prompt, context_limit)
                 
                 eval_json_text = get_llm_thinking(unified_prompt=full_prompt, config=config, profile=profile, response_model=None)
                 with open(out_eval_path, 'w') as f: f.write(eval_json_text)

@@ -28,6 +28,7 @@ def main():
     parser.add_argument('--min_p', type=float, default=None)
     parser.add_argument('--parallel_workers', type=int, default=1)
     parser.add_argument('--context_window', type=int, default=131072)
+    parser.add_argument('--preflight', action='store_true', help='Run preflight diagnostic checks and exit')
     
     args = parser.parse_args()
     PipelineController(args).run_pipeline()
