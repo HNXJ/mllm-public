@@ -41,6 +41,52 @@ uv pip install -e ".[dev,viz]"
 
 ---
 
+## Full Pipeline Workflow (N PDFs, M Models)
+
+The pipeline manages ingestion, evaluation, and consolidation across $N$ papers, $M$ models, a glossary $G$, and instructions/rules $R$:
+
+```mermaid
+graph TD
+    A[N PDFs] -->|1. DeepRead Ingestion| B[N Unified Markdowns]
+    B -->|2. Compose Prompt| C[Unified Input Prompts]
+    C -->|3. Evaluate Loop over M Models| D[M x N JSON Outputs]
+    D -->|4. Aggregate & Visualize| E[Grand Table CSV & Plots]
+```
+
+### 1. Ingestion: Get Unified Markdowns from N PDFs
+Extract interleaved text and VLM-generated visual descriptions from $N$ PDFs:
+* Mapped and cached under `.cache/deepread/` using the MD5 checksum hash of each PDF.
+* Output layout saved as `{pdf_name}-vllm-deepread.md` under `content/markdowns/`.
+```bash
+# Extract single paper layout manually
+jmllm-deepread content/inputs/Bastos2012.pdf -o content/markdowns/Bastos2012-vllm-deepread.md
+```
+
+### 2. Prompt Prep: Make Unified Inputs (Prompts)
+The pipeline automatically compiles the standard input prompt for each evaluation:
+$$\text{Prompt} = \text{Instructions } (R) + \text{Glossary } (G) + \text{Unified Markdown } (M_{\text{doc}}) + \text{Output Template Placeholder}$$
+* **Pre-run Context Limit Guard**: Checks the active model profile's context window. If the compiled prompt exceeds the limit (e.g., 128K), it calls `compress_prompt()` to selectively strip non-critical sections (like Methods/Discussion) and inject warning placeholders, preserving the Abstract, Results, and Ontology Glossary.
+
+### 3. Model Loop: Run and Validate JSON Outputs
+Iterate evaluations across $M$ models and $N$ papers:
+* Launches concurrent evaluation threads using `ThreadPoolExecutor`.
+* **JSON Extraction Resilience**: Uses nested curly brace count parsing to isolate the balanced JSON payload from the raw text completion.
+* **Validation**: Validates the payload structure against the `HpcEvaluationResponse` schema (mapping unaddressed factors as `null`).
+* Output JSON saved to `content/outputs/{pdf}_{model}_{glossary}_run1.json`.
+
+### 4. Consolidation: Grand Table (CSV) & Visualizations
+* **Grand Table Generation**: Pulls all outputs from `content/outputs/`, calculates statistical averages (means and standard deviations) for H1, H2, and H3, and writes the consolidated table to [content/tables/aggregated_scores.csv](file:///Users/hamednejat/workspace/main/mllm-public/content/tables/aggregated_scores.csv).
+* **Consensus Visualizations**: Generates comparisons, heatmaps, and 3D projections from the Grand Table.
+```bash
+# Run manual aggregation script
+.venv/bin/python -c "from pathlib import Path; from jmllm.util.helpers import aggregate_scores_from_json; df = aggregate_scores_from_json(Path('content/outputs')); df.to_csv('content/tables/aggregated_scores.csv', index=False)"
+
+# Run plotting tool
+jmllm-vis --csv_path content/tables/aggregated_scores.csv --reports_dir content/reports
+```
+
+---
+
 ## Programmatic Python API Usage
 
 ```python
@@ -55,10 +101,10 @@ jmllm.set_path("content")  # Root folder containing inputs/, outputs/, tables/
 jmllm.add_model(
     name="gemma-4-e4b-it-mxfp8",
     url="http://localhost:1234",
-    temperature=0.7,
+    temperature=0.5,
     context_window=128000,
-    top_p=0.95,
-    min_p=0.05
+    top_p=0.9,
+    min_p=0.1
 )
 
 # 3. Execute evaluation pipeline on inputs concurrently
@@ -78,13 +124,16 @@ The package registers three command-line entry points upon installation:
 Execute the full multi-LLM scoring pipeline:
 ```bash
 jmllm-run \
-  --pdfs_to_process Bastos2012.pdf RaoBallard1999.pdf \
+  --pdfs_to_process Bastos2012 Bakhtiari2021 \
   --reasoning_model_names gemma-4-e4b-it-mxfp8 \
   --engine_url http://localhost:1234 \
-  --no_vlm \
-  --no_load \
-  --timeout 600 \
-  --temperature 0.7
+  --temperature 0.5 \
+  --top_p 0.9 \
+  --min_p 0.1 \
+  --context_window 131072 \
+  --parallel_workers 2 \
+  --timeout 300 \
+  --no_load
 ```
 
 ### 2. Generate Visualizations
