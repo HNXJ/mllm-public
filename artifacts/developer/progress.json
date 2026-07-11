@@ -1,39 +1,39 @@
 {
-  "summary": "Completed batch VLM layout extraction. Commencing development on new roadmap features: VLM caching, robust JSON extraction parsing, smart prompt compression, and pre-flight check options.",
+  "summary": "Completed batch VLM layout extraction. All roadmap features (VLM caching, robust JSON extraction parsing, smart prompt compression, and pre-flight check options) are fully implemented and verified via unit tests.",
   "table": [
     {
       "file": "src/jmllm/util/helpers.py",
       "purpose": "Support helpers, text cleaners, JSON parsing, MD5 hashing, and prompt compression logic.",
-      "score": 85,
-      "staged_edits": "Planning extract_json_block(), calculate_pdf_hash(), and compress_prompt() helpers.",
-      "status": "staged",
-      "notes": "Adding core mathematical and parsing tools.",
+      "score": 100,
+      "staged_edits": "Implemented extract_json_block(), calculate_pdf_hash(), and compress_prompt() helpers.",
+      "status": "done",
+      "notes": "Verified regex logic, JSON extraction brace balancer, and prompt compressor via unit tests.",
       "cautions": "None"
     },
     {
       "file": "src/jmllm/pipeline/loaders.py",
       "purpose": "PDF layouter and DeepRead extraction loader integrating visual detection and VLM caching.",
-      "score": 80,
-      "staged_edits": "Planning MD5-based check on cache directory before invoking VLM.",
-      "status": "staged",
-      "notes": "Reduces layout processing overhead.",
+      "score": 100,
+      "staged_edits": "Implemented MD5-based check on .cache/deepread/ before VLM extraction and writes to cache on success.",
+      "status": "done",
+      "notes": "Reduces layout processing overhead to near-zero for cache hits. Added clean_text call on layouts.",
       "cautions": "None"
     },
     {
       "file": "src/jmllm/pipeline/controller.py",
       "purpose": "Core orchestrator running sequential DeepRead and parallel ThreadPoolExecutor evaluations.",
-      "score": 80,
-      "staged_edits": "Planning preflight checks execution and pre-evaluation context limit validation checks.",
-      "status": "staged",
-      "notes": "Prevents out-of-memory or out-of-bounds context window runs.",
+      "score": 100,
+      "staged_edits": "Implemented run_preflight_checks() diagnostics and pre-evaluation context limit compression validations.",
+      "status": "done",
+      "notes": "Ensures prompt size stays within active model context window limit.",
       "cautions": "None"
     },
     {
       "file": "src/jmllm/pipeline/cli.py",
       "purpose": "CLI interface options parsing.",
-      "score": 90,
-      "staged_edits": "Planning adding the --preflight CLI parameter.",
-      "status": "staged",
+      "score": 100,
+      "staged_edits": "Added --preflight boolean flag CLI argument option.",
+      "status": "done",
       "notes": "Provides standard pre-flight diagnostic mode.",
       "cautions": "None"
     }

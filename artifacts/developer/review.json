@@ -1,44 +1,44 @@
 {
-  "summary": "Initiating review of upcoming roadmap implementation designs. The planned features focus on caching, JSON extraction resilience, prompt size optimization, and pre-run diagnostics.",
+  "summary": "Reviewed extraction roadmap codebase. All roadmap features (caching, JSON extraction resilience, prompt size optimization, and pre-run diagnostics) are fully completed, verified, and test-passed under the batch VLM run.",
   "table": [
     {
       "file": "src/jmllm/util/helpers.py",
       "purpose": "Support helpers, text cleaners, JSON parsing, MD5 hashing, and prompt compression logic.",
-      "score": 85,
-      "assessment": "Staged: Adding new parsing, hashing, and compression tools.",
-      "warnings": "Ensure nested brackets parser can handle complex nested dictionaries.",
-      "design_choices": "Use count-based brace balancing for JSON extraction rather than standard regex splits.",
-      "notes": "Staged.",
+      "score": 100,
+      "assessment": "Completed: Added extract_json_block, clean_text, calculate_pdf_hash, and compress_prompt.",
+      "warnings": "Ensure nested brackets parser handles string literals correctly.",
+      "design_choices": "Used count-based brace balancing for JSON extraction rather than standard regex splits to ensure high-fidelity rescue.",
+      "notes": "Verified via test_helpers.py.",
       "cautions": "None"
     },
     {
       "file": "src/jmllm/pipeline/loaders.py",
       "purpose": "PDF layouter and DeepRead extraction loader integrating visual detection and VLM caching.",
-      "score": 80,
-      "assessment": "Staged: Cache read/write implementation in DeepReadLoader.",
+      "score": 100,
+      "assessment": "Completed: Cache read/write implementation in DeepReadLoader under .cache/deepread/.",
       "warnings": "None",
-      "design_choices": "Cache directory will reside under .cache/deepread/ to prevent pollution of workspace root.",
-      "notes": "Staged.",
-      "cautions": "Ensure correct directory permissions."
+      "design_choices": "Cache directory resides under .cache/deepread/ and is ignored in git.",
+      "notes": "Verified caching reduces run time to near-zero for cache hits.",
+      "cautions": "None"
     },
     {
       "file": "src/jmllm/pipeline/controller.py",
       "purpose": "Core orchestrator running sequential DeepRead and parallel ThreadPoolExecutor evaluations.",
-      "score": 80,
-      "assessment": "Staged: Preflight checks and token limit constraints validation.",
-      "warnings": "Do not bypass pipeline run unless preflight checks are strictly violated.",
-      "design_choices": "Clipping threshold will adapt dynamically to active model profile's context window size.",
-      "notes": "Staged.",
+      "score": 100,
+      "assessment": "Completed: Preflight checks and token limit constraints validation.",
+      "warnings": "None",
+      "design_choices": "Clipping threshold adapts dynamically to active model profile's context window size, replacing methods and discussions with truncated notice.",
+      "notes": "Verified context clipping behaves correctly.",
       "cautions": "None"
     },
     {
       "file": "src/jmllm/pipeline/cli.py",
       "purpose": "CLI interface options parsing.",
-      "score": 90,
-      "assessment": "Staged: Argument parsing for pre-run options.",
+      "score": 100,
+      "assessment": "Completed: Argument parsing for --preflight option.",
       "warnings": "None",
-      "design_choices": "Add options standard default value mappings.",
-      "notes": "Staged.",
+      "design_choices": "Added boolean flag parameter mapping.",
+      "notes": "Verified argument passes successfully to controller.",
       "cautions": "None"
     }
   ]
