@@ -33,7 +33,7 @@ SCORES_LONG_PATH = EXP_DIR / "scores_long.csv"
 SCIENTIFIC_MODELS = [
     "olmo-3-32b-think",
     "gemma-4-31b-it",
-    "mistral-nemo-12b-thinking",
+    "phi-4-reasoning-plus",
 ]
 
 TEMPERATURES = [0.00, 0.35, 0.70]
@@ -45,7 +45,7 @@ MIN_P = 0.10
 DEFAULT_MODEL_MAPPING = {
     "olmo-3-32b-think": ["olmo-3-32b-think-mlx", "olmo-3-32b-think"],
     "gemma-4-31b-it": ["gemma-4-31b-it", "gemma-4-31b-it-mxfp4-mlx"],
-    "mistral-nemo-12b-thinking": ["mistral-nemo-12b-thinking-mlx", "mistral-nemo-12b-thinking"],
+    "phi-4-reasoning-plus": ["phi-4-reasoning-plus", "phi-4-reasoning-plus-mlx"],
 }
 
 # Parse 36 Canonical Factors from hpc-36-reference.md
@@ -573,7 +573,7 @@ def main():
     parser.add_argument("--test", action="store_true", help="Run unit test suite")
     parser.add_argument("--smoke-test", action="store_true", help="Run 9-call smoke test (1 paper x 3 models x 3 temps x rep 1)")
     parser.add_argument("--full-experiment", action="store_true", help="Run full 837-call experiment")
-    parser.add_argument("--model", help="Run experiment for a specific model only (e.g. olmo-3-32b-think, gemma-4-31b-it, mistral-nemo-12b-thinking)")
+    parser.add_argument("--model", help="Run experiment for a specific model only (e.g. olmo-3-32b-think, gemma-4-31b-it, phi-4-reasoning-plus)")
     parser.add_argument("--confirm-full-run", action="store_true", help="Required confirmation flag for full experiment")
     parser.add_argument("--generate-csv", action="store_true", help="Compile scores_long.csv from valid raw outputs")
     parser.add_argument("--engine-url", default="http://localhost:1234", help="LM Studio OpenAI-compatible endpoint")

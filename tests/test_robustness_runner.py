@@ -33,7 +33,7 @@ def test_factorial_manifest_dimensions(tmp_path, monkeypatch):
     dummy_mapping = {
         "olmo-3-32b-think": "olmo-3-32b-think-mlx",
         "gemma-4-31b-it": "gemma-4-31b-it",
-        "mistral-nemo-12b-thinking": "mistral-nemo-12b-thinking-mlx",
+        "phi-4-reasoning-plus": "phi-4-reasoning-plus",
     }
 
     monkeypatch.setattr("jmllm.pipeline.robustness_runner.EXP_DIR", tmp_path)
@@ -48,6 +48,7 @@ def test_factorial_manifest_dimensions(tmp_path, monkeypatch):
     assert df["condition_id"].nunique() == 837
     assert df["paper_id"].nunique() == 31
     assert df["scientific_model"].nunique() == 3
+    assert set(df["scientific_model"].unique()) == {"olmo-3-32b-think", "gemma-4-31b-it", "phi-4-reasoning-plus"}
     assert df["repeat"].nunique() == 3
     assert set(df["temperature"].unique()) == {"0.00", "0.35", "0.70"}
 
@@ -57,12 +58,12 @@ def test_temperature_repeat_encoding_collision_free():
     c1 = generate_condition_id("Attinger2017", "gemma-4-31b-it", 0.00, 1)
     c2 = generate_condition_id("Attinger2017", "gemma-4-31b-it", 0.35, 1)
     c3 = generate_condition_id("Attinger2017", "gemma-4-31b-it", 0.70, 1)
-    c4 = generate_condition_id("Attinger2017", "gemma-4-31b-it", 0.00, 2)
+    c4 = generate_condition_id("Attinger2017", "phi-4-reasoning-plus", 0.00, 2)
 
     assert c1 == "Attinger2017__gemma-4-31b-it__T000__R01"
     assert c2 == "Attinger2017__gemma-4-31b-it__T035__R01"
     assert c3 == "Attinger2017__gemma-4-31b-it__T070__R01"
-    assert c4 == "Attinger2017__gemma-4-31b-it__T000__R02"
+    assert c4 == "Attinger2017__phi-4-reasoning-plus__T000__R02"
 
     assert len({c1, c2, c3, c4}) == 4
 
@@ -103,7 +104,7 @@ def test_validation_valid_response():
         "first_author": "Attinger",
         "publication_year": "2017",
         "study_type": "Empirical",
-        "agent_name": "gemma-4-31b-it",
+        "agent_name": "phi-4-reasoning-plus",
         "reasoning_log_text": "Valid test reasoning log.",
     }
 
@@ -125,7 +126,7 @@ def test_null_score_acceptance():
         "first_author": "Attinger",
         "publication_year": "2017",
         "study_type": "Empirical",
-        "agent_name": "gemma-4-31b-it",
+        "agent_name": "phi-4-reasoning-plus",
         "reasoning_log_text": "All factors null.",
     }
 
@@ -146,7 +147,7 @@ def test_validation_missing_factor():
         "first_author": "Attinger",
         "publication_year": "2017",
         "study_type": "Empirical",
-        "agent_name": "gemma",
+        "agent_name": "phi-4-reasoning-plus",
         "reasoning_log_text": "log",
     }
 
@@ -167,7 +168,7 @@ def test_validation_extra_unknown_factor():
         "first_author": "Attinger",
         "publication_year": "2017",
         "study_type": "Empirical",
-        "agent_name": "gemma",
+        "agent_name": "phi-4-reasoning-plus",
         "reasoning_log_text": "log",
     }
 
@@ -187,7 +188,7 @@ def test_validation_out_of_range_score():
         "first_author": "Attinger",
         "publication_year": "2017",
         "study_type": "Empirical",
-        "agent_name": "gemma",
+        "agent_name": "phi-4-reasoning-plus",
         "reasoning_log_text": "log",
     }
 
@@ -210,16 +211,15 @@ def test_resumability_skips_complete_cells(tmp_path, monkeypatch):
     dummy_mapping = {
         "olmo-3-32b-think": "olmo-3-32b-think-mlx",
         "gemma-4-31b-it": "gemma-4-31b-it",
-        "mistral-nemo-12b-thinking": "mistral-nemo-12b-thinking-mlx",
+        "phi-4-reasoning-plus": "phi-4-reasoning-plus",
     }
 
-    # Pre-create one complete valid raw file
-    cid = generate_condition_id("Attinger2017", "olmo-3-32b-think", 0.00, 1)
+    cid = generate_condition_id("Attinger2017", "phi-4-reasoning-plus", 0.00, 1)
     rec = {
         "condition_id": cid,
         "paper_id": "Attinger2017",
-        "scientific_model": "olmo-3-32b-think",
-        "served_model_id": "olmo-3-32b-think-mlx",
+        "scientific_model": "phi-4-reasoning-plus",
+        "served_model_id": "phi-4-reasoning-plus",
         "temperature": 0.0,
         "repeat": 1,
         "validation_status": "VALID",
@@ -244,15 +244,15 @@ def test_raw_response_preservation_on_invalid(tmp_path, monkeypatch):
     raw_dir = tmp_path / "raw"
     raw_dir.mkdir(parents=True, exist_ok=True)
 
-    cid = generate_condition_id("Attinger2017", "gemma-4-31b-it", 0.70, 1)
+    cid = generate_condition_id("Attinger2017", "phi-4-reasoning-plus", 0.70, 1)
 
     invalid_parsed = {
-        "lo_evaluations": {"BadKey": 0.5},  # Invalid factor key
+        "lo_evaluations": {"BadKey": 0.5},
         "go_evaluations": {},
         "first_author": "Attinger",
         "publication_year": "2017",
         "study_type": "Empirical",
-        "agent_name": "gemma",
+        "agent_name": "phi-4",
         "reasoning_log_text": "Malformed response log",
     }
 
@@ -273,7 +273,6 @@ def test_raw_response_preservation_on_invalid(tmp_path, monkeypatch):
     with open(raw_dir / f"{cid}.json", "w") as f:
         json.dump(record, f, indent=2)
 
-    # Read back and verify raw preservation
     with open(raw_dir / f"{cid}.json", "r") as f:
         saved = json.load(f)
 
@@ -294,7 +293,7 @@ def test_long_csv_dimensionality(tmp_path, monkeypatch):
     dummy_mapping = {
         "olmo-3-32b-think": "olmo-3-32b-think-mlx",
         "gemma-4-31b-it": "gemma-4-31b-it",
-        "mistral-nemo-12b-thinking": "mistral-nemo-12b-thinking-mlx",
+        "phi-4-reasoning-plus": "phi-4-reasoning-plus",
     }
 
     paper_ids = [f"Paper{i:02d}" for i in range(1, 32)]

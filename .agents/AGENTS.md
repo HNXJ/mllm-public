@@ -32,7 +32,7 @@ Models:
 
 * olmo-3-32b-think
 * gemma-4-31b-it
-* mistral-nemo-12b-thinking
+* phi-4-reasoning-plus
 
 Temperatures:
 
