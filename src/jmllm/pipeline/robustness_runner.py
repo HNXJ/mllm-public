@@ -429,6 +429,7 @@ def execute_cell_inference(
     reasoning_log = ""
     http_status = None
     latency = 0.0
+    token_usage = None
     
     for attempt in range(1, max_retries + 1):
         attempts = attempt
@@ -447,7 +448,8 @@ def execute_cell_inference(
                 choices = res_json.get("choices", [])
                 if choices:
                     raw_response_text = choices[0].get("message", {}).get("content") or choices[0].get("text") or ""
-                    
+                token_usage = res_json.get("usage")
+                
                 # Parse JSON
                 from jmllm.util.helpers import parse_llm_output_as_json
                 parsed_data = parse_llm_output_as_json(raw_response_text)
@@ -495,6 +497,7 @@ def execute_cell_inference(
         "latency_seconds": latency,
         "http_status": http_status,
         "attempts": attempts,
+        "token_usage": token_usage,
         "raw_assistant_response": raw_response_text,
         "parsed_response": parsed_data,
         "validation_status": val_status,
@@ -518,7 +521,6 @@ def run_smoke_test(engine_url: str = "http://localhost:1234") -> bool:
     served_models = query_served_models(engine_url)
     mapping = resolve_model_mapping(served_models)
     
-    # Check all 3 models mapped
     missing = [m for m, sm in mapping.items() if not sm]
     if missing:
         print(f"❌ SMOKE TEST ABORTED: Missing served models for {missing}")
@@ -571,6 +573,7 @@ def main():
     parser.add_argument("--test", action="store_true", help="Run unit test suite")
     parser.add_argument("--smoke-test", action="store_true", help="Run 9-call smoke test (1 paper x 3 models x 3 temps x rep 1)")
     parser.add_argument("--full-experiment", action="store_true", help="Run full 837-call experiment")
+    parser.add_argument("--model", help="Run experiment for a specific model only (e.g. olmo-3-32b-think, gemma-4-31b-it, mistral-nemo-12b-thinking)")
     parser.add_argument("--confirm-full-run", action="store_true", help="Required confirmation flag for full experiment")
     parser.add_argument("--generate-csv", action="store_true", help="Compile scores_long.csv from valid raw outputs")
     parser.add_argument("--engine-url", default="http://localhost:1234", help="LM Studio OpenAI-compatible endpoint")

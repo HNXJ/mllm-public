@@ -14,6 +14,7 @@ from jmllm.pipeline.robustness_runner import (
     validate_response,
     generate_manifest,
     generate_long_csv,
+    execute_cell_inference,
     CANONICAL_FACTORS,
     SCIENTIFIC_MODELS,
     TEMPERATURES,
@@ -35,7 +36,6 @@ def test_factorial_manifest_dimensions(tmp_path, monkeypatch):
         "mistral-nemo-12b-thinking": "mistral-nemo-12b-thinking-mlx",
     }
 
-    # Redirect EXP_DIR to tmp_path for test isolation
     monkeypatch.setattr("jmllm.pipeline.robustness_runner.EXP_DIR", tmp_path)
     monkeypatch.setattr("jmllm.pipeline.robustness_runner.RAW_DIR", tmp_path / "raw")
     monkeypatch.setattr("jmllm.pipeline.robustness_runner.LOGS_DIR", tmp_path / "logs")
@@ -73,10 +73,29 @@ def test_sampler_metadata_constants():
     assert MIN_P == 0.10
 
 
+def test_temperature_zero_payload_serialization():
+    """Verify that T=0.00 is serialized as numeric 0.0 and never evaluated as falsy."""
+    temp = 0.00
+    payload = {
+        "model": "gemma-4-31b-it",
+        "messages": [{"role": "user", "content": "prompt"}],
+        "temperature": temp,
+        "top_p": TOP_P,
+        "min_p": MIN_P,
+    }
+
+    serialized = json.dumps(payload)
+    deserialized = json.loads(serialized)
+
+    assert deserialized["temperature"] == 0.0
+    assert type(deserialized["temperature"]) in (int, float)
+    assert deserialized["temperature"] is not None
+
+
 def test_validation_valid_response():
     """Verify that a response with all 36 LO and 36 GO factor scores passes validation."""
-    valid_lo = {f: 0.6 if i % 2 == 0 else null_val() for i, f in enumerate(CANONICAL_FACTORS)}
-    valid_go = {f: -0.2 if i % 3 == 0 else null_val() for i, f in enumerate(CANONICAL_FACTORS)}
+    valid_lo = {f: 0.6 if i % 2 == 0 else None for i, f in enumerate(CANONICAL_FACTORS)}
+    valid_go = {f: -0.2 if i % 3 == 0 else None for i, f in enumerate(CANONICAL_FACTORS)}
 
     data = {
         "lo_evaluations": valid_lo,
@@ -95,8 +114,25 @@ def test_validation_valid_response():
     assert len(go) == 36
 
 
-def null_val():
-    return None
+def test_null_score_acceptance():
+    """Verify that explicit null/None factor scores are accepted without converting to 0.0."""
+    lo = {f: None for f in CANONICAL_FACTORS}
+    go = {f: None for f in CANONICAL_FACTORS}
+
+    data = {
+        "lo_evaluations": lo,
+        "go_evaluations": go,
+        "first_author": "Attinger",
+        "publication_year": "2017",
+        "study_type": "Empirical",
+        "agent_name": "gemma-4-31b-it",
+        "reasoning_log_text": "All factors null.",
+    }
+
+    is_valid, errors, lo_out, go_out = validate_response(data)
+    assert is_valid is True
+    assert all(v is None for v in lo_out.values())
+    assert all(v is None for v in go_out.values())
 
 
 def test_validation_missing_factor():
@@ -160,11 +196,90 @@ def test_validation_out_of_range_score():
     assert any("out of range" in e for e in errors)
 
 
-def test_validation_malformed_json_input():
-    """Verify non-dict inputs fail validation cleanly."""
-    is_valid, errors, _, _ = validate_response("Not a JSON object")
+def test_resumability_skips_complete_cells(tmp_path, monkeypatch):
+    """Verify that manifest generation marks valid raw JSON cells as COMPLETE and skips re-execution."""
+    monkeypatch.setattr("jmllm.pipeline.robustness_runner.EXP_DIR", tmp_path)
+    monkeypatch.setattr("jmllm.pipeline.robustness_runner.RAW_DIR", tmp_path / "raw")
+    monkeypatch.setattr("jmllm.pipeline.robustness_runner.LOGS_DIR", tmp_path / "logs")
+    monkeypatch.setattr("jmllm.pipeline.robustness_runner.CONFIG_DIR", tmp_path / "config")
+    monkeypatch.setattr("jmllm.pipeline.robustness_runner.MANIFEST_PATH", tmp_path / "manifest.csv")
+
+    raw_dir = tmp_path / "raw"
+    raw_dir.mkdir(parents=True, exist_ok=True)
+
+    dummy_mapping = {
+        "olmo-3-32b-think": "olmo-3-32b-think-mlx",
+        "gemma-4-31b-it": "gemma-4-31b-it",
+        "mistral-nemo-12b-thinking": "mistral-nemo-12b-thinking-mlx",
+    }
+
+    # Pre-create one complete valid raw file
+    cid = generate_condition_id("Attinger2017", "olmo-3-32b-think", 0.00, 1)
+    rec = {
+        "condition_id": cid,
+        "paper_id": "Attinger2017",
+        "scientific_model": "olmo-3-32b-think",
+        "served_model_id": "olmo-3-32b-think-mlx",
+        "temperature": 0.0,
+        "repeat": 1,
+        "validation_status": "VALID",
+        "attempts": 1,
+        "latency_seconds": 1.2,
+    }
+    with open(raw_dir / f"{cid}.json", "w") as f:
+        json.dump(rec, f)
+
+    df = generate_manifest(dummy_mapping)
+    row = df[df["condition_id"] == cid].iloc[0]
+
+    assert row["status"] == "COMPLETE"
+    assert row["validation_status"] == "VALID"
+    assert row["attempts"] == 1
+
+
+def test_raw_response_preservation_on_invalid(tmp_path, monkeypatch):
+    """Verify that when validation fails, raw response text is preserved and marked INVALID."""
+    monkeypatch.setattr("jmllm.pipeline.robustness_runner.EXP_DIR", tmp_path)
+    monkeypatch.setattr("jmllm.pipeline.robustness_runner.RAW_DIR", tmp_path / "raw")
+    raw_dir = tmp_path / "raw"
+    raw_dir.mkdir(parents=True, exist_ok=True)
+
+    cid = generate_condition_id("Attinger2017", "gemma-4-31b-it", 0.70, 1)
+
+    invalid_parsed = {
+        "lo_evaluations": {"BadKey": 0.5},  # Invalid factor key
+        "go_evaluations": {},
+        "first_author": "Attinger",
+        "publication_year": "2017",
+        "study_type": "Empirical",
+        "agent_name": "gemma",
+        "reasoning_log_text": "Malformed response log",
+    }
+
+    raw_text = '{"lo_evaluations": {"BadKey": 0.5}}'
+
+    is_valid, errors, _, _ = validate_response(invalid_parsed)
     assert is_valid is False
-    assert "not a JSON dictionary" in errors[0]
+    assert len(errors) > 0
+
+    record = {
+        "condition_id": cid,
+        "raw_assistant_response": raw_text,
+        "parsed_response": invalid_parsed,
+        "validation_status": "INVALID",
+        "validation_errors": errors,
+    }
+
+    with open(raw_dir / f"{cid}.json", "w") as f:
+        json.dump(record, f, indent=2)
+
+    # Read back and verify raw preservation
+    with open(raw_dir / f"{cid}.json", "r") as f:
+        saved = json.load(f)
+
+    assert saved["validation_status"] == "INVALID"
+    assert saved["raw_assistant_response"] == raw_text
+    assert len(saved["validation_errors"]) > 0
 
 
 def test_long_csv_dimensionality(tmp_path, monkeypatch):
@@ -182,7 +297,6 @@ def test_long_csv_dimensionality(tmp_path, monkeypatch):
         "mistral-nemo-12b-thinking": "mistral-nemo-12b-thinking-mlx",
     }
 
-    # Generate synthetic valid outputs for all 837 cells
     paper_ids = [f"Paper{i:02d}" for i in range(1, 32)]
     lo_evals = {f: 0.5 for f in CANONICAL_FACTORS}
     go_evals = {f: None for f in CANONICAL_FACTORS}
@@ -212,6 +326,5 @@ def test_long_csv_dimensionality(tmp_path, monkeypatch):
     assert count == 837
 
     df_long = generate_long_csv()
-    # 837 cells x 2 contexts (LO and GO) x 36 factors = 60,264 rows
     assert len(df_long) == 837 * 2 * 36
     assert len(df_long) == 60264
