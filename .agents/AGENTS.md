@@ -1,26 +1,67 @@
-# Project-Scoped Rules — jmllm
+# Project Rules — MLLM Reviewer Robustness Experiment
 
-## Command Workflow Actions
-When the user triggers a workflow action, execute the corresponding protocol steps:
-- **proceed with brainstorm**: Update design spec (Section 1) of `plan.json`.
-- **proceed with plan**: Expand brainstorm into file rows and task columns in Section 2 of `plan.json`.
-- **proceed with review**: Evaluate code, score health (X/100), and optimize plan in `review.json`.
-- **proceed with progress**: Perform edits sequentially, logging tasks in `progress.json`.
-- **inspect**: Check layout, align file rows, run `jn2md.py`, and run tests.
+## Scope
 
-## PRP System — Compulsory Developer Protocol
-Every repository must contain a standardized Plan-Review-Progress (PRP) tracking module under `artifacts/developer/`.
-- **Directory Layout**: Restrict strictly to `plan.json`, `review.json`, `progress.json` (sources of truth), `plan.md`, `review.md`, `progress.md` (rendered markdown views), and `misc/jn2md.py` with `misc/archive/`.
-- **Synchronization**: File tables across all three JSON files must contain identical file row structures and order. The `inspect` action compiles and renders Markdown views.
-- **Scoring**: health/completeness score out of 100 per file (100/100 denotes fully verified standalone code).
+This branch is dedicated to the Scientific Reports reviewer-requested robustness analysis of the existing MLLM/HPC-36 literature-scoring pipeline.
 
-## Domain & Project Context
-- **User**: Hamm (hamednejat7@gmail.com). Computational biophysics.
-- **Dargold Style**: Gamma "Aurum" theme — black background, gold accents, minimal text, figure placeholders only, equations rendered larger than body text, body text slightly reduced. Default style for technical/tutorial decks.
-- **JAX Numerics**: Watch for recompilation, in-place mutation, dtype/shape drift; test with jit on AND off. Compose `jit(vmap(scan))` pure kernels.
-- **jmllm (mllm-public)**: Literature evaluation pipeline. Uses sequential VLM extraction (DeepRead) and concurrent ThreadPoolExecutor LLM reasoning. Uses `gemma-4-e4b-it-mxfp8` local server on port 1234.
+Preserve the scientific semantics of the existing pipeline unless explicitly instructed otherwise.
 
-## Omission / Predictive Routing Analysis Rules
-- **Skepticism & Rigor**: Statistical significance is mandatory for all multi-trial operations and trial-averaged plots.
-- **Dual-Engine Validation**: Always provide both parametric (e.g., t-test, ANOVA) and nonparametric (e.g., Wilcoxon, Mann-Whitney) statistics.
-- **False Positive Control**: Always apply multiple-comparisons corrections (e.g., Benjamini-Hochberg FDR, Bonferroni). Do not plot or report significance unless both parametric and nonparametric engines agree at the corrected threshold ($q < 0.05$).
+## Core principles
+
+* Inspect existing code before modifying it.
+* Prefer minimal changes over architectural rewrites.
+* Preserve the existing HPC-36 ontology and scoring semantics.
+* Preserve the existing 31 paper inputs.
+* Preserve raw inference outputs.
+* Derived data must be reproducible from raw outputs.
+* Experimental conditions must never overwrite one another.
+* Long-running inference must be resumable.
+* Record exact runtime/model/sampler metadata needed for reproducibility.
+* Do not fabricate experimental results.
+* Do not silently substitute models, papers, prompts, or parameters.
+* Do not regenerate DeepRead inputs unless explicitly requested.
+* Do not modify manuscript claims based on results that have not been generated and validated.
+
+## Experiment
+
+Target factorial design:
+
+31 papers × 3 models × 3 temperatures × 3 repeats = 837 inference calls.
+
+Models:
+
+* olmo-3-32b-think
+* gemma-4-31b-it
+* mistral-nemo-12b-thinking
+
+Temperatures:
+
+* 0.00
+* 0.35
+* 0.70
+
+Repeats:
+
+* 1
+* 2
+* 3
+
+The exact locally served LM Studio model identifiers must be discovered and recorded separately from these scientific model names.
+
+## Development discipline
+
+Before launching the full experiment:
+
+1. inspect the existing repository;
+2. identify the exact 31 manuscript inputs;
+3. identify the existing scoring prompt, glossary, parser, controller, and inference wrapper;
+4. resolve model identifiers from LM Studio;
+5. implement temperature/repeat-aware experimental identity;
+6. implement resumability and manifest tracking;
+7. run tests;
+8. run a 9-call smoke test:
+   1 paper × 3 models × 3 temperatures × repeat 1;
+9. inspect the resulting raw outputs and derived CSV;
+10. STOP for authorization before the 837-call sweep.
+
+Do not introduce unrelated project-management protocols, JAX requirements, presentation styling rules, Labyrinth integrations, external MCP dependencies, or unrelated statistical doctrines.
