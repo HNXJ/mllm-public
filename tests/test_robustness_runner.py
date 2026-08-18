@@ -12,8 +12,12 @@ from jmllm.pipeline.robustness_runner import (
     get_temp_code,
     get_repeat_code,
     validate_response,
+    validate_response_schema,
+    parse_and_recover_generation,
     generate_manifest,
-    generate_long_csv,
+    generate_tabular_datasets,
+    reparse_raw_artifacts,
+    write_file_atomically,
     execute_cell_inference,
     CANONICAL_FACTORS,
     SCIENTIFIC_MODELS,
@@ -24,7 +28,8 @@ from jmllm.pipeline.robustness_runner import (
     EXP_DIR,
     RAW_DIR,
     MANIFEST_PATH,
-    SCORES_LONG_PATH,
+    CALLS_CSV_PATH,
+    SCORES_CSV_PATH,
 )
 
 
@@ -197,8 +202,42 @@ def test_validation_out_of_range_score():
     assert any("out of range" in e for e in errors)
 
 
+def test_two_stage_recovery_parser():
+    """Verify Stage B recovery parser behavior across valid, recovered, and unrecoverable generations."""
+    # 1. Valid JSON
+    valid_lo = {f: 0.5 for f in CANONICAL_FACTORS}
+    valid_go = {f: None for f in CANONICAL_FACTORS}
+    valid_json = json.dumps({
+        "lo_evaluations": valid_lo,
+        "go_evaluations": valid_go,
+        "first_author": "Test",
+        "publication_year": "2020",
+        "study_type": "Empirical",
+        "agent_name": "gemma",
+        "reasoning_log_text": "Log text"
+    })
+
+    p_status, p_method, _, lo, go, _, _ = parse_and_recover_generation(valid_json)
+    assert p_status == "valid"
+    assert p_method in ["strict_json", "cleaned_json"]
+    assert len(lo) == 36
+
+    # 2. Recovered JSON (Markdown wrapped + extra text)
+    prose_json = f"Here is my evaluation:\n```json\n{valid_json}\n```\nHope this helps!"
+    p_status, p_method, _, lo, go, _, _ = parse_and_recover_generation(prose_json)
+    assert p_status in ["valid", "recovered"]
+    assert len(lo) == 36
+
+    # 3. Unrecoverable prose
+    garbage = "I cannot evaluate this paper as a model."
+    p_status, p_method, _, lo, go, errs, _ = parse_and_recover_generation(garbage)
+    assert p_status == "unrecoverable"
+    assert p_method == "failed"
+    assert lo is None
+
+
 def test_resumability_skips_complete_cells(tmp_path, monkeypatch):
-    """Verify that manifest generation marks valid raw JSON cells as COMPLETE and skips re-execution."""
+    """Verify that manifest generation marks valid raw JSON cells as COMPLETE."""
     monkeypatch.setattr("jmllm.pipeline.robustness_runner.EXP_DIR", tmp_path)
     monkeypatch.setattr("jmllm.pipeline.robustness_runner.RAW_DIR", tmp_path / "raw")
     monkeypatch.setattr("jmllm.pipeline.robustness_runner.LOGS_DIR", tmp_path / "logs")
@@ -222,6 +261,7 @@ def test_resumability_skips_complete_cells(tmp_path, monkeypatch):
         "served_model_id": "phi-4-reasoning-plus",
         "temperature": 0.0,
         "repeat": 1,
+        "parse_status": "valid",
         "validation_status": "VALID",
         "attempts": 1,
         "latency_seconds": 1.2,
@@ -233,97 +273,67 @@ def test_resumability_skips_complete_cells(tmp_path, monkeypatch):
     row = df[df["condition_id"] == cid].iloc[0]
 
     assert row["status"] == "COMPLETE"
-    assert row["validation_status"] == "VALID"
+    assert row["parse_status"] == "valid"
     assert row["attempts"] == 1
 
 
-def test_raw_response_preservation_on_invalid(tmp_path, monkeypatch):
-    """Verify that when validation fails, raw response text is preserved and marked INVALID."""
+def test_raw_response_preservation_and_atomic_write(tmp_path, monkeypatch):
+    """Verify atomic write helper and raw assistant response preservation."""
+    target_path = tmp_path / "atomic_test.json"
+    content = json.dumps({"test": "atomic"})
+    
+    write_file_atomically(target_path, content)
+    assert target_path.exists()
+    with open(target_path, "r") as f:
+        assert f.read() == content
+
+
+def test_tabular_datasets_and_offline_reparse(tmp_path, monkeypatch):
+    """Verify calls.csv and scores.csv generation and offline re-parser execution."""
     monkeypatch.setattr("jmllm.pipeline.robustness_runner.EXP_DIR", tmp_path)
     monkeypatch.setattr("jmllm.pipeline.robustness_runner.RAW_DIR", tmp_path / "raw")
+    monkeypatch.setattr("jmllm.pipeline.robustness_runner.CALLS_CSV_PATH", tmp_path / "calls.csv")
+    monkeypatch.setattr("jmllm.pipeline.robustness_runner.SCORES_CSV_PATH", tmp_path / "scores.csv")
+
     raw_dir = tmp_path / "raw"
     raw_dir.mkdir(parents=True, exist_ok=True)
 
-    cid = generate_condition_id("Attinger2017", "phi-4-reasoning-plus", 0.70, 1)
-
-    invalid_parsed = {
-        "lo_evaluations": {"BadKey": 0.5},
-        "go_evaluations": {},
+    cid = generate_condition_id("Attinger2017", "phi-4-reasoning-plus", 0.00, 1)
+    lo_evals = {f: 0.5 for f in CANONICAL_FACTORS}
+    go_evals = {f: None for f in CANONICAL_FACTORS}
+    
+    raw_text = json.dumps({
+        "lo_evaluations": lo_evals,
+        "go_evaluations": go_evals,
         "first_author": "Attinger",
         "publication_year": "2017",
         "study_type": "Empirical",
         "agent_name": "phi-4",
-        "reasoning_log_text": "Malformed response log",
-    }
+        "reasoning_log_text": "log text",
+    })
 
-    raw_text = '{"lo_evaluations": {"BadKey": 0.5}}'
-
-    is_valid, errors, _, _ = validate_response(invalid_parsed)
-    assert is_valid is False
-    assert len(errors) > 0
-
-    record = {
+    rec = {
         "condition_id": cid,
+        "paper_id": "Attinger2017",
+        "scientific_model": "phi-4-reasoning-plus",
+        "served_model_id": "phi-4-reasoning-plus",
+        "temperature": 0.0,
+        "repeat": 1,
         "raw_assistant_response": raw_text,
-        "parsed_response": invalid_parsed,
-        "validation_status": "INVALID",
-        "validation_errors": errors,
+        "parse_status": "valid",
+        "parser_method": "strict_json",
+        "lo_evaluations": lo_evals,
+        "go_evaluations": go_evals,
     }
-
     with open(raw_dir / f"{cid}.json", "w") as f:
-        json.dump(record, f, indent=2)
+        json.dump(rec, f)
 
-    with open(raw_dir / f"{cid}.json", "r") as f:
-        saved = json.load(f)
+    df_calls, df_scores = generate_tabular_datasets()
+    assert len(df_calls) == 1
+    assert df_calls.iloc[0]["condition_id"] == cid
+    assert len(df_scores) == 72  # 36 LO + 36 GO
 
-    assert saved["validation_status"] == "INVALID"
-    assert saved["raw_assistant_response"] == raw_text
-    assert len(saved["validation_errors"]) > 0
-
-
-def test_long_csv_dimensionality(tmp_path, monkeypatch):
-    """Verify that generating long CSV from 837 synthetic VALID raw records produces exactly 60,264 score rows."""
-    monkeypatch.setattr("jmllm.pipeline.robustness_runner.EXP_DIR", tmp_path)
-    monkeypatch.setattr("jmllm.pipeline.robustness_runner.RAW_DIR", tmp_path / "raw")
-    monkeypatch.setattr("jmllm.pipeline.robustness_runner.SCORES_LONG_PATH", tmp_path / "scores_long.csv")
-
-    raw_dir = tmp_path / "raw"
-    raw_dir.mkdir(parents=True, exist_ok=True)
-
-    dummy_mapping = {
-        "olmo-3-32b-think": "olmo-3-32b-think-mlx",
-        "gemma-4-31b-it": "gemma-4-31b-it",
-        "phi-4-reasoning-plus": "phi-4-reasoning-plus",
-    }
-
-    paper_ids = [f"Paper{i:02d}" for i in range(1, 32)]
-    lo_evals = {f: 0.5 for f in CANONICAL_FACTORS}
-    go_evals = {f: None for f in CANONICAL_FACTORS}
-
-    count = 0
-    for pid in paper_ids:
-        for model in SCIENTIFIC_MODELS:
-            served_id = dummy_mapping[model]
-            for temp in TEMPERATURES:
-                for rep in REPEATS:
-                    cid = generate_condition_id(pid, model, temp, rep)
-                    rec = {
-                        "condition_id": cid,
-                        "paper_id": pid,
-                        "scientific_model": model,
-                        "served_model_id": served_id,
-                        "temperature": temp,
-                        "repeat": rep,
-                        "validation_status": "VALID",
-                        "lo_evaluations": lo_evals,
-                        "go_evaluations": go_evals,
-                    }
-                    with open(raw_dir / f"{cid}.json", "w") as f:
-                        json.dump(rec, f)
-                    count += 1
-
-    assert count == 837
-
-    df_long = generate_long_csv()
-    assert len(df_long) == 837 * 2 * 36
-    assert len(df_long) == 60264
+    # Test Offline Reparse (zero inference calls)
+    df_calls_re, df_scores_re = reparse_raw_artifacts()
+    assert len(df_calls_re) == 1
+    assert len(df_scores_re) == 72

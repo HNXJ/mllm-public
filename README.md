@@ -75,7 +75,7 @@ Iterate evaluations across $M$ models and $N$ papers:
 * Output JSON saved to `content/outputs/{pdf}_{model}_{glossary}_run1.json`.
 
 ### 4. Consolidation: Grand Table (CSV) & Visualizations
-* **Grand Table Generation**: Pulls all outputs from `content/outputs/`, calculates statistical averages (means and standard deviations) for H1, H2, and H3, and writes the consolidated table to [content/tables/aggregated_scores.csv](file:///Users/hamednejat/workspace/main/mllm-public/content/tables/aggregated_scores.csv).
+* **Grand Table Generation**: Pulls all outputs from `content/outputs/`, calculates statistical averages (means and standard deviations) for H1, H2, and H3, and writes the consolidated table to [content/tables/aggregated_scores.csv](content/tables/aggregated_scores.csv).
 * **Consensus Visualizations**: Generates comparisons, heatmaps, and 3D projections from the Grand Table.
 ```bash
 # Run manual aggregation script

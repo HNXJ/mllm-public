@@ -3,8 +3,11 @@ from pathlib import Path
 from typing import List, Optional
 
 from jmllm.pipeline.controller import PipelineController
-from jmllm.vis.plotting import run_all_visualizations
 from jmllm.util.helpers import get_available_models
+
+def run_all_visualizations(*args, **kwargs):
+    from jmllm.vis.plotting import run_all_visualizations as _run_viz
+    return _run_viz(*args, **kwargs)
 
 # Global Configuration State
 _instructions_path = None

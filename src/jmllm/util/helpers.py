@@ -504,7 +504,9 @@ def remove_references(text: str) -> str:
     return text
 
 def extract_json_block(text: str) -> str:
-    """Finds the first balanced curly-brace bounded JSON object in the text.
+    """Finds the balanced curly-brace bounded JSON object in the text.
+    For reasoning models that generate prose before their JSON answer, checks for
+    target JSON blocks (e.g. containing 'lo_evaluations') or the last complete balanced block.
     Returns the JSON string or empty string if not found.
     """
     if not text:
@@ -513,36 +515,56 @@ def extract_json_block(text: str) -> str:
     # Strip <think>...</think> first
     text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL)
     
-    # Find the first occurrence of '{'
-    start_idx = text.find("{")
-    if start_idx == -1:
-        return ""
-        
-    brace_count = 0
-    in_string = False
-    escape = False
-    
-    for i in range(start_idx, len(text)):
-        char = text[i]
-        
-        # Track string literals to avoid counting braces inside string values
-        if char == '"' and not escape:
-            in_string = not in_string
+    # Strategy 1: Look for explicit markers like {"lo_evaluations"
+    marker_pos = text.rfind('{\n  "lo_evaluations"')
+    if marker_pos == -1:
+        marker_pos = text.rfind('{"lo_evaluations"')
+    if marker_pos == -1:
+        marker_pos = text.rfind('"lo_evaluations"')
+        if marker_pos != -1:
+            marker_pos = text.rfind('{', 0, marker_pos)
             
-        if not in_string:
-            if char == '{':
-                brace_count += 1
-            elif char == '}':
-                brace_count -= 1
-                if brace_count == 0:
-                    # Found a complete balanced block
-                    return text[start_idx:i+1]
+    start_indices = [marker_pos] if marker_pos != -1 else []
+    # Also find all other '{' occurrences
+    start_indices.extend([m.start() for m in re.finditer(r'\{', text)])
+    
+    # Deduplicate while preserving priority order (marker first, then reverse chronological)
+    seen = set()
+    ordered_starts = []
+    for idx in start_indices:
+        if idx not in seen and idx >= 0:
+            seen.add(idx)
+            ordered_starts.append(idx)
+
+    for start_idx in ordered_starts:
+        brace_count = 0
+        in_string = False
+        escape = False
         
-        # Handle string character escapes
-        if char == '\\' and in_string:
-            escape = not escape
-        else:
-            escape = False
+        for i in range(start_idx, len(text)):
+            char = text[i]
+            if char == '"' and not escape:
+                in_string = not in_string
+                
+            if not in_string:
+                if char == '{':
+                    brace_count += 1
+                elif char == '}':
+                    brace_count -= 1
+                    if brace_count == 0:
+                        candidate = text[start_idx:i+1]
+                        try:
+                            json.loads(candidate, strict=False)
+                            return candidate
+                        except Exception:
+                            break
+            
+            if char == '\\' and in_string:
+                escape = not escape
+            else:
+                escape = False
+
+    return ""
             
     return ""
 
