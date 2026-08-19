@@ -8,41 +8,30 @@ and the notebook/script that turn it into plots.
 
 | File | Description |
 |---|---|
-| [`hpc_table_final.csv`](hpc_table_final.csv) | The "HPC Grand Table" — 304 rows covering 31 literature studies × up to 10 council models, with per-context (`LO`/`GO`) per-hypothesis (`H1`/`H2`/`H3`) averages/std-devs and the 72 individual factor scores (`LO-F01`…`LO-F36`, `GO-F01`…`GO-F36`). This is the downstream consensus table the manuscript's figures are built from — distinct from, and built on top of, the per-model per-paper JSON files produced by the live pipeline (see [`src/mllm/data/preprocessors.py`](../src/mllm/data/preprocessors.py)). |
+| [`hpc_table_final.csv`](hpc_table_final.csv) | The "HPC Grand Table" — 304 rows covering 31 literature studies × up to 10 council models, with per-context (`LO`/`GO`) per-hypothesis (`H1`/`H2`/`H3`) averages/std-devs and the 72 individual factor scores (`LO-F01`…`LO-F36`, `GO-F01`…`GO-F36`). This is the downstream consensus table the manuscript's figures are built from — distinct from, and built on top of, the per-model per-paper JSON files produced by the live pipeline (see [`src/jmllm/util/helpers.py`](../src/jmllm/util/helpers.py)). |
 | [`MLLM_HPCA_ORG.ipynb`](MLLM_HPCA_ORG.ipynb) | The figure-generation notebook. Already sanitized for public release (no hardcoded Drive path); resolves its CSV via a candidate-path search that includes a plain relative `hpc_table_final.csv` — which is exactly this directory's layout. Produces 3D hypothesis-space scatter plots, pairwise mean-square-distance (MSD) agreement analysis, literature-vs-"this work" statistical comparisons (Wilcoxon/t-test), and shift-vector plots. |
 
-`src/mllm-visualization.py` is a second, script-form implementation of an
-overlapping subset of these figures (3D scatter, agent-agent MSD heatmap,
-study-study MSD heatmap) and reads `hpc_table_final.csv` from this directory
-by default.
+The CLI command `jmllm-vis` (or `python -m jmllm.vis.cli`) is the canonical package implementation of these figures (3D scatter, agent-agent MSD heatmap, study-study MSD heatmap) and reads `hpc_table_final.csv` by default.
 
 ## Provenance
 
 `hpc_table_final.csv` was added to this directory so the result table and
 the notebook that visualizes it ship together, rather than the notebook
-silently depending on a CSV that didn't exist anywhere in the repo (a gap
-that was flagged and is now closed — see
-[`docs/MANUSCRIPT_MAPPING.md`](../docs/MANUSCRIPT_MAPPING.md) §5–6 and
-[`docs/REPRODUCIBILITY.md`](../docs/REPRODUCIBILITY.md#manuscript--repository-mapping)).
-`MLLM_HPCA_ORG.ipynb` itself was already present in this repository prior to
-this pass (added in a prior "finalize arxiv supplementary hygiene" commit);
-only the CSV and a pandas-compatibility bug fix (below) were added now.
+silently depending on a CSV that didn't exist anywhere in the repo.
 
 ## How to run
 
 Both the notebook and the script require `pandas`, `numpy`, `plotly`, and
-`scipy` (`scipy` is optional — only used for the hierarchical-clustering
-ordering in the study-study MSD heatmap; the rest of the analysis runs
-without it). Install with:
+`scipy`. Install with:
 
 ```bash
 pip install -e ".[viz]"
 ```
 
-**Script (no Colab/Jupyter required):**
+**Script / CLI:**
 
 ```bash
-python src/mllm-visualization.py
+jmllm-vis --csv_path examples/hpc_table_final.csv --reports_dir examples/reports/
 ```
 
 Writes HTML + SVG figures to `examples/reports/` (git-ignored — regenerate
@@ -58,7 +47,7 @@ git-ignored).
 cells were extracted and executed end-to-end against this exact
 `hpc_table_final.csv` in a clean virtual environment, after one bug fix
 (below) — all 14 figure handles generated with no errors. The script
-(`src/mllm-visualization.py`) was previously verified against an equivalent
+(`jmllm-vis`) was previously verified against an equivalent
 copy of this CSV under a different path and has since been repointed here.
 
 ## Known issue fixed during integration

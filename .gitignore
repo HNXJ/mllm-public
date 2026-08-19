@@ -15,5 +15,7 @@ demo/demo_output/
 examples/reports/
 hpc_figures/
 /content/
+!/content/tables/
+!/content/tables/**
 /logs/
 .cache/

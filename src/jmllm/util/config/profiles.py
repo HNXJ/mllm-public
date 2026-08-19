@@ -1,10 +1,7 @@
-"""Canonical profile management for MLLM models.
+"""Profiles module for jmllm.
 
-HPC Pipeline Role — Configuration Layer (Layer 3: SDK & Bindings)
-===============================================================
-This module manages model-specific profiles, ensuring that the pipeline
-consumes validated context windows, prompt templates, and precision
-data from the 'src/mllm/config/profiles/' registry.
+Provides convenience functions to load model configuration
+data from the 'src/jmllm/util/config/profiles/' registry.
 """
 
 import json
