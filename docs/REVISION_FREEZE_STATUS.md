@@ -61,9 +61,9 @@ Cataloged in [`content/tables/canonical_31_paper_corpus_registry.csv`](file:///U
 ### 4. Software Portability & Test Suite (FROZEN 🔒)
 
 - **Package**: `jmllm` (v1.0.1)
-- **Automated Test Suite**: 48 passed, 1 skipped, 1 deselected in 0.91s (100% test passage).
+- **Automated Test Suite**: 48 passed, 1 skipped, 1 deselected in 0.83s (100% test passage).
 - **Clean-Room Portability Verified**: Validated in isolated disposable virtual environment executing live inference against local LM Studio server (`gemma-4-31b-it`).
-- **Git HEAD Commit**: `248729d` on `main`.
+- **Canonical Engineering Freeze SHA**: `150cdaf66986566085a6cf716ba3ae9103c80252` (Tagged: `engineering-freeze-2026-08` on `main`).
 
 ---
 
@@ -76,7 +76,7 @@ These components have complete analytical scripts and target table schemas ready
    - *Action upon arrival*: Ingest Human Expert 1 raw score sheet into `content/tables/experts/human/hpch_01.csv`.
 2. **`hpch_02` & `hpch_03` (Independent Human Experts 2 & 3)**:
    - *Status*: `pending_ingestion`.
-   - *Action upon arrival*: Ingest into `content/tables/experts/human/hpch_02.csv` and `hpch_03.csv`. Execute multi-rater Fleiss' kappa / pairwise ICC, build consensus `hpch_all.csv`, and correlate against autonomous LLM council for Reviewer 1 Major Concern #1.
+   - *Action upon arrival*: Ingest into `content/tables/experts/human/hpch_02.csv` and `hpch_03.csv`. Execute multi-rater continuous/ordinal agreement (ICC and ordinal rank alignment selected upon empirical score inspection), construct consensus `hpch_all.csv`, and correlate against autonomous LLM council for Reviewer 1 Major Concern #1.
 3. **Manual Figure-Description Accuracy Validation (Minor Concern #2)**:
    - *Status*: Protocol defined. Awaiting manual expert grading on sampled figure description chunks.
 
