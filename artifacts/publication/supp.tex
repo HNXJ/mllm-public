@@ -44,7 +44,7 @@ Hamed Nejat, Alexander Maier, Jesse Spencer-Smith, and Andr\'e M. Bastos\par
 \end{center}
 
 \subsection*{Supplementary Fig. S2}
-\textbf{Supplementary Fig. S2:} Independent Human Expert Concordance ($K=2$ domain experts). (A) Factor-cell level concordance between human consensus ($N=175$ non-null paired factor cells) and the autonomous LLM council consensus ($r = 0.162, \rho = 0.241, \text{MAE} = 0.301, \text{Directional Concordance} = 93.1\%$). (B) Study-level aggregation across the canonical literature corpus ($N=25$ common evaluable papers, Pearson $r = 0.529$, Spearman $\rho = 0.492$), illustrating positive macro-level alignment between independent human expert raters and autonomous model ensembles while confirming that factor-level magnitude correlation remains modest ($r = 0.162$).
+\textbf{Supplementary Fig. S2:} Independent Human Expert Concordance ($K=2$ domain experts). (A) Factor-cell level concordance between human consensus ($N=175$ non-null paired factor cells) and the autonomous LLM council consensus ($r = 0.162, \rho = 0.241, \text{MAE} = 0.301, \text{Directional Concordance} = 93.1\%$). (B) Study-level aggregation across $N=25$ common evaluable papers (Pearson $r = 0.529$, Spearman $\rho = 0.492$), with stronger study-level than factor-cell concordance.
 
 \begin{center}
 \includegraphics[width=0.92\linewidth,keepaspectratio]{figures/figure_S_human_concordance.png}
@@ -58,14 +58,14 @@ Hamed Nejat, Alexander Maier, Jesse Spencer-Smith, and Andr\'e M. Bastos\par
 \end{center}
 
 \subsection*{Supplementary Fig. S4}
-\textbf{Supplementary Fig. S4:} Evidence Grounding vs. Prior Bias Sensitivity Analysis (54 inference calls across intact, abstract-only, and masked-manuscript evidence controls). (A) Sensitivity to explicit study/author identity removal (Condition A Full Text vs Condition C Masked Text: Pearson $r = 0.9937$, $\text{MAE} = 0.0089$ across $N=112$ overlapping factor cells), demonstrating that model evaluations are grounded in technical findings rather than author prestige cues. (B) Sensitivity to evidence restriction (Condition A Full Text vs Condition B Abstract Only: Pearson $r = 0.7274$, $\text{MAE} = 0.0758$ across $N=88$ overlapping factor cells), confirming measurable score modulation when detailed empirical text is withheld. Numerical summary across Full ($+0.038$), Shuffled ($-0.004$), and Prior-only ($+0.000$) conditions is reported in Supplementary Table S10.
+\textbf{Supplementary Fig. S4:} Evidence Grounding vs. Prior Bias Sensitivity Analysis (54 inference calls across intact, abstract-only, and masked-manuscript evidence controls). (A) Sensitivity to explicit study/author identity removal (Condition A Full Text vs Condition C Masked Text: Pearson $r = 0.9937$, $\text{MAE} = 0.0089$ across $N=112$ overlapping factor cells), showing minimal sensitivity to explicit study/author identity removal. (B) Sensitivity to evidence restriction (Condition A Full Text vs Condition B Abstract Only: Pearson $r = 0.7274$, $\text{MAE} = 0.0758$ across $N=88$ overlapping factor cells), showing score changes when detailed empirical text is withheld. Full, Shuffled, and Prior-only condition summaries are reported in Table S10.
 
 \begin{center}
 \includegraphics[width=0.92\linewidth,keepaspectratio]{figures/figure_S_evidence_prior.png}
 \end{center}
 
 \subsection*{Supplementary Fig. S5}
-\textbf{Supplementary Fig. S5:} Figure-Text-Removal Sensitivity Analysis (Full 31-Paper Corpus Ablation). (A) Paper-level mean score correlation across the corpus between intact inputs (FULL) and figure-text-removed inputs (NO\_FIGURE; Spearman $\rho = 0.4718$, $\text{MAE} = 0.2253$ across 533 paired factor cells nested in 31 papers). (B) Corpus-level $\text{LO}-\text{GO}$ context displacement stability across 28 paired empirical papers ($\Delta_{\text{Full}} = +0.0408$ vs $\Delta_{\text{NoFig}} = +0.0565$; directional concordance $= 99.42\%$ on non-zero cells [518/521], all-cell sign agreement $= 97.19\%$ [518/533]), demonstrating that figure removal preserves the direction of the corpus-level contrast while producing measurable paper-level score adjustments.
+\textbf{Supplementary Fig. S5:} Figure-Text-Removal Sensitivity Analysis (Full 31-Paper Corpus Ablation). (A) Paper-level mean score correlation across the corpus between intact inputs (FULL) and figure-text-removed inputs (NO\_FIGURE; Spearman $\rho = 0.4718$, $\text{MAE} = 0.2253$ across 533 paired factor cells nested in 31 papers). (B) Corpus-level $\text{LO}-\text{GO}$ context displacement stability across 28 paired empirical papers ($\Delta_{\text{Full}} = +0.0408$ vs $\Delta_{\text{NoFig}} = +0.0565$; directional concordance $= 99.42\%$ on non-zero cells [518/521], all-cell sign agreement $= 97.19\%$ [518/533]), showing that the corpus-level contrast retained its direction despite paper-level score changes.
 
 \begin{center}
 \includegraphics[width=0.92\linewidth,keepaspectratio]{figures/figure_S_figure_text_removal.png}
@@ -197,7 +197,7 @@ Global Oddball (GO) & An oddball that is not LO, often contextual, that is not c
 31 & Yamins et al., 2014 & In Silico / Primate IT (HCNN) & Comparative Set (Feedforward Baseline) & \emph{PNAS} 111, 8619--8624 \\
 \end{longtable}
 
-\textbf{Supplementary Table S5:} Master 31-Paper Canonical Literature Corpus Registry detailing Modality, Inclusion Basis, and Provenance.
+\textbf{Supplementary Table S5:} 31-Paper Literature Corpus Registry with modality, inclusion basis, and provenance.
 
 \begin{longtable}[]{@{}lll@{}}
 \toprule
@@ -267,7 +267,7 @@ Repeat 2 & 279 & $0.457 \pm 0.386$ & $+0.038$ & Spearman $\rho_{\text{rank}} = 0
 Repeat 3 & 279 & $0.455 \pm 0.389$ & $+0.038$ & Spearman $\rho_{\text{rank}} = 0.9745$ \\
 \midrule
 Westerberg \& Xiong (2025) & --- & Divergent Outlier & $\Delta = -0.400$ & Rank 28--29/31 across all $T$ conditions \\
-Leave-One-Model-Out (LOMO) & 10 folds & $\Delta_{\text{Total}} \in [-0.105, -0.093]$ & Negative Invariant & H2 $\Delta \in [-0.228, -0.208]$ \\
+Leave-One-Model-Out (LOMO) & 10 folds & $\Delta_{\text{Total}} \in [-0.105, -0.093]$ & Negative throughout & H2 $\Delta \in [-0.228, -0.208]$ \\
 \end{longtable}
 
 \textbf{Supplementary Table S9:} Factorial Robustness Analysis across 837 LLM inference calls including Paper Ranking and LOMO Sensitivity.
@@ -334,6 +334,6 @@ Axis C: HPC-36 Ontology Factor Mapping & 10 & 9 & 1 (Partial invertebrate mappin
 \textbf{Overall Manual Validation Outcome} & \textbf{10 Figures} & \textbf{10/10 PASS} & \textbf{0 Fatal Inversions} & \textbf{100.0\% PASS} \\
 \end{longtable}
 
-\textbf{Supplementary Table S13:} Manual Expert Validation Summary of Generated Multimodal Figure Descriptions ($N=10$ representative figures audited against primary source PDFs).
+\textbf{Supplementary Table S13:} Manual Expert Validation Summary of Generated Multimodal Figure Descriptions ($N=10$ prespecified figures audited against primary-source PDFs).
 
 \end{document}

@@ -1,7 +1,7 @@
 \documentclass[12pt]{article}
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL supp-base.tex   Thu Aug 27 10:46:00 2026
-%DIF ADD supp.tex        Thu Aug 27 10:05:05 2026
+%DIF DEL supp-base.tex   Thu Aug 27 10:49:22 2026
+%DIF ADD supp.tex        Thu Aug 27 10:49:14 2026
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in]{geometry}
@@ -92,7 +92,7 @@ Hamed Nejat, Alexander Maier, Jesse Spencer-Smith, and Andr\'e M. Bastos\par
 \end{center}
 
 \subsection*{Supplementary Fig. S2}
-\textbf{Supplementary Fig. S2:} Independent Human Expert Concordance \DIFaddbegin \DIFadd{($K=2$ domain experts)}\DIFaddend . (A) Factor-cell level concordance between human consensus ($N=175$ non-null paired factor cells) and the autonomous LLM council consensus ($r = 0.162, \rho = 0.241, \text{MAE} = 0.301, \text{Directional Concordance} = 93.1\%$). (B) Study-level aggregation across the canonical literature corpus (\DIFdelbegin \DIFdel{$r = 0.390, \rho = 0.360$}\DIFdelend \DIFaddbegin \DIFadd{$N=25$ common evaluable papers, Pearson $r = 0.529$, Spearman $\rho = 0.492$}\DIFaddend ), illustrating \DIFdelbegin \DIFdel{consistent alignment between expert human neuroscientists }\DIFdelend \DIFaddbegin \DIFadd{positive macro-level alignment between independent human expert raters }\DIFaddend and autonomous model ensembles \DIFaddbegin \DIFadd{while confirming that factor-level magnitude correlation remains modest ($r = 0.162$)}\DIFaddend .
+\textbf{Supplementary Fig. S2:} Independent Human Expert Concordance \DIFaddbegin \DIFadd{($K=2$ domain experts)}\DIFaddend . (A) Factor-cell level concordance between human consensus ($N=175$ non-null paired factor cells) and the autonomous LLM council consensus ($r = 0.162, \rho = 0.241, \text{MAE} = 0.301, \text{Directional Concordance} = 93.1\%$). (B) Study-level aggregation across \DIFdelbegin \DIFdel{the canonical literature corpus ($r = 0.390, \rho = 0.360$), illustrating consistent alignment between expert human neuroscientists and autonomous model ensembles}\DIFdelend \DIFaddbegin \DIFadd{$N=25$ common evaluable papers (Pearson $r = 0.529$, Spearman $\rho = 0.492$), with stronger study-level than factor-cell concordance}\DIFaddend .
 
 \begin{center}
 \includegraphics[width=0.92\linewidth,keepaspectratio]{figures/figure_S_human_concordance.png}
@@ -106,14 +106,15 @@ Hamed Nejat, Alexander Maier, Jesse Spencer-Smith, and Andr\'e M. Bastos\par
 \end{center}
 
 \subsection*{Supplementary Fig. S4}
-\textbf{Supplementary Fig. S4:} Evidence Grounding vs. Prior Bias Sensitivity Analysis (54 inference calls \DIFaddbegin \DIFadd{across intact, abstract-only, and masked-manuscript evidence controls}\DIFaddend ). (A) \DIFdelbegin \DIFdel{Mean factor support scores across experimental conditions: Intact Evidence (Full Context), Shuffled Evidence (Negative Control), and Prior Only (Zero Evidence)}\DIFdelend \DIFaddbegin \DIFadd{Sensitivity to explicit study/author identity removal (Condition A Full Text vs Condition C Masked Text: Pearson $r = 0.9937$, $\text{MAE} = 0.0089$ across $N=112$ overlapping factor cells), demonstrating that model evaluations are grounded in technical findings rather than author prestige cues}\DIFaddend . (B) \DIFdelbegin \DIFdel{Context displacement selectivity ($\Delta_{\text{LO-GO}}$)showing that under scrambled evidence or prior-only prompts, context-specific hypothesis modulation collapses toward zero ($\Delta_{\text{Full}} = +0.038$, $\Delta_{\text{Shuffled}} = -0.004$}\DIFdelend \DIFaddbegin \DIFadd{Sensitivity to evidence restriction (Condition A Full Text vs Condition B Abstract Only: Pearson $r = 0.7274$}\DIFaddend , \DIFdelbegin \DIFdel{$\Delta_{\text{Prior}} = +0.000$), demonstrating that model scoring is sensitive to the supplied paper evidence rather than parametric prior recall alone}\DIFdelend \DIFaddbegin \DIFadd{$\text{MAE} = 0.0758$ across $N=88$ overlapping factor cells), confirming measurable score modulation when detailed empirical text is withheld. Numerical summary across Full ($+0.038$), Shuffled ($-0.004$), and Prior-only ($+0.000$) conditions is reported in Supplementary Table S10}\DIFaddend .
+\textbf{Supplementary Fig. S4:} Evidence Grounding vs. Prior Bias Sensitivity Analysis (54 inference calls \DIFaddbegin \DIFadd{across intact, abstract-only, and masked-manuscript evidence controls}\DIFaddend ). (A) \DIFdelbegin \DIFdel{Mean factor support scores across experimental conditions: Intact Evidence (Full Context), Shuffled Evidence (Negative Control), and Prior Only (Zero Evidence)}\DIFdelend \DIFaddbegin \DIFadd{Sensitivity to explicit study/author identity removal (Condition A Full Text vs Condition C Masked Text: Pearson $r = 0.9937$, $\text{MAE} = 0.0089$ across $N=112$ overlapping factor cells), showing minimal sensitivity to explicit study/author identity removal}\DIFaddend . (B) \DIFdelbegin \DIFdel{Context displacement selectivity ($\Delta_{\text{LO-GO}}$) showing that under scrambled evidence or prior-only prompts, context-specific hypothesis modulation collapses toward zero ($\Delta_{\text{Full}} = +0.038$, $\Delta_{\text{Shuffled}} = -0.004$, $\Delta_{\text{Prior}} = +0.000$), demonstrating that model scoring is sensitive to the supplied paper evidence rather than parametric prior recall alone. }\DIFdelend \DIFaddbegin \DIFadd{Sensitivity to evidence restriction (Condition A Full Text vs Condition B Abstract Only: Pearson $r = 0.7274$, $\text{MAE} = 0.0758$ across $N=88$ overlapping factor cells), showing score changes when detailed empirical text is withheld. Full, Shuffled, and Prior-only condition summaries are reported in Table S10.
+}\DIFaddend 
 
 \begin{center}
 \includegraphics[width=0.92\linewidth,keepaspectratio]{figures/figure_S_evidence_prior.png}
 \end{center}
 
 \subsection*{Supplementary Fig. S5}
-\textbf{Supplementary Fig. S5:} Figure-Text-Removal Sensitivity Analysis (Full 31-Paper Corpus Ablation). (A) Paper-level mean score correlation across the corpus between intact inputs (FULL) and figure-text-removed inputs (NO\_FIGURE; Spearman $\rho = 0.4718$, $\text{MAE} = 0.2253$ across 533 paired factor cells nested in 31 papers). (B) Corpus-level $\text{LO}-\text{GO}$ context displacement stability across 28 paired empirical papers ($\Delta_{\text{Full}} = +0.0408$ vs $\Delta_{\text{NoFig}} = +0.0565$; directional concordance $= 99.42\%$ on non-zero cells [518/521], all-cell sign agreement $= 97.19\%$ [518/533]), demonstrating that figure removal preserves the direction of the corpus-level contrast while producing measurable paper-level score adjustments.
+\textbf{Supplementary Fig. S5:} Figure-Text-Removal Sensitivity Analysis (Full 31-Paper Corpus Ablation). (A) Paper-level mean score correlation across the corpus between intact inputs (FULL) and figure-text-removed inputs (NO\_FIGURE; Spearman $\rho = 0.4718$, $\text{MAE} = 0.2253$ across 533 paired factor cells nested in 31 papers). (B) Corpus-level $\text{LO}-\text{GO}$ context displacement stability across 28 paired empirical papers ($\Delta_{\text{Full}} = +0.0408$ vs $\Delta_{\text{NoFig}} = +0.0565$; directional concordance $= 99.42\%$ on non-zero cells [518/521], all-cell sign agreement $= 97.19\%$ [518/533]), \DIFdelbegin \DIFdel{demonstrating that figure removal preserves the direction of the }\DIFdelend \DIFaddbegin \DIFadd{showing that the }\DIFaddend corpus-level contrast \DIFdelbegin \DIFdel{while producing measurable }\DIFdelend \DIFaddbegin \DIFadd{retained its direction despite }\DIFaddend paper-level score \DIFdelbegin \DIFdel{adjustments}\DIFdelend \DIFaddbegin \DIFadd{changes}\DIFaddend .
 
 \begin{center}
 \includegraphics[width=0.92\linewidth,keepaspectratio]{figures/figure_S_figure_text_removal.png}
@@ -247,7 +248,7 @@ Global Oddball (GO) & An oddball that is not LO, often contextual, that is not c
 31 & Yamins et al., 2014 & \DIFdelbegin \DIFdel{Goal-driven deep hierarchical convolutional networks predicting neural responses across the primate ventral stream. }\DIFdelend \DIFaddbegin \DIFadd{In Silico / Primate IT (HCNN) }& \DIFadd{Comparative Set (Feedforward Baseline) }& \emph{\DIFadd{PNAS}} \DIFadd{111, 8619--8624 }\DIFaddend \\
 \end{longtable}
 
-\textbf{Supplementary Table S5:} Master 31-Paper Canonical Literature Corpus Registry \DIFaddbegin \DIFadd{detailing Modality, Inclusion Basis, and Provenance}\DIFaddend .
+\textbf{Supplementary Table S5:} \DIFdelbegin \DIFdel{Master }\DIFdelend 31-Paper \DIFdelbegin \DIFdel{Canonical }\DIFdelend Literature Corpus Registry \DIFaddbegin \DIFadd{with modality, inclusion basis, and provenance}\DIFaddend .
 
 \begin{longtable}[]{@{}lll@{}}
 \toprule
@@ -318,7 +319,7 @@ Repeat 2 & 279 & $0.457 \pm 0.386$ & $+0.038$ & \DIFdelbegin \DIFdel{$\text{LO} 
 Repeat 3 & 279 & $0.455 \pm 0.389$ & $+0.038$ & \DIFdelbegin \DIFdel{$\text{LO} > \text{GO}$ }\DIFdelend \DIFaddbegin \DIFadd{Spearman $\rho_{\text{rank}} = 0.9745$ }\DIFaddend \\
 \DIFaddbegin \midrule
 \DIFadd{Westerberg \& Xiong (2025) }& \DIFadd{--- }& \DIFadd{Divergent Outlier }& \DIFadd{$\Delta = -0.400$ }& \DIFadd{Rank 28--29/31 across all $T$ conditions }\\
-\DIFadd{Leave-One-Model-Out (LOMO) }& \DIFadd{10 folds }& \DIFadd{$\Delta_{\text{Total}} \in [-0.105, -0.093]$ }& \DIFadd{Negative Invariant }& \DIFadd{H2 $\Delta \in [-0.228, -0.208]$ }\\
+\DIFadd{Leave-One-Model-Out (LOMO) }& \DIFadd{10 folds }& \DIFadd{$\Delta_{\text{Total}} \in [-0.105, -0.093]$ }& \DIFadd{Negative throughout }& \DIFadd{H2 $\Delta \in [-0.228, -0.208]$ }\\
 \DIFaddend \end{longtable}
 
 \textbf{Supplementary Table \DIFdelbegin \DIFdel{S8}\DIFdelend \DIFaddbegin \DIFadd{S9}\DIFaddend :} Factorial Robustness Analysis across 837 LLM inference calls \DIFaddbegin \DIFadd{including Paper Ranking and LOMO Sensitivity}\DIFaddend .
@@ -386,6 +387,6 @@ Publication Status & Preprint \DIFdelbegin \DIFdel{/ Other }\DIFdelend \DIFaddbe
 \textbf{\DIFadd{Overall Manual Validation Outcome}} & \textbf{\DIFadd{10 Figures}} & \textbf{\DIFadd{10/10 PASS}} & \textbf{\DIFadd{0 Fatal Inversions}} & \textbf{\DIFadd{100.0\% PASS}} \\
 \end{longtable}
 
-\textbf{\DIFadd{Supplementary Table S13:}} \DIFadd{Manual Expert Validation Summary of Generated Multimodal Figure Descriptions ($N=10$ representative figures audited against primary source PDFs)}\DIFaddend .
+\textbf{\DIFadd{Supplementary Table S13:}} \DIFadd{Manual Expert Validation Summary of Generated Multimodal Figure Descriptions ($N=10$ prespecified figures audited against primary-source PDFs)}\DIFaddend .
 
 \end{document}
