@@ -10,6 +10,7 @@
 \usepackage{newtxmath}
 \usepackage{microtype}
 \usepackage{setspace}
+\usepackage[mathlines]{lineno}
 \usepackage{ragged2e}
 \usepackage{titlesec}
 \usepackage{enumitem}
@@ -30,8 +31,8 @@
 \author{Hamed Nejat$^{1,*}$, Alexander Maier$^{1}$, Jesse Spencer-Smith$^{2}$, Andr\'e M. Bastos$^{1}$}
 \date{May 2026}
 
-% Single-PDF arXiv version using Scientific Reports-style section order: single column, Times-like font, flush-left title block,
-% compact bold headings, justified paragraphs with first-line indentation.
+% Scientific Reports manuscript version: single column, Times-like font, flush-left title block,
+% compact bold headings, justified paragraphs with first-line indentation, and line numbers for review.
 \setlength{\parindent}{0.5in}
 \setlength{\parskip}{0pt}
 \setstretch{1.0}
@@ -115,7 +116,7 @@
   \item Data Science Institute, Vanderbilt University
   \end{enumerate}
   \vspace{0.3em}
-  {\normalsize $^*$Corresponding author.\par}
+  {\normalsize $^*$Corresponding author: Hamed Nejat, hamed.nejat@vanderbilt.edu.\par}
   \end{flushleft}
   \vspace{0.4em}
 }
@@ -125,10 +126,10 @@
 \begin{document}
 \pagestyle{plain}
 \maketitle
+\linenumbers
 
 \noindent\textbf{Abstract}\par
-Fragmentation is common in interdisciplinary fields with diverse methods and theoretical commitments. Predictive coding neuroscience is a clear example: its literature spans computational theory, electrophysiology, imaging, behavior, and modeling, creating a synthesis problem that conventional meta-analysis cannot easily resolve. Here, we describe a local multi-LLM pipeline for ontology-constrained literature synthesis. The pipeline reads papers, extracts evidence, incorporates figure descriptions, assembles constrained prompts, and validates outputs against an expert glossary. We manually defined a predictive-coding glossary of thirty-six concepts grouped into three hypotheses: predictive suppression, feedforward error propagation, and ubiquity. A council of ten local language models scored 31 studies according to their agreement or disagreement with each glossary factor across local and global oddball contexts. This enabled pairwise study-agreement analysis, cross-model comparison, and three-dimensional hypothesis-space mapping. Agreement was high for some hypotheses but weaker for others, revealing structured disagreement, particularly across local versus global oddball paradigms. We further define hypothesis-space temperature, a geometric dispersion metric measuring how compactly studies occupy the hypothesis space. Temperature was lower for local oddball contexts and higher for global oddball contexts, indicating greater dispersion in the latter. The scoring geometry also allowed us to estimate vectors of change between experimental contexts. These results demonstrate that local multi-LLM councils can produce auditable disagreement measurements that map heterogeneous literatures into quantitative evidence spaces. This framework may generalize to cross-study hypothesis mapping where conventional meta-analysis lacks a common comparison space.
-
+Fragmentation is common in interdisciplinary fields with diverse methods and theoretical commitments. Predictive coding neuroscience is a clear example: its literature spans computational theory, electrophysiology, imaging, behavior, and modeling, creating a synthesis problem that conventional meta-analysis cannot easily resolve. Here, we describe a local multi-LLM pipeline for ontology-constrained literature synthesis. The pipeline reads papers, extracts evidence, incorporates figure descriptions, assembles constrained prompts, and validates outputs against an expert glossary. We defined a predictive-coding glossary of thirty-six concepts grouped into three hypotheses: predictive suppression, feedforward error propagation, and ubiquity. A council of ten local language models scored 31 studies across local and global oddball contexts. This enabled pairwise study-agreement analysis, cross-model comparison, and three-dimensional hypothesis-space mapping. Agreement was stronger for local than global oddball contexts, particularly for feedforward error propagation. Hypothesis-space temperature was lower for local oddball contexts and higher for global oddball contexts, indicating greater dispersion in the latter. These results show that local multi-LLM councils can produce auditable disagreement measurements that map heterogeneous literatures into quantitative evidence spaces.
 \vspace{0.8em}
 \noindent\textbf{Keywords:} predictive coding; large language models; literature synthesis; computational neuroscience; ontology; hypothesis mapping
 
@@ -190,11 +191,11 @@ The local language model council successfully transformed the heterogeneous pred
 
 Within the local oddball context, the highest score was achieved by evaluations of Hypothesis 2 (Feedforward Error Propagation, Mean \(=0.51 \pm 0.34\), SD). The next highest score was Hypothesis 1 (Predictive Suppression, Mean \(=0.46 \pm 0.42\), SD), followed by Hypothesis 3 (Ubiquity, Mean \(=0.31 \pm 0.39\), SD). The convergence on H1 and H2 suggested that the evidence of suppression-like effects of prediction --- such as response dampening or repetition suppression --- were consistently described in the literature and had a feedforward pattern of activation in cortical brain areas. Furthermore, these consistently high scores were identified by the diverse models that comprise the council. In contrast, the ubiquity hypothesis (H3, across both contexts) displayed the lowest agreement (Mean \(=0.23 \pm 0.40\)), which can be interpreted to indicate that models identified less evidence (compared to H1 and H2, across both contexts) for these prediction error signals to generalize across the brain.
 
-An assumption within hierarchical predictive coding framework is that global contextual prediction inherits the computational machinery of local sensory prediction, operating on similar predictive coding principles albeit at longer timescales\cite{ref14,ref69,ref80}. The global oddball context was also positive for H1-H3, but the scores were lower than the local oddball context for all three hypotheses. There was an average global-to-local downward shift of -0.049 for H1 (Predictive Suppression, p < 0.05), -0.158 for H2 (Feedforward Error Propagation, p < 0.01), and -0.032 for H3 (Ubiquity, p < 0.05, all comparisons, LO vs.~GO, paired model-study t-test). The lowest scores across all hypotheses/context groupings were observed in the global oddball context for the ubiquity hypothesis (H3). Across the thirty-one-study corpus, the council consistently recorded lower scores in global oddball contexts.
+An assumption within hierarchical predictive coding framework is that global contextual prediction inherits the computational machinery of local sensory prediction, operating on similar predictive coding principles albeit at longer timescales\cite{ref14,ref69,ref80}. The global oddball context was also positive for H1-H3, but the scores were lower than the local oddball context for all three hypotheses. Descriptively, there was an average global-to-local downward shift of -0.049 for H1 (Predictive Suppression), -0.158 for H2 (Feedforward Error Propagation), and -0.032 for H3 (Ubiquity). The lowest scores across all hypotheses/context groupings were observed in the global oddball context for the ubiquity hypothesis (H3). Across the thirty-one-study corpus, the council consistently recorded lower scores in global oddball contexts.
 \begin{center}
 \includegraphics[width=0.88\linewidth,keepaspectratio]{figures/figure4.png}
 \end{center}
-\textbf{Figure 3:} The evaluation result of all papers (N=31) by all models (N=10). Scores are separated by context (LO = Local Oddball, GO = Global Oddball) and by Hypothesis (Supplementary Tables S1-S3, Hypothesis 1: Predictive Suppression; Hypothesis 2: Feedforward Error Propagation; Hypothesis 3: Ubiquity). Each dot is a separate score (total count = 1860). The mean and median of the scores are significantly positive (p < 0.01), which is consistent with our choice of these hypotheses as central to predictive coding.
+\textbf{Figure 3:} The evaluation result of all papers (N=31) by all models (N=10). Scores are separated by context (LO = Local Oddball, GO = Global Oddball) and by Hypothesis (Supplementary Tables S1-S3, Hypothesis 1: Predictive Suppression; Hypothesis 2: Feedforward Error Propagation; Hypothesis 3: Ubiquity). Each dot is a separate score (total count = 1860). Mean and median scores are descriptively positive across all three hypotheses, consistent with the selection of these mechanisms as central pillars of hierarchical predictive coding.
 
 To quantify inter-model agreement for both the local and global oddball context and separately for H1-H3, we used the \emph{Mean Squared Difference} as a distance metric (see Methods, Agent Consistency, equation 1.1, 1.2). Lower values indicate more similar values and therefore stronger agreement/consensus among the models. Agreement between models (Figure 4, AC) had a mean of 0.11. This was well below what could be expected from a random shuffle (0.67) or a hypothesis shuffle (0.5) (for the definition of these shuffle tests, see Methods section, definitions 1.8 and 1.9).
 
@@ -203,46 +204,46 @@ To quantify inter-model agreement for both the local and global oddball context 
 \end{center}
 \textbf{Figure 4:} Agent consistency measured as the mean squared distance between the aggregated scores of each of the 10 agents. Agent to agent distance is shown on the upper left. The mean in this comparison was 0.11. Mistral-nemo-12b was the model with the largest distance to the others. The mean squared distance of each model by context is shown for H1 (upper right), H2 (lower left), and H3 (lower right). The dotted lines indicate the MSD distance for a random shuffle of all scores (Full-shuffle, 0.67, def 1.8) and the Hypotheses shuffle (0.5, see Methods, def.1.9). For comparison, values of AC, LC, and LAC are also depicted (see Methods for their respective definitions).
 
-The \emph{Literature Consistency (LC)} benchmark enabled us to quantitatively identify how variable scores were between the papers we considered (Figure 5). Studies such as Bastos et al., 2012, Friston et al., 2010, and Spratling, 2008 exhibited low mean distances (\(0.07 \pm 0.01\) SEM), marking them as central reference points that closely align with the dominant trends of the literature. Conversely, Westerberg, Xiong, et al., (2025) emerged as an outlier, with a mean squared difference of 0.464 relative to the rest of the literature. This is consistent with the formulation and conclusions of Westerberg, Xiong, et al., (2025), which diverge from several predictive coding hypotheses, especially in the global oddball context. The LC benchmark therefore enables a geometric mapping between papers and identifies publications that are central to, or divergent from, the established hypotheses.
+The \emph{Literature Consistency (LC)} benchmark enabled us to quantitatively identify how variable scores were between the papers we considered (Figure 5). Studies such as Bastos et al., 2012, Friston et al., 2010, and Spratling, 2008 exhibited low mean distances (\(0.07 \pm 0.01\) SEM), marking them as central reference points that closely align with the dominant trends of the literature. Conversely, Westerberg \& Xiong (2025) emerged as an outlier, with a mean squared difference of 0.464 relative to the rest of the literature. This is consistent with the formulation and conclusions of Westerberg \& Xiong (2025), which diverge from several predictive coding hypotheses, especially in the global oddball context. The LC benchmark therefore enables a geometric mapping between papers and identifies publications that are central to, or divergent from, the established hypotheses.
 
 \begin{center}
 \includegraphics[width=0.92\linewidth,keepaspectratio]{figures/figure6.png}
 \end{center}
-\textbf{Figure 5:} Literature consistency (LC) visualization. The mean squared distance between every paper in the corpus is depicted. Warmer colors indicate lower MSD values or more agreement between studies. The highest values were observed for an outlier paper, Westerberg et al., 2025.
+\textbf{Figure 5:} Literature consistency (LC) visualization. The mean squared distance between every paper in the corpus is depicted. Warmer colors indicate lower MSD values or more agreement between studies. The highest values were observed for an outlier paper, Westerberg \& Xiong (2025).
 
 \subsection{Direct Comparison of Local and Global Contexts between papers}\label{direct-comparison-of-local-and-global-contexts-between-papers}
 
-Further analysis of the distance scores between Westerberg, Xiong, et al., (2025) and the remaining literature revealed an interesting pattern: the scores were significantly greater for the global oddball (p < 0.01, mean = 0.55) as compared to the local oddball context (mean = 0.15), see Figure 6. This indicates that the council benchmark captured the pattern reported by Westerberg et al.\cite{ref34}: stronger divergence from predictive-coding expectations in global oddball findings than in local oddball findings.
+Further analysis of the distance scores between Westerberg \& Xiong (2025) and the remaining literature revealed a pronounced contextual divergence: the distance scores were substantially greater for the global oddball context (mean MSD = 0.55) as compared to the local oddball context (mean MSD = 0.15), see Figure 6. This indicates that the council benchmark captured the pattern reported by Westerberg \& Xiong (2025)\cite{ref34}: stronger divergence from predictive-coding expectations in global oddball findings than in local oddball findings.
 
 \begin{center}
 \includegraphics[width=0.95\linewidth,keepaspectratio]{figures/figure7.png}
 \end{center}
-\textbf{Figure 6:} Mean squared error values measuring the distance between each paper and the outlier paper (Westerberg, Xiong, et al., 2025), separately for the local oddball (upper subpanel) and global oddball (lower subpanel) contexts. Papers are ordered from left to right in order of increasing global-oddball MSD to Westerberg, Xiong, et al.~(2025).
+\textbf{Figure 6:} Mean squared error values measuring the distance between each paper and the outlier paper (Westerberg \& Xiong, 2025), separately for the local oddball (upper subpanel) and global oddball (lower subpanel) contexts. Papers are ordered from left to right in order of increasing global-oddball MSD to Westerberg \& Xiong (2025).
 
 \subsection{Three Dimensional Hypothesis Space Geometry Reveals a Constellation}\label{three-dimensional-hypothesis-space-geometry-reveals-a-constellation}
 
-To visualize the latent structure of agreement and disagreement within the literature, the studies were geometrically embedded into a three-dimensional hypothesis space defined by their H1, H2, and H3 scores, when rendering the local and global contexts separately. The central coordinate of each study reflects the average score separately per hypothesis and averaged across the council of 10 models. Error bars denote the standard error of the mean across the council. Within the local oddball coordinate space, the majority of the studies cluster into a moderately compact, centralized region along the H1, H2 and H3 axes, visually representing the foundational agreement the council reached regarding overall agreement on these hypotheses. For local oddballs, the one exception was Westerberg et al.~(2025), which had positive scores on H2 and H3, but a moderately negative score on H1 (Predictive Suppression).
+To visualize the latent structure of agreement and disagreement within the literature, the studies were geometrically embedded into a three-dimensional hypothesis space defined by their H1, H2, and H3 scores, when rendering the local and global contexts separately. The central coordinate of each study reflects the average score separately per hypothesis and averaged across the council of 10 models. Error bars denote the standard error of the mean across the council. Within the local oddball coordinate space, the majority of the studies cluster into a moderately compact, centralized region along the H1, H2 and H3 axes, visually representing the foundational agreement the council reached regarding overall agreement on these hypotheses. For local oddballs, the one exception was Westerberg \& Xiong (2025), which had positive scores on H2 and H3, but a moderately negative score on H1 (Predictive Suppression).
 
 \begin{center}
 \includegraphics[width=0.94\linewidth,keepaspectratio]{figures/figure8.png}
 \end{center}
 \textbf{Figure 7:} Three-Dimensional view of the scores of each paper, with scores shown on the H1 (Predictive Suppression), H2 (Feedforward Prediction Errors), and H3 (Ubiquity) axes. The 3 lines emanating from each of the studies reflects the standard error of the mean of those scores across the 10 evaluator models. The local oddball context is shown on the left plot and the global oddball context is shown on the right.
 
-Moving from local oddball (Figure 7, left) to global oddball (Figure 7, right) there was a significant move away from the +1, +1, +1 octant, with multiple studies going negative on H2. Study 30 (Westerberg, Xiong, et al., 2025) is the outlier, as it had the strongest movement between Local and Global Oddball contexts (Figures 7 and 8). The move from Local to Global Oddball contexts created a literature that was more dispersed or variable.
+Moving from local oddball (Figure 7, left) to global oddball (Figure 7, right) there was a visible shift away from the +1, +1, +1 octant, with multiple studies showing negative values on H2. Study 30 (Westerberg \& Xiong, 2025) is the outlier, as it had the strongest movement between Local and Global Oddball contexts (Figures 7 and 8). The move from Local to Global Oddball contexts created a literature representation that was more dispersed.
 
-To quantify this shift, we introduced a novel metric of dispersion or variability within a well-specified hypothesis space. Inspired by physics, we call this metric the hypothesis-space-temperature. We define the hypothesis-space-temperature by fitting an ellipsoid that minimizes the volume required to fit all points in three dimensions, divided by the number of data points (studies) that are inside of the ellipsoid (see equation 3.4):
+To quantify this shift, we introduced a metric of dispersion or variability within a well-specified hypothesis space. Inspired by physics, we call this metric the hypothesis-space-temperature. We define the hypothesis-space-temperature by fitting an ellipsoid that minimizes the volume required to fit all points in three dimensions, divided by the number of data points (studies) that are inside of the ellipsoid (see equation 3.4):
 
 \TemperatureEquationBox
 Operationally, when a hypothesis space provides a compact description of a literature, a new observation is expected to fall within the existing ellipsoid. In that case, the ellipsoid volume can remain approximately stable while the number of samples increases, thereby decreasing temperature. In contrast, a new study that falls outside the existing ellipsoid can increase the ellipsoid volume, increasing temperature in proportion to \(V/n\) (see equation above).
 
-We calculated hypothesis-space-temperature separately for the Local and Global oddball contexts, and extracted the standard error of the mean of this measure across different LLM models. The hypothesis-space-temperature of Local Oddballs (excluding Westerberg, Xiong et al., 2025) was 0.00114 (SEM across N=10 models, 0.00016, p < 0.01), significantly lower than for Global Oddballs, 0.00348 (SEM across N=10 models, 0.00039, p < 0.01). This confirmed what can be appreciated visually in Figure 7, namely that the dispersion of studies grows larger in the Global Oddball compared to Local Oddball contexts, even without the outlier study. This effect was even stronger when including all 31 studies: across all studies, hypothesis-space-temperature of Local Oddballs was 0.00177 (SEM across N=10 models, 0.00033), significantly lower for Global Oddballs, 0.00566 (SEM across N=10 models, 0.00111). This geometric visualization indicates that the predictive coding literature is structured by a dense central neighborhood and distinct, isolated data points that increase dispersion in the hypothesis space.
+We calculated hypothesis-space-temperature descriptively for the Local and Global oddball contexts across evaluator models. The mean hypothesis-space-temperature of Local Oddballs (excluding Westerberg \& Xiong, 2025) was 0.00114 (SEM = 0.00016 across models), compared to 0.00348 (SEM = 0.00039 across models) for Global Oddballs. This reflects the pattern observable in Figure 7, where the dispersion of studies is wider in Global Oddball relative to Local Oddball contexts. Across all 31 studies including the outlier, the mean hypothesis-space-temperature was 0.00177 (SEM = 0.00033) for Local Oddballs and 0.00566 (SEM = 0.00111) for Global Oddballs. This geometric visualization indicates that the predictive coding literature is structured by a dense central neighborhood and distinct, isolated data points that increase dispersion in the hypothesis space.
 
 \begin{center}
 \includegraphics[width=0.86\linewidth,keepaspectratio]{figures/figure9.png}
 \end{center}
-\textbf{Figure 8:} Three-Dimensional vectors of each paper from the Local to the Global oddball position. Each paper's vector is shown independently. The average movement (vector direction) without the outlier study (Westerberg, Xiong, et al., 2025) is shown in yellow, and the average movement of all studies is shown in purple. Individual study's vectors are labeled as blue if their individual vector was aligned to the Westerberg, Xiong, et al., (2025) study's vector on all three axes, and red otherwise.
+\textbf{Figure 8:} Three-Dimensional vectors of each paper from the Local to the Global oddball position. Each paper's vector is shown independently. The average movement (vector direction) without the outlier study (Westerberg \& Xiong, 2025) is shown in yellow, and the average movement of all studies is shown in purple. Individual study's vectors are labeled as blue if their individual vector was aligned to the Westerberg \& Xiong (2025) study's vector on all three axes, and red otherwise.
 
-In addition to an increase in temperature, it is also apparent in Figure 7 that the change from Local to Global Oddball contexts appears to shift along a particular axis. To quantify this, we calculated a vector for each study between its Local and Global Oddball position. This is shown in Figure 8. Each vector represents an individual study's movement magnitude and direction. The mean vector across all studies is depicted in purple, while the vector of all studies excluding Westerberg, Xiong et al.~(2025) is shown in yellow. Both vectors are aligned in a similar direction pointing away from the +1, +1, +1 octant (which would indicate full agreement with all three hypotheses). We interpret this to mean that the literature largely agrees with the predictive coding hypothesis space for Local Oddballs but much less agreement is observed for Global Oddballs. Furthermore, while the Westerberg, Xiong, et al.~study is an outlier in the sense that the movement vector magnitude is the largest of all studies, the movement vector angle of this study is aligned to the underlying Local-Global shift within the pre-existing literature.
+In addition to an increase in temperature, it is also apparent in Figure 7 that the change from Local to Global Oddball contexts appears to shift along a particular axis. To quantify this, we calculated a vector for each study between its Local and Global Oddball position. This is shown in Figure 8. Each vector represents an individual study's movement magnitude and direction. The mean vector across all studies is depicted in purple, while the vector of all studies excluding Westerberg \& Xiong (2025) is shown in yellow. Both vectors are aligned in a similar direction pointing away from the +1, +1, +1 octant (which would indicate full agreement with all three hypotheses). We interpret this to mean that the literature largely agrees with the predictive coding hypothesis space for Local Oddballs but much less agreement is observed for Global Oddballs. Furthermore, while the Westerberg \& Xiong (2025) study is an outlier in the sense that the movement vector magnitude is the largest of all studies, the movement vector angle of this study is aligned to the underlying Local-Global shift within the pre-existing literature.
 
 
 \section{Discussion}\label{discussion}
@@ -257,7 +258,7 @@ Furthermore, formalizing this quantitative hypothesis space permitted the extrac
 
 For neuroscience and related interdisciplinary fields, our findings support the utility of multi-agent architectures for complex scientific analyses, echoing other AI-based advances such as \emph{The AI Scientist}\cite{ref45}. A single language model can summarize these thirty-one papers, but a council provides additional visibility into model-to-model variability, theoretical disagreement, and methodological nuance present in the corpus.
 
-In contrast, the council framework quantifies and utilizes disagreement as an analytical tool. By calculating \emph{Agent Consistency}, \emph{Literature Consistency}, and \emph{Literature-Agent Consistency} baselines, researchers can map whether a particular scientific result is stable across contexts or context-sensitive and model-specific. In addition, random shuffling of model-produced values defines a statistical reference distribution under random scores. Finally, multiple model scores allow uncertainty over models to be estimated; here we used the standard error of the mean (Figure 7). The council framework therefore treats language-model outputs as structured, auditable scientific measurements when context and instructions are constrained.
+In contrast, the council framework quantifies and utilizes disagreement as an analytical tool. By calculating \emph{Agent Consistency}, \emph{Literature Consistency}, and \emph{Literature-Agent Consistency} baselines, researchers can map whether a particular scientific result is stable across contexts or context-sensitive and model-specific. In addition, random shuffling of model-produced values defines a statistical reference distribution under random scores. Finally, multiple model scores allow uncertainty over models to be estimated; here we used the standard error of the mean (Figure 7). The council framework therefore treats language-model outputs as structured, auditable scientific evaluations when context and instructions are constrained.
 
 \noindent\textbf{Importance of an explicit glossary and ontology.}
 
@@ -342,7 +343,7 @@ The following 10 models comprised the council of LLMs that were used for evaluat
 
 The pipeline contained a validation tool designed to audit syntactic integrity, verify top-level key presence, and ensure that factor nomenclature matches the canonical glossary. Any output that did not meet these constraints was flagged for exclusion or revision, preventing misaligned data (e.g., incorrect factor assignment) from entering the downstream hypothesis-space visualizations.
 
-The LLMs in the pipeline were configured during model initialization via mlx-lm package utilizing the same sampling and memory optimization parameters for all models. Inference parameters were set to a sampling temperature\cite{ref84} of $\tau = 0.70$ with top-p/min-p of $p = 0.9$ and $\alpha = 0.1$, respectively. To manage computational overhead during long-context execution, the sequence length for each model was strictly bounded by a context window of $L = 2^{17}$ (131,072 tokens), with past attention states preserved in a KV-cache using MXFP8\cite{ref85} precision to optimize memory footprint and maximize throughput.
+The LLMs in the pipeline were configured during model initialization via mlx-lm package utilizing the same sampling and memory optimization parameters for all models. Inference parameters were set to a sampling temperature of $\tau = 0.70$ with top-p/min-p of $p = 0.9$ and $\alpha = 0.1$ \cite{ref84} , respectively. To manage computational overhead during long-context execution, the sequence length for each model was strictly bounded by a context window of $L = 2^{17}$ (131,072 tokens), with past attention states preserved in a KV-cache using MXFP8\cite{ref85} precision to optimize memory footprint and maximize throughput.
 
 \subsection{Construction of the Hierarchical Predictive Coding Table and Measures of Evaluation Consistency}\label{construction-of-the-hierarchical-predictive-coding-table-and-measures-of-evaluation-consistency}
 
@@ -491,6 +492,9 @@ Analysis and pipeline code are available at \url{https://github.com/HNXJ/mllm-pu
 \section*{Author contributions}\label{author-contributions}
 H.N. designed the pipeline, implemented the analyses, curated the ontology, and drafted the manuscript. A.M., J.S.-S., and A.M.B. contributed to conceptual framing, interpretation, supervision, and manuscript revision. All authors reviewed the manuscript.
 
+\section*{Funding declaration}\label{}
+This research was supported by funding awarded to André M. Bastos from the National Institute of Mental Health R00MH116100 and from the National Science Foundation Career grant 2449277.
+
 \section*{Competing interests}\label{competing-interests}
 The authors declare no competing interests.
 
@@ -499,241 +503,5 @@ This study analyzed published literature and model-generated outputs only. No ne
 
 \section*{Additional information}\label{additional-information}
 Large language models were used as scoring agents within the described local evaluation pipeline. They were not assigned authorship. The authors are responsible for the design, analysis, interpretation, and submitted text.
-
-\clearpage
-\appendix
-\section*{Supplementary Information}
-\addcontentsline{toc}{section}{Supplementary Information}
-
-\section*{Supplementary Fig. S1}
-\textbf{Supplementary Fig. S1:} The evaluation pipeline flows from left to right in two independent streams (A to B to C and 1 to 2 to 3). The A to B to C pathway establishes the instructions, canonical glossary, and prompt for the models. The 1 to 2 to 3 pathway ingests the paper and combines figures with text to provide a single text object for the models. Steps 5 and 6 loop between models and papers until all evaluations are completed. The final step 7 quantifies and visualizes the evaluations.
-
-\begin{center}
-\includegraphics[width=0.86\linewidth,keepaspectratio]{figures/figure2.png}
-\end{center}
-
-
-\section*{Supplementary Tables}
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.12}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.25}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.49}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.14}}
-@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Factor Number
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Factor Name
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Definition
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Context Scope
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-1 & Subtractive Inhibition (SST) & Linear input suppression via somatic inhibition (Somatostatin-mediated). & LO+GO \\
-2 & Divisive Inhibition (PV) & Multiplicative gain reduction (Parvalbumin-mediated). & LO+GO \\
-3 & Inhibition (GABA) & Chloride-mediated inhibition for prediction suppression. & LO+GO \\
-4 & Habituation to Sequence & Habituation suppresses local oddball response relative to a novel local oddball. & LO \\
-5 & Synaptic Depression (Adaptation) & Passive fatigue of synaptic efficacy due to repetition of stimulus. & LO \\
-6 & Activity Suppression & Reduction in firing rates for expected (predictable) stimuli. & LO+GO \\
-7 & Selective Sharpening & Signal-to-noise increase for predictable stimuli, where noise is selectively suppressed to highlight relevant information. & LO+GO \\
-8 & Alpha/Beta Mediated Suppression & Low-frequency bands (8-30Hz) associated with predictions, inhibiting prediction error signals. & LO+GO \\
-9 & VIP-Mediated Disinhibition & VIP-mediated inhibition of SST/PV neurons, leading to disinhibited pyramidal activity during prediction error. & LO+GO \\
-10 & Precision Weighting (Gain) & Top-down amplification of error units, leading to disinhibited gain in response to attended or highly precise stimuli. & LO+GO \\
-11 & E/I Balance Shift & Dynamic adjustment toward higher inhibition for predictable stimuli, leading to suppressed neural firing. & LO+GO \\
-12 & Omission Response & A generated internal signal due to absence of expected input & LO+GO \\
-\end{longtable}
-
-\textbf{Supplementary Table S1:} The factors of Hypothesis 1 (Predictive Suppression). LO = local oddball. GO = global oddball.
-
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.12}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.25}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.49}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.14}}
-@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Factor Number
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Factor Name
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Definition
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Context Scope
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-13 & Feedforward Deviance Detection & Detection of mismatch signals that explicitly propagate in the feedforward (ascending) direction to higher cortical areas. & LO+GO \\
-14 & Feedforward AMPA & Fast excitatory drive mediated by AMPA receptors, specifically conveying prediction-error signals in the feedforward direction. & LO+GO \\
-15 & Feedforward NMDA & Voltage-dependent amplification (bursting) of error signals, facilitating their robust feedforward propagation through the hierarchy. & LO+GO \\
-16 & Feedforward Ascending Gamma & Rhythmic synchronization (30-90Hz) that temporally packages prediction-error signals for efficient feedforward transmission. & LO+GO \\
-17 & Absence of Feedback Error & The functional requirement that the prediction-error signal be feedforward-directed, distinguishing it from local or feedback signals. & LO+GO \\
-18 & Feedforward Non-local Supragranular Activity (L2/3) & Error-signaling neurons in Layers 2/3 projecting into the next area, demonstrating feedforward signal propagation. & LO+GO \\
-19 & Feedforward Non-local Granular Activity (L4) & The arrival of prediction error signals in Layer 4, non-local representing the canonical entry point for feedforward propagation into the cortical column. & LO+GO \\
-20 & Feedforward Non-local Directed Connectivity & Directional measures (Granger Causality/Transfer Entropy) confirming the directed feedforward propagation of prediction error from lower to higher areas. & LO+GO \\
-21 & Feedforward Non-local Activation & Functional activation patterns specifically tracing the feedforward propagation path through the hierarchy. & LO+GO \\
-22 & Ascending Latency Shift & Systematic increases in response latency that characterize the feedforward propagation of prediction error through successive levels of the hierarchy. & LO+GO \\
-23 & Feedforward Error Propagation & Explicit experimental evidence that the prediction error signal is transmitted primarily via feedforward propagation pathways. & LO+GO \\
-24 & Subcortical Feedforward Relaying & Relaying or generation of prediction error signals by subcortical structures (Thalamus/BG), initiating or sustaining their feedforward propagation to the cortex. & LO+GO \\
-\end{longtable}
-
-\textbf{Supplementary Table S2:} The factors of Hypothesis 2 (Feedforward Error Propagation)
-
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.12}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.25}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.49}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.14}}
-@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Factor Number
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Factor Name
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Definition
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Context Scope
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-25 & Canonical Microcircuit Ubiquity & The ubiquitous presence of the L2/3 Error and L5/6 Prediction motif repeating across most or all levels of the cortical hierarchy. & LO+GO \\
-26 & Hierarchical Mechanism Invariance & The ubiquitous nature of the predictive coding mechanism, functioning similarly in the hierarchy from V1 to PFC. & LO+GO \\
-27 & Hierarchical Activity Ubiquity & The ubiquitous presence of prediction-error activity, detectable across all or most levels of the system's brain hierarchy. & LO+GO \\
-28 & Hierarchical CSD Ubiquity & The ubiquity of current source density profiles, which show consistent laminar patterns across most or all hierarchical levels. & LO+GO \\
-29 & Cross-Scale Hierarchical Ubiquity & The ubiquity of effects observable across scales (single units to LFP) throughout most levels of the cortical hierarchy. & LO+GO \\
-30 & Hierarchical Presence (V1-PFC) & The ubiquity of the mechanism across all levels of the hierarchy, such as low-level (V1), mid-level (V4), and high-level (PFC) areas. & LO+GO \\
-31 & Cross-Modal Ubiquity & Presence of the mechanism across multiple sensory modalities (visual, auditory, somatosensory) throughout the hierarchy. & LO+GO \\
-32 & Interspecies Hierarchical Ubiquity & Conservation of the hierarchical predictive coding mechanism across different species (e.g., mouse vs.~primate). & LO+GO \\
-33 & Temporal Stability of Ubiquity & The consistent and non-transient presence of these mechanisms across the hierarchy over long recording sessions. & LO+GO \\
-34 & Hierarchical Order Stability & Evidence that the predictive mechanism is ubiquitous and not localized to a single hierarchical pole. & LO+GO \\
-35 & Population-Wide Ubiquity & Consistency of the mechanism across diverse neural populations and cell types throughout the hierarchy. & LO+GO \\
-36 & State-Independent Ubiquity & Presence of the mechanism across different brain states (e.g., wakefulness, sleep, anesthesia) throughout the hierarchy. & LO+GO \\
-\end{longtable}
-
-\textbf{Supplementary Table S3:} The factors of Hypothesis 3 (Ubiquity)
-
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.20}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.43}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.37}}
-@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Term/Context
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Description
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Definition (notation)
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Oddball & A surprising event, often a mismatch & S = \{B\} given E{[}S{]} = \{A\} \\
-Local Oddball (LO) & An oddball that is immediate or short-term, often confounded by low-level adaptation mechanisms. & S = \{AB\} given E{[}S{]} = \{AA\} \\
-Global Oddball (GO) & An oddball that is not LO, often contextual, that is not caused by adaptation mechanisms. & S = \{AA\} given E{[}S{]} = \{AB\} \\
-\end{longtable}
-
-\textbf{Supplementary Table S4:} Contexts ; S=\{.\} represents the sensory input, E{[}S{]} represents the expected sensory input. When S=\{A\} and E{[}S{]} = \{A\} ; the prediction error is zero (match). When S=\{B\} and E{[}S{]} = \{A\} ; the prediction error is non-zero (mismatch). LO and GO differ by the temporal scale of expectation.
-
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.06}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.23}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.71}}
-@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-\#
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Study
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Short Description
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-1 & Attinger et al., 2017\cite{ref60} & Integrating non-visual (motor) inputs into V1 to generate mismatch signals during locomotion. \\
-2 & Bakhtiari et al., 2021\cite{ref61} & Alignment between deep neural networks and biological vision across different predictive goals. \\
-3 & Bastos et al., 2012\cite{ref14} & Canonical microcircuits for predictive coding; proposing distinct roles for superficial and deep layers. \\
-4 & Bastos et al., 2020\cite{ref24} & Laminar and directional flow of prediction/error signals in primate visual and prefrontal areas. \\
-5 & Bekinschtein et al., 2009\cite{ref62} & Neural markers of conscious perception using hierarchical auditory oddball tasks (fMRI/EEG). \\
-6 & Chao et al., 2018\cite{ref26} & Global distribution of prediction errors across the primate brain using large-scale ECoG mapping. \\
-7 & Friston et al., 2010\cite{ref10} & The Free Energy Principle: a unified framework for brain function and biological self-organization. \\
-8 & Furutachi et al., 2024\cite{ref63} & Cooperative thalamocortical circuit mechanism for sensory prediction errors. \\
-9 & Garrett et al., 2020\cite{ref64} & Emergence of prediction errors in the mouse visual cortex for surprises in sequence patterns. \\
-10 & Greedy et al., 2022\cite{ref65} & Uses a new model, Bursting Cortico-Cortical Networks to approximate error backpropagation in a biological network of neurons. \\
-11 & Hertag et al., 2020\cite{ref66} & Role of inhibitory interneuron types (PV and SST) in shaping cortical prediction errors. \\
-12 & Jiang et al., 2024\cite{ref67} & Integrating hierarchical predictive coding for sequence learning. \\
-13 & Keller et al., 2012\cite{ref68} & Sensorimotor prediction errors in V1; neurons responding to mismatches between movement and visual flow. \\
-14 & Keller et al., 2018\cite{ref23} & Review of evidence of predictive processing and its implementation in mammalian cortical circuits. \\
-15 & Kiebel et al., 2008\cite{ref69} & Hierarchical temporal dynamics; suggesting slower dynamics represent higher-level predictions. \\
-16 & Lao et al., 2023\cite{ref70} & Provides evidence that top-down feedback is necessary for generating prediction error signals from omitted-tones. \\
-17 & Lee et al., 2025\cite{ref71} & Computational modeling of PV/SST/VIP inhibitory interneurons and their dynamics during predictive processing \\
-18 & Mikulasch et al., 2023\cite{ref72} & How predictive coding might utilize dendritic error computations \\
-19 & Nejad et al., 2025\cite{ref73} & A self-supervised computational learning theory that aligns with the layer-specific neuronal observations in primary visual cortex \\
-20 & Payeur et al., 2021\cite{ref74} & Burst-based firing enables the multiplexing of feedforward and feedback signals for predictive coding. \\
-21 & Rao et al., 2024\cite{ref75} & Generalized predictive coding and sensorimotor theory of neocortex \\
-22 & Rao\&Ballard, 1999\cite{ref59} & Seminal model of hierarchical predictive coding explaining extra-classical receptive field effects in V1. \\
-23 & Sacramento et al., 2018\cite{ref76} & Dendritic model explaining how neurons learn top-down predictions via local error signals. \\
-24 & Spratling et al., 2008\cite{ref77} & PC-BC model: implementing predictive coding within a biased competition framework for object recognition. \\
-25 & Spratling et al., 2010\cite{ref78} & Predictive coding as a model of response properties in cortical area V1 \\
-26 & Srinivasan et al., 1982\cite{ref7} & Predictive coding in the retina; earliest formalization of removing redundancy from natural images. \\
-27 & VanDerveer et al., 2021\cite{ref79} & Somatostatin-Positive interneurons in neuro-oscillatory deficits \\
-28 & Wacongne et al., 2012\cite{ref80} & Spiking neural network reproducing the auditory mismatch negativity (MMN) through predictive mechanisms. \\
-29 & Wacongne et al., 2011\cite{ref52} & MEG study showing the human brain detects violations of abstract hierarchical rules in sound sequences. \\
-30 & Westerberg et al., 2025\cite{ref34} & A recent study using Multi-Area, High-Density, Laminar Neurophysiology (MaDeLaNe) recordings in mice and monkeys to investigate global-local oddballs \\
-31 & Yamins et al., 2014\cite{ref81} & Using goal-driven deep hierarchies (HCNNs) to predict neural responses across the visual cortex. \\
-\end{longtable}
-
-\textbf{Supplementary Table S5:} A total of 31 papers were considered in the current work. 25 papers were chosen as representative of the predictive coding literature, based on Westerberg et al.\cite{ref34} and span contributions ranging across theoretical, empirical, and computational sub-fields of predictive coding (PC). Additional papers (Bakhtiari et al., 2021; Greedy et al., 2022; Payeur et al., 2021; Sacramento et al., 2018; Yamins et al., 2014 ) were included as they represent an adjacent field of computational neuroscience where alternative mechanisms for prediction error propagation have been proposed. An additional paper, Garrett et al., 2020, was also included to consider predictive coding mechanisms related to omissions, as these responses may be partially overlapping or distinct from classical PC mechanisms.
-
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.38}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.10}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.52}}
-@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Model Name (handle-mlx)
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Size
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Release Date and info
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-gemma-3-27b-it & 27B & Google DeepMind, 2025-03 \\
-gemma-4-31b-it & 31B & Google DeepMind, 2026-04 \\
-deepseek-r1-distill-llama-70b & 70B & DeepSeek-AI / Meta AI (Llama Base), 2025-01 \\
-gpt-oss-claude-4.5-sonnet & 20B & Community Distillation (Teacher: Claude 4.5), 2026-03 \\
-mistral-nemo-12b-thinking & 12B & Mistral AI \& NVIDIA, 2024-07 \\
-olmo-3-32b-think & 32B & Allen AI (Ai2), 2025-12 \\
-phi-4-reasoning-plus & 14B & Microsoft, 2025-03 \\
-qwen3-14b-gemini-3-pro & 14B & Qwen (Community Fine-tune), 2025-12 \\
-qwen3-14b-claude-4.5-sonnet & 14B & Qwen (Community Fine-tune), 2025-12 \\
-qwen3.5-40b-claude-4.5-opus & 40B & Qwen (Community Fine-tune), 2026-01 \\
-\end{longtable}
-
-
-\textbf{Supplementary Table S6:} Open-weight LLMs used in this work. All models were running with MLX-LM (the python package for running LLMs locally on Apple's silicon hardware, M-series).
 
 \end{document}

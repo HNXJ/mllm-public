@@ -37,7 +37,7 @@ Below, we address the reviewer's concerns point by point.
 
 \authorsresponse We agree that automated LLM evaluation requires rigorous verification against source literature and expert human judgment:
 \begin{enumerate}[leftmargin=*,noitemsep]
-\item \textbf{Passage-Level Grounding}: We conducted a 27-cell passage-support adjudication across representative scoring instances, verifying scored claims against verbatim text from the canonical PDFs to confirm that anti-guess rules prevent speculative inferences (Supplementary Table S7).
+\item \textbf{Passage-Level Grounding}: We conducted a 27-cell passage-support adjudication across prespecified diagnostic disagreement and failure-mode cells, verifying scored claims against verbatim text from the canonical PDFs to confirm that anti-guess rules prevent speculative inferences (Supplementary Table S7).
 \item \textbf{Human--Council Concordance}: Across 175 non-null paired factor cells nested in 25 papers, human expert consensus and autonomous LLM council consensus achieved $93.14\%$ all-cell sign agreement ($163/175$) and $97.02\%$ strictly non-zero directional concordance ($163/168$; $\text{MAE} = 0.301, r = 0.162, \rho = 0.241$; Supplementary Table S7 and Fig.~S2). At the study-level aggregate ($N=31$), human-to-council correlation was $r = 0.390$ ($\rho = 0.360$), matching inter-human rater agreement ($H_1$ vs $H_2$: $r = 0.390, \text{MAE} = 0.308, 88.96\%$ all-cell sign agreement).
 \end{enumerate}
 
@@ -74,7 +74,7 @@ Below, we address the reviewer's concerns point by point.
 
 \authorsresponse To evaluate whether findings depend on multimodal figure captions extracted via DeepRead:
 \begin{itemize}[leftmargin=*,noitemsep]
-\item We performed a 10-figure manual expert validation against primary source PDFs, confirming 10/10 concordance on effect directions and glossary mappings.
+\item We performed a 10-figure manual expert validation against primary source PDFs, achieving a 10/10 overall PASS (directional concordance: 10/10; ontology mapping: 9 correct, 1 partial; numerical extraction: 9 correct, 1 minor error; Supplementary Table S7).
 \item In a full 31-paper figure-text ablation sweep (533 paired factor cells), removing figure-derived text blocks preserved the direction of the corpus-level $\text{LO}-\text{GO}$ contrast ($\Delta_{\text{Full}} = +0.0408$ vs $\Delta_{\text{NoFig}} = +0.0565$) while producing measurable paper-level score adjustments ($r = 0.8539, \text{MAE} = 0.2253, 99.42\%$ directional concordance on non-zero cells [518/521]; Supplementary Table S10 and Fig.~S5), with Westerberg \& Xiong (2025) remaining a focal divergent outlier in both conditions (Rank 28/31 Full vs Rank 29/31 NoFig).
 \end{itemize}
 
