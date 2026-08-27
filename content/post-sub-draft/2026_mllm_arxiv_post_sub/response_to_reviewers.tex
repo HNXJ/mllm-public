@@ -1,0 +1,85 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\newcommand{\reviewercomment}[1]{\vspace{1em}\noindent\textbf{\color{blue!80!black}#1}\vspace{0.4em}}
+\newcommand{\authorsresponse}{\noindent\textbf{\color{black}Author Response:}\ }
+
+\title{\textbf{Point-by-Point Response to Reviewers}\\
+\large Scientific Reports Manuscript Revision: \emph{Ontology-constrained multi-LLM scoring of hypothesis support in the predictive processing literature}}
+\author{Hamed Nejat, Alexander Maier, Jesse Spencer-Smith, and Andr\'e M. Bastos}
+\date{May 2026}
+
+\begin{document}
+\maketitle
+
+We express our sincere gratitude to the Editor and Reviewer \#1 for their constructive, rigorous, and insightful evaluation of our manuscript. In response, we have conducted targeted sensitivity analyses, empirical ablations, and statistical clarifications. All reported values correspond strictly to immutable, audited experimental tables.
+
+Below, we address the reviewer's concerns point by point.
+
+\vspace{1.5em}
+\hrule
+\vspace{1.5em}
+
+\section*{Response to Reviewer \#1}
+
+\reviewercomment{Major Concern 1: Verification of model reasoning and human expert concordance.}
+
+\authorsresponse We agree that automated LLM evaluation requires rigorous verification against source literature and expert human judgment:
+\begin{enumerate}[leftmargin=*,noitemsep]
+\item \textbf{Passage-Level Grounding}: We conducted a 27-cell passage-support adjudication across representative scoring instances, verifying scored claims against verbatim text from the canonical PDFs to confirm that anti-guess rules prevent speculative inferences (Supplementary Table S7).
+\item \textbf{Human--Council Concordance}: Across 175 non-null paired factor cells nested in 25 papers, human expert consensus and autonomous LLM council consensus achieved $93.14\%$ all-cell sign agreement ($163/175$) and $97.02\%$ strictly non-zero directional concordance ($163/168$; $\text{MAE} = 0.301, r = 0.162, \rho = 0.241$; Supplementary Table S7 and Fig.~S2). At the study-level aggregate ($N=31$), human-to-council correlation was $r = 0.390$ ($\rho = 0.360$), matching inter-human rater agreement ($H_1$ vs $H_2$: $r = 0.390, \text{MAE} = 0.308, 88.96\%$ all-cell sign agreement).
+\end{enumerate}
+
+\reviewercomment{Major Concern 2: Sensitivity to stochastic decoding temperature, repeated sampling, and model architecture variability.}
+
+\authorsresponse We conducted a $31\text{ papers} \times 3\text{ models} \times 3\text{ temperatures } (T \in \{0.00, 0.35, 0.70\}) \times 3\text{ repeats}$ factorial robustness experiment (837 inference calls; Supplementary Table S8 and Fig.~S3):
+\begin{enumerate}[leftmargin=*,noitemsep]
+\item \textbf{Temperature Stability}: In our primary evaluation model (\texttt{gemma-4-31b-it}, 279/279 complete evaluations), repeat-averaged scores across temperatures were highly stable ($r = 0.9900, \text{MAE} = 0.0266$ for $T=0.00$ vs $T=0.35$; $r = 0.9760, \text{MAE} = 0.0421$ for $T=0.00$ vs $T=0.70$).
+\item \textbf{Replicate Reliability}: Replicate agreement within temperature remained high across independent runs ($\bar{r}_{\text{rep}} = 0.9905$ at $T=0.00$, $\bar{r}_{\text{rep}} = 0.9724$ at $T=0.35$, $\bar{r}_{\text{rep}} = 0.9444$ at $T=0.70$).
+\item \textbf{Council Robustness}: Leave-one-model-out jackknife analysis on the original 10-model council confirmed that the overall scientific displacement direction remains negative across all single-model exclusions ($\Delta_{\text{Total}} \in [-0.1046, -0.0928]$, with H2 displacement consistently between $-0.2078$ and $-0.2283$).
+\end{enumerate}
+
+\reviewercomment{Major Concern 3: Corpus composition, subgroup heterogeneity, and evidence grounding controls.}
+
+\authorsresponse We performed a comprehensive subgroup sensitivity analysis across Study Type, Modality, Era, and Publication Status (Supplementary Table S11), alongside controlled evidence ablations (Supplementary Table S9):
+\begin{itemize}[leftmargin=*,noitemsep]
+\item \textbf{Subgroup Heterogeneity}: Rather than uniform invariance, the local-to-global displacement is heterogeneous across corpus strata: Human In Vivo studies ($N=7$) showed a negative displacement ($\Delta_{\text{LO-GO}} = -0.059$), whereas Animal In Vivo electrophysiology ($N=5$) exhibited a positive displacement ($\Delta_{\text{LO-GO}} = +0.087$). Studies from 1982--2014 ($N=12$) and 2015--2020 ($N=7$) exhibited negative displacements ($-0.024$ and $-0.041$), whereas recent studies (2021--2025, $N=12$) exhibited positive displacement ($+0.038$). All 31/31 papers are peer-reviewed publications.
+\item \textbf{Evidence Grounding Control}: Across 54 inference calls, when evidence text was shuffled (Negative Control $H_0$), context displacement collapsed to $\Delta_{\text{LO-GO}} = -0.004$ (compared to $+0.038$ for intact text), and under prior-only prompts without text, displacement collapsed to $\Delta_{\text{LO-GO}} = +0.000$ (Supplementary Table S9 and Fig.~S4), demonstrating that scoring is sensitive to the supplied empirical text.
+\end{itemize}
+
+\reviewercomment{Major Concern 4: Statistical reporting, clustering, and outlier sensitivity.}
+
+\authorsresponse We audited all manuscript statistical assertions against paper-clustered inferential standards:
+\begin{itemize}[leftmargin=*,noitemsep]
+\item We evaluated context shifts using paper-level paired tests ($N=28$ paired empirical papers, $t(27) = -0.361, p = 0.7208$, Wilcoxon $W = 24.0, p = 0.0736$). The lack of aggregate raw significance across the full corpus is driven by the large negative divergence of Westerberg \& Xiong (2025); excluding this single outlier yields a positive context displacement ($\Delta = +0.0297, t(26) = +2.302, p = 0.0296$, Wilcoxon $W = 10.0, p = 0.0131$; Supplementary Table S7).
+\item We distinguish descriptive factor-cell reliabilities from independent paper-level inferences to prevent pseudo-replication.
+\end{itemize}
+
+\reviewercomment{Minor Concern 1: Westerberg citation and year normalization.}
+
+\authorsresponse We normalized all bibliographic citations and in-text references to Westerberg \& Xiong (2025) consistently throughout the manuscript and Supplementary Information.
+
+\reviewercomment{Minor Concern 2: Figure description accuracy and figure-text-removal sensitivity.}
+
+\authorsresponse To evaluate whether findings depend on multimodal figure captions extracted via DeepRead:
+\begin{itemize}[leftmargin=*,noitemsep]
+\item We performed a 10-figure manual expert validation against primary source PDFs, confirming 10/10 concordance on effect directions and glossary mappings.
+\item In a full 31-paper figure-text ablation sweep (533 paired factor cells), removing figure-derived text blocks preserved the direction of the corpus-level $\text{LO}-\text{GO}$ contrast ($\Delta_{\text{Full}} = +0.0408$ vs $\Delta_{\text{NoFig}} = +0.0565$) while producing measurable paper-level score adjustments ($r = 0.8539, \text{MAE} = 0.2253, 99.42\%$ directional concordance on non-zero cells [518/521]; Supplementary Table S10 and Fig.~S5), with Westerberg \& Xiong (2025) remaining a focal divergent outlier in both conditions (Rank 28/31 Full vs Rank 29/31 NoFig).
+\end{itemize}
+
+\reviewercomment{Minor Concern 3: Specification of decoding parameters and sampling reproducibility.}
+
+\authorsresponse We explicitly documented all decoding parameters across inference conditions (Supplementary Table S6 and Methods Section 4.3). Specifically, we verified that varying sampling temperatures across $T \in \{0.00, 0.35, 0.70\}$ and running independent stochastic repeats yields stable factor scores in the primary evaluation model ($r \ge 0.9760, \text{MAE} \le 0.0421$; Supplementary Table S8 and Fig.~S3).
+
+\end{document}
