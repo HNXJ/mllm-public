@@ -1,0 +1,79 @@
+{
+  "condition_id": "Nejad2025__phi-4-reasoning-plus__T070__R02",
+  "paper_id": "Nejad2025",
+  "input_filename": "Nejad2025-vllm-deepread_compressed.md",
+  "input_sha256": "90bfc44b1db4e27132ef08ecda1e44e04a137d9793667b2e77782a71c248ec54",
+  "scientific_model": "phi-4-reasoning-plus",
+  "served_model_id": "phi-4-reasoning-plus",
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "min_p": 0.1,
+  "repeat": 2,
+  "concurrency": 1,
+  "prompt_sha256": "d3e6dac0fe74d2ef01b75b1cb4f95c5f12523d30b8b58fa8cee58ca962e6bdf4",
+  "glossary_sha256": "93d528a84ae2c392864c06aeea8d7a1dca9676a42ca96ac89264beab3017a827",
+  "instruction_sha256": "4bdf4a721bb33597c44d96480fc768984d6aa763300e909ab520a13967b48178",
+  "git_commit": "02912c2c0d6244f09312d1a26068fc0e648240c1",
+  "started_at": "2026-08-16T17:41:51Z",
+  "finished_at": "2026-08-16T17:42:16Z",
+  "latency_s": 24.421,
+  "prompt_tokens": 24644,
+  "completion_tokens": 557,
+  "tokens_per_second": 22.81,
+  "http_status": 200,
+  "attempts": 1,
+  "token_usage": {
+    "prompt_tokens": 24644,
+    "completion_tokens": 557,
+    "total_tokens": 25201,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  },
+  "raw_assistant_response": "{\n  \"lo_evaluations\": {\n    \"Subtractive Inhibition (SST)\": +0.8,\n    \"Divisive Inhibition (PV)\": +0.6,\n    \"Inhibition (GABA)\": +0.7,\n    \"Habituation to Sequence\": -0.2,\n    \"Synaptic Depression (Adaptation)\": -0.3,\n    \"Activity Suppression\": +0.8,\n    \"Selective Sharpening\": +0.5,\n    \"Alpha/Beta Mediated Suppression\": +0.6,\n    \"VIP-Mediated Disinhibition\": +0.4,\n    \"Precision Weighting (Gain)\": +0.7,\n    \"E/I Balance Shift\": +0.8,\n    \"Omission Response\": -0.5\n  },\n  \"go_evaluations\": {\n    \"Subtractive Inhibition (SST)\": +0.8,\n    \"Divisive Inhibition (PV)\": +0.6,\n    \"Inhibition (GABA)\": +0.7,\n    \"Habituation to Sequence\": -0.2,\n    \"Synaptic Depression (Adaptation)\": -0.3,\n    \"Activity Suppression\": +0.8,\n    \"Selective Sharpening\": +0.5,\n    \"Alpha/Beta Mediated Suppression\": +0.6,\n    \"VIP-Mediated Disinhibition\": +0.4,\n    \"Precision Weighting (Gain)\": +0.7,\n    \"E/I Balance Shift\": +0.8,\n    \"Omission Response\": -0.5\n  },\n  \"first_author\": \"Kevin Kermani Nejad\",\n  \"publication_year\": \"2025\",\n  \"study_type\": \"Empirical\",\n  \"agent_name\": \"HPC-Evaluator\",\n  \"reasoning_log_text\": \"Scores based on quantitative evidence from the study regarding local oddball (LO) and global oddball (GO). For predictive suppression factors, strong evidence was found for Subtractive Inhibition, Divisive Inhibition, GABA-mediated inhibition, Activity Suppression, Selective Sharpening, Alpha/Beta Mediation, Precision Weighting, E/I Balance Shift with scores around +0.6 to +0.8; weak support or slight evidence for Synaptic Depression and Omission Response led to negative scores (-0.3 and -0.5); Habituation received a small negative score (-0.2) due to contradictory evidence. VIP-Mediated Disinhibition was rated moderately (+0.4) based on qualitative description. The same mapping applied identically for LO+GO contexts as per glossary.\"\n}",
+  "raw_reasoning_content": "",
+  "raw_http_payload": {
+    "id": "chatcmpl-4fnwtwj3h9fxkxmwnjyrc",
+    "object": "chat.completion",
+    "created": 1786902112,
+    "model": "phi-4-reasoning-plus",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"lo_evaluations\": {\n    \"Subtractive Inhibition (SST)\": +0.8,\n    \"Divisive Inhibition (PV)\": +0.6,\n    \"Inhibition (GABA)\": +0.7,\n    \"Habituation to Sequence\": -0.2,\n    \"Synaptic Depression (Adaptation)\": -0.3,\n    \"Activity Suppression\": +0.8,\n    \"Selective Sharpening\": +0.5,\n    \"Alpha/Beta Mediated Suppression\": +0.6,\n    \"VIP-Mediated Disinhibition\": +0.4,\n    \"Precision Weighting (Gain)\": +0.7,\n    \"E/I Balance Shift\": +0.8,\n    \"Omission Response\": -0.5\n  },\n  \"go_evaluations\": {\n    \"Subtractive Inhibition (SST)\": +0.8,\n    \"Divisive Inhibition (PV)\": +0.6,\n    \"Inhibition (GABA)\": +0.7,\n    \"Habituation to Sequence\": -0.2,\n    \"Synaptic Depression (Adaptation)\": -0.3,\n    \"Activity Suppression\": +0.8,\n    \"Selective Sharpening\": +0.5,\n    \"Alpha/Beta Mediated Suppression\": +0.6,\n    \"VIP-Mediated Disinhibition\": +0.4,\n    \"Precision Weighting (Gain)\": +0.7,\n    \"E/I Balance Shift\": +0.8,\n    \"Omission Response\": -0.5\n  },\n  \"first_author\": \"Kevin Kermani Nejad\",\n  \"publication_year\": \"2025\",\n  \"study_type\": \"Empirical\",\n  \"agent_name\": \"HPC-Evaluator\",\n  \"reasoning_log_text\": \"Scores based on quantitative evidence from the study regarding local oddball (LO) and global oddball (GO). For predictive suppression factors, strong evidence was found for Subtractive Inhibition, Divisive Inhibition, GABA-mediated inhibition, Activity Suppression, Selective Sharpening, Alpha/Beta Mediation, Precision Weighting, E/I Balance Shift with scores around +0.6 to +0.8; weak support or slight evidence for Synaptic Depression and Omission Response led to negative scores (-0.3 and -0.5); Habituation received a small negative score (-0.2) due to contradictory evidence. VIP-Mediated Disinhibition was rated moderately (+0.4) based on qualitative description. The same mapping applied identically for LO+GO contexts as per glossary.\"\n}",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 24644,
+      "completion_tokens": 557,
+      "total_tokens": 25201,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "phi-4-reasoning-plus"
+  },
+  "parse_status": "unrecoverable",
+  "parser_method": "failed",
+  "parser_version": "v2.0_offline",
+  "parsed_response": null,
+  "parse_errors": [
+    "Failed all rescue parser stages"
+  ],
+  "recovery_notes": "No valid JSON structure recovered",
+  "validation_status": "UNRECOVERABLE",
+  "validation_errors": [
+    "Failed all rescue parser stages"
+  ],
+  "lo_evaluations": null,
+  "go_evaluations": null,
+  "reasoning_log_text": ""
+}

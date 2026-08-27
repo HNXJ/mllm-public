@@ -7,8 +7,8 @@ Sampler: T=0.35, top_p=0.90, min_p=0.10
 Endpoint: http://localhost:1234/v1
 
 Outputs:
-- content/tables/evidence_prior_calls_ledger_54.csv (Call-level runtime provenance)
-- content/tables/evidence_prior_scores_54.csv (Parsed factor scores)
+- artifacts/csvs/source_tables/evidence_prior_calls_ledger_54.csv (Call-level runtime provenance)
+- artifacts/csvs/source_tables/evidence_prior_scores_54.csv (Parsed factor scores)
 - content/raw_responses/evidence_prior_202608/{call_id}.json (Raw JSON completions)
 """
 

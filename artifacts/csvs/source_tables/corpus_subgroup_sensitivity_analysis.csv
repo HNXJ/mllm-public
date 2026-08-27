@@ -1,0 +1,11 @@
+taxonomic_dimension,stratum,n_papers,council_lo_mean,council_go_mean,council_delta_lo_go,council_displacement_direction,n_paired_human_cells,human_council_pearson_r,human_council_spearman_rho,human_council_mae,human_council_mean_signed_difference,human_council_mean_squared_deviation,directional_concordance_pct
+Study Type,Empirical,13,0.419,0.428,-0.009,GO > LO (-),51,0.398,0.413,0.214,-0.045,0.084,94.1
+Study Type,Computational / Theory / Review,18,0.351,0.365,-0.013,GO > LO (-),124,0.085,0.192,0.336,-0.212,0.168,92.7
+Modality / Substrate,In Silico,19,0.363,0.376,-0.013,GO > LO (-),124,0.085,0.192,0.336,-0.212,0.168,92.7
+Modality / Substrate,Human In Vivo,7,0.357,0.416,-0.059,GO > LO (-),25,0.51,0.594,0.228,0.004,0.095,92.0
+Modality / Substrate,Animal In Vivo,5,0.511,0.424,0.087,LO > GO (+),26,0.048,0.121,0.2,-0.092,0.073,96.2
+Publication Era,1982–2014 (Foundational Era),12,0.368,0.393,-0.024,GO > LO (-),74,0.085,0.147,0.309,-0.209,0.146,94.6
+Publication Era,2015–2020 (Microcircuit Expansion),7,0.447,0.488,-0.041,GO > LO (-),48,0.035,0.215,0.335,-0.173,0.175,93.8
+Publication Era,2021–2025 (Modern Multi-Area / Deep Net),12,0.347,0.309,0.038,LO > GO (+),53,0.346,0.388,0.257,-0.091,0.111,90.6
+Publication Status,Peer-Reviewed Journal Article,31,0.381,0.392,-0.01,GO > LO (-),175,0.162,0.241,0.301,-0.163,0.143,93.1
+Publication Status,Preprint / Non-Peer-Reviewed,0,NOT_ESTIMABLE (N=0),NOT_ESTIMABLE (N=0),NOT_ESTIMABLE (N=0),NOT_ESTIMABLE (N=0),0,,,,,,

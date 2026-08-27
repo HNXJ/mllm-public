@@ -1,0 +1,49 @@
+{
+  "lo_evaluations": {
+    "Subtractive Inhibition (SST)": 0.6,
+    "Divisive Inhibition (PV)": 1.0,
+    "Inhibition (GABA)": 0.2,
+    "Habituation to Sequence": null,
+    "Synaptic Depression (Adaptation)": null,
+    "Activity Suppression": 0.6,
+    "Selective Sharpening": null,
+    "Alpha/Beta Mediated Suppression": 0.6,
+    "VIP-Mediated Disinhibition": 1.0,
+    "Precision Weighting (Gain)": null,
+    "E/I Balance Shift": 0.6,
+    "Omission Response": null
+  },
+  "go_evaluations": {
+    "Feedforward Deviance Detection": 0.6,
+    "Feedforward AMPA": null,
+    "Feedforward NMDA": null,
+    "Feedforward Ascending Gamma": 0.6,
+    "Absence of Feedback Error": null,
+    "Feedforward Non-local Supragranular Activity (L2/3)": 0.6,
+    "Feedforward Non-local Granular Activity (L4)": 0.6,
+    "Feedforward Non-local Directed Connectivity": null,
+    "Feedforward Non-local Activation": 0.6,
+    "Ascending Latency Shift": null,
+    "Feedforward Error Propagation": 0.6,
+    "Subcortical Feedforward Relaying": null
+  },
+  "first_author": "Kwangjun Lee",
+  "publication_year": "2025",
+  "study_type": "Empirical",
+  "agent_name": "computational model",
+  "reasoning_log_text": "The study presents a computational model of Predictive Coding (PC) using specific interneuron types (PV, SST, VIP). H1 shows strong support for PV/VIP roles in inhibition/disinhibition (Divisive Inhibition, VIP-Mediated Disinhibition) and evidence for E/I Balance Shift (0.6). Activity Suppression is supported by the model's dynamics (0.6). H2 shows evidence for feedforward aspects, particularly in oscillatory activity and laminar roles (0.6). H3 shows evidence of hierarchical structure (implied by 2-area model) but lacks explicit data on ubiquity across modalities or species. The study strongly supports the *existence* of PC mechanisms in a plausible circuit, but does not provide direct experimental data for most factors, relying on model simulation results.",
+  "h3_evaluations": {
+    "Canonical Microcircuit Ubiquity": null,
+    "Hierarchical Mechanism Invariance": null,
+    "Hierarchical Activity Ubiquity": 0.6,
+    "Hierarchical CSD Ubiquity": null,
+    "Cross-Scale Hierarchical Ubiquity": 0.2,
+    "Hierarchical Presence (V1-PFC)": 0.6,
+    "Cross-Modal Ubiquity": null,
+    "Interspecies Hierarchical Ubiquity": null,
+    "Temporal Stability of Ubiquity": 0.2,
+    "Hierarchical Order Stability": null,
+    "Population-Wide Ubiquity": null,
+    "State-Independent Ubiquity": 0.2
+  }
+}

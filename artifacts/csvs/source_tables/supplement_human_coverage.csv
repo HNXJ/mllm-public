@@ -1,0 +1,2 @@
+evaluator_id,source_file,papers_covered,total_slots,valid_scores,missing_nulls,coverage_percentage
+hpch_01,hpch_01.csv,31,2232,930,1302,41.67

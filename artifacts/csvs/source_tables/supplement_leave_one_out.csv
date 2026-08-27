@@ -1,0 +1,10 @@
+analysis_stratum,omitted_model,remaining_council_size,mean_displacement_delta,displacement_deviation_from_baseline,row_count_N
+Full Council Baseline (All 8 Models),None,8,-0.0972,0.0,177
+Leave-One-Out (Omit deepseek-r1-distill-llama-70b),deepseek-r1-distill-llama-70b,7,-0.0932,0.0039,150
+Leave-One-Out (Omit gemma-3-27b),gemma-3-27b,7,-0.1046,-0.0074,146
+Leave-One-Out (Omit gpt-oss-claude-4.5-sonnet),gpt-oss-claude-4.5-sonnet,7,-0.0963,0.0009,166
+Leave-One-Out (Omit mistral-nemo-12b-thinking),mistral-nemo-12b-thinking,7,-0.0929,0.0043,160
+Leave-One-Out (Omit olmo-3-32b-think),olmo-3-32b-think,7,-0.1016,-0.0044,161
+Leave-One-Out (Omit phi-4-reasoning-plus),phi-4-reasoning-plus,7,-0.0928,0.0043,155
+Leave-One-Out (Omit qwen3-14b-gemini-3-pro),qwen3-14b-gemini-3-pro,7,-0.1013,-0.0041,151
+Leave-One-Out (Omit qwen3.5-40b-claude-4.5-opus),qwen3.5-40b-claude-4.5-opus,7,-0.0951,0.0021,150

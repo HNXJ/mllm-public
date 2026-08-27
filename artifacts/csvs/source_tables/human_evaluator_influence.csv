@@ -1,0 +1,7 @@
+comparison,support_type,N,pearson_r,spearman_rho,MAE,mean_signed_diff,sign_agreement_all_pct,N_strictly_nonzero,directional_concordance_nz_pct
+H1 vs Council,AVAILABLE_SUPPORT,432,0.2636,0.2413,0.312,0.0074,81.94,369,94.58
+H1 vs Council,COMMON_SUPPORT,175,0.1492,0.1899,0.3326,-0.1177,91.43,164,96.34
+H2 vs Council,AVAILABLE_SUPPORT,268,0.497,0.3603,0.3604,-0.1604,89.18,259,91.89
+H2 vs Council,COMMON_SUPPORT,175,0.1185,0.1868,0.3337,-0.2069,91.43,169,94.67
+H12 (Consensus) vs Council,AVAILABLE_SUPPORT,175,0.1616,0.2408,0.3006,-0.1634,93.14,168,97.02
+H12 (Consensus) vs Council,COMMON_SUPPORT,175,0.1616,0.2408,0.3006,-0.1634,93.14,168,97.02

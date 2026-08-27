@@ -1,0 +1,11 @@
+claim_id,category,claim_description,sample_size_N,unit,estimate,secondary_metric,p_value
+M2-01,Decoding / Repeat Robustness,Temperature Stability (T=0.00 vs T=0.35),679,Factor Cell,r=0.99,MAE=0.0266,0.0
+M2-02,Decoding / Repeat Robustness,Temperature Stability (T=0.00 vs T=0.70),679,Factor Cell,r=0.976,MAE=0.0421,0.0
+M2-03,Decoding / Repeat Robustness,Replicate Reliability (T=0.00),639,Factor Cell Triple,r=0.9905,MAE=0.0126,N/A
+M2-04,Decoding / Repeat Robustness,Replicate Reliability (T=0.35),619,Factor Cell Triple,r=0.9724,MAE=0.0384,N/A
+M2-05,Decoding / Repeat Robustness,Replicate Reliability (T=0.70),572,Factor Cell Triple,r=0.9444,MAE=0.0585,N/A
+M2-06,Decoding / Repeat Robustness,Paper-Ranking Stability (T=0.00 vs T=0.35),29,Paper,r=0.9596,,2.1372203973382603e-16
+M2-07,Decoding / Repeat Robustness,Paper-Ranking Stability (T=0.00 vs T=0.70),29,Paper,r=0.9212,,1.4055809681919686e-12
+M2-08,Council Leave-One-Out,Council Leave-One-Model-Out Sensitivity Range,177,Council Entry,"Delta in [-0.1046, -0.0928]",Baseline Delta = -0.0972,N/A
+M2-10,Corpus Context Sensitivity,Context Paired Difference (Full Corpus),28,Paired Paper,Delta = -0.0177,"t(27) = -0.361, Wilcoxon W = 24.0","t-p=0.7208, W-p=0.0736"
+M2-11,Corpus Context Sensitivity,Context Paired Difference (Excl. Westerberg),27,Paired Paper,Delta = +0.0297,"t(26) = +2.302, Wilcoxon W = 10.0","t-p=0.0296, W-p=0.0131"

@@ -1,0 +1,7 @@
+column_name,data_type,description
+modality_group,string,"Electrophysiology, 2P Imaging, Scalp EEG, or In Silico"
+figures_evaluated_N,integer,Count of representative figures audited
+axis_a_numeric_accuracy_pct,float,Mean accuracy score across Axis A extractions
+axis_b_trend_direction_pct,float,Correctness percentage of effect direction extractions
+axis_c_ontology_mapping_pct,float,Correctness percentage of HPC-36 ontology factor mapping
+adjudicated_pass_rate_pct,float,Overall valid figure extraction rate

@@ -1,0 +1,35 @@
+{
+  "lo_evaluations": {
+    "Subtractive Inhibition (SST)": 0.0,
+    "Divisive Inhibition (PV)": null,
+    "Inhibition (GABA)": null,
+    "Habituation to Sequence": null,
+    "Synaptic Depression (Adaptation)": 0.2,
+    "Activity Suppression": 0.2,
+    "Selective Sharpening": null,
+    "Alpha/Beta Mediated Suppression": null,
+    "VIP-Mediated Disinhibition": 0.2,
+    "Precision Weighting (Gain)": 0.2,
+    "E/I Balance Shift": 0.2,
+    "Omission Response": null
+  },
+  "go_evaluations": {
+    "Subtractive Inhibition (SST)": 0.2,
+    "Divisive Inhibition (PV)": null,
+    "Inhibition (GABA)": null,
+    "Habituation to Sequence": null,
+    "Synaptic Depression (Adaptation)": 0.2,
+    "Activity Suppression": 0.6,
+    "Selective Sharpening": null,
+    "Alpha/Beta Mediated Suppression": null,
+    "VIP-Mediated Disinhibition": 0.2,
+    "Precision Weighting (Gain)": 0.6,
+    "E/I Balance Shift": 0.2,
+    "Omission Response": null
+  },
+  "first_author": "Kevin Kermani Nejad",
+  "publication_year": "2025",
+  "study_type": "Empirical",
+  "agent_name": "neoSSL model",
+  "reasoning_log_text": "The study uses a computational model to investigate predictive coding principles. For LO context, Activity Suppression (6) is weakly supported by the model's ability to learn predictive representations. For GO context, Activity Suppression (6) is moderately supported by the model's overall predictive capability. Precision Weighting (10) and E/I Balance Shift (11) are weakly supported in both contexts due to the model's structured learning. VIP-Mediated Disinhibition (9) is weakly supported qualitatively in both contexts based on the model's layer-specific dynamics. L5 reconstruction cost (part of H1/H2 mechanism) is used to prevent collapse, relating to underlying inhibition dynamics (3)."
+}

@@ -1,0 +1,43 @@
+{
+  "call_id": "EP-06",
+  "paper_id": "Garret2020",
+  "condition": "Condition B (Abstract)",
+  "repeat": 3,
+  "model": "gemma-4-31b-it",
+  "temperature": 0.35,
+  "top_p": 0.9,
+  "min_p": 0.1,
+  "input_sha256": "2e1bdf3fb38aa8ef4f4587af8fc377a33d90da7d7cf6deb3305b29075c65a82a",
+  "timestamp": "2026-08-24T17:16:17.514028+00:00",
+  "latency_seconds": 84.59578800201416,
+  "response_text": "{\n  \"lo_evaluations\": {\n    \"Subtractive Inhibition (SST)\": null,\n    \"Divisive Inhibition (PV)\": null,\n    \"Inhibition (GABA)\": null,\n    \"Habituation to Sequence\": null,\n    \"Synaptic Depression (Adaptation)\": null,\n    \"Activity Suppression\": 0.5,\n    \"Selective Sharpening\": null,\n    \"Alpha/Beta Mediated Suppression\": null,\n    \"VIP-Mediated Disinhibition\": 0.5,\n    \"Precision Weighting (Gain)\": null,\n    \"E/I Balance Shift\": null,\n    \"Omission Response\": 1.0,\n    \"Feedforward Deviance Detection\": null,\n    \"Feedforward AMPA\": null,\n    \"Feedforward NMDA\": null,\n    \"Feedforward Ascending Gamma\": null,\n    \"Absence of Feedback Error\": null,\n    \"Feedforward Non-local Supragranular Activity (L2/3)\": null,\n    \"Feedforward Non-local Granular Activity (L4)\": null,\n    \"Feedforward Non-local Directed Connectivity\": null,\n    \"Feedforward Non-local Activation\": null,\n    \"Ascending Latency Shift\": null,\n    \"Feedforward Error Propagation\": null,\n    \"Subcortical Feedforward Relaying\": null,\n    \"Canonical Microcircuit Ubiquity\": null,\n    \"Hierarchical Mechanism Invariance\": null,\n    \"Hierarchical Activity Ubiquity\": null,\n    \"Hierarchical CSD Ubiquity\": null,\n    \"Cross-Scale Hierarchical Ubiquity\": null,\n    \"Hierarchical Presence (V1-PFC)\": null,\n    \"Cross-Modal Ubiquity\": null,\n    \"Interspecies Hierarchical Ubiquity\": null,\n    \"Temporal Stability of Ubiquity\": null,\n    \"Hierarchical Order Stability\": null,\n    \"Population-Wide Ubiquity\": null,\n    \"State-Independent Ubiquity\": null\n  },\n  \"go_evaluations\": {\n    \"Subtractive Inhibition (SST)\": null,\n    \"Divisive Inhibition (PV)\": null,\n    \"Inhibition (GABA)\": null,\n    \"Habituation to Sequence\": null,\n    \"Synaptic Depression (Adaptation)\": null,\n    \"Activity Suppression\": 0.5,\n    \"Selective Sharpening\": null,\n    \"Alpha/Beta Mediated Suppression\": null,\n    \"VIP-Mediated Disinhibition\": 0.5,\n    \"Precision Weighting (Gain)\": null,\n    \"E/I Balance Shift\": null,\n    \"Omission Response\": 1.0,\n    \"Feedforward Deviance Detection\": null,\n    \"Feedforward AMPA\": null,\n    \"Feedforward NMDA\": null,\n    \"Feedforward Ascending Gamma\": null,\n    \"Absence of Feedback Error\": null,\n    \"Feedforward Non-local Supragranular Activity (L2/3)\": null,\n    \"Feedforward Non-local Granular Activity (L4)\": null,\n    \"Feedforward Non-local Directed Connectivity\": null,\n    \"Feedforward Non-local Activation\": null,\n    \"Ascending Latency Shift\": null,\n    \"Feedforward Error Propagation\": null,\n    \"Subcortical Feedforward Relaying\": null,\n    \"Canonical Microcircuit Ubiquity\": null,\n    \"Hierarchical Mechanism Invariance\": null,\n    \"Hierarchical Activity Ubiquity\": null,\n    \"Hierarchical CSD Ubiquity\": null,\n    \"Cross-Scale Hierarchical Ubiquity\": null,\n    \"Hierarchical Presence (V1-PFC)\": null,\n    \"Cross-Modal Ubiquity\": null,\n    \"Interspecies Hierarchical Ubiquity\": null,\n    \"Temporal Stability of Ubiquity\": null,\n    \"Hierarchical Order Stability\": null,\n    \"Population-Wide Ubiquity\": null,\n    \"State-Independent Ubiquity\": null\n  },\n  \"first_author\": \"Garrett\",\n  \"publication_year\": \"2020\",\n  \"study_type\": \"Empirical\",\n  \"agent_name\": \"gemma-4-31b-it\",\n  \"reasoning_log_text\": \"The study explicitly reports that VIP cells were suppressed by familiar stimuli (Activity Suppression) and showed ramping activity when expected stimuli were omitted from a predictable sequence (Omission Response). The focus on VIP cells strongly suggests the mechanism of disinhibition, though specific SST/PV interactions are not detailed in the abstract.\"\n}",
+  "full_response": {
+    "id": "chatcmpl-ihhd6o8kptayngf0cvyzb",
+    "object": "chat.completion",
+    "created": 1787591777,
+    "model": "gemma-4-31b-it",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"lo_evaluations\": {\n    \"Subtractive Inhibition (SST)\": null,\n    \"Divisive Inhibition (PV)\": null,\n    \"Inhibition (GABA)\": null,\n    \"Habituation to Sequence\": null,\n    \"Synaptic Depression (Adaptation)\": null,\n    \"Activity Suppression\": 0.5,\n    \"Selective Sharpening\": null,\n    \"Alpha/Beta Mediated Suppression\": null,\n    \"VIP-Mediated Disinhibition\": 0.5,\n    \"Precision Weighting (Gain)\": null,\n    \"E/I Balance Shift\": null,\n    \"Omission Response\": 1.0,\n    \"Feedforward Deviance Detection\": null,\n    \"Feedforward AMPA\": null,\n    \"Feedforward NMDA\": null,\n    \"Feedforward Ascending Gamma\": null,\n    \"Absence of Feedback Error\": null,\n    \"Feedforward Non-local Supragranular Activity (L2/3)\": null,\n    \"Feedforward Non-local Granular Activity (L4)\": null,\n    \"Feedforward Non-local Directed Connectivity\": null,\n    \"Feedforward Non-local Activation\": null,\n    \"Ascending Latency Shift\": null,\n    \"Feedforward Error Propagation\": null,\n    \"Subcortical Feedforward Relaying\": null,\n    \"Canonical Microcircuit Ubiquity\": null,\n    \"Hierarchical Mechanism Invariance\": null,\n    \"Hierarchical Activity Ubiquity\": null,\n    \"Hierarchical CSD Ubiquity\": null,\n    \"Cross-Scale Hierarchical Ubiquity\": null,\n    \"Hierarchical Presence (V1-PFC)\": null,\n    \"Cross-Modal Ubiquity\": null,\n    \"Interspecies Hierarchical Ubiquity\": null,\n    \"Temporal Stability of Ubiquity\": null,\n    \"Hierarchical Order Stability\": null,\n    \"Population-Wide Ubiquity\": null,\n    \"State-Independent Ubiquity\": null\n  },\n  \"go_evaluations\": {\n    \"Subtractive Inhibition (SST)\": null,\n    \"Divisive Inhibition (PV)\": null,\n    \"Inhibition (GABA)\": null,\n    \"Habituation to Sequence\": null,\n    \"Synaptic Depression (Adaptation)\": null,\n    \"Activity Suppression\": 0.5,\n    \"Selective Sharpening\": null,\n    \"Alpha/Beta Mediated Suppression\": null,\n    \"VIP-Mediated Disinhibition\": 0.5,\n    \"Precision Weighting (Gain)\": null,\n    \"E/I Balance Shift\": null,\n    \"Omission Response\": 1.0,\n    \"Feedforward Deviance Detection\": null,\n    \"Feedforward AMPA\": null,\n    \"Feedforward NMDA\": null,\n    \"Feedforward Ascending Gamma\": null,\n    \"Absence of Feedback Error\": null,\n    \"Feedforward Non-local Supragranular Activity (L2/3)\": null,\n    \"Feedforward Non-local Granular Activity (L4)\": null,\n    \"Feedforward Non-local Directed Connectivity\": null,\n    \"Feedforward Non-local Activation\": null,\n    \"Ascending Latency Shift\": null,\n    \"Feedforward Error Propagation\": null,\n    \"Subcortical Feedforward Relaying\": null,\n    \"Canonical Microcircuit Ubiquity\": null,\n    \"Hierarchical Mechanism Invariance\": null,\n    \"Hierarchical Activity Ubiquity\": null,\n    \"Hierarchical CSD Ubiquity\": null,\n    \"Cross-Scale Hierarchical Ubiquity\": null,\n    \"Hierarchical Presence (V1-PFC)\": null,\n    \"Cross-Modal Ubiquity\": null,\n    \"Interspecies Hierarchical Ubiquity\": null,\n    \"Temporal Stability of Ubiquity\": null,\n    \"Hierarchical Order Stability\": null,\n    \"Population-Wide Ubiquity\": null,\n    \"State-Independent Ubiquity\": null\n  },\n  \"first_author\": \"Garrett\",\n  \"publication_year\": \"2020\",\n  \"study_type\": \"Empirical\",\n  \"agent_name\": \"gemma-4-31b-it\",\n  \"reasoning_log_text\": \"The study explicitly reports that VIP cells were suppressed by familiar stimuli (Activity Suppression) and showed ramping activity when expected stimuli were omitted from a predictable sequence (Omission Response). The focus on VIP cells strongly suggests the mechanism of disinhibition, though specific SST/PV interactions are not detailed in the abstract.\"\n}",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 3205,
+      "completion_tokens": 1032,
+      "total_tokens": 4237,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "gemma-4-31b-it"
+  }
+}

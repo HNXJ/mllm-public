@@ -72,8 +72,8 @@ def run(inputs: Optional[List[str]] = None, parallel_workers: Optional[int] = No
     outputs_dir = content_dir / "outputs"
     log_file = repo_root / "logs" / "pipeline.log"
     
-    instructions = _instructions_path if _instructions_path else str(repo_root / "ontology/instructions/hpc_eval_prompt.md")
-    glossary = _glossary_path if _glossary_path else str(repo_root / "ontology/glossary/HPC/hpc-36-reference.md")
+    instructions = _instructions_path if _instructions_path else str(repo_root / "src/ontology/instructions/hpc_eval_prompt.md")
+    glossary = _glossary_path if _glossary_path else str(repo_root / "src/ontology/glossary/HPC/hpc-36-reference.md")
     
     # Determine PDFs to process
     if inputs:

@@ -1,0 +1,7 @@
+stratum_comparison,paired_N,pearson_r,MAE,MSD,sign_concordance_pct
+H1 vs H2 (Human-Human),299,0.3896,0.3077,0.1779,88.96
+H12 vs Council (Human vs C),175,0.1616,0.3006,0.1431,93.14
+HA vs H12 (HA vs Human),299,0.7501,0.1819,0.0648,96.99
+HA vs Council (HA vs C),362,0.4299,0.4058,0.2696,88.95
+Council Models (Inter-Model),584,0.54,0.284,0.125,85.0
+Negative Control (Shuffled H0z),191,-0.0868,0.6618,0.749,56.54

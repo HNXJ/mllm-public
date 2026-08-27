@@ -1,0 +1,22 @@
+dataset_id,evaluator_class,file_path,description,rows,canonical_papers_represented,valid_factor_cells,null_cells,coverage_pct,score_range,schema_validity,duplicate_status,provenance_status
+hexp01,H,content/tables/experts/human/hexp01_hpca_scores.csv,Human Domain Expert 1 (Canonical),31,31,930,1302,41.67,"[-1.0, +1.0]",90-col canonical,none,verified
+hexp02,H,content/tables/experts/human/hexp02_hpca_scores.csv,Human Domain Expert 2 (ACM),31,31,418,1814,18.73,"[-1.0, +1.0]",90-col canonical,none,verified
+hexp0z,NC,content/tables/experts/human/hexp0z_hpca_scores.csv,Shuffled Human Benchmark Negative Control,31,31,423,1809,18.95,"[-1.0, +1.0]",90-col canonical,none,verified
+gemini3_1_pro,HA,content/tables/experts/human_ai/gemini3_1_pro_hpca_scores.csv,Gemini 3.1 Pro Dual-Pass Unified Synthesis,31,31,519,1713,23.25,"[-1.0, +1.0]",90-col canonical,none,verified
+gpt_oss_120b_init,HA,content/tables/experts/human_ai/gpt_oss_120b_init_hpca_scores.csv,GPT-OSS-120B Initial Dual-Pass Unified,31,31,939,1293,42.07,"[-1.0, +1.0]",90-col canonical,none,verified
+gpt_oss_120b_repa,HA,content/tables/experts/human_ai/gpt_oss_120b_repa_hpca_scores.csv,GPT-OSS-120B RepA Dual-Pass Unified,31,31,583,1649,26.12,"[-1.0, +1.0]",90-col canonical,none,verified
+gpt_oss_120b_repb,HA,content/tables/experts/human_ai/gpt_oss_120b_repb_hpca_scores.csv,GPT-OSS-120B RepB Dual-Pass Unified,31,31,611,1621,27.37,"[-1.0, +1.0]",90-col canonical,none,verified
+gpt_oss_120b_indep,HA,content/tables/experts/human_ai/gpt_oss_120b_indep_hpca_scores.csv,GPT-OSS-120B Zero-Order (31 Independent Runs),31,31,463,1769,20.74,"[-1.0, +1.0]",90-col canonical,none,verified
+revgss_x,HA,content/tables/experts/human_ai/revgss_x_hpca_scores.csv,GPT-OSS-120B 2-Stage Self-Critique & Revision Protocol,31,31,423,1809,18.95,"[-1.0, +1.0]",90-col canonical,none,verified
+council_consensus,C,content/tables/original_council/aggregated_scores_baseline.csv,Original 8-Model Council Baseline Consensus,31,31,887,1345,39.74,"[-0.6, +1.0]",90-col canonical,none,verified
+deepseek_r1_distill_llama_70b,C,content/tables/original_council/deepseek_r1_distill_llama_70b_hpca_scores.csv,DeepSeek-R1 Distill Llama 70B (Council Model),31,31,1197,1035,53.63,"[-1.0, +1.0]",90-col canonical,none,verified
+gemma_3_27b,C,content/tables/original_council/gemma_3_27b_hpca_scores.csv,Gemma 3 27B (Council Model),31,31,993,1239,44.49,"[-1.0, +1.0]",90-col canonical,none,verified
+gemma_4_31b,C,content/tables/original_council/gemma_4_31b_hpca_scores.csv,Gemma 4 31B (Non-evaluable in original table),30,30,0,2160,0.0,N/A,90-col canonical,none,verified
+gpt_oss_claude_4_5_sonnet,C,content/tables/original_council/gpt_oss_claude_4_5_sonnet_hpca_scores.csv,GPT-OSS Claude 4.5 Sonnet Profile (Council Model),30,30,249,1911,11.53,"[-1.0, +1.0]",90-col canonical,none,verified
+gpt_oss_safeguard_120b,C,content/tables/original_council/gpt_oss_safeguard_120b_hpca_scores.csv,GPT-OSS Safeguard 120B (Non-evaluable in original table),30,30,0,2160,0.0,N/A,90-col canonical,none,verified
+mistral_nemo_12b_thinking,C,content/tables/original_council/mistral_nemo_12b_thinking_hpca_scores.csv,Mistral Nemo 12B Thinking (Council Model),30,30,481,1679,22.27,"[-0.9, +1.0]",90-col canonical,none,verified
+olmo_3_32b_think,C,content/tables/original_council/olmo_3_32b_think_hpca_scores.csv,OLMo 3 32B Think (Council Model),30,30,378,1782,17.5,"[-0.6, +1.0]",90-col canonical,none,verified
+phi_4_reasoning_plus,C,content/tables/original_council/phi_4_reasoning_plus_hpca_scores.csv,Phi 4 Reasoning Plus (Council Model),31,31,830,1402,37.19,"[-1.0, +1.0]",90-col canonical,none,verified
+qwen3_14b_gemini_3_pro,C,content/tables/original_council/qwen3_14b_gemini_3_pro_hpca_scores.csv,Qwen3 14B Gemini 3 Pro Profile (Council Model),31,31,622,1610,27.87,"[-1.0, +1.0]",90-col canonical,none,verified
+qwen3_5_40b_claude_4_5_opus,C,content/tables/original_council/qwen3_5_40b_claude_4_5_opus_hpca_scores.csv,Qwen 3.5 40B Claude 4.5 Opus Profile (Council Model),30,30,1040,1120,48.15,"[-1.0, +1.0]",90-col canonical,none,verified
+gemma4_31b_it_mean,C,content/tables/robustness_202608/gemma4_31b_it_hpca_scores.csv,Gemma 4 31B IT Multi-Turn Averaged Robustness Run,31,31,799,1433,35.8,"[-1.0, +1.0]",90-col canonical,none,verified

@@ -1,0 +1,49 @@
+{
+  "lo_evaluations": {
+    "Subtractive Inhibition (SST)": 0.0,
+    "Divisive Inhibition (PV)": 0.8,
+    "Inhibition (GABA)": 0.2,
+    "Habituation to Sequence": null,
+    "Synaptic Depression (Adaptation)": null,
+    "Activity Suppression": 0.6,
+    "Selective Sharpening": 0.2,
+    "Alpha/Beta Mediated Suppression": null,
+    "VIP-Mediated Disinhibition": 0.2,
+    "Precision Weighting (Gain)": 0.6,
+    "E/I Balance Shift": 0.2,
+    "Omission Response": null
+  },
+  "go_evaluations": {
+    "Feedforward Deviance Detection": 0.2,
+    "Feedforward AMPA": null,
+    "Feedforward NMDA": null,
+    "Feedforward Ascending Gamma": null,
+    "Absence of Feedback Error": 0.2,
+    "Feedforward Non-local Supragranular Activity (L2/3)": null,
+    "Feedforward Non-local Granular Activity (L4)": null,
+    "Feedforward Non-local Directed Connectivity": 0.2,
+    "Feedforward Non-local Activation": null,
+    "Ascending Latency Shift": null,
+    "Feedforward Error Propagation": 0.6,
+    "Subcortical Feedforward Relaying": null
+  },
+  "first_author": "Michael W. Spratling",
+  "publication_year": "2010",
+  "study_type": "Empirical",
+  "agent_name": "PC/BC model",
+  "reasoning_log_text": "The study strongly supports divisive modulation (DIM) and competition, which aligns with Divisive Inhibition (PV) (+0.8). The model explicitly uses divisive input modulation (DIM), which is a form of gain control/precision weighting (+0.6). Activity suppression is implied by the competition mechanism (+0.6), and VIP-mediated disinhibition is suggested as a functional interpretation of competition (+0.2). Feedforward Error Propagation is supported qualitatively by the model's structure, although direct quantitative evidence for specific feedforward mechanisms (like AMPA/NMDA) is absent (+0.6). The model's success in accounting for V1 properties suggests a form of predictive coding mechanism is at play, supporting the general concept of feedforward error detection (+0.2) and directional connectivity (+0.2). The model's ability to simulate nonclassical RF effects via competition supports the idea of a unified framework, touching upon Ubiquity concepts (+0.2). The model is restricted to V1 (single stage), limiting evaluation of higher hierarchical ubiquity factors.",
+  "h3_evaluations": {
+    "Canonical Microcircuit Ubiquity": null,
+    "Hierarchical Mechanism Invariance": null,
+    "Hierarchical Activity Ubiquity": 0.2,
+    "Hierarchical CSD Ubiquity": null,
+    "Cross-Scale Hierarchical Ubiquity": 0.2,
+    "Hierarchical Presence (V1-PFC)": null,
+    "Cross-Modal Ubiquity": null,
+    "Interspecies Hierarchical Ubiquity": null,
+    "Temporal Stability of Ubiquity": null,
+    "Hierarchical Order Stability": 0.2,
+    "Population-Wide Ubiquity": null,
+    "State-Independent Ubiquity": null
+  }
+}

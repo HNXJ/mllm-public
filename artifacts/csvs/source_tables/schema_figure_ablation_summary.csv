@@ -1,0 +1,7 @@
+column_name,data_type,description
+condition_name,string,Full DeepRead Text vs Figure-Description-Ablated Text
+papers_evaluated_N,integer,Paper sample size for ablation
+pearson_r_vs_full,float,Correlation with full-text scoring baseline
+mae_vs_full,float,Mean Absolute Error caused by removing figure text
+delta_displacement,float,Change in local vs global displacement metric
+scientific_conclusion,string,Robustness of literature scoring to figure text removal

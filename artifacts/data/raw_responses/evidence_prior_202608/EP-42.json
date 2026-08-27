@@ -1,0 +1,43 @@
+{
+  "call_id": "EP-42",
+  "paper_id": "Chao2018",
+  "condition": "Condition B (Abstract)",
+  "repeat": 3,
+  "model": "gemma-4-31b-it",
+  "temperature": 0.35,
+  "top_p": 0.9,
+  "min_p": 0.1,
+  "input_sha256": "070c7457a5c45bbe9b49140951461930bd19c89699c0beaab6ea17cfb4f519b9",
+  "timestamp": "2026-08-24T18:38:18.421751+00:00",
+  "latency_seconds": 81.37274289131165,
+  "response_text": "{\n  \"lo_evaluations\": {\n    \"Subtractive Inhibition (SST)\": null,\n    \"Divisive Inhibition (PV)\": null,\n    \"Inhibition (GABA)\": null,\n    \"Habituation to Sequence\": null,\n    \"Synaptic Depression (Adaptation)\": null,\n    \"Activity Suppression\": null,\n    \"Selective Sharpening\": null,\n    \"Alpha/Beta Mediated Suppression\": 0.5,\n    \"VIP-Mediated Disinhibition\": null,\n    \"Precision Weighting (Gain)\": null,\n    \"E/I Balance Shift\": null,\n    \"Omission Response\": null,\n    \"Feedforward Deviance Detection\": 1.0,\n    \"Feedforward AMPA\": null,\n    \"Feedforward NMDA\": null,\n    \"Feedforward Ascending Gamma\": 1.0,\n    \"Absence of Feedback Error\": null,\n    \"Feedforward Non-local Supragranular Activity (L2/3)\": null,\n    \"Feedforward Non-local Granular Activity (L4)\": null,\n    \"Feedforward Non-local Directed Connectivity\": 1.0,\n    \"Feedforward Non-local Activation\": 1.0,\n    \"Ascending Latency Shift\": null,\n    \"Feedforward Error Propagation\": 1.0,\n    \"Subcortical Feedforward Relaying\": null,\n    \"Canonical Microcircuit Ubiquity\": null,\n    \"Hierarchical Mechanism Invariance\": 0.5,\n    \"Hierarchical Activity Ubiquity\": 1.0,\n    \"Hierarchical CSD Ubiquity\": null,\n    \"Cross-Scale Hierarchical Ubiquity\": null,\n    \"Hierarchical Presence (V1-PFC)\": 1.0,\n    \"Cross-Modal Ubiquity\": null,\n    \"Interspecies Hierarchical Ubiquity\": null,\n    \"Temporal Stability of Ubiquity\": null,\n    \"Hierarchical Order Stability\": 1.0,\n    \"Population-Wide Ubiquity\": null,\n    \"State-Independent Ubiquity\": null\n  },\n  \"go_evaluations\": {\n    \"Subtractive Inhibition (SST)\": null,\n    \"Divisive Inhibition (PV)\": null,\n    \"Inhibition (GABA)\": null,\n    \"Habituation to Sequence\": null,\n    \"Synaptic Depression (Adaptation)\": null,\n    \"Activity Suppression\": null,\n    \"Selective Sharpening\": null,\n    \"Alpha/Beta Mediated Suppression\": 0.5,\n    \"VIP-Mediated Disinhibition\": null,\n    \"Precision Weighting (Gain)\": null,\n    \"E/I Balance Shift\": null,\n    \"Omission Response\": null,\n    \"Feedforward Deviance Detection\": 1.0,\n    \"Feedforward AMPA\": null,\n    \"Feedforward NMDA\": null,\n    \"Feedforward Ascending Gamma\": 1.0,\n    \"Absence of Feedback Error\": null,\n    \"Feedforward Non-local Supragranular Activity (L2/3)\": null,\n    \"Feedforward Non-local Granular Activity (L4)\": null,\n    \"Feedforward Non-local Directed Connectivity\": 1.0,\n    \"Feedforward Non-local Activation\": 1.0,\n    \"Ascending Latency Shift\": null,\n    \"Feedforward Error Propagation\": 1.0,\n    \"Subcortical Feedforward Relaying\": null,\n    \"Canonical Microcircuit Ubiquity\": null,\n    \"Hierarchical Mechanism Invariance\": 0.5,\n    \"Hierarchical Activity Ubiquity\": 1.0,\n    \"Hierarchical CSD Ubiquity\": null,\n    \"Cross-Scale Hierarchical Ubiquity\": null,\n    \"Hierarchical Presence (V1-PFC)\": 1.0,\n    \"Cross-Modal Ubiquity\": null,\n    \"Interspecies Hierarchical Ubiquity\": null,\n    \"Temporal Stability of Ubiquity\": null,\n    \"Hierarchical Order Stability\": 1.0,\n    \"Population-Wide Ubiquity\": null,\n    \"State-Independent Ubiquity\": null\n  },\n  \"first_author\": \"Chao\",\n  \"publication_year\": \"2018\",\n  \"study_type\": \"Empirical\",\n  \"agent_name\": \"gemma-4-31b-it\",\n  \"reasoning_log_text\": \"Study identifies distinct prediction and error signals across hierarchical levels (PFC to temporal cortex). Strong evidence for feedforward propagation of error via gamma bands and directed connectivity. Alpha/beta bands are linked to prediction signals, supporting suppression mechanisms. Ubiquity is supported by the presence of these dynamics across multiple cortical areas (V1-PFC range).\"\n}",
+  "full_response": {
+    "id": "chatcmpl-jmjbcagp09nyvw0w2o9xzq",
+    "object": "chat.completion",
+    "created": 1787596698,
+    "model": "gemma-4-31b-it",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"lo_evaluations\": {\n    \"Subtractive Inhibition (SST)\": null,\n    \"Divisive Inhibition (PV)\": null,\n    \"Inhibition (GABA)\": null,\n    \"Habituation to Sequence\": null,\n    \"Synaptic Depression (Adaptation)\": null,\n    \"Activity Suppression\": null,\n    \"Selective Sharpening\": null,\n    \"Alpha/Beta Mediated Suppression\": 0.5,\n    \"VIP-Mediated Disinhibition\": null,\n    \"Precision Weighting (Gain)\": null,\n    \"E/I Balance Shift\": null,\n    \"Omission Response\": null,\n    \"Feedforward Deviance Detection\": 1.0,\n    \"Feedforward AMPA\": null,\n    \"Feedforward NMDA\": null,\n    \"Feedforward Ascending Gamma\": 1.0,\n    \"Absence of Feedback Error\": null,\n    \"Feedforward Non-local Supragranular Activity (L2/3)\": null,\n    \"Feedforward Non-local Granular Activity (L4)\": null,\n    \"Feedforward Non-local Directed Connectivity\": 1.0,\n    \"Feedforward Non-local Activation\": 1.0,\n    \"Ascending Latency Shift\": null,\n    \"Feedforward Error Propagation\": 1.0,\n    \"Subcortical Feedforward Relaying\": null,\n    \"Canonical Microcircuit Ubiquity\": null,\n    \"Hierarchical Mechanism Invariance\": 0.5,\n    \"Hierarchical Activity Ubiquity\": 1.0,\n    \"Hierarchical CSD Ubiquity\": null,\n    \"Cross-Scale Hierarchical Ubiquity\": null,\n    \"Hierarchical Presence (V1-PFC)\": 1.0,\n    \"Cross-Modal Ubiquity\": null,\n    \"Interspecies Hierarchical Ubiquity\": null,\n    \"Temporal Stability of Ubiquity\": null,\n    \"Hierarchical Order Stability\": 1.0,\n    \"Population-Wide Ubiquity\": null,\n    \"State-Independent Ubiquity\": null\n  },\n  \"go_evaluations\": {\n    \"Subtractive Inhibition (SST)\": null,\n    \"Divisive Inhibition (PV)\": null,\n    \"Inhibition (GABA)\": null,\n    \"Habituation to Sequence\": null,\n    \"Synaptic Depression (Adaptation)\": null,\n    \"Activity Suppression\": null,\n    \"Selective Sharpening\": null,\n    \"Alpha/Beta Mediated Suppression\": 0.5,\n    \"VIP-Mediated Disinhibition\": null,\n    \"Precision Weighting (Gain)\": null,\n    \"E/I Balance Shift\": null,\n    \"Omission Response\": null,\n    \"Feedforward Deviance Detection\": 1.0,\n    \"Feedforward AMPA\": null,\n    \"Feedforward NMDA\": null,\n    \"Feedforward Ascending Gamma\": 1.0,\n    \"Absence of Feedback Error\": null,\n    \"Feedforward Non-local Supragranular Activity (L2/3)\": null,\n    \"Feedforward Non-local Granular Activity (L4)\": null,\n    \"Feedforward Non-local Directed Connectivity\": 1.0,\n    \"Feedforward Non-local Activation\": 1.0,\n    \"Ascending Latency Shift\": null,\n    \"Feedforward Error Propagation\": 1.0,\n    \"Subcortical Feedforward Relaying\": null,\n    \"Canonical Microcircuit Ubiquity\": null,\n    \"Hierarchical Mechanism Invariance\": 0.5,\n    \"Hierarchical Activity Ubiquity\": 1.0,\n    \"Hierarchical CSD Ubiquity\": null,\n    \"Cross-Scale Hierarchical Ubiquity\": null,\n    \"Hierarchical Presence (V1-PFC)\": 1.0,\n    \"Cross-Modal Ubiquity\": null,\n    \"Interspecies Hierarchical Ubiquity\": null,\n    \"Temporal Stability of Ubiquity\": null,\n    \"Hierarchical Order Stability\": 1.0,\n    \"Population-Wide Ubiquity\": null,\n    \"State-Independent Ubiquity\": null\n  },\n  \"first_author\": \"Chao\",\n  \"publication_year\": \"2018\",\n  \"study_type\": \"Empirical\",\n  \"agent_name\": \"gemma-4-31b-it\",\n  \"reasoning_log_text\": \"Study identifies distinct prediction and error signals across hierarchical levels (PFC to temporal cortex). Strong evidence for feedforward propagation of error via gamma bands and directed connectivity. Alpha/beta bands are linked to prediction signals, supporting suppression mechanisms. Ubiquity is supported by the presence of these dynamics across multiple cortical areas (V1-PFC range).\"\n}",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 3019,
+      "completion_tokens": 1081,
+      "total_tokens": 4100,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "gemma-4-31b-it"
+  }
+}

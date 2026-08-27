@@ -1,0 +1,43 @@
+{
+  "call_id": "NOFIG__Kiebel2008__gemma-4-31b-it__T000__R01",
+  "paper_id": "Kiebel2008",
+  "condition": "NO_FIGURE_TEXT",
+  "repeat": 1,
+  "scientific_model": "gemma-4-31b-it",
+  "served_model_id": "gemma-4-31b-it",
+  "temperature": 0.0,
+  "top_p": 0.9,
+  "min_p": 0.1,
+  "latency_seconds": 379.29542994499207,
+  "timestamp": "2026-08-26T19:30:44.582243+00:00",
+  "raw_assistant_response": "{\n  \"lo_evaluations\": {\n    \"Subtractive Inhibition (SST)\": null,\n    \"Divisive Inhibition (PV)\": null,\n    \"Inhibition (GABA)\": null,\n    \"Habituation to Sequence\": null,\n    \"Synaptic Depression (Adaptation)\": null,\n    \"Activity Suppression\": null,\n    \"Selective Sharpening\": null,\n    \"Alpha/Beta Mediated Suppression\": null,\n    \"VIP-Mediated Disinhibition\": null,\n    \"Precision Weighting (Gain)\": null,\n    \"E/I Balance Shift\": null,\n    \"Omission Response\": 1.0\n  },\n  \"go_evaluations\": {\n    \"Subtractive Inhibition (SST)\": null,\n    \"Divisive Inhibition (PV)\": null,\n    \"Inhibition (GABA)\": null,\n    \"Habituation to Sequence\": null,\n    \"Synaptic Depression (Adaptation)\": null,\n    \"Activity Suppression\": null,\n    \"Selective Sharpening\": null,\n    \"Alpha/Beta Mediated Suppression\": null,\n    \"VIP-Mediated Disinhibition\": null,\n    \"Precision Weighting (Gain)\": null,\n    \"E/I Balance Shift\": null,\n    \"Omission Response\": 1.0,\n    \"Feedforward Deviance Detection\": 0.5,\n    \"Feedforward AMPA\": null,\n    \"Feedforward NMDA\": 0.5,\n    \"Feedforward Ascending Gamma\": null,\n    \"Absence of Feedback Error\": null,\n    \"Feedforward Non-local Supragranular Activity (L2/3)\": null,\n    \"Feedforward Non-local Granular Activity (L4)\": null,\n    \"Feedforward Non-local Directed Connectivity\": null,\n    \"Feedforward Non-local Activation\": null,\n    \"Ascending Latency Shift\": null,\n    \"Feedforward Error Propagation\": 0.5,\n    \"Subcortical Feedforward Relaying\": null,\n    \"Canonical Microcircuit Ubiquity\": 0.5,\n    \"Hierarchical Mechanism Invariance\": 0.5,\n    \"Hierarchical Activity Ubiquity\": 0.5,\n    \"Hierarchical CSD Ubiquity\": null,\n    \"Cross-Scale Hierarchical Ubiquity\": null,\n    \"Hierarchical Presence (V1-PFC)\": 1.0,\n    \"Cross-Modal Ubiquity\": 0.5,\n    \"Interspecies Hierarchical Ubiquity\": null,\n    \"Temporal Stability of Ubiquity\": null,\n    \"Hierarchical Order Stability\": 0.5,\n    \"Population-Wide Ubiquity\": null,\n    \"State-Independent Ubiquity\": null\n  },\n  \"first_author\": \"Stefan J. Kiebel\",\n  \"publication_year\": \"2008\",\n  \"study_type\": \"Review\",\n  \"agent_name\": \"gemma-4-31b-it\",\n  \"reasoning_log_text\": \"The study focuses on a temporal hierarchy of predictive coding. It explicitly simulates 'Omission Responses' (Fig 3, 4) to show how hierarchical predictions generate error signals when stimuli cease. It discusses feedforward propagation of prediction errors and the modulatory role of backward connections (mentioning NMDA receptors). It argues for a ubiquitous rostro-caudal gradient from V1 to PFC (Table 1) and mentions cross-modal application (auditory/visual). No specific inhibitory cell types (SST, PV) or frequency bands were addressed.\"\n}",
+  "raw_response": {
+    "id": "chatcmpl-169fpq37eoi71z7vcysd4j",
+    "object": "chat.completion",
+    "created": 1787772265,
+    "model": "gemma-4-31b-it",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"lo_evaluations\": {\n    \"Subtractive Inhibition (SST)\": null,\n    \"Divisive Inhibition (PV)\": null,\n    \"Inhibition (GABA)\": null,\n    \"Habituation to Sequence\": null,\n    \"Synaptic Depression (Adaptation)\": null,\n    \"Activity Suppression\": null,\n    \"Selective Sharpening\": null,\n    \"Alpha/Beta Mediated Suppression\": null,\n    \"VIP-Mediated Disinhibition\": null,\n    \"Precision Weighting (Gain)\": null,\n    \"E/I Balance Shift\": null,\n    \"Omission Response\": 1.0\n  },\n  \"go_evaluations\": {\n    \"Subtractive Inhibition (SST)\": null,\n    \"Divisive Inhibition (PV)\": null,\n    \"Inhibition (GABA)\": null,\n    \"Habituation to Sequence\": null,\n    \"Synaptic Depression (Adaptation)\": null,\n    \"Activity Suppression\": null,\n    \"Selective Sharpening\": null,\n    \"Alpha/Beta Mediated Suppression\": null,\n    \"VIP-Mediated Disinhibition\": null,\n    \"Precision Weighting (Gain)\": null,\n    \"E/I Balance Shift\": null,\n    \"Omission Response\": 1.0,\n    \"Feedforward Deviance Detection\": 0.5,\n    \"Feedforward AMPA\": null,\n    \"Feedforward NMDA\": 0.5,\n    \"Feedforward Ascending Gamma\": null,\n    \"Absence of Feedback Error\": null,\n    \"Feedforward Non-local Supragranular Activity (L2/3)\": null,\n    \"Feedforward Non-local Granular Activity (L4)\": null,\n    \"Feedforward Non-local Directed Connectivity\": null,\n    \"Feedforward Non-local Activation\": null,\n    \"Ascending Latency Shift\": null,\n    \"Feedforward Error Propagation\": 0.5,\n    \"Subcortical Feedforward Relaying\": null,\n    \"Canonical Microcircuit Ubiquity\": 0.5,\n    \"Hierarchical Mechanism Invariance\": 0.5,\n    \"Hierarchical Activity Ubiquity\": 0.5,\n    \"Hierarchical CSD Ubiquity\": null,\n    \"Cross-Scale Hierarchical Ubiquity\": null,\n    \"Hierarchical Presence (V1-PFC)\": 1.0,\n    \"Cross-Modal Ubiquity\": 0.5,\n    \"Interspecies Hierarchical Ubiquity\": null,\n    \"Temporal Stability of Ubiquity\": null,\n    \"Hierarchical Order Stability\": 0.5,\n    \"Population-Wide Ubiquity\": null,\n    \"State-Independent Ubiquity\": null\n  },\n  \"first_author\": \"Stefan J. Kiebel\",\n  \"publication_year\": \"2008\",\n  \"study_type\": \"Review\",\n  \"agent_name\": \"gemma-4-31b-it\",\n  \"reasoning_log_text\": \"The study focuses on a temporal hierarchy of predictive coding. It explicitly simulates 'Omission Responses' (Fig 3, 4) to show how hierarchical predictions generate error signals when stimuli cease. It discusses feedforward propagation of prediction errors and the modulatory role of backward connections (mentioning NMDA receptors). It argues for a ubiquitous rostro-caudal gradient from V1 to PFC (Table 1) and mentions cross-modal application (auditory/visual). No specific inhibitory cell types (SST, PV) or frequency bands were addressed.\"\n}",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 21675,
+      "completion_tokens": 805,
+      "total_tokens": 22480,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "gemma-4-31b-it"
+  }
+}

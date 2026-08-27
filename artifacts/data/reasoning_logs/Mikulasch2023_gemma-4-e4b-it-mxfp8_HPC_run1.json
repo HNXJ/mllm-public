@@ -1,0 +1,35 @@
+{
+  "lo_evaluations": {
+    "Subtractive Inhibition (SST)": 0.2,
+    "Divisive Inhibition (PV)": 0.6,
+    "Inhibition (GABA)": 0.2,
+    "Habituation to Sequence": null,
+    "Synaptic Depression (Adaptation)": 0.2,
+    "Activity Suppression": 0.6,
+    "Selective Sharpening": null,
+    "Alpha/Beta Mediated Suppression": null,
+    "VIP-Mediated Disinhibition": 0.2,
+    "Precision Weighting (Gain)": null,
+    "E/I Balance Shift": 0.6,
+    "Omission Response": null
+  },
+  "go_evaluations": {
+    "Subtractive Inhibition (SST)": 0.2,
+    "Divisive Inhibition (PV)": 0.6,
+    "Inhibition (GABA)": 0.2,
+    "Habituation to Sequence": null,
+    "Synaptic Depression (Adaptation)": 0.2,
+    "Activity Suppression": 0.6,
+    "Selective Sharpening": null,
+    "Alpha/Beta Mediated Suppression": null,
+    "VIP-Mediated Disinhibition": 0.2,
+    "Precision Weighting (Gain)": null,
+    "E/I Balance Shift": 0.6,
+    "Omission Response": null
+  },
+  "first_author": "Fabian A. Mikulasch",
+  "publication_year": "2023",
+  "study_type": "Review/Theoretical Modeling",
+  "agent_name": "dendritic hPC",
+  "reasoning_log_text": "The study primarily reviews and models dendritic hPC, contrasting it with classical hPC. H1 factors were assessed based on discussions of E-I balance and inhibition mechanisms (e.g., PV/SST roles). H2 factors were not explicitly detailed in the provided text snippets. H3 factors relate to general properties, but specific quantitative evidence for ubiquity was lacking; therefore, most H3 factors are null. For LO/GO contexts, the text discusses general principles applicable to both paradigms when comparing classical vs dendritic hPC implementations (e.g., E-I balance, VDP)."
+}

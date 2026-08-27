@@ -1,0 +1,35 @@
+{
+  "lo_evaluations": {
+    "Subtractive Inhibition (SST)": 0.0,
+    "Divisive Inhibition (PV)": 0.0,
+    "Inhibition (GABA)": 0.0,
+    "Habituation to Sequence": null,
+    "Synaptic Depression (Adaptation)": 0.6,
+    "Activity Suppression": 0.6,
+    "Selective Sharpening": null,
+    "Alpha/Beta Mediated Suppression": null,
+    "VIP-Mediated Disinhibition": 0.2,
+    "Precision Weighting (Gain)": null,
+    "E/I Balance Shift": 0.2,
+    "Omission Response": null
+  },
+  "go_evaluations": {
+    "Subtractive Inhibition (SST)": null,
+    "Divisive Inhibition (PV)": null,
+    "Inhibition (GABA)": 0.2,
+    "Habituation to Sequence": null,
+    "Synaptic Depression (Adaptation)": 0.6,
+    "Activity Suppression": 0.6,
+    "Selective Sharpening": null,
+    "Alpha/Beta Mediated Suppression": null,
+    "VIP-Mediated Disinhibition": 0.2,
+    "Precision Weighting (Gain)": null,
+    "E/I Balance Shift": 0.2,
+    "Omission Response": null
+  },
+  "first_author": "Will Greedy",
+  "publication_year": "2022",
+  "study_type": "Empirical",
+  "agent_name": "BurstCCN",
+  "reasoning_log_text": "The study evaluates predictive coding mechanisms within the BurstCCN model, focusing on single-phase learning and deep network performance. H1 factors (Suppression) are partially supported by evidence of short-term plasticity (STP) and burst dynamics, which relate to synaptic depression/adaptation. H2 factors (Feedforward Error Propagation) are addressed by the mechanism of error propagation via bursts, but explicit feedforward directional measures (like Granger Causality) are not quantified. H3 factors (Ubiquity) are addressed through deep network testing (MNIST, CIFAR-10), demonstrating capability across multiple layers. Specific inhibition mechanisms (SST/PV) are not directly measured or quantified in the provided text."
+}

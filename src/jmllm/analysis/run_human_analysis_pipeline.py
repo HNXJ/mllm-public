@@ -72,7 +72,7 @@ def execute_human_analysis_pipeline(
 ) -> Dict[str, Any]:
     """Executes the complete single-human or multi-human analysis workflow."""
     if rater_files is None:
-        # Auto-discover available human evaluations in content/tables/experts/
+        # Auto-discover available human evaluations in artifacts/csvs/source_tables/experts/
         rater_files = []
         for r_id in ["hpch_01", "hpch_02", "hpch_03"]:
             r_path = EXPERTS_DIR / f"{r_id}.csv"
@@ -80,7 +80,7 @@ def execute_human_analysis_pipeline(
                 rater_files.append((r_id, r_path))
 
     if not rater_files:
-        raise FileNotFoundError("No valid human evaluator files found in content/tables/experts/")
+        raise FileNotFoundError("No valid human evaluator files found in artifacts/csvs/source_tables/experts/")
 
     # 1. Load validated tables
     loaded_raters = {}

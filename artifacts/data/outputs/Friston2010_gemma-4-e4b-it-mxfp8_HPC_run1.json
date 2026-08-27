@@ -1,0 +1,35 @@
+{
+  "lo_evaluations": {
+    "Subtractive Inhibition (SST)": null,
+    "Divisive Inhibition (PV)": null,
+    "Inhibition (GABA)": null,
+    "Habituation to Sequence": 0.2,
+    "Synaptic Depression (Adaptation)": null,
+    "Activity Suppression": 0.6,
+    "Selective Sharpening": null,
+    "Alpha/Beta Mediated Suppression": null,
+    "VIP-Mediated Disinhibition": 0.2,
+    "Precision Weighting (Gain)": null,
+    "E/I Balance Shift": 0.6,
+    "Omission Response": null
+  },
+  "go_evaluations": {
+    "Subtractive Inhibition (SST)": null,
+    "Divisive Inhibition (PV)": null,
+    "Inhibition (GABA)": null,
+    "Habituation to Sequence": null,
+    "Synaptic Depression (Adaptation)": null,
+    "Activity Suppression": 0.2,
+    "Selective Sharpening": null,
+    "Alpha/Beta Mediated Suppression": 0.2,
+    "VIP-Mediated Disinhibition": null,
+    "Precision Weighting (Gain)": 0.2,
+    "E/I Balance Shift": null,
+    "Omission Response": null
+  },
+  "first_author": "Karl Friston",
+  "publication_year": "2010",
+  "study_type": "Review",
+  "agent_name": "N/A",
+  "reasoning_log_text": "The study is a high-level theoretical review of the Free Energy Principle (FEP). It discusses concepts like prediction error, generative models, and Bayesian inference in a broad theoretical context rather than presenting specific quantitative data from LO or GO paradigms. Many factors requiring specific neural measurement (e.g., SST, PV activity) are not addressed quantitatively or qualitatively in the context of specific paradigms. Scores reflect general theoretical alignment rather than empirical evidence from LO/GO tasks."
+}

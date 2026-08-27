@@ -1,0 +1,35 @@
+{
+  "lo_evaluations": {
+    "Subtractive Inhibition (SST)": 0.2,
+    "Divisive Inhibition (PV)": 0.0,
+    "Inhibition (GABA)": 0.2,
+    "Habituation to Sequence": 0.6,
+    "Synaptic Depression (Adaptation)": 0.8,
+    "Activity Suppression": 0.6,
+    "Selective Sharpening": 0.2,
+    "Alpha/Beta Mediated Suppression": 0.6,
+    "VIP-Mediated Disinhibition": null,
+    "Precision Weighting (Gain)": 0.2,
+    "E/I Balance Shift": 0.6,
+    "Omission Response": 0.2
+  },
+  "go_evaluations": {
+    "Feedforward Deviance Detection": 0.8,
+    "Feedforward AMPA": null,
+    "Feedforward NMDA": 0.2,
+    "Feedforward Ascending Gamma": 0.8,
+    "Absence of Feedback Error": null,
+    "Feedforward Non-local Supragranular Activity (L2/3)": 0.6,
+    "Feedforward Non-local Granular Activity (L4)": 0.2,
+    "Feedforward Non-local Directed Connectivity": 0.8,
+    "Feedforward Non-local Activation": 0.6,
+    "Ascending Latency Shift": 0.2,
+    "Feedforward Error Propagation": 0.8,
+    "Subcortical Feedforward Relaying": null
+  },
+  "first_author": "Andr\u00e9 M. Bastosa",
+  "publication_year": "2020",
+  "study_type": "Empirical",
+  "agent_name": "Bastosa et al.",
+  "reasoning_log_text": "The study provides strong quantitative evidence for adaptation (Synaptic Depression: 0.8) and activity suppression (Activity Suppression: 0.6). Habituation to Sequence is supported by the discussion of repetition effects (Habituation to Sequence: 0.6). Alpha/Beta Mediated Suppression is supported by the observation of alpha/beta power modulation (Alpha/Beta Mediated Suppression: 0.6). Feedforward Deviance Detection and Error Propagation are strongly supported by the observation of increased gamma power to unpredictable samples (Feedforward Deviance Detection: 0.8, Feedforward Error Propagation: 0.8). Gamma power increase to unpredictable samples is a key finding (Feedforward Ascending Gamma: 0.8). The study also shows stimulus specificity related to prediction (Stimulus Specificity of Spiking: 0.6, supported by the LFP/MUA specificity findings). Hierarchical mechanisms are discussed (Hierarchical Mechanism Invariance: 0.2, Hierarchical Activity Ubiquity: 0.6). The rhythm-based model supports the concept of prediction error signaling via gamma (Rhythm-based models: 0.8). The findings are consistent with the Predictive Routing model (Predictive Routing Model: 0.8), which is a central theme."
+}

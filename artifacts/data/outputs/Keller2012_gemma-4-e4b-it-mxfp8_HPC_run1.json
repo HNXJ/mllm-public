@@ -1,0 +1,35 @@
+{
+  "lo_evaluations": {
+    "Subtractive Inhibition (SST)": null,
+    "Divisive Inhibition (PV)": null,
+    "Inhibition (GABA)": "0.0",
+    "Habituation to Sequence": null,
+    "Synaptic Depression (Adaptation)": null,
+    "Activity Suppression": "0.6",
+    "Selective Sharpening": null,
+    "Alpha/Beta Mediated Suppression": null,
+    "VIP-Mediated Disinhibition": "0.2",
+    "Precision Weighting (Gain)": null,
+    "E/I Balance Shift": "0.2",
+    "Omission Response": null
+  },
+  "go_evaluations": {
+    "Subtractive Inhibition (SST)": null,
+    "Divisive Inhibition (PV)": null,
+    "Inhibition (GABA)": "0.2",
+    "Habituation to Sequence": null,
+    "Synaptic Depression (Adaptation)": null,
+    "Activity Suppression": "0.6",
+    "Selective Sharpening": null,
+    "Alpha/Beta Mediated Suppression": null,
+    "VIP-Mediated Disinhibition": "0.2",
+    "Precision Weighting (Gain)": null,
+    "E/I Balance Shift": "0.2",
+    "Omission Response": null
+  },
+  "first_author": "Georg B. Keller",
+  "publication_year": "2012",
+  "study_type": "Empirical",
+  "agent_name": "Keller et al.",
+  "reasoning_log_text": "The study investigates predictive coding in mouse visual cortex using locomotion and feedback mismatch. For LO (Local Oddball), Activity Suppression is supported by the finding that visual input alone is a poor predictor of activity (Figure 1B), suggesting motor/contextual factors drive responses, which relates to suppression mechanisms. E/I Balance Shift is weakly supported by the finding that motor-related input drives responses in the absence of visual input (Page 5). For GO (Global Oddball), Activity Suppression is supported by the general finding that motor-related input drives activity, similar to LO. Inhibition (GABA) is weakly supported by the general framework of predictive coding mechanisms being discussed, though not directly quantified. VIP-Mediated Disinhibition and Precision Weighting (Gain) are inferred from the discussion of motor/sensory integration but lack direct quantitative evidence. The absence of specific data on SST, PV, Habituation, Synaptic Depression, Selective Sharpening, Alpha/Beta Suppression, and Omission Response results in null scores for those factors."
+}

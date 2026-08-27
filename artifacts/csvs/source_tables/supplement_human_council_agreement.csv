@@ -1,0 +1,2 @@
+stratum,evaluator_count_K,sample_size_N,observational_unit,pearson_r,mae,paper_sample_N,paper_spearman_rho,paper_spearman_p
+All Scored Cells (n_human_raters >= 1),1,856,Factor Cell (Descriptive),0.2553,0.3428,26,0.5843,0.0017233336842651067

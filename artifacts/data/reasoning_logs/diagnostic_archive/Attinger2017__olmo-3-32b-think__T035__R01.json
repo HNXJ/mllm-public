@@ -1,0 +1,31 @@
+{
+  "condition_id": "Attinger2017__olmo-3-32b-think__T035__R01",
+  "paper_id": "Attinger2017",
+  "input_filename": "Attinger2017-vllm-deepread.md",
+  "input_sha256": "ecd64b4ac4862252d1622580665c47feaa78556d2a7b41a9bdb438e4b5b7ec05",
+  "scientific_model": "olmo-3-32b-think",
+  "served_model_id": "olmo-3-32b-think-mlx",
+  "temperature": 0.35,
+  "top_p": 0.9,
+  "min_p": 0.1,
+  "repeat": 1,
+  "prompt_sha256": "2af7739797ff21ad1aa231a484ddb28773bb04d3c7b4c54486ea330e858df521",
+  "glossary_sha256": "93d528a84ae2c392864c06aeea8d7a1dca9676a42ca96ac89264beab3017a827",
+  "instruction_sha256": "4bdf4a721bb33597c44d96480fc768984d6aa763300e909ab520a13967b48178",
+  "git_commit": "02912c2c0d6244f09312d1a26068fc0e648240c1",
+  "request_start_timestamp": "2026-08-12T20:10:14Z",
+  "request_end_timestamp": "2026-08-12T20:15:14Z",
+  "latency_seconds": 300.013,
+  "http_status": null,
+  "attempts": 3,
+  "token_usage": null,
+  "raw_assistant_response": "",
+  "parsed_response": null,
+  "validation_status": "ERROR",
+  "validation_errors": [
+    "Network/Request exception: HTTPConnectionPool(host='localhost', port=1234): Read timed out. (read timeout=300)"
+  ],
+  "lo_evaluations": null,
+  "go_evaluations": null,
+  "reasoning_log_text": ""
+}

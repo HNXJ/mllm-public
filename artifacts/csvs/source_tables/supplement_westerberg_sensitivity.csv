@@ -1,0 +1,4 @@
+corpus_stratum,paper_sample_N,mean_lo_score,mean_go_score,mean_displacement_delta,paired_t_statistic,paired_t_df,paired_t_p_value,wilcoxon_w_statistic,wilcoxon_p_value,statistical_summary
+Full Paired Corpus,28,0.5704,0.5527,-0.0177,-0.361,27.0,0.7208,24.0,0.0736,"Aggregate displacement delta = -0.0177; t(27) = -0.361, p = 0.7208; Wilcoxon W = 24.0, p = 0.0736."
+Westerberg & Xiong (2025) Only,1,0.5904,-0.7081,-1.2985,,,,,,"Single-study observation: LO = +0.5904, GO = -0.7081, displacement delta = -1.2985."
+Excluding Westerberg & Xiong (2025),27,0.5697,0.5994,0.0297,2.302,26.0,0.0296,10.0,0.0131,"Aggregate displacement delta = +0.0297; t(26) = +2.302, p = 0.0296; Wilcoxon W = 10.0, p = 0.0131."

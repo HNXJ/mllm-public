@@ -328,4 +328,4 @@ if __name__ == "__main__":
     export_westerberg_sensitivity_summary()
     export_corpus_registry()
     export_claims_ledger()
-    print("All supplement tables successfully exported to content/tables/.")
+    print("All supplement tables successfully exported to artifacts/csvs/source_tables/.")

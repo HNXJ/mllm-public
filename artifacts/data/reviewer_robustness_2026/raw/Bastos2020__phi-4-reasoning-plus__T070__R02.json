@@ -1,0 +1,79 @@
+{
+  "condition_id": "Bastos2020__phi-4-reasoning-plus__T070__R02",
+  "paper_id": "Bastos2020",
+  "input_filename": "Bastos2020-vllm-deepread_compressed.md",
+  "input_sha256": "6770829da1400735e64ddfb44bcd51fa0c88bdb359430811a857ac68f4d629f2",
+  "scientific_model": "phi-4-reasoning-plus",
+  "served_model_id": "phi-4-reasoning-plus",
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "min_p": 0.1,
+  "repeat": 2,
+  "concurrency": 1,
+  "prompt_sha256": "17a284e145b3e72aaf408ba205c4b635292353c81b3879395374e3c1ae65b72a",
+  "glossary_sha256": "93d528a84ae2c392864c06aeea8d7a1dca9676a42ca96ac89264beab3017a827",
+  "instruction_sha256": "4bdf4a721bb33597c44d96480fc768984d6aa763300e909ab520a13967b48178",
+  "git_commit": "02912c2c0d6244f09312d1a26068fc0e648240c1",
+  "started_at": "2026-08-16T13:56:10Z",
+  "finished_at": "2026-08-16T13:56:35Z",
+  "latency_s": 24.781,
+  "prompt_tokens": 24386,
+  "completion_tokens": 569,
+  "tokens_per_second": 22.96,
+  "http_status": 200,
+  "attempts": 1,
+  "token_usage": {
+    "prompt_tokens": 24386,
+    "completion_tokens": 569,
+    "total_tokens": 24955,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  },
+  "raw_assistant_response": "{\n  \"lo_evaluations\": {\n    \"1\": -0.8,\n    \"2\": -0.8,\n    \"3\": null,\n    \"4\": +0.6,\n    \"5\": +0.4,\n    \"6\": +0.7,\n    \"7\": +0.5,\n    \"8\": +0.5,\n    \"9\": null,\n    \"10\": null,\n    \"11\": +0.2,\n    \"12\": +0.3\n  },\n  \"go_evaluations\": {\n    \"1\": -0.8,\n    \"2\": -0.8,\n    \"3\": null,\n    \"4\": +0.6,\n    \"5\": +0.4,\n    \"6\": +0.7,\n    \"7\": +0.5,\n    \"8\": +0.5,\n    \"9\": null,\n    \"10\": null,\n    \"11\": +0.2,\n    \"12\": +0.3\n  },\n  \"first_author\": \"Andr\u00e9 M. Bastos\",\n  \"publication_year\": \"2020\",\n  \"study_type\": \"Empirical\",\n  \"agent_name\": \"model-name\",\n  \"reasoning_log_text\": \"For H1, predictive suppression factors (IDs 1-12), the study shows quantitative evidence supporting decreased spiking/gamma during predictable stimuli and increased responses to unpredicted inputs (e.g., habituation, synaptic depression, activity suppression) in superficial layers; factor 4 (Habituation) is moderately supported (+0.6) and 5 (Synaptic Depression) weakly supported (+0.4). Factors 1-3 (SST, PV, GABA) are not directly addressed so scored null. Factor 7 (Selective Sharpening) and 8 (Alpha/Beta Mediated Suppression) are moderately supported (+0.5). For H2 feedforward error propagation factors, quantitative evidence is present for feedforward AMPA/NMDA signals (IDs 13-15), but not for qualitative ones such as VIP-mediated disinhibition (ID 9) and precision weighting (ID 10); thus scored null; ID 11 (E/I Balance Shift) weakly supported (+0.2) while others are either quantitative with moderate evidence or not addressed. For H3 ubiquity factors, only factor 25,26,27,28,29 have some support: factor 25 (Canonical Microcircuit Ubiquity) is qualitative and appears to be partially addressed through cross-area recordings yielding strong interareal coherence differences; thus rated +0.6 for LO and similarly GO, while other factors in H3 are not explicitly addressed so null.\"\n}",
+  "raw_reasoning_content": "",
+  "raw_http_payload": {
+    "id": "chatcmpl-c6pu2aroewvlyquw1vbsw",
+    "object": "chat.completion",
+    "created": 1786888570,
+    "model": "phi-4-reasoning-plus",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"lo_evaluations\": {\n    \"1\": -0.8,\n    \"2\": -0.8,\n    \"3\": null,\n    \"4\": +0.6,\n    \"5\": +0.4,\n    \"6\": +0.7,\n    \"7\": +0.5,\n    \"8\": +0.5,\n    \"9\": null,\n    \"10\": null,\n    \"11\": +0.2,\n    \"12\": +0.3\n  },\n  \"go_evaluations\": {\n    \"1\": -0.8,\n    \"2\": -0.8,\n    \"3\": null,\n    \"4\": +0.6,\n    \"5\": +0.4,\n    \"6\": +0.7,\n    \"7\": +0.5,\n    \"8\": +0.5,\n    \"9\": null,\n    \"10\": null,\n    \"11\": +0.2,\n    \"12\": +0.3\n  },\n  \"first_author\": \"Andr\u00e9 M. Bastos\",\n  \"publication_year\": \"2020\",\n  \"study_type\": \"Empirical\",\n  \"agent_name\": \"model-name\",\n  \"reasoning_log_text\": \"For H1, predictive suppression factors (IDs 1-12), the study shows quantitative evidence supporting decreased spiking/gamma during predictable stimuli and increased responses to unpredicted inputs (e.g., habituation, synaptic depression, activity suppression) in superficial layers; factor 4 (Habituation) is moderately supported (+0.6) and 5 (Synaptic Depression) weakly supported (+0.4). Factors 1-3 (SST, PV, GABA) are not directly addressed so scored null. Factor 7 (Selective Sharpening) and 8 (Alpha/Beta Mediated Suppression) are moderately supported (+0.5). For H2 feedforward error propagation factors, quantitative evidence is present for feedforward AMPA/NMDA signals (IDs 13-15), but not for qualitative ones such as VIP-mediated disinhibition (ID 9) and precision weighting (ID 10); thus scored null; ID 11 (E/I Balance Shift) weakly supported (+0.2) while others are either quantitative with moderate evidence or not addressed. For H3 ubiquity factors, only factor 25,26,27,28,29 have some support: factor 25 (Canonical Microcircuit Ubiquity) is qualitative and appears to be partially addressed through cross-area recordings yielding strong interareal coherence differences; thus rated +0.6 for LO and similarly GO, while other factors in H3 are not explicitly addressed so null.\"\n}",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 24386,
+      "completion_tokens": 569,
+      "total_tokens": 24955,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "phi-4-reasoning-plus"
+  },
+  "parse_status": "unrecoverable",
+  "parser_method": "failed",
+  "parser_version": "v2.0_offline",
+  "parsed_response": null,
+  "parse_errors": [
+    "Failed all rescue parser stages"
+  ],
+  "recovery_notes": "No valid JSON structure recovered",
+  "validation_status": "UNRECOVERABLE",
+  "validation_errors": [
+    "Failed all rescue parser stages"
+  ],
+  "lo_evaluations": null,
+  "go_evaluations": null,
+  "reasoning_log_text": ""
+}

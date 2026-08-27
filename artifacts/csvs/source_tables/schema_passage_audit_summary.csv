@@ -1,0 +1,6 @@
+column_name,data_type,description
+audit_stratum,string,Total Priority-A Evaluated vs Sub-Classifications
+cell_count_N,integer,Number of factor cells in stratum
+percentage_of_priority_a,float,Percentage of total 27 Priority-A cells
+primary_source_pattern,string,Empirical summary of passage evidence alignment
+reviewer_implication,string,Direct mapping to Reviewer Major #1 passage support question

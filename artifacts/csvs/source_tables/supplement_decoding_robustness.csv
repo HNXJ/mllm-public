@@ -1,0 +1,8 @@
+claim_id,metric_name,aggregation_level,sample_size_N,observational_unit,primary_estimate,secondary_estimate_mae,p_value,source_dataset
+M2-01,Temperature Stability (T=0.00 vs T=0.35),Repeat-averaged factor cells (Common intersection),679,Factor Cell,0.99,0.0266,0.0,scores_31x3x3x3_primary.csv
+M2-02,Temperature Stability (T=0.00 vs T=0.70),Repeat-averaged factor cells (Common intersection),679,Factor Cell,0.976,0.0421,0.0,scores_31x3x3x3_primary.csv
+M2-03,Replicate Reliability (T=0.00),Pairwise inter-repeat correlation & MAE across 3 runs,639,Factor Cell Triple,0.9905,0.0126,,scores_31x3x3x3_primary.csv
+M2-04,Replicate Reliability (T=0.35),Pairwise inter-repeat correlation & MAE across 3 runs,619,Factor Cell Triple,0.9724,0.0384,,scores_31x3x3x3_primary.csv
+M2-05,Replicate Reliability (T=0.70),Pairwise inter-repeat correlation & MAE across 3 runs,572,Factor Cell Triple,0.9444,0.0585,,scores_31x3x3x3_primary.csv
+M2-06,Paper-Ranking Stability (T=0.00 vs T=0.35),Spearman rank correlation on non-empty paper means,29,Paper,0.9596,,2.1372203973382603e-16,scores_31x3x3x3_primary.csv
+M2-07,Paper-Ranking Stability (T=0.00 vs T=0.70),Spearman rank correlation on non-empty paper means,29,Paper,0.9212,,1.4055809681919686e-12,scores_31x3x3x3_primary.csv

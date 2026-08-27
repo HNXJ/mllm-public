@@ -1,0 +1,3 @@
+comparison_name,sample_size_N,observational_unit,pearson_r,mae,scientific_interpretation
+Full Text (A) vs Abstract Only (B),88,Repeat-Averaged Factor Cell (Descriptive),0.7274,0.0758,Measures scoring sensitivity to restriction of available paper-specific evidence.
+Full Text (A) vs Masked Text (C),112,Repeat-Averaged Factor Cell (Descriptive),0.9937,0.0089,Measures scoring sensitivity to removal of explicit publication identity.

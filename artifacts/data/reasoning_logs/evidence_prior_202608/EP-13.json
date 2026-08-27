@@ -1,0 +1,43 @@
+{
+  "call_id": "EP-13",
+  "paper_id": "Attinger2017",
+  "condition": "Condition B (Abstract)",
+  "repeat": 1,
+  "model": "gemma-4-31b-it",
+  "temperature": 0.35,
+  "top_p": 0.9,
+  "min_p": 0.1,
+  "input_sha256": "7b20f3d7db324e4593544598ce4328e8531e5241b713907a05e25d9030ce0279",
+  "timestamp": "2026-08-24T17:32:36.939581+00:00",
+  "latency_seconds": 87.2588050365448,
+  "response_text": "{\n  \"lo_evaluations\": {\n    \"Subtractive Inhibition (SST)\": 1.0,\n    \"Divisive Inhibition (PV)\": null,\n    \"Inhibition (GABA)\": 0.5,\n    \"Habituation to Sequence\": null,\n    \"Synaptic Depression (Adaptation)\": null,\n    \"Activity Suppression\": 0.5,\n    \"Selective Sharpening\": null,\n    \"Alpha/Beta Mediated Suppression\": null,\n    \"VIP-Mediated Disinhibition\": null,\n    \"Precision Weighting (Gain)\": null,\n    \"E/I Balance Shift\": 0.5,\n    \"Omission Response\": null,\n    \"Feedforward Deviance Detection\": 0.5,\n    \"Feedforward AMPA\": null,\n    \"Feedforward NMDA\": null,\n    \"Feedforward Ascending Gamma\": null,\n    \"Absence of Feedback Error\": null,\n    \"Feedforward Non-local Supragranular Activity (L2/3)\": 0.5,\n    \"Feedforward Non-local Granular Activity (L4)\": null,\n    \"Feedforward Non-local Directed Connectivity\": null,\n    \"Feedforward Non-local Activation\": null,\n    \"Ascending Latency Shift\": null,\n    \"Feedforward Error Propagation\": 0.5,\n    \"Subcortical Feedforward Relaying\": null,\n    \"Canonical Microcircuit Ubiquity\": null,\n    \"Hierarchical Mechanism Invariance\": null,\n    \"Hierarchical Activity Ubiquity\": null,\n    \"Hierarchical CSD Ubiquity\": null,\n    \"Cross-Scale Hierarchical Ubiquity\": null,\n    \"Hierarchical Presence (V1-PFC)\": null,\n    \"Cross-Modal Ubiquity\": null,\n    \"Interspecies Hierarchical Ubiquity\": null,\n    \"Temporal Stability of Ubiquity\": null,\n    \"Hierarchical Order Stability\": null,\n    \"Population-Wide Ubiquity\": null,\n    \"State-Independent Ubiquity\": null\n  },\n  \"go_evaluations\": {\n    \"Subtractive Inhibition (SST)\": 1.0,\n    \"Divisive Inhibition (PV)\": null,\n    \"Inhibition (GABA)\": 0.5,\n    \"Habituation to Sequence\": null,\n    \"Synaptic Depression (Adaptation)\": null,\n    \"Activity Suppression\": 0.5,\n    \"Selective Sharpening\": null,\n    \"Alpha/Beta Mediated Suppression\": null,\n    \"VIP-Mediated Disinhibition\": null,\n    \"Precision Weighting (Gain)\": null,\n    \"E/I Balance Shift\": 0.5,\n    \"Omission Response\": null,\n    \"Feedforward Deviance Detection\": 0.5,\n    \"Feedforward AMPA\": null,\n    \"Feedforward NMDA\": null,\n    \"Feedforward Ascending Gamma\": null,\n    \"Absence of Feedback Error\": null,\n    \"Feedforward Non-local Supragranular Activity (L2/3)\": 0.5,\n    \"Feedforward Non-local Granular Activity (L4)\": null,\n    \"Feedforward Non-local Directed Connectivity\": null,\n    \"Feedforward Non-local Activation\": null,\n    \"Ascending Latency Shift\": null,\n    \"Feedforward Error Propagation\": 0.5,\n    \"Subcortical Feedforward Relaying\": null,\n    \"Canonical Microcircuit Ubiquity\": null,\n    \"Hierarchical Mechanism Invariance\": null,\n    \"Hierarchical Activity Ubiquity\": null,\n    \"Hierarchical CSD Ubiquity\": null,\n    \"Cross-Scale Hierarchical Ubiquity\": null,\n    \"Hierarchical Presence (V1-PFC)\": null,\n    \"Cross-Modal Ubiquity\": null,\n    \"Interspecies Hierarchical Ubiquity\": null,\n    \"Temporal Stability of Ubiquity\": null,\n    \"Hierarchical Order Stability\": null,\n    \"Population-Wide Ubiquity\": null,\n    \"State-Independent Ubiquity\": null\n  },\n  \"first_author\": \"Attinger\",\n  \"publication_year\": \"2017\",\n  \"study_type\": \"Empirical\",\n  \"agent_name\": \"gemma-4-31b-it\",\n  \"reasoning_log_text\": \"Study explicitly links mismatch responses to SST-mediated inhibition in L2/3 of the mouse visual cortex. Evidence strongly supports Subtractive Inhibition (SST) and moderate evidence for general inhibition, activity suppression, and feedforward error propagation given the 'mismatch neuron' framework described.\"\n}",
+  "full_response": {
+    "id": "chatcmpl-ceyo06xw4t9y7u8lwvfocr",
+    "object": "chat.completion",
+    "created": 1787592756,
+    "model": "gemma-4-31b-it",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"lo_evaluations\": {\n    \"Subtractive Inhibition (SST)\": 1.0,\n    \"Divisive Inhibition (PV)\": null,\n    \"Inhibition (GABA)\": 0.5,\n    \"Habituation to Sequence\": null,\n    \"Synaptic Depression (Adaptation)\": null,\n    \"Activity Suppression\": 0.5,\n    \"Selective Sharpening\": null,\n    \"Alpha/Beta Mediated Suppression\": null,\n    \"VIP-Mediated Disinhibition\": null,\n    \"Precision Weighting (Gain)\": null,\n    \"E/I Balance Shift\": 0.5,\n    \"Omission Response\": null,\n    \"Feedforward Deviance Detection\": 0.5,\n    \"Feedforward AMPA\": null,\n    \"Feedforward NMDA\": null,\n    \"Feedforward Ascending Gamma\": null,\n    \"Absence of Feedback Error\": null,\n    \"Feedforward Non-local Supragranular Activity (L2/3)\": 0.5,\n    \"Feedforward Non-local Granular Activity (L4)\": null,\n    \"Feedforward Non-local Directed Connectivity\": null,\n    \"Feedforward Non-local Activation\": null,\n    \"Ascending Latency Shift\": null,\n    \"Feedforward Error Propagation\": 0.5,\n    \"Subcortical Feedforward Relaying\": null,\n    \"Canonical Microcircuit Ubiquity\": null,\n    \"Hierarchical Mechanism Invariance\": null,\n    \"Hierarchical Activity Ubiquity\": null,\n    \"Hierarchical CSD Ubiquity\": null,\n    \"Cross-Scale Hierarchical Ubiquity\": null,\n    \"Hierarchical Presence (V1-PFC)\": null,\n    \"Cross-Modal Ubiquity\": null,\n    \"Interspecies Hierarchical Ubiquity\": null,\n    \"Temporal Stability of Ubiquity\": null,\n    \"Hierarchical Order Stability\": null,\n    \"Population-Wide Ubiquity\": null,\n    \"State-Independent Ubiquity\": null\n  },\n  \"go_evaluations\": {\n    \"Subtractive Inhibition (SST)\": 1.0,\n    \"Divisive Inhibition (PV)\": null,\n    \"Inhibition (GABA)\": 0.5,\n    \"Habituation to Sequence\": null,\n    \"Synaptic Depression (Adaptation)\": null,\n    \"Activity Suppression\": 0.5,\n    \"Selective Sharpening\": null,\n    \"Alpha/Beta Mediated Suppression\": null,\n    \"VIP-Mediated Disinhibition\": null,\n    \"Precision Weighting (Gain)\": null,\n    \"E/I Balance Shift\": 0.5,\n    \"Omission Response\": null,\n    \"Feedforward Deviance Detection\": 0.5,\n    \"Feedforward AMPA\": null,\n    \"Feedforward NMDA\": null,\n    \"Feedforward Ascending Gamma\": null,\n    \"Absence of Feedback Error\": null,\n    \"Feedforward Non-local Supragranular Activity (L2/3)\": 0.5,\n    \"Feedforward Non-local Granular Activity (L4)\": null,\n    \"Feedforward Non-local Directed Connectivity\": null,\n    \"Feedforward Non-local Activation\": null,\n    \"Ascending Latency Shift\": null,\n    \"Feedforward Error Propagation\": 0.5,\n    \"Subcortical Feedforward Relaying\": null,\n    \"Canonical Microcircuit Ubiquity\": null,\n    \"Hierarchical Mechanism Invariance\": null,\n    \"Hierarchical Activity Ubiquity\": null,\n    \"Hierarchical CSD Ubiquity\": null,\n    \"Cross-Scale Hierarchical Ubiquity\": null,\n    \"Hierarchical Presence (V1-PFC)\": null,\n    \"Cross-Modal Ubiquity\": null,\n    \"Interspecies Hierarchical Ubiquity\": null,\n    \"Temporal Stability of Ubiquity\": null,\n    \"Hierarchical Order Stability\": null,\n    \"Population-Wide Ubiquity\": null,\n    \"State-Independent Ubiquity\": null\n  },\n  \"first_author\": \"Attinger\",\n  \"publication_year\": \"2017\",\n  \"study_type\": \"Empirical\",\n  \"agent_name\": \"gemma-4-31b-it\",\n  \"reasoning_log_text\": \"Study explicitly links mismatch responses to SST-mediated inhibition in L2/3 of the mouse visual cortex. Evidence strongly supports Subtractive Inhibition (SST) and moderate evidence for general inhibition, activity suppression, and feedforward error propagation given the 'mismatch neuron' framework described.\"\n}",
+          "reasoning_content": "",
+          "tool_calls": []
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 3262,
+      "completion_tokens": 1052,
+      "total_tokens": 4314,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "stats": {},
+    "system_fingerprint": "gemma-4-31b-it"
+  }
+}

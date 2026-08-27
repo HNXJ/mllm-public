@@ -1,0 +1,391 @@
+\documentclass[12pt]{article}
+%DIF LATEXDIFF DIFFERENCE FILE
+%DIF DEL supp-base.tex   Thu Aug 27 10:20:02 2026
+%DIF ADD supp.tex        Thu Aug 27 10:05:05 2026
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{calc}
+\usepackage{caption}
+\usepackage{ragged2e}
+\usepackage{etoolbox}
+\usepackage{hyperref}
+\setlength{\parindent}{0.5in}
+\setlength{\parskip}{0pt}
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{0pt}
+\renewcommand{\arraystretch}{1.06}
+\AtBeginEnvironment{longtable}{\small\setlength{\tabcolsep}{3pt}}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\newcommand{\passthrough}[1]{#1}
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF UNDERLINE PREAMBLE %DIF PREAMBLE
+\RequirePackage[normalem]{ulem} %DIF PREAMBLE
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{{\protect\color{red}\sout{#1}}} %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+\providecommand{\DIFmodbegin}{} %DIF PREAMBLE
+\providecommand{\DIFmodend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
+\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+%DIF AMSMATHULEM PREAMBLE %DIF PREAMBLE
+\makeatletter %DIF PREAMBLE
+\let\sout@orig\sout %DIF PREAMBLE
+\renewcommand{\sout}[1]{\ifmmode\text{\sout@orig{\ensuremath{#1}}}\else\sout@orig{#1}\fi} %DIF PREAMBLE
+\makeatother %DIF PREAMBLE
+%DIF COLORLISTINGS PREAMBLE %DIF PREAMBLE
+\RequirePackage{listings} %DIF PREAMBLE
+\RequirePackage{color} %DIF PREAMBLE
+\lstdefinelanguage{DIFcode}{ %DIF PREAMBLE
+%DIF DIFCODE_UNDERLINE %DIF PREAMBLE
+  moredelim=[il][\color{red}\sout]{\%DIF\ <\ }, %DIF PREAMBLE
+  moredelim=[il][\color{blue}\uwave]{\%DIF\ >\ } %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstdefinestyle{DIFverbatimstyle}{ %DIF PREAMBLE
+	language=DIFcode, %DIF PREAMBLE
+	basicstyle=\ttfamily, %DIF PREAMBLE
+	columns=fullflexible, %DIF PREAMBLE
+	keepspaces=true %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim}[1][]{\lstset{style=DIFverbatimstyle}}{} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim*}[1][]{\lstset{style=DIFverbatimstyle,showspaces=true}}{} %DIF PREAMBLE
+\lstset{extendedchars=\true,inputencoding=utf8}
+
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
+
+\begin{document}
+
+{\centering
+{\large\bfseries Supplementary Information}\par\vspace{0.6em}
+{\bfseries Ontology-constrained multi-LLM scoring of hypothesis support in the predictive processing literature}\par\vspace{0.6em}
+Hamed Nejat, Alexander Maier, Jesse Spencer-Smith, and Andr\'e M. Bastos\par
+}
+\vspace{0.8em}
+
+\appendix
+\section*{Supplementary Information}
+\addcontentsline{toc}{section}{Supplementary Information}
+
+\section*{Supplementary Figures}
+
+\subsection*{Supplementary Fig. S1}
+\textbf{Supplementary Fig. S1:} Evaluation Pipeline Architecture. The evaluation pipeline flows from left to right in two independent streams (A to B to C and 1 to 2 to 3). The A to B to C pathway establishes the instructions, canonical glossary, and prompt for the models. The 1 to 2 to 3 pathway ingests the paper and combines figures with text to provide a single text object for the models. Steps 5 and 6 loop between models and papers until all evaluations are completed. The final step 7 quantifies and visualizes the evaluations.
+
+\begin{center}
+\includegraphics[width=0.86\linewidth,keepaspectratio]{figures/figure2.png}
+\end{center}
+
+\subsection*{Supplementary Fig. S2}
+\textbf{Supplementary Fig. S2:} Independent Human Expert Concordance \DIFaddbegin \DIFadd{($K=2$ domain experts)}\DIFaddend . (A) Factor-cell level concordance between human consensus ($N=175$ non-null paired factor cells) and the autonomous LLM council consensus ($r = 0.162, \rho = 0.241, \text{MAE} = 0.301, \text{Directional Concordance} = 93.1\%$). (B) Study-level aggregation across the canonical literature corpus (\DIFdelbegin \DIFdel{$r = 0.390, \rho = 0.360$}\DIFdelend \DIFaddbegin \DIFadd{$N=25$ common evaluable papers, Pearson $r = 0.529$, Spearman $\rho = 0.492$}\DIFaddend ), illustrating \DIFdelbegin \DIFdel{consistent alignment between expert human neuroscientists }\DIFdelend \DIFaddbegin \DIFadd{positive macro-level alignment between independent human expert raters }\DIFaddend and autonomous model ensembles \DIFaddbegin \DIFadd{while confirming that factor-level magnitude correlation remains modest ($r = 0.162$)}\DIFaddend .
+
+\begin{center}
+\includegraphics[width=0.92\linewidth,keepaspectratio]{figures/figure_S_human_concordance.png}
+\end{center}
+
+\subsection*{Supplementary Fig. S3}
+\textbf{Supplementary Fig. S3:} 837-Call Factorial Robustness Analysis (31 papers $\times$ 3 models $\times$ 3 temperatures $\times$ 3 repeats). (A) Score distribution stability across sampling temperatures ($T \in \{0.00, 0.35, 0.70\}$) for OLMo-3-32B-Think, Gemma-4-31B-IT, and Phi-4-Reasoning-Plus. (B) Context displacement stability ($\Delta_{\text{LO-GO}}$) demonstrating that the primary scientific contrast remains stable across the tested decoding settings and stochastic repeats.
+
+\begin{center}
+\includegraphics[width=0.92\linewidth,keepaspectratio]{figures/figure_S_decoding_robustness.png}
+\end{center}
+
+\subsection*{Supplementary Fig. S4}
+\textbf{Supplementary Fig. S4:} Evidence Grounding vs. Prior Bias Sensitivity Analysis (54 inference calls \DIFaddbegin \DIFadd{across intact, abstract-only, and masked-manuscript evidence controls}\DIFaddend ). (A) \DIFdelbegin \DIFdel{Mean factor support scores across experimental conditions: Intact Evidence (Full Context), Shuffled Evidence (Negative Control), and Prior Only (Zero Evidence)}\DIFdelend \DIFaddbegin \DIFadd{Sensitivity to explicit study/author identity removal (Condition A Full Text vs Condition C Masked Text: Pearson $r = 0.9937$, $\text{MAE} = 0.0089$ across $N=112$ overlapping factor cells), demonstrating that model evaluations are grounded in technical findings rather than author prestige cues}\DIFaddend . (B) \DIFdelbegin \DIFdel{Context displacement selectivity ($\Delta_{\text{LO-GO}}$)showing that under scrambled evidence or prior-only prompts, context-specific hypothesis modulation collapses toward zero ($\Delta_{\text{Full}} = +0.038$, $\Delta_{\text{Shuffled}} = -0.004$}\DIFdelend \DIFaddbegin \DIFadd{Sensitivity to evidence restriction (Condition A Full Text vs Condition B Abstract Only: Pearson $r = 0.7274$}\DIFaddend , \DIFdelbegin \DIFdel{$\Delta_{\text{Prior}} = +0.000$), demonstrating that model scoring is sensitive to the supplied paper evidence rather than parametric prior recall alone}\DIFdelend \DIFaddbegin \DIFadd{$\text{MAE} = 0.0758$ across $N=88$ overlapping factor cells), confirming measurable score modulation when detailed empirical text is withheld. Numerical summary across Full ($+0.038$), Shuffled ($-0.004$), and Prior-only ($+0.000$) conditions is reported in Supplementary Table S10}\DIFaddend .
+
+\begin{center}
+\includegraphics[width=0.92\linewidth,keepaspectratio]{figures/figure_S_evidence_prior.png}
+\end{center}
+
+\subsection*{Supplementary Fig. S5}
+\textbf{Supplementary Fig. S5:} Figure-Text-Removal Sensitivity Analysis (Full 31-Paper Corpus Ablation). (A) Paper-level mean score correlation across the corpus between intact inputs (FULL) and figure-text-removed inputs (NO\_FIGURE; Spearman $\rho = 0.4718$, $\text{MAE} = 0.2253$ across 533 paired factor cells nested in 31 papers). (B) Corpus-level $\text{LO}-\text{GO}$ context displacement stability across 28 paired empirical papers ($\Delta_{\text{Full}} = +0.0408$ vs $\Delta_{\text{NoFig}} = +0.0565$; directional concordance $= 99.42\%$ on non-zero cells [518/521], all-cell sign agreement $= 97.19\%$ [518/533]), demonstrating that figure removal preserves the direction of the corpus-level contrast while producing measurable paper-level score adjustments.
+
+\begin{center}
+\includegraphics[width=0.92\linewidth,keepaspectratio]{figures/figure_S_figure_text_removal.png}
+\end{center}
+
+\newpage
+\section*{Supplementary Tables}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\textbf{Factor Number} & \textbf{Factor Name} & \textbf{Definition} & \textbf{Context Scope} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+1 & Subtractive Inhibition (SST) & Linear input suppression via somatic inhibition (Somatostatin-mediated). & LO+GO \\
+2 & Divisive Inhibition (PV) & Multiplicative gain reduction (Parvalbumin-mediated). & LO+GO \\
+3 & Inhibition (GABA) & Chloride-mediated inhibition for prediction suppression. & LO+GO \\
+4 & Habituation to Sequence & Habituation suppresses local oddball response relative to a novel local oddball. & LO \\
+5 & Synaptic Depression (Adaptation) & Passive fatigue of synaptic efficacy due to repetition of stimulus. & LO \\
+6 & Activity Suppression & Reduction in firing rates for expected (predictable) stimuli. & LO+GO \\
+7 & Selective Sharpening & Signal-to-noise increase for predictable stimuli, where noise is selectively suppressed to highlight relevant information. & LO+GO \\
+8 & Alpha/Beta Mediated Suppression & Low-frequency bands (8-30Hz) associated with predictions, inhibiting prediction error signals. & LO+GO \\
+9 & VIP-Mediated Disinhibition & VIP-mediated inhibition of SST/PV neurons, leading to disinhibited pyramidal activity during prediction error. & LO+GO \\
+10 & Precision Weighting (Gain) & Top-down amplification of error units, leading to disinhibited gain in response to attended or highly precise stimuli. & LO+GO \\
+11 & E/I Balance Shift & Dynamic adjustment toward higher inhibition for predictable stimuli, leading to suppressed neural firing. & LO+GO \\
+12 & Omission Response & A generated internal signal due to absence of expected input & LO+GO \\
+\end{longtable}
+
+\textbf{Supplementary Table S1:} The factors of Hypothesis 1 (Predictive Suppression). LO = local oddball. GO = global oddball.
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\textbf{Factor Number} & \textbf{Factor Name} & \textbf{Definition} & \textbf{Context Scope} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+13 & Error Unit Depolarization & Supragranular pyramidal excitation driving ascending error signals. & LO+GO \\
+14 & Gamma Oscillations (30-90Hz) & High-frequency rhythms signaling ascending prediction errors. & LO+GO \\
+15 & NMDA Receptor Activation & Nonlinear amplification of error signals in superficial cortical layers. & LO+GO \\
+16 & Feedforward Laminar Flow & Supragranular-to-granular/supragranular ascending anatomical projection of errors. & LO+GO \\
+17 & Top-Down Error Gating & Feedback modulation of ascending prediction error channels. & LO+GO \\
+18 & MMN-like Latencies & Early sensory mismatch latencies (100-200ms) characteristic of local error computation. & LO \\
+19 & P300-like Latencies & Late cognitive mismatch latencies (300-500ms) characteristic of global contextual error computation. & GO \\
+20 & Inter-Laminar Error Divergence & Dissociation of error processing between granular and infragranular layers. & LO+GO \\
+21 & Phase-Amplitude Coupling & Theta/alpha phase modulation of gamma error bursts during surprise. & LO+GO \\
+22 & Thalamic Error Routing & First-order vs higher-order thalamocortical routing of sensory prediction mismatches. & LO+GO \\
+23 & Predictive Error Attenuation & Dampening of ascending prediction errors following successful model updating. & LO+GO \\
+24 & State-Dependent Error Routing & Behavioral state and arousal modulation of feedforward error gain. & LO+GO \\
+\end{longtable}
+
+\textbf{Supplementary Table S2:} The factors of Hypothesis 2 (Feedforward Prediction Errors).
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\textbf{Factor Number} & \textbf{Factor Name} & \textbf{Definition} & \textbf{Context Scope} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+25 & Cross-Modal Ubiquity & Implementation of predictive coding mechanisms across multiple sensory modalities (visual, auditory, somatosensory). & LO+GO \\
+26 & Laminar Invariance of Principles & Preservation of predictive coding laminar logic across sensory, motor, and association cortices. & LO+GO \\
+27 & Cross-Species Homology & Conservation of predictive mechanisms across rodent, non-human primate, and human neocortex. & LO+GO \\
+28 & Scale-Free Predictive Dynamics & Fractals and hierarchical self-similarity of predictive computations across temporal scales. & LO+GO \\
+29 & Universal Error Coding & Common computational principles for error generation irrespective of receptive field complexity. & LO+GO \\
+30 & Canonical Microcircuit Generalization & Universal deployment of the canonical cortical microcircuit for inference across areas. & LO+GO \\
+31 & Cortico-Subcortical Homology & Shared predictive coding architecture between neocortex and basal ganglia / cerebellum. & LO+GO \\
+32 & Neuromodulatory Invariance & Consistent cholinergic/noradrenergic precision tuning across hierarchical stages. & LO+GO \\
+33 & Temporal Stability of Ubiquity & The consistent and non-transient presence of these mechanisms across the hierarchy over long recording sessions. & LO+GO \\
+34 & Hierarchical Order Stability & Evidence that the predictive mechanism is ubiquitous and not localized to a single hierarchical pole. & LO+GO \\
+35 & Population-Wide Ubiquity & Consistency of the mechanism across diverse neural populations and cell types throughout the hierarchy. & LO+GO \\
+36 & State-Independent Ubiquity & Presence of the mechanism across different brain states (e.g., wakefulness, sleep, anesthesia) throughout the hierarchy. & LO+GO \\
+\end{longtable}
+
+\textbf{Supplementary Table S3:} The factors of Hypothesis 3 (Ubiquity).
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\textbf{Term/Context} & \textbf{Description} & \textbf{Definition (notation)} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Oddball & A surprising event, often a mismatch &  = \{B\}$ given  = \{A\}$ \\
+Local Oddball (LO) & An oddball that is immediate or short-term, often confounded by low-level adaptation mechanisms. &  = \{AB\}$ given  = \{AA\}$ \\
+Global Oddball (GO) & An oddball that is not LO, often contextual, that is not caused by adaptation mechanisms. &  = \{AA\}$ given  = \{AB\}$ \\
+\end{longtable}
+
+\textbf{Supplementary Table S4:} Context definitions and formal expectation notations.
+
+\DIFdelbegin %DIFDELCMD < \begin{longtable}[]{@{}lll@{}}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \begin{longtable}[]{@{}lllll@{}}
+\DIFaddend \toprule
+\textbf{\#} & \textbf{Study Identifier} & \textbf{\DIFdelbegin \DIFdel{Bibliographic Reference \& Short Description}\DIFdelend \DIFaddbegin \DIFadd{Modality / Preparation}\DIFaddend } \DIFaddbegin & \textbf{\DIFadd{Inclusion Basis}} & \textbf{\DIFadd{Bibliographic Citation}} \DIFaddend \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+1 & Attinger et al., 2017 & \DIFdelbegin \DIFdel{Integrating non-visual (motor) inputs into V1 to generate mismatch signals during locomotion. }\DIFdelend \DIFaddbegin \DIFadd{Mouse V1 (2-Photon $\text{Ca}^{2+}$) }& \DIFadd{Comparative Set (Visuomotor Mismatch) }& \emph{\DIFadd{Cell}} \DIFadd{169, 1291--1302 }\DIFaddend \\
+2 & Bakhtiari et al., 2021 & \DIFdelbegin \DIFdel{Alignment between deep neural networks and biological vision across different predictive goals. }\DIFdelend \DIFaddbegin \DIFadd{In Silico (Deep Neural Nets) }& \DIFadd{Comparative Set (Hierarchical Streams) }& \emph{\DIFadd{Nat. Commun.}} \DIFadd{12, 25164 }\DIFaddend \\
+3 & Bastos et al., 2012 & \DIFdelbegin \DIFdel{Canonical microcircuits for predictive coding; proposing distinct roles for superficial and deep layers. }\DIFdelend \DIFaddbegin \DIFadd{In Silico / Theory (Microcircuit) }& \DIFadd{Comparative Set (Canonical Microcircuit) }& \emph{\DIFadd{Neuron}} \DIFadd{74, 695--708 }\DIFaddend \\
+4 & Bastos et al., 2020 & \DIFdelbegin \DIFdel{Laminar and directional flow of prediction/error signals in primate visual and prefrontal areas. }\DIFdelend \DIFaddbegin \DIFadd{Primate V1/V4/PFC (Laminar ECoG) }& \DIFadd{Comparative Set (Laminar Rhythms) }& \emph{\DIFadd{Neuron}} \DIFadd{108, 124--137 }\DIFaddend \\
+5 & Bekinschtein et al., 2009 & \DIFdelbegin \DIFdel{Neural markers of conscious perception using hierarchical auditory oddball tasks (fMRI/EEG) . }\DIFdelend \DIFaddbegin \DIFadd{Human (Scalp EEG) }& \DIFadd{Comparative Set (LO vs GO Originator) }& \emph{\DIFadd{PNAS}} \DIFadd{106, 1672--1677 }\DIFaddend \\
+6 & Chao et al., 2018 & \DIFdelbegin \DIFdel{Global distribution of prediction errors across the primate brain using large-scale ECoGmapping. }\DIFdelend \DIFaddbegin \DIFadd{Primate Temporal/Frontal (ECoG) }& \DIFadd{Comparative Set (Large-Scale Hierarchy) }& \emph{\DIFadd{Nat. Commun.}} \DIFadd{9, 3188 }\DIFaddend \\
+7 & Friston et al., 2010 & \DIFdelbegin \DIFdel{The }\DIFdelend \DIFaddbegin \DIFadd{Theory (}\DIFaddend Free Energy Principle\DIFdelbegin \DIFdel{: a unified framework for brain function and biological self-organization. }\DIFdelend \DIFaddbegin \DIFadd{) }& \DIFadd{Canonical Extension (Bayesian Inference) }& \emph{\DIFadd{Nat. Rev. Neurosci.}} \DIFadd{11, 127 }\DIFaddend \\
+8 & Furutachi et al., 2024 & \DIFdelbegin \DIFdel{Cooperative thalamocortical circuit mechanism for sensory prediction errors. }\DIFdelend \DIFaddbegin \DIFadd{Mouse V1 (2-Photon / Opto) }& \DIFadd{Comparative Set (VIP/SST Disinhibition) }& \emph{\DIFadd{Nature}} \DIFadd{633, 398--406 }\DIFaddend \\
+9 & Garrett et al., 2020 & \DIFdelbegin \DIFdel{Emergence of prediction errors in the mouse visual cortex for surprises in sequence patterns. }\DIFdelend \DIFaddbegin \DIFadd{Mouse V1 (2-Photon $\text{Ca}^{2+}$) }& \DIFadd{Comparative Set (Novelty vs Deviance) }& \emph{\DIFadd{eLife}} \DIFadd{9, e50340 }\DIFaddend \\
+10 & Greedy et al., 2022 & \DIFdelbegin \DIFdel{Bursting Cortico-Cortical Networks approximating error backpropagation in biological networks. }\DIFdelend \DIFaddbegin \DIFadd{In Silico (Predictive Coding SNN) }& \DIFadd{Comparative Set (Error Backpropagation) }& \emph{\DIFadd{NeurIPS}} \DIFadd{35, 24213--24225 }\DIFaddend \\
+11 & Hertag et al., 2020 & \DIFdelbegin \DIFdel{Role of inhibitory interneuron types (PV and SST) in shaping cortical prediction errors. }\DIFdelend \DIFaddbegin \DIFadd{In Silico (Spiking Interneurons) }& \DIFadd{Comparative Set (SST/PV Dynamics) }& \emph{\DIFadd{eLife}} \DIFadd{9, e57541 }\DIFaddend \\
+12 & Jiang et al., 2024 & \DIFdelbegin \DIFdel{Integrating hierarchical predictive coding for sequence learning. }\DIFdelend \DIFaddbegin \DIFadd{In Silico (Energy-Based Model) }& \DIFadd{Comparative Set (Sequence Prediction) }& \emph{\DIFadd{PLOS Comput. Biol.}} \DIFadd{20, e1011801 }\DIFaddend \\
+13 & Keller et al., 2012 & \DIFdelbegin \DIFdel{Sensorimotor prediction errors in }\DIFdelend \DIFaddbegin \DIFadd{Mouse }\DIFaddend V1 \DIFdelbegin \DIFdel{; neurons responding to mismatches between movement and visual flow. }\DIFdelend \DIFaddbegin \DIFadd{(2-Photon $\text{Ca}^{2+}$) }& \DIFadd{Comparative Set (Sensorimotor Mismatch) }& \emph{\DIFadd{Neuron}} \DIFadd{74, 809--815 }\DIFaddend \\
+14 & Keller et al., 2018 & \DIFdelbegin \DIFdel{Review of evidence of predictive processing and its implementation in mammalian cortical circuits. }\DIFdelend \DIFaddbegin \DIFadd{Synthesis (Cortical Circuits) }& \DIFadd{Comparative Set (Circuit Review) }& \emph{\DIFadd{Neuron}} \DIFadd{100, 424--435 }\DIFaddend \\
+15 & Kiebel et al., 2008 & \DIFdelbegin \DIFdel{Hierarchical temporal dynamics; suggesting slower dynamics represent higher-level predictions. }\DIFdelend \DIFaddbegin \DIFadd{In Silico (Hierarchical Dynamics) }& \DIFadd{Comparative Set (Temporal Hierarchy) }& \emph{\DIFadd{PLoS Comput. Biol.}} \DIFadd{4, e1000209 }\DIFaddend \\
+16 & Lao et al., 2023 & \DIFdelbegin \DIFdel{Evidence that top-down feedback is necessary for generating prediction error signals from omitted-tones. }\DIFdelend \DIFaddbegin \DIFadd{Human (Auditory Scalp EEG) }& \DIFadd{Comparative Set (Omission Response) }& \emph{\DIFadd{Sci. Adv.}} \DIFadd{9, eabq8657 }\DIFaddend \\
+17 & Lee et al., 2025 & \DIFdelbegin \DIFdel{Computational modeling of PV/SST/VIP inhibitory interneurons and their dynamics during predictive processing. }\DIFdelend \DIFaddbegin \DIFadd{In Silico (Multi-Area Network) }& \DIFadd{Comparative Set (Primate Oscillations) }& \emph{\DIFadd{PLOS Comput. Biol.}} \DIFadd{21, e1013469 }\DIFaddend \\
+18 & Mikulasch et al., 2023 & \DIFdelbegin \DIFdel{Local dendritic error computations supporting predictive coding architectures. }\DIFdelend \DIFaddbegin \DIFadd{In Silico / Theory (Plasticity) }& \DIFadd{Comparative Set (Dendritic Error Review) }& \emph{\DIFadd{Trends Neurosci.}} \DIFadd{46, 45--59 }\DIFaddend \\
+19 & Nejad et al., 2025 & \DIFdelbegin \DIFdel{Self-supervised learning theory aligning with layer-specific neuronal observations in primary visual cortex. }\DIFdelend \DIFaddbegin \DIFadd{Primate / In Silico (Laminar Model) }& \DIFadd{Comparative Set (Layered Routing) }& \emph{\DIFadd{J. Neurosci.}} \DIFadd{45, 1234 }\DIFaddend \\
+20 & Payeur et al., 2021 & \DIFdelbegin \DIFdel{Burst-based firing enabling multiplexing of feedforward and feedback signals for predictive coding. }\DIFdelend \DIFaddbegin \DIFadd{In Silico (Dendritic Plasticity) }& \DIFadd{Comparative Set (Burst Multiplexing) }& \emph{\DIFadd{Nat. Neurosci.}} \DIFadd{24, 1010--1019 }\DIFaddend \\
+21 & Rao et al., 2024 & \DIFdelbegin \DIFdel{Generalized predictive coding and sensorimotor theory of neocortex. }\DIFdelend \DIFaddbegin \DIFadd{Synthesis (Sensorimotor Neocortex) }& \DIFadd{Canonical Extension (25-Year Synthesis) }& \emph{\DIFadd{Nat. Neurosci.}} \DIFadd{27, 1221--1235 }\DIFaddend \\
+22 & Rao \& Ballard, 1999 & \DIFdelbegin \DIFdel{Seminal model of hierarchical predictive coding explaining extra-classical receptive field effects in V1. }\DIFdelend \DIFaddbegin \DIFadd{In Silico (Hierarchical Model) }& \DIFadd{Canonical Extension (Foundational Model) }& \emph{\DIFadd{Nat. Neurosci.}} \DIFadd{2, 79--87 }\DIFaddend \\
+23 & Sacramento et al., 2018 & \DIFdelbegin \DIFdel{Dendritic model explaining how neurons learn top-down predictions via local error signals. }\DIFdelend \DIFaddbegin \DIFadd{In Silico (Dendritic Network) }& \DIFadd{Comparative Set (Somatodendritic Model) }& \emph{\DIFadd{NeurIPS}} \DIFadd{31, 8721--8731 }\DIFaddend \\
+24 & Spratling et al., 2008 & \DIFdelbegin \DIFdel{Predictive coding within a biased competition framework (}\DIFdelend \DIFaddbegin \DIFadd{In Silico (Biased Competition) }& \DIFadd{Comparative Set (}\DIFaddend PC-BC \DIFdelbegin \DIFdel{) for object recognition. }\DIFdelend \DIFaddbegin \DIFadd{Synthesis) }& \emph{\DIFadd{Biol. Cybern.}} \DIFadd{98, 283--292 }\DIFaddend \\
+25 & Spratling et al., 2010 & \DIFdelbegin \DIFdel{Predictive coding as a model of response properties in cortical area }\DIFdelend \DIFaddbegin \DIFadd{In Silico (}\DIFaddend V1 \DIFdelbegin \DIFdel{. }\DIFdelend \DIFaddbegin \DIFadd{Microcircuit) }& \DIFadd{Comparative Set (V1 Microcircuit Model) }& \emph{\DIFadd{J. Neurosci.}} \DIFadd{30, 3531--3543 }\DIFaddend \\
+26 & Srinivasan et al., 1982 & \DIFdelbegin \DIFdel{Predictive coding in the retina; earliest formalization of redundancy reduction in natural vision. }\DIFdelend \DIFaddbegin \DIFadd{Fly Retina (Intracellular) }& \DIFadd{Canonical Extension (Redundancy Baseline) }& \emph{\DIFadd{Proc. R. Soc. Lond. B}} \DIFadd{216, 427 }\DIFaddend \\
+27 & VanDerveer et al., 2021 & \DIFdelbegin \DIFdel{Somatostatin-positive interneurons in neuro-oscillatory deficits. }\DIFdelend \DIFaddbegin \DIFadd{Human (Clinical EEG Cohort) }& \DIFadd{Comparative Set (Sensory Gating Deficits) }& \emph{\DIFadd{Schizophr. Bull.}} \DIFadd{47, 1385 }\DIFaddend \\
+28 & Wacongne et al., 2011 & \DIFdelbegin \DIFdel{MEG study showing human brain detection of abstract hierarchical rule violations in sound sequences. }\DIFdelend \DIFaddbegin \DIFadd{Human (Auditory MEG) }& \DIFadd{Comparative Set (Hierarchical Rule MMN) }& \emph{\DIFadd{PLoS Biol.}} \DIFadd{9, e1001189 }\DIFaddend \\
+29 & Wacongne et al., 2012 & \DIFdelbegin \DIFdel{Spiking neural network reproducing auditory mismatch negativity (MMN) through predictive mechanisms. }\DIFdelend \DIFaddbegin \DIFadd{Human EEG \& Spiking Network }& \DIFadd{Comparative Set (Auditory Oddball Model) }& \emph{\DIFadd{J. Neurosci.}} \DIFadd{32, 3665--3678 }\DIFaddend \\
+30 & Westerberg \& Xiong, 2025 & \DIFdelbegin \DIFdel{Multi-area, high-density laminar neurophysiology (MaDeLaNe) in primates challenging universal predictive hierarchy. }\DIFdelend \DIFaddbegin \DIFadd{Primate V1/V4/IT (Laminar MUA) }& \DIFadd{Primary Index Study (MaDeLaNe) }& \emph{\DIFadd{bioRxiv}} \DIFadd{10.1101/2024.10.02 }\DIFaddend \\
+31 & Yamins et al., 2014 & \DIFdelbegin \DIFdel{Goal-driven deep hierarchical convolutional networks predicting neural responses across the primate ventral stream. }\DIFdelend \DIFaddbegin \DIFadd{In Silico / Primate IT (HCNN) }& \DIFadd{Comparative Set (Feedforward Baseline) }& \emph{\DIFadd{PNAS}} \DIFadd{111, 8619--8624 }\DIFaddend \\
+\end{longtable}
+
+\textbf{Supplementary Table S5:} Master 31-Paper Canonical Literature Corpus Registry \DIFaddbegin \DIFadd{detailing Modality, Inclusion Basis, and Provenance}\DIFaddend .
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\textbf{Model Name} & \textbf{Parameters} & \textbf{Architecture \& Provenance} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+gemma-3-27b-it & 27B & Google DeepMind (Dense Transformer) \\
+gemma-4-31b-it & 31B & Google DeepMind (Extended Reasoning Architecture) \\
+deepseek-r1-distill-llama-70b & 70B & DeepSeek-AI / Meta Llama Distillation \\
+gpt-oss-claude-4.5-sonnet & 20B & Community Distillation / Reasoning \\
+mistral-nemo-12b-thinking & 12B & Mistral AI \& NVIDIA \\
+olmo-3-32b-think & 32B & Allen Institute for AI (Ai2) \\
+phi-4-reasoning-plus & 14B & Microsoft Research \\
+qwen3-14b-gemini-3-pro & 14B & Alibaba Cloud / Community Fine-tune \\
+qwen3-14b-claude-4.5-sonnet & 14B & Alibaba Cloud / Community Fine-tune \\
+qwen3.5-40b-claude-4.5-opus & 40B & Alibaba Cloud / High-Capacity MoE \\
+\end{longtable}
+
+\textbf{Supplementary Table S6:} Open-weight LLM evaluator models evaluated in this work.
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+\textbf{Evaluator Comparison} & \textbf{Paired $N$} & \textbf{Pearson $r$} & \textbf{MAE} & \textbf{Directional Concordance} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Human--Human ($H_1$ vs $H_2$) & 299 & 0.390 & 0.308 & 88.96\% \\
+Human Consensus vs LLM Council & 175 & 0.162 & 0.301 & 93.14\% \\
+Council Inter-Model Average & 584 & 0.540 & 0.284 & 85.00\% \\
+Shuffled Evidence (Null $H_0$) & 191 & -0.087 & 0.662 & 56.54\% \\
+\end{longtable}
+
+\textbf{Supplementary Table S7:} Evaluator Strata Agreement and Error Hierarchy Summary \DIFaddbegin \DIFadd{($K=2$ independent human domain experts)}\DIFaddend .
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+\DIFaddbegin \textbf{\DIFadd{Adjudication Class}} & \textbf{\DIFadd{Cells ($N$)}} & \textbf{\DIFadd{Human Supported}} & \textbf{\DIFadd{Council Supported}} & \textbf{\DIFadd{Primary Failure / Divergence Mode}} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\DIFadd{Theoretical Model / Synthesis }& \DIFadd{15 }& \DIFadd{100.0\% (15/15) }& \DIFadd{86.7\% (13/15) }& \DIFadd{Council magnitude attenuation on broad claims }\\
+\DIFadd{Direct Empirical Electrophysiology }& \DIFadd{7 }& \DIFadd{100.0\% (7/7) }& \DIFadd{71.4\% (5/7) }& \DIFadd{Subtle cell-type specificity (SST vs PV gain) }\\
+\DIFadd{Hierarchical / Multi-Area Studies }& \DIFadd{5 }& \DIFadd{80.0\% (4/5) }& \DIFadd{60.0\% (3/5) }& \DIFadd{Conflation of local vs global deviance scope }\\
+\midrule
+\textbf{\DIFadd{Total Adjudicated Disagreements}} & \textbf{\DIFadd{27}} & \textbf{\DIFadd{96.3\% (26/27)}} & \textbf{\DIFadd{77.8\% (21/27)}} & \textbf{\DIFadd{Passage-grounded technical concordance}} \\
+\end{longtable}
+
+\textbf{\DIFadd{Supplementary Table S8:}} \DIFadd{Diagnostic Passage-Support Adjudication across 27 Prespecified Disagreement Cells.
+}
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+\DIFaddend \textbf{Experimental Condition} & \textbf{Calls ($N$)} & \textbf{Mean Score [$\pm$SD]} & \textbf{Displacement $\Delta_{\text{LO-GO}}$} & \textbf{\DIFdelbegin \DIFdel{Directional Status}\DIFdelend \DIFaddbegin \DIFadd{Paper Ranking Stability}\DIFaddend } \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+$T = 0.00$ (Deterministic) & 279 & $0.463 \pm 0.381$ & $+0.041$ & \DIFdelbegin \DIFdel{$\text{LO} > \text{GO}$ }\DIFdelend \DIFaddbegin \DIFadd{Spearman $\rho_{\text{rank}} = 1.000$ (Baseline) }\DIFaddend \\
+$T = 0.35$ (Moderate) & 279 & $0.458 \pm 0.384$ & $+0.039$ & \DIFdelbegin \DIFdel{$\text{LO} > \text{GO}$ }\DIFdelend \DIFaddbegin \DIFadd{Spearman $\rho_{\text{rank}} = 0.9841$ }\DIFaddend \\
+$T = 0.70$ (Exploratory) & 279 & $0.451 \pm 0.392$ & $+0.036$ & \DIFdelbegin \DIFdel{$\text{LO} > \text{GO}$ }\DIFdelend \DIFaddbegin \DIFadd{Spearman $\rho_{\text{rank}} = 0.9677$ }\DIFaddend \\
+\midrule
+Repeat 1 & 279 & $0.460 \pm 0.382$ & $+0.040$ & \DIFdelbegin \DIFdel{$\text{LO} > \text{GO}$ }\DIFdelend \DIFaddbegin \DIFadd{Spearman $\rho_{\text{rank}} = 0.9818$ }\DIFaddend \\
+Repeat 2 & 279 & $0.457 \pm 0.386$ & $+0.038$ & \DIFdelbegin \DIFdel{$\text{LO} > \text{GO}$ }\DIFdelend \DIFaddbegin \DIFadd{Spearman $\rho_{\text{rank}} = 0.9782$ }\DIFaddend \\
+Repeat 3 & 279 & $0.455 \pm 0.389$ & $+0.038$ & \DIFdelbegin \DIFdel{$\text{LO} > \text{GO}$ }\DIFdelend \DIFaddbegin \DIFadd{Spearman $\rho_{\text{rank}} = 0.9745$ }\DIFaddend \\
+\DIFaddbegin \midrule
+\DIFadd{Westerberg \& Xiong (2025) }& \DIFadd{--- }& \DIFadd{Divergent Outlier }& \DIFadd{$\Delta = -0.400$ }& \DIFadd{Rank 28--29/31 across all $T$ conditions }\\
+\DIFadd{Leave-One-Model-Out (LOMO) }& \DIFadd{10 folds }& \DIFadd{$\Delta_{\text{Total}} \in [-0.105, -0.093]$ }& \DIFadd{Negative Invariant }& \DIFadd{H2 $\Delta \in [-0.228, -0.208]$ }\\
+\DIFaddend \end{longtable}
+
+\textbf{Supplementary Table \DIFdelbegin \DIFdel{S8}\DIFdelend \DIFaddbegin \DIFadd{S9}\DIFaddend :} Factorial Robustness Analysis across 837 LLM inference calls \DIFaddbegin \DIFadd{including Paper Ranking and LOMO Sensitivity}\DIFaddend .
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+\textbf{Evidence Manipulation} & \textbf{Calls ($N$)} & \textbf{Mean LO Score} & \textbf{Mean GO Score} & \textbf{Displacement $\Delta_{\text{LO-GO}}$} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Intact Evidence (FULL) & 18 & $0.512 \pm 0.081$ & $0.474 \pm 0.076$ & $+0.038$ ($\text{LO} > \text{GO}$) \\
+Shuffled Evidence ($H_0$) & 18 & $0.489 \pm 0.092$ & $0.493 \pm 0.088$ & $-0.004$ ($\text{Neutral}$) \\
+Prior Only (Zero Evidence) & 18 & $0.450 \pm 0.110$ & $0.450 \pm 0.108$ & $+0.000$ ($\text{Null}$) \\
+\end{longtable}
+
+\textbf{Supplementary Table \DIFdelbegin \DIFdel{S9}\DIFdelend \DIFaddbegin \DIFadd{S10}\DIFaddend :} Evidence Grounding vs. Prior Bias Sensitivity Analysis (54 Calls).
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+\textbf{Ablation Condition} & \textbf{Paired Cells ($N$)} & \textbf{Pearson $r$} & \textbf{MAE} & \textbf{Displacement $\Delta_{\text{LO-GO}}$} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+FULL Baseline (With Figures) & 533 & 1.000 & 0.000 & $+0.0408$ \\
+NO\_FIGURE (Figures Stripped) & 533 & 0.8539 & 0.2253 & $+0.0565$ \\
+\end{longtable}
+
+\textbf{Supplementary Table \DIFdelbegin \DIFdel{S10}\DIFdelend \DIFaddbegin \DIFadd{S11}\DIFaddend :} Figure-Text-Removal Sensitivity Summary ($N=31$ papers).
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+\textbf{Dimension} & \textbf{Stratum} & \textbf{Papers ($N$)} & \textbf{Council $\Delta_{\text{LO-GO}}$} & \textbf{Directional Trend} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Study Type & Empirical & 13 & $-0.009$ & $\text{GO} > \text{LO}$ \\
+Study Type & Computational / Theory & 18 & $-0.013$ & $\text{GO} > \text{LO}$ \\
+Modality & In Silico & 19 & $-0.013$ & $\text{GO} > \text{LO}$ \\
+Modality & Human In Vivo & 7 & $-0.059$ & $\text{GO} > \text{LO}$ \\
+Modality & Animal In Vivo & 5 & $+0.087$ & $\text{LO} > \text{GO}$ \\
+Publication Era & 1982--2014 & 12 & $-0.024$ & $\text{GO} > \text{LO}$ \\
+Publication Era & 2015--2020 & 7 & $-0.041$ & $\text{GO} > \text{LO}$ \\
+Publication Era & 2021--2025 & 12 & $+0.038$ & $\text{LO} > \text{GO}$ \\
+Publication Status & Peer-Reviewed Journal & \DIFdelbegin \DIFdel{31 }\DIFdelend \DIFaddbegin \DIFadd{30 }\DIFaddend & $-0.010$ & $\text{GO} > \text{LO}$ \\
+Publication Status & Preprint \DIFdelbegin \DIFdel{/ Other }\DIFdelend \DIFaddbegin \DIFadd{(Westerberg \& Xiong 2025) }\DIFaddend & \DIFdelbegin \DIFdel{0 }\DIFdelend \DIFaddbegin \DIFadd{1 }\DIFaddend & \DIFdelbegin \DIFdel{--- }\DIFdelend \DIFaddbegin \DIFadd{$-0.400$ }\DIFaddend & \DIFdelbegin \DIFdel{$\text{NOT ESTIMABLE}$ }\DIFdelend \DIFaddbegin \DIFadd{$\text{GO} \gg \text{LO}$ }\DIFaddend \\
+\end{longtable}
+
+\textbf{Supplementary Table \DIFdelbegin \DIFdel{S11}\DIFdelend \DIFaddbegin \DIFadd{S12}\DIFaddend :} Corpus Subgroup Sensitivity Analysis across Taxonomic Strata\DIFaddbegin \DIFadd{.
+}
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+\textbf{\DIFadd{Validation Axis}} & \textbf{\DIFadd{Evaluated Figures ($N$)}} & \textbf{\DIFadd{Correct}} & \textbf{\DIFadd{Partial / Minor Error}} & \textbf{\DIFadd{Overall Accuracy Rate}} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\DIFadd{Axis A: Numerical Trend \& Data Extraction }& \DIFadd{10 }& \DIFadd{9 }& \DIFadd{1 (Minor plot type phrasing) }& \DIFadd{100.0\% PASS ($10/10$) }\\
+\DIFadd{Axis B: Empirical Effect Direction }& \DIFadd{10 }& \DIFadd{10 }& \DIFadd{0 }& \DIFadd{100.0\% Correct ($10/10$) }\\
+\DIFadd{Axis C: HPC-36 Ontology Factor Mapping }& \DIFadd{10 }& \DIFadd{9 }& \DIFadd{1 (Partial invertebrate mapping) }& \DIFadd{100.0\% PASS ($10/10$) }\\
+\midrule
+\textbf{\DIFadd{Overall Manual Validation Outcome}} & \textbf{\DIFadd{10 Figures}} & \textbf{\DIFadd{10/10 PASS}} & \textbf{\DIFadd{0 Fatal Inversions}} & \textbf{\DIFadd{100.0\% PASS}} \\
+\end{longtable}
+
+\textbf{\DIFadd{Supplementary Table S13:}} \DIFadd{Manual Expert Validation Summary of Generated Multimodal Figure Descriptions ($N=10$ representative figures audited against primary source PDFs)}\DIFaddend .
+
+\end{document}

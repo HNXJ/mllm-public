@@ -1,0 +1,43 @@
+{
+  "condition_id": "Furutachi2024__olmo-3-32b-think__T035__R01",
+  "paper_id": "Furutachi2024",
+  "input_filename": "Furutachi2024-vllm-deepread.md",
+  "input_sha256": "4dcf34b32251622a79133e7b478f3b7a9aeb793d3a3f27275e0e95f015211544",
+  "scientific_model": "olmo-3-32b-think",
+  "served_model_id": "olmo-3-32b-think-mlx",
+  "temperature": 0.35,
+  "top_p": 0.9,
+  "min_p": 0.1,
+  "repeat": 1,
+  "concurrency": 1,
+  "prompt_sha256": "568c2652d8bcf97237d748e92f793844d8ef7c81cf6f6cd6086febb1bc2bc6ea",
+  "glossary_sha256": "93d528a84ae2c392864c06aeea8d7a1dca9676a42ca96ac89264beab3017a827",
+  "instruction_sha256": "4bdf4a721bb33597c44d96480fc768984d6aa763300e909ab520a13967b48178",
+  "git_commit": "02912c2c0d6244f09312d1a26068fc0e648240c1",
+  "started_at": "2026-08-13T15:28:58Z",
+  "finished_at": "2026-08-13T15:28:58Z",
+  "latency_s": 0.18,
+  "prompt_tokens": 0,
+  "completion_tokens": 0,
+  "tokens_per_second": 0.0,
+  "http_status": 400,
+  "attempts": 3,
+  "token_usage": null,
+  "raw_assistant_response": "HTTP Error 400: {\"error\":\"The number of tokens to keep from the initial prompt is greater than the context length. Try to load the model with a larger context length, or provide a shorter input\"}",
+  "raw_http_payload": null,
+  "parse_status": "unrecoverable",
+  "parser_method": "failed",
+  "parser_version": "v1.0",
+  "parsed_response": null,
+  "parse_errors": [
+    "Failed all rescue parser stages"
+  ],
+  "recovery_notes": "No valid JSON structure recovered",
+  "validation_status": "UNRECOVERABLE",
+  "validation_errors": [
+    "Failed all rescue parser stages"
+  ],
+  "lo_evaluations": null,
+  "go_evaluations": null,
+  "reasoning_log_text": ""
+}

@@ -1,0 +1,176 @@
+study_name,factor,h1_score,h2_score,h12_consensus,council_score,human_diff,human_council_diff,priority_tier
+Attinger2017,LO-F01,1.0,1.0,1.0,0.6,0.0,0.4,Priority A (Human Consensus Disagrees with Council)
+Attinger2017,LO-F03,1.0,0.8,0.9,0.6,0.19999999999999996,0.30000000000000004,Agreement / Low Divergence
+Attinger2017,LO-F06,0.6,0.9,0.8,0.6,0.30000000000000004,0.20000000000000007,Agreement / Low Divergence
+Attinger2017,LO-F09,1.0,0.9,0.9,0.6,0.09999999999999998,0.30000000000000004,Agreement / Low Divergence
+Attinger2017,LO-F11,1.0,0.9,0.9,0.6,0.09999999999999998,0.30000000000000004,Agreement / Low Divergence
+Attinger2017,LO-F13,0.2,0.9,0.6,0.6,0.7,0.0,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+Attinger2017,LO-F23,0.2,0.9,0.6,0.6,0.7,0.0,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+Attinger2017,GO-F11,1.0,-0.1,0.5,0.6,1.1,0.09999999999999998,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+Bastos2012,LO-F01,0.6,0.6,0.6,0.0,0.0,0.6,Priority A (Human Consensus Disagrees with Council)
+Bastos2012,LO-F03,1.0,0.8,0.9,0.6,0.19999999999999996,0.30000000000000004,Agreement / Low Divergence
+Bastos2012,LO-F06,1.0,0.9,0.9,0.8,0.09999999999999998,0.09999999999999998,Agreement / Low Divergence
+Bastos2012,LO-F08,0.6,0.9,0.8,0.2,0.30000000000000004,0.6000000000000001,Priority C (Other Large Human-Council Divergence)
+Bastos2012,LO-F10,1.0,0.9,0.9,0.6,0.09999999999999998,0.30000000000000004,Agreement / Low Divergence
+Bastos2012,LO-F11,0.2,0.8,0.5,0.8,0.6000000000000001,0.30000000000000004,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+Bastos2012,LO-F13,1.0,1.0,1.0,0.2,0.0,0.8,Priority A (Human Consensus Disagrees with Council)
+Bastos2012,LO-F16,1.0,1.0,1.0,0.6,0.0,0.4,Priority A (Human Consensus Disagrees with Council)
+Bastos2012,LO-F18,1.0,1.0,1.0,0.6,0.0,0.4,Priority A (Human Consensus Disagrees with Council)
+Bastos2012,LO-F23,1.0,0.8,0.9,0.6,0.19999999999999996,0.30000000000000004,Agreement / Low Divergence
+Bastos2012,LO-F25,1.0,0.6,0.8,0.6,0.4,0.20000000000000007,Agreement / Low Divergence
+Bastos2012,LO-F27,0.6,0.7,0.6,0.6,0.09999999999999998,0.0,Agreement / Low Divergence
+Bastos2012,GO-F01,0.6,0.6,0.6,0.2,0.0,0.39999999999999997,Agreement / Low Divergence
+Bastos2012,GO-F03,1.0,0.8,0.9,0.8,0.19999999999999996,0.09999999999999998,Agreement / Low Divergence
+Bastos2012,GO-F06,1.0,0.9,0.9,0.8,0.09999999999999998,0.09999999999999998,Agreement / Low Divergence
+Bastos2012,GO-F08,0.6,0.6,0.6,0.6,0.0,0.0,Agreement / Low Divergence
+Bastos2012,GO-F10,1.0,0.9,0.9,0.8,0.09999999999999998,0.09999999999999998,Agreement / Low Divergence
+Bastos2012,GO-F11,0.2,0.6,0.4,0.6,0.39999999999999997,0.19999999999999996,Agreement / Low Divergence
+Bastos2012,GO-F13,1.0,1.0,1.0,0.2,0.0,0.8,Priority A (Human Consensus Disagrees with Council)
+Bastos2012,GO-F16,1.0,1.0,1.0,0.6,0.0,0.4,Priority A (Human Consensus Disagrees with Council)
+Bastos2012,GO-F18,1.0,1.0,1.0,0.6,0.0,0.4,Priority A (Human Consensus Disagrees with Council)
+Bastos2012,GO-F23,1.0,1.0,1.0,0.6,0.0,0.4,Priority A (Human Consensus Disagrees with Council)
+Bastos2012,GO-F25,1.0,1.0,1.0,0.8,0.0,0.19999999999999996,Agreement / Low Divergence
+Bastos2012,GO-F26,1.0,0.8,0.9,0.6,0.19999999999999996,0.30000000000000004,Agreement / Low Divergence
+Bastos2012,GO-F27,0.6,0.8,0.7,0.8,0.20000000000000007,0.10000000000000009,Agreement / Low Divergence
+Bastos2020,GO-F13,1.0,1.0,1.0,0.8,0.0,0.19999999999999996,Agreement / Low Divergence
+Bastos2020,GO-F16,1.0,1.0,1.0,0.8,0.0,0.19999999999999996,Agreement / Low Divergence
+Bastos2020,GO-F18,1.0,1.0,1.0,0.6,0.0,0.4,Priority A (Human Consensus Disagrees with Council)
+Bastos2020,GO-F23,1.0,1.0,1.0,0.8,0.0,0.19999999999999996,Agreement / Low Divergence
+Bekinschtein2009,LO-F13,0.6,1.0,0.8,0.8,0.4,0.0,Agreement / Low Divergence
+Bekinschtein2009,LO-F21,0.2,0.4,0.3,0.6,0.2,0.3,Agreement / Low Divergence
+Bekinschtein2009,LO-F27,0.2,0.5,0.3,0.8,0.3,0.5,Priority A (Human Consensus Disagrees with Council)
+Bekinschtein2009,GO-F13,0.6,1.0,0.8,0.8,0.4,0.0,Agreement / Low Divergence
+Bekinschtein2009,GO-F21,0.6,0.9,0.8,0.6,0.30000000000000004,0.20000000000000007,Agreement / Low Divergence
+Bekinschtein2009,GO-F27,0.6,0.8,0.7,0.8,0.20000000000000007,0.10000000000000009,Agreement / Low Divergence
+Friston2010,GO-F10,1.0,0.7,0.8,0.2,0.30000000000000004,0.6000000000000001,Priority C (Other Large Human-Council Divergence)
+Furutachi2024,LO-F01,0.6,0.9,0.8,0.0,0.30000000000000004,0.8,Priority C (Other Large Human-Council Divergence)
+Furutachi2024,LO-F07,0.2,0.9,0.6,1.0,0.7,0.4,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+Furutachi2024,LO-F09,1.0,1.0,1.0,0.8,0.0,0.19999999999999996,Agreement / Low Divergence
+Furutachi2024,LO-F12,0.6,0.9,0.8,1.0,0.30000000000000004,0.19999999999999996,Agreement / Low Divergence
+Furutachi2024,LO-F13,0.2,0.9,0.6,1.0,0.7,0.4,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+Furutachi2024,LO-F24,1.0,1.0,1.0,1.0,0.0,0.0,Agreement / Low Divergence
+Garret2020,LO-F06,0.6,0.8,0.7,0.8,0.20000000000000007,0.10000000000000009,Agreement / Low Divergence
+Garret2020,LO-F09,0.6,0.9,0.8,0.8,0.30000000000000004,0.0,Agreement / Low Divergence
+Garret2020,LO-F12,1.0,0.9,0.9,0.6,0.09999999999999998,0.30000000000000004,Agreement / Low Divergence
+Garret2020,GO-F06,1.0,0.8,0.9,0.8,0.19999999999999996,0.09999999999999998,Agreement / Low Divergence
+Garret2020,GO-F09,1.0,0.9,0.9,0.8,0.09999999999999998,0.09999999999999998,Agreement / Low Divergence
+Garret2020,GO-F12,1.0,0.7,0.8,0.6,0.30000000000000004,0.20000000000000007,Agreement / Low Divergence
+Hertag2020,LO-F01,1.0,0.9,0.9,0.2,0.09999999999999998,0.7,Priority A (Human Consensus Disagrees with Council)
+Hertag2020,LO-F02,-0.2,-0.2,-0.2,1.0,0.0,1.2,Priority A (Human Consensus Disagrees with Council)
+Hertag2020,LO-F03,1.0,0.8,0.9,0.6,0.19999999999999996,0.30000000000000004,Agreement / Low Divergence
+Hertag2020,LO-F06,1.0,0.9,0.9,0.8,0.09999999999999998,0.09999999999999998,Agreement / Low Divergence
+Hertag2020,LO-F09,1.0,1.0,1.0,0.2,0.0,0.8,Priority A (Human Consensus Disagrees with Council)
+Hertag2020,LO-F11,1.0,1.0,1.0,1.0,0.0,0.0,Agreement / Low Divergence
+Keller2012,LO-F06,0.2,0.9,0.6,0.6,0.7,0.0,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+Keller2012,GO-F06,0.2,0.9,0.6,0.6,0.7,0.0,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+Keller2018,LO-F01,0.6,0.6,0.6,0.2,0.0,0.39999999999999997,Agreement / Low Divergence
+Keller2018,LO-F06,1.0,0.7,0.8,0.6,0.30000000000000004,0.20000000000000007,Agreement / Low Divergence
+Keller2018,LO-F12,0.6,1.0,0.8,0.6,0.4,0.20000000000000007,Agreement / Low Divergence
+Keller2018,LO-F13,0.6,1.0,0.8,0.2,0.4,0.6000000000000001,Priority C (Other Large Human-Council Divergence)
+Keller2018,LO-F18,0.6,0.9,0.8,0.6,0.30000000000000004,0.20000000000000007,Agreement / Low Divergence
+Keller2018,LO-F25,1.0,0.4,0.7,0.2,0.6,0.49999999999999994,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+Keller2018,LO-F31,0.6,0.8,0.7,0.2,0.20000000000000007,0.49999999999999994,Priority A (Human Consensus Disagrees with Council)
+Keller2018,LO-F36,-0.6,-0.1,-0.3,0.2,0.5,0.5,Priority C (Other Large Human-Council Divergence)
+Keller2018,GO-F01,0.6,0.8,0.7,0.2,0.20000000000000007,0.49999999999999994,Priority A (Human Consensus Disagrees with Council)
+Keller2018,GO-F06,0.6,0.7,0.6,0.2,0.09999999999999998,0.39999999999999997,Agreement / Low Divergence
+Keller2018,GO-F10,0.6,0.8,0.7,0.6,0.20000000000000007,0.09999999999999998,Agreement / Low Divergence
+Keller2018,GO-F13,0.6,1.0,0.8,0.2,0.4,0.6000000000000001,Priority C (Other Large Human-Council Divergence)
+Keller2018,GO-F18,0.6,0.9,0.8,0.6,0.30000000000000004,0.20000000000000007,Agreement / Low Divergence
+Keller2018,GO-F25,1.0,0.8,0.9,0.2,0.19999999999999996,0.7,Priority A (Human Consensus Disagrees with Council)
+Keller2018,GO-F31,0.6,0.8,0.7,0.2,0.20000000000000007,0.49999999999999994,Priority A (Human Consensus Disagrees with Council)
+Kiebel2008,LO-F06,0.6,0.8,0.7,0.2,0.20000000000000007,0.49999999999999994,Priority A (Human Consensus Disagrees with Council)
+Kiebel2008,LO-F10,0.6,1.0,0.8,0.2,0.4,0.6000000000000001,Priority C (Other Large Human-Council Divergence)
+Kiebel2008,LO-F12,1.0,0.8,0.9,0.6,0.19999999999999996,0.30000000000000004,Agreement / Low Divergence
+Kiebel2008,LO-F13,0.6,1.0,0.8,0.2,0.4,0.6000000000000001,Priority C (Other Large Human-Council Divergence)
+Kiebel2008,LO-F22,0.2,1.0,0.6,0.0,0.8,0.6,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+Kiebel2008,LO-F26,1.0,0.5,0.8,0.2,0.5,0.6000000000000001,Priority C (Other Large Human-Council Divergence)
+Kiebel2008,GO-F06,0.6,0.5,0.6,0.2,0.09999999999999998,0.39999999999999997,Agreement / Low Divergence
+Kiebel2008,GO-F10,0.6,0.8,0.7,0.2,0.20000000000000007,0.49999999999999994,Priority A (Human Consensus Disagrees with Council)
+Kiebel2008,GO-F12,1.0,0.9,0.9,0.6,0.09999999999999998,0.30000000000000004,Agreement / Low Divergence
+Kiebel2008,GO-F13,0.6,1.0,0.8,0.2,0.4,0.6000000000000001,Priority C (Other Large Human-Council Divergence)
+Kiebel2008,GO-F22,0.2,1.0,0.6,0.0,0.8,0.6,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+Kiebel2008,GO-F26,1.0,0.8,0.9,0.2,0.19999999999999996,0.7,Priority A (Human Consensus Disagrees with Council)
+Kiebel2008,GO-F30,0.6,-0.1,0.2,0.6,0.7,0.39999999999999997,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+LaoRodriguez2023,LO-F04,0.2,-0.6,-0.2,0.2,0.8,0.4,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+LaoRodriguez2023,LO-F05,0.6,-0.4,0.1,0.6,1.0,0.5,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+LaoRodriguez2023,LO-F06,1.0,0.6,0.8,0.8,0.4,0.0,Agreement / Low Divergence
+LaoRodriguez2023,LO-F12,1.0,1.0,1.0,1.0,0.0,0.0,Agreement / Low Divergence
+LaoRodriguez2023,LO-F24,0.2,0.6,0.4,0.2,0.39999999999999997,0.2,Agreement / Low Divergence
+LaoRodriguez2023,LO-F32,0.6,0.8,0.7,0.6,0.20000000000000007,0.09999999999999998,Agreement / Low Divergence
+LaoRodriguez2023,LO-F36,0.6,0.6,0.6,0.6,0.0,0.0,Agreement / Low Divergence
+LaoRodriguez2023,GO-F12,1.0,0.6,0.8,1.0,0.4,0.19999999999999996,Agreement / Low Divergence
+LeeMejias2025,LO-F01,1.0,0.8,0.9,0.6,0.19999999999999996,0.30000000000000004,Agreement / Low Divergence
+LeeMejias2025,LO-F02,0.0,0.6,0.3,1.0,0.6,0.7,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+LeeMejias2025,LO-F03,1.0,0.6,0.8,0.2,0.4,0.6000000000000001,Priority C (Other Large Human-Council Divergence)
+LeeMejias2025,LO-F06,1.0,0.6,0.8,0.6,0.4,0.20000000000000007,Agreement / Low Divergence
+LeeMejias2025,LO-F08,0.2,0.2,0.2,0.6,0.0,0.39999999999999997,Agreement / Low Divergence
+LeeMejias2025,LO-F09,1.0,0.8,0.9,1.0,0.19999999999999996,0.09999999999999998,Agreement / Low Divergence
+LeeMejias2025,GO-F13,1.0,0.4,0.7,0.6,0.6,0.09999999999999998,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+LeeMejias2025,GO-F18,1.0,0.8,0.9,0.6,0.19999999999999996,0.30000000000000004,Agreement / Low Divergence
+LeeMejias2025,GO-F19,1.0,0.8,0.9,0.6,0.19999999999999996,0.30000000000000004,Agreement / Low Divergence
+LeeMejias2025,GO-F23,1.0,0.6,0.8,0.6,0.4,0.20000000000000007,Agreement / Low Divergence
+Mikulasch2023,LO-F01,0.6,0.6,0.6,0.2,0.0,0.39999999999999997,Agreement / Low Divergence
+Mikulasch2023,LO-F02,0.6,0.5,0.6,0.6,0.09999999999999998,0.0,Agreement / Low Divergence
+Mikulasch2023,LO-F03,0.6,0.6,0.6,0.2,0.0,0.39999999999999997,Agreement / Low Divergence
+Mikulasch2023,LO-F06,0.6,0.2,0.4,0.6,0.39999999999999997,0.19999999999999996,Agreement / Low Divergence
+Mikulasch2023,LO-F09,0.2,0.6,0.4,0.2,0.39999999999999997,0.2,Agreement / Low Divergence
+Mikulasch2023,GO-F01,0.6,0.6,0.6,0.2,0.0,0.39999999999999997,Agreement / Low Divergence
+Mikulasch2023,GO-F02,0.6,0.6,0.6,0.6,0.0,0.0,Agreement / Low Divergence
+Mikulasch2023,GO-F03,0.6,0.5,0.6,0.2,0.09999999999999998,0.39999999999999997,Agreement / Low Divergence
+Mikulasch2023,GO-F06,0.6,0.6,0.6,0.6,0.0,0.0,Agreement / Low Divergence
+Mikulasch2023,GO-F09,0.2,0.6,0.4,0.2,0.39999999999999997,0.2,Agreement / Low Divergence
+Nejad2025,LO-F06,0.2,0.8,0.5,0.2,0.6000000000000001,0.3,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+Nejad2025,GO-F06,0.2,0.8,0.5,0.6,0.6000000000000001,0.09999999999999998,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+Payeur2021,LO-F01,0.0,0.6,0.3,0.0,0.6,0.3,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+Payeur2021,LO-F03,0.0,0.4,0.2,0.0,0.4,0.2,Agreement / Low Divergence
+Rao2024,LO-F06,0.6,0.8,0.7,0.6,0.20000000000000007,0.09999999999999998,Agreement / Low Divergence
+Rao2024,LO-F13,0.6,0.9,0.8,0.6,0.30000000000000004,0.20000000000000007,Agreement / Low Divergence
+Rao2024,LO-F23,0.6,0.9,0.8,0.6,0.30000000000000004,0.20000000000000007,Agreement / Low Divergence
+Rao2024,LO-F26,0.6,1.0,0.8,0.2,0.4,0.6000000000000001,Priority C (Other Large Human-Council Divergence)
+Rao2024,LO-F27,0.6,0.8,0.7,0.6,0.20000000000000007,0.09999999999999998,Agreement / Low Divergence
+Rao2024,GO-F06,0.6,0.8,0.7,0.6,0.20000000000000007,0.09999999999999998,Agreement / Low Divergence
+Rao2024,GO-F13,0.6,0.8,0.7,0.6,0.20000000000000007,0.09999999999999998,Agreement / Low Divergence
+Rao2024,GO-F23,0.6,0.6,0.6,0.6,0.0,0.0,Agreement / Low Divergence
+Rao2024,GO-F26,0.6,1.0,0.8,0.2,0.4,0.6000000000000001,Priority C (Other Large Human-Council Divergence)
+Rao2024,GO-F27,0.6,0.8,0.7,0.6,0.20000000000000007,0.09999999999999998,Agreement / Low Divergence
+Sacramento2018,LO-F01,1.0,1.0,1.0,0.2,0.0,0.8,Priority A (Human Consensus Disagrees with Council)
+Sacramento2018,LO-F06,0.6,0.8,0.7,0.6,0.20000000000000007,0.09999999999999998,Agreement / Low Divergence
+Sacramento2018,LO-F13,-0.2,0.3,0.0,0.6,0.5,0.6,Priority C (Other Large Human-Council Divergence)
+Sacramento2018,LO-F23,-0.6,0.8,0.1,0.6,1.4,0.5,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+Sacramento2018,GO-F01,1.0,1.0,1.0,0.6,0.0,0.4,Priority A (Human Consensus Disagrees with Council)
+Sacramento2018,GO-F06,0.6,0.8,0.7,0.6,0.20000000000000007,0.09999999999999998,Agreement / Low Divergence
+Sacramento2018,GO-F13,-0.2,0.7,0.2,0.6,0.8999999999999999,0.39999999999999997,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+Sacramento2018,GO-F23,-0.6,0.8,0.1,0.6,1.4,0.5,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+Sacramento2018,GO-F25,0.6,0.8,0.7,0.6,0.20000000000000007,0.09999999999999998,Agreement / Low Divergence
+Spratling2008,LO-F06,0.6,0.6,0.6,0.6,0.0,0.0,Agreement / Low Divergence
+Spratling2008,LO-F10,0.6,0.6,0.6,0.2,0.0,0.39999999999999997,Agreement / Low Divergence
+Spratling2008,LO-F13,1.0,1.0,1.0,0.6,0.0,0.4,Priority A (Human Consensus Disagrees with Council)
+Spratling2008,LO-F23,1.0,0.8,0.9,0.6,0.19999999999999996,0.30000000000000004,Agreement / Low Divergence
+Spratling2008,LO-F26,0.6,0.8,0.7,0.2,0.20000000000000007,0.49999999999999994,Priority A (Human Consensus Disagrees with Council)
+Spratling2008,GO-F06,0.6,0.8,0.7,0.6,0.20000000000000007,0.09999999999999998,Agreement / Low Divergence
+Spratling2008,GO-F10,0.6,0.8,0.7,0.6,0.20000000000000007,0.09999999999999998,Agreement / Low Divergence
+Spratling2008,GO-F13,1.0,1.0,1.0,0.6,0.0,0.4,Priority A (Human Consensus Disagrees with Council)
+Spratling2008,GO-F23,1.0,0.8,0.9,0.6,0.19999999999999996,0.30000000000000004,Agreement / Low Divergence
+Spratling2008,GO-F26,0.6,0.9,0.8,0.2,0.30000000000000004,0.6000000000000001,Priority C (Other Large Human-Council Divergence)
+Spratling2010,LO-F06,1.0,1.0,1.0,0.6,0.0,0.4,Priority A (Human Consensus Disagrees with Council)
+Spratling2010,GO-F13,0.0,1.0,0.5,0.2,1.0,0.3,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+Spratling2010,GO-F23,0.0,0.8,0.4,0.6,0.8,0.19999999999999996,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+Srinivasan1982,LO-F01,1.0,0.8,0.9,0.6,0.19999999999999996,0.30000000000000004,Agreement / Low Divergence
+Srinivasan1982,LO-F03,0.6,0.3,0.4,0.6,0.3,0.19999999999999996,Agreement / Low Divergence
+Srinivasan1982,LO-F06,1.0,0.8,0.9,0.6,0.19999999999999996,0.30000000000000004,Agreement / Low Divergence
+Srinivasan1982,LO-F10,0.2,1.0,0.6,0.6,0.8,0.0,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+VanDerveer2021,LO-F01,1.0,0.6,0.8,0.2,0.4,0.6000000000000001,Priority C (Other Large Human-Council Divergence)
+VanDerveer2021,LO-F02,0.0,-0.4,-0.2,0.6,0.4,0.8,Priority C (Other Large Human-Council Divergence)
+VanDerveer2021,LO-F06,0.6,0.8,0.7,0.6,0.20000000000000007,0.09999999999999998,Agreement / Low Divergence
+VanDerveer2021,LO-F08,0.6,0.4,0.5,0.2,0.19999999999999996,0.3,Agreement / Low Divergence
+VanDerveer2021,GO-F01,0.6,-0.2,0.2,0.2,0.8,0.0,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+Wacongne2011,LO-F04,0.0,-0.7,-0.3,0.6,0.7,0.8999999999999999,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+Wacongne2011,LO-F06,1.0,0.6,0.8,0.6,0.4,0.20000000000000007,Agreement / Low Divergence
+Wacongne2011,LO-F12,1.0,1.0,1.0,1.0,0.0,0.0,Agreement / Low Divergence
+Wacongne2011,LO-F13,0.2,1.0,0.6,0.8,0.8,0.20000000000000007,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+Wacongne2011,LO-F27,0.6,0.8,0.7,0.8,0.20000000000000007,0.10000000000000009,Agreement / Low Divergence
+Wacongne2011,LO-F30,0.2,0.9,0.6,0.6,0.7,0.0,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)
+Wacongne2011,GO-F06,1.0,0.8,0.9,0.6,0.19999999999999996,0.30000000000000004,Agreement / Low Divergence
+Wacongne2011,GO-F12,1.0,1.0,1.0,1.0,0.0,0.0,Agreement / Low Divergence
+Wacongne2011,GO-F27,0.6,0.8,0.7,0.8,0.20000000000000007,0.10000000000000009,Agreement / Low Divergence
+Wacongne2011,GO-F30,0.2,0.8,0.5,0.6,0.6000000000000001,0.09999999999999998,Priority B (Human Raters Strongly Disagree / Rater Ambiguity)

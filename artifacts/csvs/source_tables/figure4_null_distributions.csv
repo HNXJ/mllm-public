@@ -1,0 +1,4 @@
+benchmark_name,permutation_type,permutation_count_B,random_seed,provenance_status,mean_msd,sd_msd,ci_95_lower,ci_95_upper,empirical_p_value,tail_direction
+Observed Council Baseline,None (Empirical),0,N/A,FROZEN_OBSERVED,0.1738,0.0,0.1738,0.1738,N/A,N/A
+Figure 4 Full-Shuffle Null,Global Factor Permutation,10000,42,REVISION_REPRODUCTION_PARAMETERS,0.335,0.0095,0.3168,0.3543,0.000100,lower_tail (null_msd <= obs_msd)
+Figure 4 Hypotheses-Shuffle Null,Within-Hypothesis Block Permutation,10000,42,REVISION_REPRODUCTION_PARAMETERS,0.3301,0.009,0.313,0.3483,0.000100,lower_tail (null_msd <= obs_msd)
