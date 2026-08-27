@@ -7,42 +7,7 @@ Authoritative code, data, and publication artifacts for **"Ontology-constrained 
 
 ---
 
-## 1. Repository Structure
-
-```
-.
-├── artifacts/
-│   ├── publication/          # Authoritative manuscript workspace (TeX, PDFs, diffs, figures)
-│   │   ├── main.tex          # Clean revised manuscript LaTeX source
-│   │   ├── supp.tex          # Clean revised Supplementary Information LaTeX source
-│   │   ├── main-render.pdf   # Clean compiled manuscript PDF
-│   │   ├── supp-render.pdf   # Clean compiled Supplementary Information PDF
-│   │   ├── main-diff.tex     # Tracked-change manuscript LaTeX source (latexdiff)
-│   │   ├── main-diff.pdf     # Tracked-change manuscript PDF
-│   │   ├── supp-diff.tex     # Tracked-change Supplementary Information LaTeX source
-│   │   ├── supp-diff.pdf     # Tracked-change Supplementary Information PDF
-│   │   ├── assets/           # Embedded figures, tables, and response to reviewers
-│   │   └── scientific_reports_resubmission_final.zip
-│   ├── csvs/                 # Consolidated evaluator score tables
-│   │   ├── hpc_ag_table.csv  # Autonomous LLM council evaluations (N=304)
-│   │   ├── hpc_hexp_table.csv# Independent human expert evaluations (N=93)
-│   │   └── hpc_grand_table.csv# Grand union matrix (N=397)
-│   ├── data/                 # Raw inputs, markdowns, outputs, and reasoning logs
-│   │   └── reasoning_logs/   # Full model reasoning JSON logs & manifest
-│   └── other/                # Supplementary reports and legacy assets
-├── docs/                     # Documentation, data layout, and reproducibility guides
-├── src/
-│   ├── jmllm/                # Python package for pipeline, scoring, and analysis
-│   └── ontology/             # Canonical HPC-36 glossary and prompt instructions
-├── CITATION.cff
-├── LICENSE
-├── pyproject.toml
-└── README.md
-```
-
----
-
-## 2. Canonical Evaluator Data
+## 1. Canonical Evaluator Data
 
 All evaluator scores across the 31-study predictive processing literature corpus are consolidated into:
 - [`artifacts/csvs/hpc_ag_table.csv`](artifacts/csvs/hpc_ag_table.csv): 10 open-weight local LLMs evaluated across 31 papers.
@@ -53,7 +18,7 @@ Full token-level model reasoning logs are archived in `artifacts/data/reasoning_
 
 ---
 
-## 3. Publication Materials
+## 2. Publication Materials
 
 All publication-facing documents are hosted in [`artifacts/publication/`](artifacts/publication/):
 - **Clean Manuscript PDF**: [`main-render.pdf`](artifacts/publication/main-render.pdf)
@@ -62,6 +27,16 @@ All publication-facing documents are hosted in [`artifacts/publication/`](artifa
 - **Tracked Revision Supplementary Information PDF**: [`supp-diff.pdf`](artifacts/publication/supp-diff.pdf)
 - **Point-by-Point Rebuttal**: [`assets/misc/response_to_reviewers.pdf`](artifacts/publication/assets/misc/response_to_reviewers.pdf)
 - **Final Resubmission Archive**: [`scientific_reports_resubmission_final.zip`](artifacts/publication/scientific_reports_resubmission_final.zip)
+
+---
+
+## 3. Documentation & Ontology
+
+- **Data Layout & Specification**: [`docs/DATA_LAYOUT.md`](docs/DATA_LAYOUT.md)
+- **Reproducibility & Execution Guide**: [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md)
+- **Models & Hardware Setup**: [`docs/MODELS_AND_RUNTIME.md`](docs/MODELS_AND_RUNTIME.md)
+- **HPC-36 Reference Glossary**: [`src/ontology/glossary/HPC/hpc-36-reference.md`](src/ontology/glossary/HPC/hpc-36-reference.md)
+- **Evaluation Prompt**: [`src/ontology/instructions/hpc_eval_prompt.md`](src/ontology/instructions/hpc_eval_prompt.md)
 
 ---
 
