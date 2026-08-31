@@ -1,7 +1,7 @@
 \documentclass[12pt]{article}
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL /tmp/supp_v100.tex               Mon Aug 31 12:52:18 2026
-%DIF ADD artifacts/publication/supp.tex   Mon Aug 31 12:52:16 2026
+%DIF DEL /tmp/supp_v100.tex               Mon Aug 31 13:05:14 2026
+%DIF ADD artifacts/publication/supp.tex   Mon Aug 31 13:05:08 2026
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in]{geometry}
@@ -155,7 +155,7 @@ Hamed Nejat, \DIFaddbegin \DIFadd{Jacob A. Westerberg, }\DIFaddend Alexander Mai
 \DIFaddend \end{center}
 
 \subsection*{Supplementary Fig. S3}
-\textbf{Supplementary Fig. S3:} \DIFdelbegin \DIFdel{837-Call Factorial Robustness Analysis (31 papers $\times$ 3 models $\times$ 3 temperatures $\times$ 3 repeats)}\DIFdelend \DIFaddbegin \DIFadd{Decoding Robustness and Stochastic Replicate Reliability Analysis}\DIFaddend . (A) \DIFdelbegin \DIFdel{Score distribution stability }\DIFdelend \DIFaddbegin \DIFadd{Cross-temperature score stability in the primary complete evaluation model (}\texttt{\DIFadd{gemma-4-31b-it}}\DIFadd{; 279 calls across 31 papers), showing Pearson correlations ($r \ge 0.9760$) and mean absolute errors ($\text{MAE} \le 0.0421$) }\DIFaddend across sampling temperatures \DIFdelbegin \DIFdel{(}\DIFdelend $T \in \{0.00, 0.35, 0.70\}$\DIFdelbegin \DIFdel{) for OLMo-3-32B-Think, Gemma-4-31B-IT, and Phi-4-Reasoning-Plus}\DIFdelend . (B) \DIFdelbegin \DIFdel{Context displacement stability ($\Delta_{\text{LO-GO}}$)demonstrating that the primary scientific contrast remains stable across the tested decoding settings and stochastic repeats}\DIFdelend \DIFaddbegin \DIFadd{Replicate reliability across independent stochastic runs held at fixed temperatures ($T=0.00: \bar{r}=0.9905, \text{MAE}=0.0126$; $T=0.35: \bar{r}=0.9724, \text{MAE}=0.0384$; $T=0.70: \bar{r}=0.9444, \text{MAE}=0.0585$), confirming that scoring variability across independent generation seeds remains tightly bounded relative to cross-paper literature variance}\DIFaddend .
+\textbf{Supplementary Fig. S3:} \DIFdelbegin \DIFdel{837-Call Factorial Robustness Analysis (31 papers $\times$ 3 models $\times$ 3 temperatures $\times$ 3 repeats)}\DIFdelend \DIFaddbegin \DIFadd{Decoding Robustness and Stochastic Replicate Reliability Analysis}\DIFaddend . (A) \DIFdelbegin \DIFdel{Score distribution stability }\DIFdelend \DIFaddbegin \DIFadd{Cross-temperature score stability in the primary complete evaluation model (}\texttt{\DIFadd{gemma-4-31b-it}}\DIFadd{; 279 calls across 31 papers), showing Pearson correlations ($r \ge 0.9760$) and mean absolute errors ($\text{MAE} \le 0.0421$) }\DIFaddend across sampling temperatures \DIFdelbegin \DIFdel{(}\DIFdelend $T \in \{0.00, 0.35, 0.70\}$\DIFdelbegin \DIFdel{) for OLMo-3-32B-Think, Gemma-4-31B-IT, and Phi-4-Reasoning-Plus}\DIFdelend . (B) \DIFdelbegin \DIFdel{Context displacement stability ($\Delta_{\text{LO-GO}}$)demonstrating that the primary scientific contrast remains stable across the tested decoding settings and stochastic repeats}\DIFdelend \DIFaddbegin \DIFadd{Replicate reliability across independent stochastic generations held at fixed temperatures ($T=0.00: \bar{r}=0.9905, \text{MAE}=0.0126$; $T=0.35: \bar{r}=0.9724, \text{MAE}=0.0384$; $T=0.70: \bar{r}=0.9444, \text{MAE}=0.0585$), confirming that scoring variability across independent stochastic runs remains tightly bounded relative to cross-paper literature variance}\DIFaddend .
 
 \begin{center}
 \includegraphics[width=0.92\linewidth,keepaspectratio]{figures/figure_S_decoding_robustness.png}
@@ -1051,7 +1051,7 @@ Unsupported attribution & 6 & 20.0\% (6/30) & Subtype gain conflation ($N=3$), l
 \vspace{0.4em}
 
 \noindent\DIFaddend \textbf{Supplementary Table S8:} Diagnostic \DIFdelbegin \DIFdel{Passage-Support Adjudication across 27 Prespecified Disagreement Cells .
-}\DIFdelend \DIFaddbegin \DIFadd{Primary-Source Audit across 30 Numerically Selected Large Human--Council Disagreement Cells ($|H - C| \ge 0.50$ among 296 eligible paired cells; 10.1\% of paired universe). Evaluates whether large disagreements reflect unsupported evidence attribution or conservative score attenuation on genuine primary-source evidence. Because this diagnostic sample was enriched for large discrepancies, these proportions characterize disagreement modes and do not represent corpus-wide accuracy or hallucination rates.
+}\DIFdelend \DIFaddbegin \DIFadd{Primary-Source Audit across 30 Numerically Selected Large Human--Council Disagreement Cells ($|H - C| \ge 0.50$ among 296 eligible paired cells; 10.1\% of paired universe). Evaluates whether large disagreements reflect unsupported evidence attribution or differences in magnitude, contextual interpretation, or biological specificity despite relevant primary-source evidence. Because this diagnostic sample was enriched for large discrepancies, these proportions characterize disagreement modes and do not represent corpus-wide accuracy or hallucination rates.
 }\DIFaddend 
 
 \DIFdelbegin %DIFDELCMD < \begin{longtable}[]{@{}lllll@{}}
@@ -1463,7 +1463,7 @@ Axis C: HPC-36 Ontology Factor Mapping & 10 & 9 & 1 (Invertebrate) & 100.0\% PAS
 \endgroup
 \vspace{0.4em}
 
-\noindent\textbf{\DIFadd{Supplementary Table S14:}} \DIFadd{Primary Paper-Level Hypothesis Calibration and Concordance ($K=2$ Human Consensus vs. Autonomous Council). Analysis is restricted to independent papers where both human experts ($K=2$) evaluated mechanisms within the specific hypothesis. Council models were averaged within paper first. SEM denotes standard error across independent papers ($\text{SD}/\sqrt{N}$). Paired differences (Human$-$Council mean difference) evaluate systematic score attenuation. Across-paper rank correspondence was heterogeneous: LO-$H_1$ ($\rho = 0.196, p = 0.396$), LO-$H_2$ ($\rho = 0.612, p = 0.0019$), LO-$H_3$ ($\rho = 0.467, p = 0.092$), GO-$H_1$ ($\rho = -0.136, p = 0.590$), GO-$H_2$ ($\rho = 0.492, p = 0.020$), GO-$H_3$ ($\rho = 0.218, p = 0.519$).
+\noindent\textbf{\DIFadd{Supplementary Table S14:}} \DIFadd{Primary Paper-Level Hypothesis Calibration and Concordance ($K=2$ Human Consensus vs. Autonomous Council). Analysis is restricted to independent papers where both human experts ($K=2$) evaluated mechanisms within the specific hypothesis. Council models were averaged within paper first. SEM denotes standard error across independent papers ($\text{SD}/\sqrt{N}$). Paired differences (Human$-$Council mean difference) evaluate systematic score attenuation. Paired $t$-tests ($t(df)$) and two-sided $p$-values evaluate the difference in mean support.
 }
 
 \vspace{1.5em}
@@ -1484,7 +1484,7 @@ Axis C: HPC-36 Ontology Factor Mapping & 10 & 9 & 1 (Invertebrate) & 100.0\% PAS
 \texttt{qwen3-14b-gemini-3-pro}        & 1800 & 0.9797 & $<0.0001$ & 0.9649 & $<0.0001$ & 0.0243 \\
 \texttt{qwen3.5-40b-claude-4.5-opus}   & 1724 & 0.9497 & $<0.0001$ & 0.9178 & $<0.0001$ & 0.0440 \\
 \midrule
-\multicolumn{7}{@{}l}{\textit{Evaluator profiles with no non-null score contributions in main Council:}} \\
+\multicolumn{7}{@{}l}{\textit{Evaluator profiles with hypothesis-level scores but unassigned individual factor cells:}} \\
 \texttt{gemma-4-31b}                   & 1816 & --- & --- & --- & --- & --- \\
 \texttt{gpt-oss-safeguard-120b}        & 1816 & --- & --- & --- & --- & --- \\
 \bottomrule
@@ -1492,6 +1492,6 @@ Axis C: HPC-36 Ontology Factor Mapping & 10 & 9 & 1 (Invertebrate) & 100.0\% PAS
 \endgroup
 \vspace{0.4em}
 
-\noindent\textbf{\DIFadd{Supplementary Table S15:}} \DIFadd{Leave-One-Model-Out Council Score Stability Analysis across Evaluator Architectures. Evaluates the sensitivity of aggregate Council scores to single-model removal by comparing the complete Council continuous mean against the Council recomputed after omission of each contributing evaluator across matched factor cells ($N = 1710\text{--}1801$). Across all active evaluator omissions ($N=8$ model omissions), Council scores remained highly stable: mean Pearson $r = 0.9747$ (95\% CI: $[0.9619, 0.9874]$, range $0.9497\text{--}0.9920$), mean Spearman $\rho = 0.9621$ (95\% CI: $[0.9441, 0.9800]$, range $0.9178\text{--}0.9844$), and mean $\text{MAE} = 0.0282$ (95\% CI: $[0.0163, 0.0402]$, range $0.0086\text{--}0.0465$). Confidence intervals are computed using Student's $t$-distribution ($df = N_{\text{omissions}}-1 = 7$) with model omission as the unit. MAE is reported in original $[-1.0, +1.0]$ score units. Two evaluator entries (}\texttt{\DIFadd{gemma-4-31b}} \DIFadd{and }\texttt{\DIFadd{gpt-oss-safeguard-120b}}\DIFadd{) had zero non-null factor score contributions in the primary scoring table and are labeled accordingly without substantive leave-one-out metrics}\DIFaddend .
+\noindent\textbf{\DIFadd{Supplementary Table S15:}} \DIFadd{Leave-One-Model-Out Council Score Stability Analysis across Evaluator Architectures. Evaluates the sensitivity of aggregate Council scores to single-model removal by comparing the complete Council continuous mean against the Council recomputed after omission of each contributing evaluator across matched factor cells ($N = 1710\text{--}1801$). Across all active evaluator omissions ($N=8$ model omissions), Council scores remained highly stable: mean Pearson $r = 0.9747$ (95\% CI: $[0.9619, 0.9874]$, range $0.9497\text{--}0.9920$), mean Spearman $\rho = 0.9621$ (95\% CI: $[0.9441, 0.9800]$, range $0.9178\text{--}0.9844$), and mean $\text{MAE} = 0.0282$ (95\% CI: $[0.0163, 0.0402]$, range $0.0086\text{--}0.0465$). Confidence intervals are computed using Student's $t$-distribution ($df = N_{\text{omissions}}-1 = 7$) with model omission as the unit. MAE is reported in original $[-1.0, +1.0]$ score units. Two evaluator profiles contributed hypothesis-level Council scores but no individual factor-cell scores and therefore were not evaluable in this factor-level leave-one-out analysis}\DIFaddend .
 
 \end{document}
