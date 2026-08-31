@@ -1,9 +1,8 @@
-# Canonical Publication Workspace: Scientific Reports Resubmission
+# Publication Workspace
 
 ## 1. Overview & Provenance Contract
 - **Manuscript Title**: Ontology-constrained multi-LLM scoring of hypothesis support in the predictive processing literature
 - **Authors**: Hamed Nejat, Jacob A. Westerberg, Alexander Maier, Jesse Spencer-Smith, Andr\'e M. Bastos
-- **Target Journal**: *Scientific Reports*
 - **Persistent Archive DOI**: https://doi.org/10.5281/zenodo.22182632
 - **Git Release Tag**: `v1.1.0-scientific-reports`
 - **Original Source Tree**: `content/post-sub-draft/2026_mllm_arxiv_post_sub/`
@@ -30,8 +29,6 @@ artifacts/publication/
     ├── figures/                # Vector SVG & 300 DPI publication figures (Fig 1-9, Fig S1-S5)
     ├── data/                   # Publication-local verification contracts and claims manifests
     └── misc/
-        ├── response_to_reviewers.tex   # Rebuttal source document
-        └── response_to_reviewers.pdf   # Point-by-point response to Reviewer 1
 ```
 
 *Note on Bibliography*: Both `main.tex` and `supp.tex` use embedded LaTeX `thebibliography` environments conforming to *Scientific Reports* author guidelines; no separate `assets/ref.bib` is fabricated.

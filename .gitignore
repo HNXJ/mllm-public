@@ -34,3 +34,15 @@ artifacts/other/sep02_human_validation_2d_plots/
 artifacts/publication/.build/
 .DS_Store
 *.DS_Store
+
+# Submission & review letters
+*response_to_reviewers*
+*rebuttal*
+*Scientific_Reports*
+*scientific_reports*
+artifacts/publication/assets/misc/
+artifacts/publication/assets/data/revision_statistical_claims.csv
+artifacts/publication/*.pdf
+artifacts/publication/*.aux
+artifacts/publication/*.log
+artifacts/publication/*.out

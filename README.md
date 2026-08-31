@@ -3,7 +3,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22182632.svg)](https://doi.org/10.5281/zenodo.22182632)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Authoritative code, data, and publication artifacts for **"Ontology-constrained multi-LLM scoring of hypothesis support in the predictive processing literature"** (*Scientific Reports*, 2026).
+Authoritative code, data, and publication artifacts for **"Ontology-constrained multi-LLM scoring of hypothesis support in the predictive processing literature"**.
 
 ---
 
@@ -25,8 +25,6 @@ All publication-facing documents are hosted in [`artifacts/publication/`](artifa
 - **Clean Supplementary Information PDF**: [`supp-render.pdf`](artifacts/publication/supp-render.pdf)
 - **Tracked Revision Manuscript PDF**: [`main-diff.pdf`](artifacts/publication/main-diff.pdf)
 - **Tracked Revision Supplementary Information PDF**: [`supp-diff.pdf`](artifacts/publication/supp-diff.pdf)
-- **Point-by-Point Rebuttal**: [`assets/misc/response_to_reviewers.pdf`](artifacts/publication/assets/misc/response_to_reviewers.pdf)
-- **Final Resubmission Archive**: [`scientific_reports_resubmission_final.zip`](artifacts/publication/scientific_reports_resubmission_final.zip)
 
 ---
 
