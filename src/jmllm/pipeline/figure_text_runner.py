@@ -23,8 +23,8 @@ LEDGER_PATH = REPO_ROOT / "content" / "tables" / "figure_text_ablation_calls_led
 SCORES_PATH = REPO_ROOT / "content" / "tables" / "figure_text_ablation_scores.csv"
 RAW_DIR = REPO_ROOT / "content" / "raw_responses" / "figure_text_ablation_202608"
 
-GLOSSARY_PATH = REPO_ROOT / "ontology" / "glossary" / "HPC" / "hpc-36-reference.md"
-INSTRUCTIONS_PATH = REPO_ROOT / "ontology" / "instructions" / "hpc_eval_prompt.md"
+GLOSSARY_PATH = (REPO_ROOT / "ontology" / "glossary" / "HPC" / "hpc-36-reference.md") if (REPO_ROOT / "ontology" / "glossary" / "HPC" / "hpc-36-reference.md").exists() else (REPO_ROOT / "src" / "ontology" / "glossary" / "HPC" / "hpc-36-reference.md")
+INSTRUCTIONS_PATH = (REPO_ROOT / "ontology" / "instructions" / "hpc_eval_prompt.md") if (REPO_ROOT / "ontology" / "instructions" / "hpc_eval_prompt.md").exists() else (REPO_ROOT / "src" / "ontology" / "instructions" / "hpc_eval_prompt.md")
 
 BASE_URL = "http://localhost:1234/v1"
 SCIENTIFIC_MODEL = "gemma-4-31b-it"

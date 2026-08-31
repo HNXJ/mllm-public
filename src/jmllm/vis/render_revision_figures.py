@@ -62,8 +62,8 @@ def _save_fig(fig: plt.Figure, stem: str, output_dir: Path = FIGURES_DIR):
 def render_human_concordance_figure(output_dir: Path = FIGURES_DIR):
     """Figure S_human_concordance: Human-Council (and Human-Human if K>=2) Agreement."""
     # Check available human evaluations
-    h1_path = EXPERTS_DIR / "hpch_01.csv"
-    h2_path = EXPERTS_DIR / "hpch_02.csv"
+    h1_path = (EXPERTS_DIR / "hpch_01.csv") if (EXPERTS_DIR / "hpch_01.csv").exists() else (EXPERTS_DIR / "human" / "hexp01_hpca_scores.csv")
+    h2_path = (EXPERTS_DIR / "hpch_02.csv") if (EXPERTS_DIR / "hpch_02.csv").exists() else (EXPERTS_DIR / "human" / "hexp02_hpca_scores.csv")
     council_df = load_council_consensus()
     
     if not h1_path.exists():
@@ -153,7 +153,7 @@ def render_human_concordance_figure(output_dir: Path = FIGURES_DIR):
         ax = axes[1]
         sns.regplot(x=c_sub, y=h_sub, ax=ax, color="#1f77b4", scatter_kws={"alpha": 0.35, "s": 18}, line_kws={"color": "#d62728", "linewidth": 1.5})
         ax.plot([-1, 1], [-1, 1], "--", color="gray", linewidth=1.0, label="Unity (y = x)")
-        ax.set_title("B. Consensus vs Council ($n \\ge 1$)")
+        ax.set_title(r"B. Consensus vs Council ($n \geq 1$)")
         ax.set_xlabel("Autonomous Council Consensus Score")
         ax.set_ylabel("Multi-Human Consensus Score")
         ax.set_xlim(-1.1, 1.1)

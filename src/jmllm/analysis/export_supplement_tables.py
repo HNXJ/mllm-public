@@ -158,7 +158,7 @@ def export_leave_one_out_summary(output_path: Path = TABLES_DIR / "supplement_le
 
     records = [
         {
-            "analysis_stratum": "Full Council Baseline (All 8 Models)",
+            "analysis_stratum": f"Full Council Baseline (All {len(models)} Models)",
             "omitted_model": "None",
             "remaining_council_size": len(models),
             "mean_displacement_delta": round(baseline_diff, 4),

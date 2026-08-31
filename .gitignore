@@ -19,3 +19,18 @@ hpc_figures/
 !/content/tables/**
 /logs/
 .cache/
+
+# Reviewer responses and confidential review letters
+*response_to_reviewers*
+*Point_by_Point_Response*
+*Letter-filled*
+Letter-filled*
+*.docx
+
+# Working audit diagnostics and local build cache
+artifacts/data/reviewer_robustness_2026/candidate_v2/
+artifacts/other/sep01_human_council_3d_analysis/
+artifacts/other/sep02_human_validation_2d_plots/
+artifacts/publication/.build/
+.DS_Store
+*.DS_Store

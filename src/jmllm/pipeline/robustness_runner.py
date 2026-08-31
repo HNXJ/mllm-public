@@ -20,8 +20,8 @@ from typing import Dict, Any, List, Tuple, Optional
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 PAPERS_DIR = REPO_ROOT / "content" / "markdowns"
-GLOSSARY_PATH = REPO_ROOT / "ontology" / "glossary" / "HPC" / "hpc-36-reference.md"
-INSTRUCTIONS_PATH = REPO_ROOT / "ontology" / "instructions" / "hpc_eval_prompt.md"
+GLOSSARY_PATH = (REPO_ROOT / "ontology" / "glossary" / "HPC" / "hpc-36-reference.md") if (REPO_ROOT / "ontology" / "glossary" / "HPC" / "hpc-36-reference.md").exists() else (REPO_ROOT / "src" / "ontology" / "glossary" / "HPC" / "hpc-36-reference.md")
+INSTRUCTIONS_PATH = (REPO_ROOT / "ontology" / "instructions" / "hpc_eval_prompt.md") if (REPO_ROOT / "ontology" / "instructions" / "hpc_eval_prompt.md").exists() else (REPO_ROOT / "src" / "ontology" / "instructions" / "hpc_eval_prompt.md")
 
 EXP_DIR = REPO_ROOT / "content" / "202608_temp"
 RAW_DIR = EXP_DIR / "raw"

@@ -49,12 +49,13 @@ def test_export_robustness_summary(tmp_path):
 def test_export_leave_one_out(tmp_path):
     out_csv = tmp_path / "test_loo.csv"
     df = export_leave_one_out_summary(out_csv)
-    assert len(df) == 9  # 1 baseline + 8 models
+    assert len(df) == 11  # 1 baseline + 10 council models
     assert out_csv.exists()
-    # Range of delta should be [-0.1046, -0.0928]
     deltas = df[df["omitted_model"] != "None"]["mean_displacement_delta"]
-    assert deltas.min() == -0.1046
-    assert deltas.max() == -0.0928
+    assert len(deltas) == 10
+    # Range of LOO mean displacement deltas across all 10 council models
+    assert deltas.min() == -0.0628
+    assert deltas.max() == -0.0512
 
 
 def test_export_westerberg_sensitivity(tmp_path):
