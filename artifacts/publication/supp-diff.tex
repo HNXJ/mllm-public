@@ -1,7 +1,7 @@
 \documentclass[12pt]{article}
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL /tmp/supp_v100.tex               Mon Aug 31 13:58:27 2026
-%DIF ADD artifacts/publication/supp.tex   Mon Aug 31 13:58:25 2026
+%DIF DEL /tmp/supp_v100.tex               Mon Aug 31 14:01:28 2026
+%DIF ADD artifacts/publication/supp.tex   Mon Aug 31 14:01:26 2026
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in]{geometry}
@@ -162,7 +162,7 @@ Hamed Nejat, \DIFaddbegin \DIFadd{Jacob A. Westerberg, }\DIFaddend Alexander Mai
 \end{center}
 
 \subsection*{Supplementary Fig. S4}
-\textbf{Supplementary Fig. S4:} Evidence \DIFdelbegin \DIFdel{Grounding vs. Prior Bias Sensitivity Analysis(54 inference calls across intact, abstract-only, and masked-manuscript evidence controls). (A) Sensitivity to explicit study/author identity removal (Condition AFull Text vs Condition C Masked Text: Pearson $r = 0.9937$, $\text{MAE} = 0.0089$ }\DIFdelend \DIFaddbegin \DIFadd{Availability and Publication-Identity Sensitivity Analysis. Evaluates factor-cell score correspondence between intact manuscript text (FULL) and de-identified text (MASKED, Panel A; Pearson $r = 0.9937, \text{MAE} = 0.0089$ }\DIFaddend across $N=112$ overlapping factor cells) \DIFdelbegin \DIFdel{, showing minimal sensitivity to explicit study/author identity removal. (B) Sensitivity to evidence restriction (Condition A Full Text vs Condition B Abstract Only: Pearson $r = 0.7274$, $\text{MAE} = 0.0758$ }\DIFdelend \DIFaddbegin \DIFadd{and between intact manuscript text and restricted text (ABSTRACT Only, Panel B; Pearson $r = 0.7274, \text{MAE} = 0.0758$ }\DIFaddend across $N=88$ overlapping factor cells), \DIFdelbegin \DIFdel{showing score changes when detailed empirical text is withheld.
+\textbf{Supplementary Fig. S4:} Evidence \DIFdelbegin \DIFdel{Grounding vs. Prior Bias Sensitivity Analysis(54 inference calls across intact, abstract-only, and masked-manuscript evidence controls). (A) Sensitivity to explicit study/author identity removal (Condition AFull Text vs Condition C Masked Text: Pearson $r = 0.9937$, $\text{MAE} = 0.0089$ }\DIFdelend \DIFaddbegin \DIFadd{Availability and Publication-Identity Sensitivity Analysis. Evaluates factor-cell score correspondence between intact manuscript text (FULL) and de-identified text (MASKED, Panel A; Pearson $r = 0.9937, \text{MAE} = 0.0089$ }\DIFaddend across $N=112$ overlapping factor cells) \DIFdelbegin \DIFdel{, showing minimal sensitivity to explicit study}\DIFdelend \DIFaddbegin \DIFadd{and between intact manuscript text and restricted text (TITLE}\DIFaddend /\DIFdelbegin \DIFdel{author identity removal. (B) Sensitivity to evidence restriction (Condition A Full Text vs Condition B Abstract Only: Pearson $r = 0.7274$, $\text{MAE} = 0.0758$ }\DIFdelend \DIFaddbegin \DIFadd{ABSTRACT Only, Panel B; Pearson $r = 0.7274, \text{MAE} = 0.0758$ }\DIFaddend across $N=88$ overlapping factor cells), \DIFdelbegin \DIFdel{showing score changes when detailed empirical text is withheld.
 Full, Shuffled, and Prior-only condition summaries are reported in Table S10.
 }\DIFdelend \DIFaddbegin \DIFadd{demonstrating that factor scoring is robust to publication-identity removal but sensitive to restriction of available empirical evidence.
 }\DIFaddend 
@@ -1183,17 +1183,17 @@ Unsupported attribution & 6 & 20.0\% (6/30) & Subtype gain conflation ($N=3$), l
 \DIFdel{$0.474 \pm 0.076$ }%DIFDELCMD < & %%%
 \DIFdel{$+0.038$ ($\text{LO} > \text{GO}$) }%DIFDELCMD < \\
 %DIFDELCMD < %%%
-\DIFdel{Shuffled Evidence ($H_0$)}%DIFDELCMD < & %%%
+\DIFdel{Shuffled Evidence ($H_0$) }%DIFDELCMD < & %%%
 \DIFdel{18 }%DIFDELCMD < & %%%
 \DIFdel{$0.489 \pm 0.092$ }%DIFDELCMD < & %%%
 \DIFdel{$0.493 \pm 0.088$ }%DIFDELCMD < & %%%
-\DIFdel{$-0.004$ ($\text{Neutral}$)}%DIFDELCMD < \\
+\DIFdel{$-0.004$ ($\text{Neutral}$) }%DIFDELCMD < \\
 %DIFDELCMD < %%%
-\DIFdel{Prior Only (Zero Evidence) }%DIFDELCMD < & %%%
+\DIFdel{Prior Only(Zero Evidence) }%DIFDELCMD < & %%%
 \DIFdel{18 }%DIFDELCMD < & %%%
 \DIFdel{$0.450 \pm 0.110$ }%DIFDELCMD < & %%%
 \DIFdel{$0.450 \pm 0.108$ }%DIFDELCMD < & %%%
-\DIFdel{$+0.000$ ($\text{Null}$) }%DIFDELCMD < \\
+\DIFdel{$+0.000$ ($\text{Null}$)}%DIFDELCMD < \\
 %DIFDELCMD < \end{longtable}
 %DIFDELCMD < %%%
 \DIFdelend \DIFaddbegin \noindent\begin{tabularx}{\textwidth}{@{}l c c c >{\raggedright\arraybackslash}X@{}}
@@ -1201,21 +1201,21 @@ Unsupported attribution & 6 & 20.0\% (6/30) & Subtype gain conflation ($N=3$), l
 \textbf{Comparison} & \textbf{Paired Cells ($N$)} & \textbf{Pearson $r$} & \textbf{MAE} & \textbf{Scientific Interpretation} \\
 \midrule
 FULL vs MASKED Text & 112 & 0.9937 & 0.0089 & Tests dependence on explicit publication identity \\
-FULL vs ABSTRACT Only & 88 & 0.7274 & 0.0758 & Tests sensitivity to restriction of available paper evidence \\
+FULL vs TITLE/ABSTRACT Only & 88 & 0.7274 & 0.0758 & Tests sensitivity to restriction of available paper evidence \\
 \bottomrule
 \end{tabularx}
 \DIFaddend 
 
 \DIFaddbegin \vspace{0.8em}
-\noindent\textbf{\DIFadd{Panel B: Abstract-Only Sensitivity by Hypothesis Family}}
+\noindent\textbf{\DIFadd{Panel B: Title/Abstract-Only Sensitivity by Hypothesis Family}}
 \vspace{0.2em}
 
 \noindent\begin{tabularx}{\textwidth}{@{}l c c c >{\raggedright\arraybackslash}X@{}}
 \toprule
 \textbf{Hypothesis Family} & \textbf{Paired Cells ($N$)} & \textbf{Pearson $r$} & \textbf{MAE} & \textbf{Coverage Note} \\
 \midrule
-Hypothesis 1 (Predictive Suppression) & 30 & 0.6003 & 0.1444 & 5 papers with evaluable abstract evidence \\
-Hypothesis 2 (Feedforward Error) & 38 & 0.6776 & 0.0614 & 4 papers with evaluable abstract evidence \\
+Hypothesis 1 (Predictive Suppression) & 30 & 0.6003 & 0.1444 & 5 papers with evaluable title/abstract evidence \\
+Hypothesis 2 (Feedforward Error) & 38 & 0.6776 & 0.0614 & 4 papers with evaluable title/abstract evidence \\
 Hypothesis 3 (Ubiquity) & 20 & 1.0000 & 0.0000 & 2 papers; insufficient coverage for general inference \\
 \bottomrule
 \end{tabularx}
@@ -1235,7 +1235,7 @@ Prior Only (Zero Manuscript Evidence) & 18 & $0.450 \pm 0.110$ & $0.450 \pm 0.10
 \endgroup
 \vspace{0.4em}
 
-\noindent\DIFaddend \textbf{Supplementary Table S10:} \DIFdelbegin \DIFdel{Evidence Grounding vs. Prior Bias Sensitivity Analysis (54 Calls). }\DIFdelend \DIFaddbegin \DIFadd{Evidence Availability, Publication-Identity, and Prior-Only Sensitivity Analyses. De-identifying full manuscript text produced minimal score adjustments (FULL vs MASKED, Panel A), whereas restricting available evidence to titles and abstracts produced larger deviations (FULL vs ABSTRACT, Panel A) with the largest attenuation in predictive suppression mechanisms (Panel B). In the zero-manuscript-evidence condition (Panel C), models retained baseline affirmative support from the ontology and task framing, but the Local vs. Global Oddball context differentiation observed under intact manuscript evidence was completely absent. Abstract-only Hypothesis 3 coverage was limited to 20 paired cells from two papers and is therefore not interpreted as evidence of general invariance across the literature.
+\noindent\DIFaddend \textbf{Supplementary Table S10:} \DIFdelbegin \DIFdel{Evidence Grounding vs. Prior Bias Sensitivity Analysis (54 Calls)}\DIFdelend \DIFaddbegin \DIFadd{Evidence Availability, Publication-Identity, and Prior-Only Sensitivity Analyses. De-identifying full manuscript text produced minimal score adjustments (FULL vs MASKED, Panel A), whereas restricting available evidence to titles and abstracts produced larger deviations (FULL vs TITLE/ABSTRACT Only, Panel A) with the largest attenuation in predictive suppression mechanisms (Panel B)}\DIFaddend . \DIFaddbegin \DIFadd{In the zero-manuscript-evidence condition (Panel C), models retained baseline affirmative support from the ontology and task framing, but the Local vs. Global Oddball context differentiation observed under intact manuscript evidence was completely absent. Title/abstract-only Hypothesis 3 coverage was limited to 20 paired cells from two papers and is therefore not interpreted as evidence of general invariance across the literature.
 }\DIFaddend 
 
 \DIFdelbegin %DIFDELCMD < \begin{longtable}[]{@{}lllll@{}}

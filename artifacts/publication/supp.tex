@@ -55,7 +55,7 @@ Hamed Nejat, Jacob A. Westerberg, Alexander Maier, Jesse Spencer-Smith, and Andr
 \end{center}
 
 \subsection*{Supplementary Fig. S4}
-\textbf{Supplementary Fig. S4:} Evidence Availability and Publication-Identity Sensitivity Analysis. Evaluates factor-cell score correspondence between intact manuscript text (FULL) and de-identified text (MASKED, Panel A; Pearson $r = 0.9937, \text{MAE} = 0.0089$ across $N=112$ overlapping factor cells) and between intact manuscript text and restricted text (ABSTRACT Only, Panel B; Pearson $r = 0.7274, \text{MAE} = 0.0758$ across $N=88$ overlapping factor cells), demonstrating that factor scoring is robust to publication-identity removal but sensitive to restriction of available empirical evidence.
+\textbf{Supplementary Fig. S4:} Evidence Availability and Publication-Identity Sensitivity Analysis. Evaluates factor-cell score correspondence between intact manuscript text (FULL) and de-identified text (MASKED, Panel A; Pearson $r = 0.9937, \text{MAE} = 0.0089$ across $N=112$ overlapping factor cells) and between intact manuscript text and restricted text (TITLE/ABSTRACT Only, Panel B; Pearson $r = 0.7274, \text{MAE} = 0.0758$ across $N=88$ overlapping factor cells), demonstrating that factor scoring is robust to publication-identity removal but sensitive to restriction of available empirical evidence.
 
 \begin{center}
 \includegraphics[width=0.92\linewidth,keepaspectratio]{figures/figure_S_evidence_prior.png}
@@ -329,20 +329,20 @@ Unsupported attribution & 6 & 20.0\% (6/30) & Subtype gain conflation ($N=3$), l
 \textbf{Comparison} & \textbf{Paired Cells ($N$)} & \textbf{Pearson $r$} & \textbf{MAE} & \textbf{Scientific Interpretation} \\
 \midrule
 FULL vs MASKED Text & 112 & 0.9937 & 0.0089 & Tests dependence on explicit publication identity \\
-FULL vs ABSTRACT Only & 88 & 0.7274 & 0.0758 & Tests sensitivity to restriction of available paper evidence \\
+FULL vs TITLE/ABSTRACT Only & 88 & 0.7274 & 0.0758 & Tests sensitivity to restriction of available paper evidence \\
 \bottomrule
 \end{tabularx}
 
 \vspace{0.8em}
-\noindent\textbf{Panel B: Abstract-Only Sensitivity by Hypothesis Family}
+\noindent\textbf{Panel B: Title/Abstract-Only Sensitivity by Hypothesis Family}
 \vspace{0.2em}
 
 \noindent\begin{tabularx}{\textwidth}{@{}l c c c >{\raggedright\arraybackslash}X@{}}
 \toprule
 \textbf{Hypothesis Family} & \textbf{Paired Cells ($N$)} & \textbf{Pearson $r$} & \textbf{MAE} & \textbf{Coverage Note} \\
 \midrule
-Hypothesis 1 (Predictive Suppression) & 30 & 0.6003 & 0.1444 & 5 papers with evaluable abstract evidence \\
-Hypothesis 2 (Feedforward Error) & 38 & 0.6776 & 0.0614 & 4 papers with evaluable abstract evidence \\
+Hypothesis 1 (Predictive Suppression) & 30 & 0.6003 & 0.1444 & 5 papers with evaluable title/abstract evidence \\
+Hypothesis 2 (Feedforward Error) & 38 & 0.6776 & 0.0614 & 4 papers with evaluable title/abstract evidence \\
 Hypothesis 3 (Ubiquity) & 20 & 1.0000 & 0.0000 & 2 papers; insufficient coverage for general inference \\
 \bottomrule
 \end{tabularx}
@@ -362,7 +362,7 @@ Prior Only (Zero Manuscript Evidence) & 18 & $0.450 \pm 0.110$ & $0.450 \pm 0.10
 \endgroup
 \vspace{0.4em}
 
-\noindent\textbf{Supplementary Table S10:} Evidence Availability, Publication-Identity, and Prior-Only Sensitivity Analyses. De-identifying full manuscript text produced minimal score adjustments (FULL vs MASKED, Panel A), whereas restricting available evidence to titles and abstracts produced larger deviations (FULL vs ABSTRACT, Panel A) with the largest attenuation in predictive suppression mechanisms (Panel B). In the zero-manuscript-evidence condition (Panel C), models retained baseline affirmative support from the ontology and task framing, but the Local vs. Global Oddball context differentiation observed under intact manuscript evidence was completely absent. Abstract-only Hypothesis 3 coverage was limited to 20 paired cells from two papers and is therefore not interpreted as evidence of general invariance across the literature.
+\noindent\textbf{Supplementary Table S10:} Evidence Availability, Publication-Identity, and Prior-Only Sensitivity Analyses. De-identifying full manuscript text produced minimal score adjustments (FULL vs MASKED, Panel A), whereas restricting available evidence to titles and abstracts produced larger deviations (FULL vs TITLE/ABSTRACT Only, Panel A) with the largest attenuation in predictive suppression mechanisms (Panel B). In the zero-manuscript-evidence condition (Panel C), models retained baseline affirmative support from the ontology and task framing, but the Local vs. Global Oddball context differentiation observed under intact manuscript evidence was completely absent. Title/abstract-only Hypothesis 3 coverage was limited to 20 paired cells from two papers and is therefore not interpreted as evidence of general invariance across the literature.
 
 \vspace{1.5em}
 
