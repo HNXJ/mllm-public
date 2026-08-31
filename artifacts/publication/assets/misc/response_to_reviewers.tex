@@ -66,6 +66,9 @@ Pairwise agreement across independent stochastic generations held at fixed tempe
 
 \item \textbf{Architectural Nuance vs. Sampling Noise}: 
 These findings demonstrate that stochastic sampling noise within a model architecture is small at low temperatures and increases moderately at $T=0.70$. However, model-to-model differences in hypothesis weighting remain measurable, motivating multi-model ensemble aggregation to balance architecture-dependent differences across models.
+
+\item \textbf{Leave-One-Model-Out Council Stability}: 
+To directly test whether aggregate Council conclusions depend on any single model architecture, we conducted a systematic leave-one-out sensitivity analysis across all ten evaluator models (Supplementary Table S15). Aggregate context displacement ($\Delta_{\text{LO-GO}} = \text{GO Mean} - \text{LO Mean}$) remained directionally negative across all ten omission conditions, spanning an empirical omission range of $[-0.0628, -0.0512]$ (maximum deviation from full-council baseline $\le 0.0062$; $N=273\text{--}304$ factor cells). This confirms that Council findings reflect shared literature signal rather than the idiosyncratic bias of any individual model architecture.
 \end{enumerate}
 
 \reviewercomment{Major Concern 3: Corpus composition, subgroup heterogeneity, and evidence grounding controls.}

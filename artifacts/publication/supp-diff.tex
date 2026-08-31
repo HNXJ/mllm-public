@@ -549,4 +549,32 @@ Axis C: HPC-36 Ontology Factor Mapping & 10 & 9 & 1 (Invertebrate) & 100.0\% PAS
 
 \noindent\textbf{Supplementary Table S14:} Primary Paper-Level Hypothesis Calibration and Concordance ($K=2$ Human Consensus vs. Autonomous Council). Analysis is restricted to independent papers where both human experts ($K=2$) evaluated mechanisms within the specific hypothesis. Council models were averaged within paper first. SEM denotes standard error across independent papers ($\text{SD}/\sqrt{N}$). Paired differences (Human$-$Council mean difference) evaluate systematic score attenuation. Across-paper rank correspondence was heterogeneous: LO-$H_1$ ($\rho = 0.196, p = 0.396$), LO-$H_2$ ($\rho = 0.612, p = 0.0019$), LO-$H_3$ ($\rho = 0.467, p = 0.092$), GO-$H_1$ ($\rho = -0.136, p = 0.590$), GO-$H_2$ ($\rho = 0.492, p = 0.020$), GO-$H_3$ ($\rho = 0.218, p = 0.519$).
 
+\DIFaddbegin \vspace{1.5em}
+
+\begingroup
+\small
+\setlength{\tabcolsep}{3.5pt}
+\noindent\begin{tabularx}{\textwidth}{@{}p{2.1in} c c c >{\centering\arraybackslash}X@{}}
+\toprule
+\textbf{Analysis Stratum} & \textbf{Size} & \textbf{Mean $\Delta_{\text{LO-GO}}$} & \textbf{Deviation} & \textbf{Cells ($N$)} \\
+\midrule
+Full Council Baseline (All 10 Models) & 10 & $-0.0566$ & $0.0000$ & 304 \\
+Leave-One-Out (Omit deepseek-r1-distill-llama-70b) & 9 & $-0.0512$ & $+0.0054$ & 273 \\
+Leave-One-Out (Omit gemma-3-27b) & 9 & $-0.0559$ & $+0.0007$ & 273 \\
+Leave-One-Out (Omit gemma-4-31b) & 9 & $-0.0628$ & $-0.0062$ & 274 \\
+Leave-One-Out (Omit gpt-oss-claude-4.5-sonnet) & 9 & $-0.0583$ & $-0.0017$ & 274 \\
+Leave-One-Out (Omit gpt-oss-safeguard-120b) & 9 & $-0.0628$ & $-0.0062$ & 274 \\
+Leave-One-Out (Omit mistral-nemo-12b-thinking) & 9 & $-0.0543$ & $+0.0023$ & 274 \\
+Leave-One-Out (Omit olmo-3-32b-think) & 9 & $-0.0597$ & $-0.0031$ & 274 \\
+Leave-One-Out (Omit phi-4-reasoning-plus) & 9 & $-0.0527$ & $+0.0039$ & 273 \\
+Leave-One-Out (Omit qwen3-14b-gemini-3-pro) & 9 & $-0.0560$ & $+0.0005$ & 273 \\
+Leave-One-Out (Omit qwen3.5-40b-claude-4.5-opus) & 9 & $-0.0520$ & $+0.0045$ & 274 \\
+\bottomrule
+\end{tabularx}
+\endgroup
+\vspace{0.4em}
+
+\noindent\textbf{Supplementary Table S15:} Leave-One-Model-Out Council Stability Analysis across All Ten Evaluator Architectures. Demonstrates that aggregate context displacement ($\Delta_{\text{LO-GO}} = \text{GO Mean} - \text{LO Mean}$) remains directionally negative across all single-model omissions, with mean displacement spanning the omission range $[-0.0628, -0.0512]$ (deviation from full-council baseline $\le 0.0062$). Note that this interval represents the empirical range across single-model omission conditions, not an inferential confidence interval.
+\DIFaddend 
+
 \end{document}
