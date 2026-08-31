@@ -55,7 +55,7 @@ Hamed Nejat, Jacob A. Westerberg, Alexander Maier, Jesse Spencer-Smith, and Andr
 \end{center}
 
 \subsection*{Supplementary Fig. S4}
-\textbf{Supplementary Fig. S4:} Evidence Grounding Control and Shuffled Text Sensitivity Analysis. Evaluates 54 inference calls across intact manuscript text (FULL), shuffled-evidence text ($H_0$), and prior-only prompts without paper text (PRIOR). Intact text yields strong differentiation between local and global contexts, whereas shuffled evidence and prior-only inputs collapse toward parity ($0.450\text{--}0.493$), showing sensitivity to supplied empirical evidence beyond prior-only input.
+\textbf{Supplementary Fig. S4:} Evidence Availability and Publication-Identity Sensitivity Analysis. Evaluates factor-cell score correspondence between intact manuscript text (FULL) and de-identified text (MASKED, Panel A; Pearson $r = 0.9937, \text{MAE} = 0.0089$ across $N=112$ overlapping factor cells) and between intact manuscript text and restricted text (ABSTRACT Only, Panel B; Pearson $r = 0.7274, \text{MAE} = 0.0758$ across $N=88$ overlapping factor cells), demonstrating that factor scoring is robust to publication-identity removal but sensitive to restriction of available empirical evidence.
 
 \begin{center}
 \includegraphics[width=0.92\linewidth,keepaspectratio]{figures/figure_S_evidence_prior.png}
@@ -321,22 +321,48 @@ Unsupported attribution & 6 & 20.0\% (6/30) & Subtype gain conflation ($N=3$), l
 
 \begingroup
 \small
-\setlength{\tabcolsep}{6pt}
-\begin{center}
-\begin{tabular}{@{}l c c c@{}}
+\noindent\textbf{Panel A: Paired Score Sensitivity to Identity Removal and Evidence Restriction}
+\vspace{0.2em}
+
+\noindent\begin{tabularx}{\textwidth}{@{}l c c c >{\raggedright\arraybackslash}X@{}}
 \toprule
-\textbf{Evidence Manipulation} & \textbf{Calls ($N$)} & \textbf{Mean LO Score [$\pm$SD]} & \textbf{Mean GO Score [$\pm$SD]} \\
+\textbf{Comparison} & \textbf{Paired Cells ($N$)} & \textbf{Pearson $r$} & \textbf{MAE} & \textbf{Scientific Interpretation} \\
 \midrule
-Intact Evidence (FULL) & 18 & $0.512 \pm 0.081$ & $0.474 \pm 0.076$ \\
-Shuffled Evidence ($H_0$) & 18 & $0.489 \pm 0.092$ & $0.493 \pm 0.088$ \\
-Prior Only (Zero Evidence) & 18 & $0.450 \pm 0.110$ & $0.450 \pm 0.108$ \\
+FULL vs MASKED Text & 112 & 0.9937 & 0.0089 & Tests dependence on explicit publication identity \\
+FULL vs ABSTRACT Only & 88 & 0.7274 & 0.0758 & Tests sensitivity to restriction of available paper evidence \\
 \bottomrule
-\end{tabular}
-\end{center}
+\end{tabularx}
+
+\vspace{0.8em}
+\noindent\textbf{Panel B: Abstract-Only Sensitivity by Hypothesis Family}
+\vspace{0.2em}
+
+\noindent\begin{tabularx}{\textwidth}{@{}l c c c >{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Hypothesis Family} & \textbf{Paired Cells ($N$)} & \textbf{Pearson $r$} & \textbf{MAE} & \textbf{Coverage Note} \\
+\midrule
+Hypothesis 1 (Predictive Suppression) & 30 & 0.6003 & 0.1444 & 5 papers with evaluable abstract evidence \\
+Hypothesis 2 (Feedforward Error) & 38 & 0.6776 & 0.0614 & 4 papers with evaluable abstract evidence \\
+Hypothesis 3 (Ubiquity) & 20 & 1.0000 & 0.0000 & 2 papers; insufficient coverage for general inference \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.8em}
+\noindent\textbf{Panel C: Zero-Manuscript-Evidence Control (Prior Only)}
+\vspace{0.2em}
+
+\noindent\begin{tabularx}{\textwidth}{@{}l c c c >{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Input Condition} & \textbf{Calls ($N$)} & \textbf{LO Mean [$\pm$SD]} & \textbf{GO Mean [$\pm$SD]} & \textbf{Context Contrast ($\Delta_{\text{LO}-\text{GO}}$)} \\
+\midrule
+Intact Evidence (FULL Reference) & 18 & $0.512 \pm 0.081$ & $0.474 \pm 0.076$ & $+0.038$ (Active context differentiation) \\
+Prior Only (Zero Manuscript Evidence) & 18 & $0.450 \pm 0.110$ & $0.450 \pm 0.108$ & $\phantom{+}0.000$ (Parity across contexts) \\
+\bottomrule
+\end{tabularx}
 \endgroup
 \vspace{0.4em}
 
-\noindent\textbf{Supplementary Table S10:} Evidence Grounding vs. Prior Bias Sensitivity Analysis (54 Calls across Intact, Shuffled, and Prior-Only Controls). Under intact text, models distinguish Local vs. Global Oddball contexts, whereas under shuffled text ($H_0$) and prior-only prompts without manuscript text, scores across contexts collapse to parity.
+\noindent\textbf{Supplementary Table S10:} Evidence Availability, Publication-Identity, and Prior-Only Sensitivity Analyses. De-identifying full manuscript text produced minimal score adjustments (FULL vs MASKED, Panel A), whereas restricting available evidence to titles and abstracts produced larger deviations (FULL vs ABSTRACT, Panel A) with the largest attenuation in predictive suppression mechanisms (Panel B). In the zero-manuscript-evidence condition (Panel C), models retained baseline affirmative support from the ontology and task framing, but the Local vs. Global Oddball context differentiation observed under intact manuscript evidence was completely absent. Abstract-only Hypothesis 3 coverage was limited to 20 paired cells from two papers and is therefore not interpreted as evidence of general invariance across the literature.
 
 \vspace{1.5em}
 
