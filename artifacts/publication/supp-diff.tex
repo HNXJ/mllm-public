@@ -1,10 +1,7 @@
-%DIF 1d1
-%DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL supp-orig-pre.tex   Sat Aug 29 21:07:22 2026
-%DIF ADD supp-curr-pre.tex   Sat Aug 29 21:07:22 2026
-%DIF < 
-%DIF -------
 \documentclass[12pt]{article}
+%DIF LATEXDIFF DIFFERENCE FILE
+%DIF DEL /tmp/supp_v100.tex               Mon Aug 31 12:52:18 2026
+%DIF ADD artifacts/publication/supp.tex   Mon Aug 31 12:52:16 2026
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in]{geometry}
@@ -12,7 +9,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
 \usepackage{array}
-%DIF 10c9
+%DIF 9c9
 %DIF < \usepackage{longtable}
 %DIF -------
 \usepackage{tabularx} %DIF > 
@@ -25,12 +22,12 @@
 \usepackage{hyperref}
 \setlength{\parindent}{0.5in}
 \setlength{\parskip}{0pt}
-%DIF 19-20d18
+%DIF 18-19d18
 %DIF < \setlength{\LTleft}{0pt}
 %DIF < \setlength{\LTright}{0pt}
 %DIF -------
 \renewcommand{\arraystretch}{1.06}
-%DIF 22d19
+%DIF 21d19
 %DIF < \AtBeginEnvironment{longtable}{\small\setlength{\tabcolsep}{3pt}}
 %DIF -------
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -126,79 +123,149 @@
 
 \begin{document}
 
-\DIFdelbegin %DIFDELCMD < \begin{center}
-%DIFDELCMD < %%%
-\DIFdelend {\DIFaddbegin \centering
-{\DIFaddend \large\bfseries Supplementary Information}\DIFdelbegin %DIFDELCMD < \\[0.6em]
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \par\vspace{0.6em}
-\DIFaddend {\bfseries Ontology-constrained multi-LLM scoring of hypothesis support in the predictive processing literature}\DIFdelbegin %DIFDELCMD < \\[0.6em]
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \par\vspace{0.6em}
-\DIFaddend Hamed Nejat, \DIFaddbegin \DIFadd{Jacob A. Westerberg, }\DIFaddend Alexander Maier, Jesse Spencer-Smith, and Andr\'e M. Bastos\DIFdelbegin %DIFDELCMD < \end{center}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \par
+{\centering
+{\large\bfseries Supplementary Information}\par\vspace{0.6em}
+{\bfseries Ontology-constrained multi-LLM scoring of hypothesis support in the predictive processing literature}\par\vspace{0.6em}
+Hamed Nejat, \DIFaddbegin \DIFadd{Jacob A. Westerberg, }\DIFaddend Alexander Maier, Jesse Spencer-Smith, and Andr\'e M. Bastos\par
 }
-\DIFaddend \vspace{0.8em}
+\vspace{0.8em}
 
 \appendix
 \section*{Supplementary Information}
 \addcontentsline{toc}{section}{Supplementary Information}
 
-\section*{Supplementary \DIFdelbegin \DIFdel{Fig. S1}\DIFdelend \DIFaddbegin \DIFadd{Figures}\DIFaddend }
-\DIFaddbegin 
+\section*{Supplementary Figures}
 
-\subsection*{\DIFadd{Supplementary Fig. S1}}
-\DIFaddend \textbf{Supplementary Fig. S1:} \DIFaddbegin \DIFadd{Evaluation Pipeline Architecture. }\DIFaddend The evaluation pipeline flows from left to right in two independent streams (A to B to C and 1 to 2 to 3). The A to B to C pathway establishes the instructions, canonical glossary, and prompt for the models. The 1 to 2 to 3 pathway ingests the paper and combines figures with text to provide a single text object for the models. Steps 5 and 6 loop between models and papers until all evaluations are completed. The final step 7 quantifies and visualizes the evaluations.
+\subsection*{Supplementary Fig. S1}
+\textbf{Supplementary Fig. S1:} Evaluation Pipeline Architecture. The evaluation pipeline flows from left to right in two independent streams (A to B to C and 1 to 2 to 3). The A to B to C pathway establishes the instructions, canonical glossary, and prompt for the models. The 1 to 2 to 3 pathway ingests the paper and combines figures with text to provide a single text object for the models. Steps 5 and 6 loop between models and papers until all evaluations are completed. The final step 7 quantifies and visualizes the evaluations.
 
 \begin{center}
 \includegraphics[width=0.86\linewidth,keepaspectratio]{figures/figure2.png}
 \end{center}
 
-\DIFaddbegin \subsection*{\DIFadd{Supplementary Fig. S2}}
-\textbf{\DIFadd{Supplementary Fig. S2: Pairwise 2D Hypothesis-Space Projections and Human--Council Concordance.}} \DIFadd{Panels show paper-level hypothesis scores for Local Oddball (LO; left column) and Global Oddball (GO; right column): (A1) LO $H_1 \times H_2$ ($N=20$); (B1) GO $H_1 \times H_2$ ($N=16$); (A2) LO $H_1 \times H_3$ ($N=10$); (B2) GO $H_1 \times H_3$ ($N=7$); (A3) LO $H_2 \times H_3$ ($N=12$); and (B3) GO $H_2 \times H_3$ ($N=10$). Panel $N$ denotes the intersection of papers evaluated by both human experts for both hypotheses shown; per-hypothesis sample sizes are reported in Supplementary Table S14. Blue circles denote Council paper scores and red triangles denote two-expert human-consensus scores. Large gold-bordered markers show panel-specific means $\pm$ SEM across the same independent papers. Dotted gray lines connect paired evaluations for the same study. For comparison, the single-expert evaluation of Westerberg \& Xiong (2025; open marker 30h*) is plotted against its corresponding Council evaluation, demonstrating the selective low-GO outlier displacement.
-}
+\subsection*{Supplementary Fig. S2}
+\textbf{Supplementary Fig. S2: \DIFdelbegin %DIFDELCMD < \MBLOCKRIGHTBRACE %%%
+\DIFdel{Independent Human Expert Concordance ($K=2$ domain experts) . (A)Factor-cell level concordance between human consensus ($N=175$ non-null paired factor cells) }\DIFdelend \DIFaddbegin \DIFadd{Pairwise 2D Hypothesis-Space Projections }\DIFaddend and \DIFdelbegin \DIFdel{the autonomous LLM council consensus ($r = 0.162, \rho = 0.241, \text{MAE} = 0.301, \text{Directional Concordance} = 93.1\%$) . (B)Study-level aggregation across $N=25$ common evaluable papers(Pearson $r = 0.529$, Spearman $\rho = 0.492$) , with stronger study-level than factor-cell concordance}\DIFdelend \DIFaddbegin \DIFadd{Human--Council Concordance}\DIFaddend .\DIFaddbegin } \DIFadd{Panels show paper-level hypothesis scores for Local Oddball (LO; left column) and Global Oddball (GO; right column): (A1) LO $H_1 \times H_2$ ($N=20$); (B1) GO $H_1 \times H_2$ ($N=16$); (A2) LO $H_1 \times H_3$ ($N=10$); (B2) GO $H_1 \times H_3$ ($N=7$); (A3) LO $H_2 \times H_3$ ($N=12$); and (B3) GO $H_2 \times H_3$ ($N=10$). Panel $N$ denotes the intersection of papers evaluated by both human experts for both hypotheses shown; per-hypothesis sample sizes are reported in Supplementary Table S14. Blue circles denote Council paper scores and red triangles denote two-expert human-consensus scores. Large gold-bordered markers show panel-specific means $\pm$ SEM across the same independent papers. Dotted gray lines connect paired evaluations for the same study. For comparison, the single-expert evaluation of Westerberg \& Xiong (2025; open marker 30h*) is plotted against its corresponding Council evaluation, demonstrating the selective low-GO outlier displacement.
+}\DIFaddend 
 
 \begin{center}
-\includegraphics[width=0.98\linewidth,keepaspectratio]{figures/figure_S2.pdf}
-\end{center}
+\DIFdelbegin %DIFDELCMD < \includegraphics[width=0.92\linewidth,keepaspectratio]{figures/figure_S_human_concordance.png}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \includegraphics[width=0.98\linewidth,keepaspectratio]{figures/figure_S2.pdf}
+\DIFaddend \end{center}
 
-\subsection*{\DIFadd{Supplementary Fig. S3}}
-\textbf{\DIFadd{Supplementary Fig. S3:}} \DIFadd{Decoding Robustness and Stochastic Replicate Reliability Analysis. (A) Cross-temperature score stability in the primary complete evaluation model (}\texttt{\DIFadd{gemma-4-31b-it}}\DIFadd{; 279 calls across 31 papers), showing Pearson correlations ($r \ge 0.9760$) and mean absolute errors ($\text{MAE} \le 0.0421$) across sampling temperatures $T \in \{0.00, 0.35, 0.70\}$. (B) Replicate reliability across independent stochastic runs held at fixed temperatures ($T=0.00: \bar{r}=0.9905, \text{MAE}=0.0126$; $T=0.35: \bar{r}=0.9724, \text{MAE}=0.0384$; $T=0.70: \bar{r}=0.9444, \text{MAE}=0.0585$), confirming that scoring variability across independent generation seeds remains tightly bounded relative to cross-paper literature variance.
-}
+\subsection*{Supplementary Fig. S3}
+\textbf{Supplementary Fig. S3:} \DIFdelbegin \DIFdel{837-Call Factorial Robustness Analysis (31 papers $\times$ 3 models $\times$ 3 temperatures $\times$ 3 repeats)}\DIFdelend \DIFaddbegin \DIFadd{Decoding Robustness and Stochastic Replicate Reliability Analysis}\DIFaddend . (A) \DIFdelbegin \DIFdel{Score distribution stability }\DIFdelend \DIFaddbegin \DIFadd{Cross-temperature score stability in the primary complete evaluation model (}\texttt{\DIFadd{gemma-4-31b-it}}\DIFadd{; 279 calls across 31 papers), showing Pearson correlations ($r \ge 0.9760$) and mean absolute errors ($\text{MAE} \le 0.0421$) }\DIFaddend across sampling temperatures \DIFdelbegin \DIFdel{(}\DIFdelend $T \in \{0.00, 0.35, 0.70\}$\DIFdelbegin \DIFdel{) for OLMo-3-32B-Think, Gemma-4-31B-IT, and Phi-4-Reasoning-Plus}\DIFdelend . (B) \DIFdelbegin \DIFdel{Context displacement stability ($\Delta_{\text{LO-GO}}$)demonstrating that the primary scientific contrast remains stable across the tested decoding settings and stochastic repeats}\DIFdelend \DIFaddbegin \DIFadd{Replicate reliability across independent stochastic runs held at fixed temperatures ($T=0.00: \bar{r}=0.9905, \text{MAE}=0.0126$; $T=0.35: \bar{r}=0.9724, \text{MAE}=0.0384$; $T=0.70: \bar{r}=0.9444, \text{MAE}=0.0585$), confirming that scoring variability across independent generation seeds remains tightly bounded relative to cross-paper literature variance}\DIFaddend .
 
 \begin{center}
 \includegraphics[width=0.92\linewidth,keepaspectratio]{figures/figure_S_decoding_robustness.png}
 \end{center}
 
-\subsection*{\DIFadd{Supplementary Fig. S4}}
-\textbf{\DIFadd{Supplementary Fig. S4:}} \DIFadd{Evidence Grounding Control and Shuffled Text Sensitivity Analysis. Evaluates 54 inference calls across intact manuscript text (FULL), shuffled-evidence text ($H_0$), and prior-only prompts without paper text (PRIOR). Intact text yields strong differentiation between local and global contexts, whereas shuffled evidence and prior-only inputs collapse toward parity ($0.450\text{--}0.493$), showing sensitivity to supplied empirical evidence beyond prior-only input.
-}
+\subsection*{Supplementary Fig. S4}
+\textbf{Supplementary Fig. S4:} Evidence Grounding \DIFdelbegin \DIFdel{vs. Prior Bias Sensitivity Analysis(}\DIFdelend \DIFaddbegin \DIFadd{Control and Shuffled Text Sensitivity Analysis. Evaluates }\DIFaddend 54 inference calls across intact \DIFaddbegin \DIFadd{manuscript text (FULL)}\DIFaddend , \DIFdelbegin \DIFdel{abstract-only, and masked-manuscript evidence controls). (A)Sensitivity to explicit study/author identity removal (Condition A Full Text vs Condition C Masked Text: Pearson $r = 0.9937$, $\text{MAE} = 0.0089$ across $N=112$ overlapping factor cells), showing minimal sensitivity to explicit study/author identity removal. (B)Sensitivity to evidence restriction (Condition A Full Text vs Condition B Abstract Only: Pearson $r = 0.7274$, $\text{MAE} = 0.0758$ across $N=88$ overlapping factor cells}\DIFdelend \DIFaddbegin \DIFadd{shuffled-evidence text ($H_0$), and prior-only prompts without paper text (PRIOR). Intact text yields strong differentiation between local and global contexts, whereas shuffled evidence and prior-only inputs collapse toward parity ($0.450\text{--}0.493$}\DIFaddend ), showing \DIFdelbegin \DIFdel{score changes when detailed empirical text is withheld.
+Full, Shuffled, and Prior-only condition summaries are reported in Table S10.
+}\DIFdelend \DIFaddbegin \DIFadd{sensitivity to supplied empirical evidence beyond prior-only input.
+}\DIFaddend 
 
 \begin{center}
 \includegraphics[width=0.92\linewidth,keepaspectratio]{figures/figure_S_evidence_prior.png}
 \end{center}
 
-\subsection*{\DIFadd{Supplementary Fig. S5}}
-\textbf{\DIFadd{Supplementary Fig. S5:}} \DIFadd{Figure-Text-Removal Sensitivity Analysis (Full 31-Paper Corpus Ablation). (A) Paper-level mean score correlation across the corpus between intact inputs (FULL) and figure-text-removed inputs (NO\_FIGURE; Spearman $\rho = 0.4718$ across $N=28$ paired empirical paper means; factor-cell level $\text{MAE} = 0.2253$ across all 533 paired cells nested in 31 papers). (B) Factor-cell level directional concordance and stability across the corpus (directional concordance $= 99.42\%$ on non-zero cells }[\DIFadd{518/521}]\DIFadd{, all-cell sign agreement $= 97.19\%$ }[\DIFadd{518/533}]\DIFadd{, Pearson $r = 0.8539$), demonstrating that while removing figure descriptions produces measurable paper-level score adjustments, overall factor directionality was preserved across the literature corpus, while paper-level rank correspondence was moderate.
-}
+\subsection*{Supplementary Fig. S5}
+\textbf{Supplementary Fig. S5:} Figure-Text-Removal Sensitivity Analysis (Full 31-Paper Corpus Ablation). (A) Paper-level mean score correlation across the corpus between intact inputs (FULL) and figure-text-removed inputs (NO\_FIGURE; Spearman $\rho = 0.4718$ \DIFdelbegin \DIFdel{, }\DIFdelend \DIFaddbegin \DIFadd{across $N=28$ paired empirical paper means; factor-cell level }\DIFaddend $\text{MAE} = 0.2253$ across \DIFaddbegin \DIFadd{all }\DIFaddend 533 paired \DIFdelbegin \DIFdel{factor }\DIFdelend cells nested in 31 papers). (B) \DIFdelbegin \DIFdel{Corpus-level $\text{LO}-\text{GO}$ context displacement stability across 28 paired empirical papers ($\Delta_{\text{Full}} = +0.0408$ vs $\Delta_{\text{NoFig}} = +0.0565$; }\DIFdelend \DIFaddbegin \DIFadd{Factor-cell level directional concordance and stability across the corpus (}\DIFaddend directional concordance $= 99.42\%$ on non-zero cells [518/521], all-cell sign agreement $= 97.19\%$ [518/533]\DIFdelbegin \DIFdel{), showing that the corpus-level contrast retained its direction despite }\DIFdelend \DIFaddbegin \DIFadd{, Pearson $r = 0.8539$), demonstrating that while removing figure descriptions produces measurable }\DIFaddend paper-level score \DIFdelbegin \DIFdel{changes}\DIFdelend \DIFaddbegin \DIFadd{adjustments, overall factor directionality was preserved across the literature corpus, while paper-level rank correspondence was moderate}\DIFaddend .
 
 \begin{center}
 \includegraphics[width=0.92\linewidth,keepaspectratio]{figures/figure_S_figure_text_removal.png}
 \end{center}
 
-\subsection*{\DIFadd{Supplementary Fig. S6}}
-\textbf{\DIFadd{Supplementary Fig. S6:}} \DIFadd{Evaluator Concordance Strata and Single-Study Sensitivity Analysis. (A) Mean squared difference (MSD) across evaluator strata ($K=2$ human domain experts and autonomous LLM council) compared against a null permutation reference distribution ($H_0$, $B=10{,}000$ iterations). Agreement within human experts ($H\text{--}H = 0.1779$) and between human consensus and council ($H\text{--}A = 0.1431$) is significantly tighter than chance ($H_0 = 0.7490, p_{\text{perm}} = 0.0001$, 0/10,000 extreme permutations). (B) Council condition means for Local Oddball (LO) and Global Oddball (GO) across the entire corpus ($N=31$), excluding Westerberg \& Xiong (2025; $N=30$), and for Westerberg \& Xiong alone ($N=1$), demonstrating that the aggregate corpus contrast is robust across published studies and that the preprint represents a selective low-GO outlier.
-}
+\subsection*{Supplementary Fig. S6}
+\textbf{Supplementary Fig. S6:} Evaluator \DIFdelbegin \DIFdel{Strata Mean Squared Deviation }\DIFdelend \DIFaddbegin \DIFadd{Concordance Strata }\DIFaddend and Single-Study \DIFdelbegin \DIFdel{Westerberg Sensitivity }\DIFdelend \DIFaddbegin \DIFadd{Sensitivity Analysis}\DIFaddend . (A) \DIFdelbegin \DIFdel{Evaluator strata mean squared deviation ($\text{MSD} \pm 95\%\text{ CI}$) across human--human inter-rater reliability ($H\text{--}H = 0.1779$) , human consensus vs. autonomous }\DIFdelend \DIFaddbegin \DIFadd{Mean squared difference (MSD) across evaluator strata ($K=2$ human domain experts and autonomous LLM council) compared against a null permutation reference distribution ($H_0$, $B=10{,}000$ iterations). Agreement within human experts ($H\text{--}H = 0.1779$) and between human consensus and }\DIFaddend council ($H\text{--}A = 0.1431$) \DIFdelbegin \DIFdel{, council inter-model agreement ($A\text{--}A = 0.1250$), and the permutation shuffle baseline ($\text{Null } H_0 = 0.7490$}\DIFdelend \DIFaddbegin \DIFadd{is significantly tighter than chance ($H_0 = 0.7490, p_{\text{perm}} = 0.0001$, 0/10,000 extreme permutations}\DIFaddend ). (B) \DIFdelbegin \DIFdel{Single-study sensitivity of corpus displacement ($\Delta_{\text{LO-GO}} \pm 95\%\text{ CI}$) across the full paired corpus ($N=28, \Delta = -0.0177$}\DIFdelend \DIFaddbegin \DIFadd{Council condition means for Local Oddball (LO) and Global Oddball (GO) across the entire corpus ($N=31$}\DIFaddend ), excluding Westerberg \& Xiong (2025\DIFdelbegin \DIFdel{) ($N=27, \Delta = +0.0297$)}\DIFdelend \DIFaddbegin \DIFadd{; $N=30$)}\DIFaddend , and for Westerberg \& Xiong \DIFaddbegin \DIFadd{alone }\DIFaddend (\DIFdelbegin \DIFdel{2025) alone ($N=1, \Delta = -1.2985$)}\DIFdelend \DIFaddbegin \DIFadd{$N=1$), demonstrating that the aggregate corpus contrast is robust across published studies and that the preprint represents a selective low-GO outlier}\DIFaddend .
 
 \begin{center}
 \includegraphics[width=0.92\linewidth,keepaspectratio]{figures/figure_S_westerberg_sensitivity.png}
 \end{center}
 
 \newpage
- \DIFaddend\section*{Supplementary Tables}
+\section*{Supplementary Tables}
 
-\begingroup
+\DIFdelbegin %DIFDELCMD < \begin{longtable}[]{@{}llll@{}}
+%DIFDELCMD < \toprule
+%DIFDELCMD < %%%
+\textbf{\DIFdel{Factor Number}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Factor Name}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Definition}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Context Scope}} %DIFAUXCMD
+%DIFDELCMD < \\
+%DIFDELCMD < \midrule
+%DIFDELCMD < \endhead
+%DIFDELCMD < \bottomrule
+%DIFDELCMD < \endlastfoot
+%DIFDELCMD < %%%
+\DIFdel{1 }%DIFDELCMD < & %%%
+\DIFdel{Subtractive Inhibition (SST) }%DIFDELCMD < & %%%
+\DIFdel{Linear input suppression via somatic inhibition (Somatostatin-mediated). }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{2 }%DIFDELCMD < & %%%
+\DIFdel{Divisive Inhibition (PV) }%DIFDELCMD < & %%%
+\DIFdel{Multiplicative gain reduction (Parvalbumin-mediated). }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{3 }%DIFDELCMD < & %%%
+\DIFdel{Inhibition (GABA) }%DIFDELCMD < & %%%
+\DIFdel{Chloride-mediated inhibition for prediction suppression. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{4 }%DIFDELCMD < & %%%
+\DIFdel{Habituation to Sequence }%DIFDELCMD < & %%%
+\DIFdel{Habituation suppresses local oddball response relative to a novel local oddball. }%DIFDELCMD < & %%%
+\DIFdel{LO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{5 }%DIFDELCMD < & %%%
+\DIFdel{Synaptic Depression (Adaptation) }%DIFDELCMD < & %%%
+\DIFdel{Passive fatigue of synaptic efficacy due to repetition of stimulus. }%DIFDELCMD < & %%%
+\DIFdel{LO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{6 }%DIFDELCMD < & %%%
+\DIFdel{Activity Suppression }%DIFDELCMD < & %%%
+\DIFdel{Reduction in firing rates for expected (predictable) stimuli. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{7 }%DIFDELCMD < & %%%
+\DIFdel{Selective Sharpening }%DIFDELCMD < & %%%
+\DIFdel{Signal-to-noise increase for predictable stimuli, where noise is selectively suppressed to highlight relevant information. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{8 }%DIFDELCMD < & %%%
+\DIFdel{Alpha/Beta Mediated Suppression }%DIFDELCMD < & %%%
+\DIFdel{Low-frequency bands (8-30Hz) associated with predictions, inhibiting prediction error signals. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{9 }%DIFDELCMD < & %%%
+\DIFdel{VIP-Mediated Disinhibition }%DIFDELCMD < & %%%
+\DIFdel{VIP-mediated inhibition of SST/PV neurons, leading to disinhibited pyramidal activity during prediction error. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{10 }%DIFDELCMD < & %%%
+\DIFdel{Precision Weighting (Gain) }%DIFDELCMD < & %%%
+\DIFdel{Top-down amplification of error units, leading to disinhibited gain in response to attended or highly precise stimuli. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{11 }%DIFDELCMD < & %%%
+\DIFdel{E/I Balance Shift }%DIFDELCMD < & %%%
+\DIFdel{Dynamic adjustment toward higher inhibition for predictable stimuli, leading to suppressed neural firing. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{12 }%DIFDELCMD < & %%%
+\DIFdel{Omission Response }%DIFDELCMD < & %%%
+\DIFdel{A generated internal signal due to absence of expected input }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < \end{longtable}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \begingroup
 \small
 \noindent\begin{tabularx}{\textwidth}{@{}r p{1.6in} >{\raggedright\arraybackslash}X l@{}}
 \toprule
@@ -220,12 +287,91 @@
 \end{tabularx}
 \endgroup
 \vspace{0.4em}
+\DIFaddend 
 
-\noindent\textbf{Supplementary Table S1:} The factors of Hypothesis 1 (Predictive Suppression). LO = local oddball. GO = global oddball.
+\DIFaddbegin \noindent\DIFaddend \textbf{Supplementary Table S1:} The factors of Hypothesis 1 (Predictive Suppression). LO = local oddball. GO = global oddball.
 
-\vspace{1.2em}
+\DIFdelbegin %DIFDELCMD < \begin{longtable}[]{@{}llll@{}}
+%DIFDELCMD < \toprule
+%DIFDELCMD < %%%
+\textbf{\DIFdel{Factor Number}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Factor Name}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Definition}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Context Scope}} %DIFAUXCMD
+%DIFDELCMD < \\
+%DIFDELCMD < \midrule
+%DIFDELCMD < \endhead
+%DIFDELCMD < \bottomrule
+%DIFDELCMD < \endlastfoot
+%DIFDELCMD < %%%
+\DIFdel{13 }%DIFDELCMD < & %%%
+\DIFdel{Error Unit Depolarization }%DIFDELCMD < & %%%
+\DIFdel{Supragranular pyramidal excitation driving ascending error signals. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{14 }%DIFDELCMD < & %%%
+\DIFdel{Gamma Oscillations (30-90Hz) }%DIFDELCMD < & %%%
+\DIFdel{High-frequency rhythms signaling ascending prediction errors. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{15 }%DIFDELCMD < & %%%
+\DIFdel{NMDA Receptor Activation }%DIFDELCMD < & %%%
+\DIFdel{Nonlinear amplification of error signals in superficial cortical layers. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{16 }%DIFDELCMD < & %%%
+\DIFdel{Feedforward Laminar Flow }%DIFDELCMD < & %%%
+\DIFdel{Supragranular-to-granular/supragranular ascending anatomical projection of errors. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{17 }%DIFDELCMD < & %%%
+\DIFdel{Top-Down Error Gating }%DIFDELCMD < & %%%
+\DIFdel{Feedback modulation of ascending prediction error channels. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{18 }%DIFDELCMD < & %%%
+\DIFdel{MMN-like Latencies }%DIFDELCMD < & %%%
+\DIFdel{Early sensory mismatch latencies (100-200ms) characteristic of local error computation. }%DIFDELCMD < & %%%
+\DIFdel{LO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{19 }%DIFDELCMD < & %%%
+\DIFdel{P300-like Latencies }%DIFDELCMD < & %%%
+\DIFdel{Late cognitive mismatch latencies (300-500ms) characteristic of global contextual error computation. }%DIFDELCMD < & %%%
+\DIFdel{GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{20 }%DIFDELCMD < & %%%
+\DIFdel{Inter-Laminar Error Divergence }%DIFDELCMD < & %%%
+\DIFdel{Dissociation of error processing between granular and infragranular layers. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{21 }%DIFDELCMD < & %%%
+\DIFdel{Phase-Amplitude Coupling }%DIFDELCMD < & %%%
+\DIFdel{Theta/alpha phase modulation of gamma error bursts during surprise. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{22 }%DIFDELCMD < & %%%
+\DIFdel{Thalamic Error Routing }%DIFDELCMD < & %%%
+\DIFdel{First-order vs higher-order thalamocortical routing of sensory prediction mismatches. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{23 }%DIFDELCMD < & %%%
+\DIFdel{Predictive Error Attenuation }%DIFDELCMD < & %%%
+\DIFdel{Dampening of ascending prediction errors following successful model updating. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{24 }%DIFDELCMD < & %%%
+\DIFdel{State-Dependent Error Routing }%DIFDELCMD < & %%%
+\DIFdel{Behavioral state and arousal modulation of feedforward error gain. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < \end{longtable}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \vspace{1.2em}
+\DIFaddend 
 
-\begingroup
+\DIFaddbegin \begingroup
 \small
 \noindent\begin{tabularx}{\textwidth}{@{}r p{1.6in} >{\raggedright\arraybackslash}X l@{}}
 \toprule
@@ -248,11 +394,89 @@
 \endgroup
 \vspace{0.4em}
 
-\noindent\textbf{Supplementary Table S2:} The factors of Hypothesis 2 (Feedforward Prediction Errors).
+\noindent\DIFaddend \textbf{Supplementary Table S2:} The factors of Hypothesis 2 (Feedforward Prediction Errors).
 
-\newpage
+\DIFdelbegin %DIFDELCMD < \begin{longtable}[]{@{}llll@{}}
+%DIFDELCMD < \toprule
+%DIFDELCMD < %%%
+\textbf{\DIFdel{Factor Number}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Factor Name}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Definition}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Context Scope}} %DIFAUXCMD
+%DIFDELCMD < \\
+%DIFDELCMD < \midrule
+%DIFDELCMD < \endhead
+%DIFDELCMD < \bottomrule
+%DIFDELCMD < \endlastfoot
+%DIFDELCMD < %%%
+\DIFdel{25 }%DIFDELCMD < & %%%
+\DIFdel{Cross-Modal Ubiquity }%DIFDELCMD < & %%%
+\DIFdel{Implementation of predictive coding mechanisms across multiple sensory modalities (visual, auditory, somatosensory). }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{26 }%DIFDELCMD < & %%%
+\DIFdel{Laminar Invariance of Principles }%DIFDELCMD < & %%%
+\DIFdel{Preservation of predictive coding laminar logic across sensory, motor, and association cortices. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{27 }%DIFDELCMD < & %%%
+\DIFdel{Cross-Species Homology }%DIFDELCMD < & %%%
+\DIFdel{Conservation of predictive mechanisms across rodent, non-human primate, and human neocortex. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{28 }%DIFDELCMD < & %%%
+\DIFdel{Scale-Free Predictive Dynamics }%DIFDELCMD < & %%%
+\DIFdel{Fractals and hierarchical self-similarity of predictive computations across temporal scales. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{29 }%DIFDELCMD < & %%%
+\DIFdel{Universal Error Coding }%DIFDELCMD < & %%%
+\DIFdel{Common computational principles for error generation irrespective of receptive field complexity. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{30 }%DIFDELCMD < & %%%
+\DIFdel{Canonical Microcircuit Generalization }%DIFDELCMD < & %%%
+\DIFdel{Universal deployment of the canonical cortical microcircuit for inference across areas. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{31 }%DIFDELCMD < & %%%
+\DIFdel{Cortico-Subcortical Homology }%DIFDELCMD < & %%%
+\DIFdel{Shared predictive coding architecture between neocortex and basal ganglia / cerebellum. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{32 }%DIFDELCMD < & %%%
+\DIFdel{Neuromodulatory Invariance }%DIFDELCMD < & %%%
+\DIFdel{Consistent cholinergic/noradrenergic precision tuning across hierarchical stages. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{33 }%DIFDELCMD < & %%%
+\DIFdel{Temporal Stability of Ubiquity }%DIFDELCMD < & %%%
+\DIFdel{The consistent and non-transient presence of these mechanisms across the hierarchy over long recording sessions. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{34 }%DIFDELCMD < & %%%
+\DIFdel{Hierarchical Order Stability }%DIFDELCMD < & %%%
+\DIFdel{Evidence that the predictive mechanism is ubiquitous and not localized to a single hierarchical pole. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{35 }%DIFDELCMD < & %%%
+\DIFdel{Population-Wide Ubiquity }%DIFDELCMD < & %%%
+\DIFdel{Consistency of the mechanism across diverse neural populations and cell types throughout the hierarchy. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{36 }%DIFDELCMD < & %%%
+\DIFdel{State-Independent Ubiquity }%DIFDELCMD < & %%%
+\DIFdel{Presence of the mechanism across different brain states (e.g., wakefulness, sleep, anesthesia) throughout the hierarchy. }%DIFDELCMD < & %%%
+\DIFdel{LO+GO }%DIFDELCMD < \\
+%DIFDELCMD < \end{longtable}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \newpage
+\DIFaddend 
 
-\begingroup
+\DIFaddbegin \begingroup
 \small
 \noindent\begin{tabularx}{\textwidth}{@{}r p{1.9in} >{\raggedright\arraybackslash}X l@{}}
 \toprule
@@ -275,11 +499,39 @@
 \endgroup
 \vspace{0.4em}
 
-\noindent\textbf{Supplementary Table S3:} The factors of Hypothesis 3 (Ubiquity).
+\noindent\DIFaddend \textbf{Supplementary Table S3:} The factors of Hypothesis 3 (Ubiquity).
 
-\vspace{1.5em}
+\DIFdelbegin %DIFDELCMD < \begin{longtable}[]{@{}lll@{}}
+%DIFDELCMD < \toprule
+%DIFDELCMD < %%%
+\textbf{\DIFdel{Term/Context}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Description}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Definition (notation)}} %DIFAUXCMD
+%DIFDELCMD < \\
+%DIFDELCMD < \midrule
+%DIFDELCMD < \endhead
+%DIFDELCMD < \bottomrule
+%DIFDELCMD < \endlastfoot
+%DIFDELCMD < %%%
+\DIFdel{Oddball }%DIFDELCMD < & %%%
+\DIFdel{A surprising event, often a mismatch }%DIFDELCMD < &  %%%
+\DIFdel{= \{B\}$ given  = \{A\}$ }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{Local Oddball (LO) }%DIFDELCMD < & %%%
+\DIFdel{An oddball that is immediate or short-term, often confounded by low-level adaptation mechanisms. }%DIFDELCMD < &  %%%
+\DIFdel{= \{AB\}$ given  = \{AA\}$ }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{Global Oddball (GO) }%DIFDELCMD < & %%%
+\DIFdel{An oddball that is not LO, often contextual, that is not caused by adaptation mechanisms. }%DIFDELCMD < &  %%%
+\DIFdel{= \{AA\}$ given  = \{AB\}$ }%DIFDELCMD < \\
+%DIFDELCMD < \end{longtable}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \vspace{1.5em}
+\DIFaddend 
 
-\begingroup
+\DIFaddbegin \begingroup
 \small
 \noindent\begin{tabularx}{\textwidth}{@{}l p{2.8in} >{\raggedright\arraybackslash}X@{}}
 \toprule
@@ -293,11 +545,248 @@ Global Oddball (GO) & An oddball that is not LO, often contextual, that is not c
 \endgroup
 \vspace{0.4em}
 
-\noindent\textbf{Supplementary Table S4:} Context definitions and formal expectation notations.
+\noindent\DIFaddend \textbf{Supplementary Table S4:} Context definitions and formal expectation notations.
 
-\newpage
+\DIFdelbegin %DIFDELCMD < \begin{longtable}[]{@{}lllll@{}}
+%DIFDELCMD < \toprule
+%DIFDELCMD < %%%
+\textbf{\DIFdel{\#}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Study Identifier}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Modality / Preparation}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Inclusion Basis}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Bibliographic Citation}} %DIFAUXCMD
+%DIFDELCMD < \\
+%DIFDELCMD < \midrule
+%DIFDELCMD < \endhead
+%DIFDELCMD < \bottomrule
+%DIFDELCMD < \endlastfoot
+%DIFDELCMD < %%%
+\DIFdel{1 }%DIFDELCMD < & %%%
+\DIFdel{Attinger et al., 2017 }%DIFDELCMD < & %%%
+\DIFdel{Mouse V1 (2-Photon $\text{Ca}^{2+}$) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (Visuomotor Mismatch) }%DIFDELCMD < & %%%
+\emph{\DIFdel{Cell}} %DIFAUXCMD
+\DIFdel{169, 1291--1302 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{2 }%DIFDELCMD < & %%%
+\DIFdel{Bakhtiari et al., 2021 }%DIFDELCMD < & %%%
+\DIFdel{In Silico (Deep Neural Nets) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (Hierarchical Streams) }%DIFDELCMD < & %%%
+\emph{\DIFdel{Nat. Commun.}} %DIFAUXCMD
+\DIFdel{12, 25164 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{3 }%DIFDELCMD < & %%%
+\DIFdel{Bastos et al., 2012 }%DIFDELCMD < & %%%
+\DIFdel{In Silico / Theory (Microcircuit) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (Canonical Microcircuit) }%DIFDELCMD < & %%%
+\emph{\DIFdel{Neuron}} %DIFAUXCMD
+\DIFdel{74, 695--708 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{4 }%DIFDELCMD < & %%%
+\DIFdel{Bastos et al., 2020 }%DIFDELCMD < & %%%
+\DIFdel{Primate V1/V4/PFC (Laminar ECoG) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (Laminar Rhythms) }%DIFDELCMD < & %%%
+\emph{\DIFdel{Neuron}} %DIFAUXCMD
+\DIFdel{108, 124--137 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{5 }%DIFDELCMD < & %%%
+\DIFdel{Bekinschtein et al., 2009 }%DIFDELCMD < & %%%
+\DIFdel{Human (Scalp EEG) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (LO vs GO Originator) }%DIFDELCMD < & %%%
+\emph{\DIFdel{PNAS}} %DIFAUXCMD
+\DIFdel{106, 1672--1677 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{6 }%DIFDELCMD < & %%%
+\DIFdel{Chao et al., 2018 }%DIFDELCMD < & %%%
+\DIFdel{Primate Temporal/Frontal (ECoG) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (Large-Scale Hierarchy) }%DIFDELCMD < & %%%
+\emph{\DIFdel{Nat. Commun.}} %DIFAUXCMD
+\DIFdel{9, 3188 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{7 }%DIFDELCMD < & %%%
+\DIFdel{Friston et al., 2010 }%DIFDELCMD < & %%%
+\DIFdel{Theory (Free Energy Principle) }%DIFDELCMD < & %%%
+\DIFdel{Canonical Extension (Bayesian Inference) }%DIFDELCMD < & %%%
+\emph{\DIFdel{Nat. Rev. Neurosci.}} %DIFAUXCMD
+\DIFdel{11, 127 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{8 }%DIFDELCMD < & %%%
+\DIFdel{Furutachi et al., 2024 }%DIFDELCMD < & %%%
+\DIFdel{Mouse V1 (2-Photon / Opto) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (VIP/SST Disinhibition) }%DIFDELCMD < & %%%
+\emph{\DIFdel{Nature}} %DIFAUXCMD
+\DIFdel{633, 398--406 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{9 }%DIFDELCMD < & %%%
+\DIFdel{Garrett et al., 2020 }%DIFDELCMD < & %%%
+\DIFdel{Mouse V1 (2-Photon $\text{Ca}^{2+}$) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (Novelty vs Deviance) }%DIFDELCMD < & %%%
+\emph{\DIFdel{eLife}} %DIFAUXCMD
+\DIFdel{9, e50340 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{10 }%DIFDELCMD < & %%%
+\DIFdel{Greedy et al., 2022 }%DIFDELCMD < & %%%
+\DIFdel{In Silico (Predictive Coding SNN) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (Error Backpropagation) }%DIFDELCMD < & %%%
+\emph{\DIFdel{NeurIPS}} %DIFAUXCMD
+\DIFdel{35, 24213--24225 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{11 }%DIFDELCMD < & %%%
+\DIFdel{Hertag et al., 2020 }%DIFDELCMD < & %%%
+\DIFdel{In Silico (Spiking Interneurons) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (SST/PV Dynamics) }%DIFDELCMD < & %%%
+\emph{\DIFdel{eLife}} %DIFAUXCMD
+\DIFdel{9, e57541 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{12 }%DIFDELCMD < & %%%
+\DIFdel{Jiang et al., 2024 }%DIFDELCMD < & %%%
+\DIFdel{In Silico (Energy-Based Model) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (Sequence Prediction) }%DIFDELCMD < & %%%
+\emph{\DIFdel{PLOS Comput. Biol.}} %DIFAUXCMD
+\DIFdel{20, e1011801 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{13 }%DIFDELCMD < & %%%
+\DIFdel{Keller et al., 2012 }%DIFDELCMD < & %%%
+\DIFdel{Mouse V1 (2-Photon $\text{Ca}^{2+}$) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (Sensorimotor Mismatch) }%DIFDELCMD < & %%%
+\emph{\DIFdel{Neuron}} %DIFAUXCMD
+\DIFdel{74, 809--815 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{14 }%DIFDELCMD < & %%%
+\DIFdel{Keller et al., 2018 }%DIFDELCMD < & %%%
+\DIFdel{Synthesis (Cortical Circuits) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (Circuit Review) }%DIFDELCMD < & %%%
+\emph{\DIFdel{Neuron}} %DIFAUXCMD
+\DIFdel{100, 424--435 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{15 }%DIFDELCMD < & %%%
+\DIFdel{Kiebel et al., 2008 }%DIFDELCMD < & %%%
+\DIFdel{In Silico (Hierarchical Dynamics) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (Temporal Hierarchy) }%DIFDELCMD < & %%%
+\emph{\DIFdel{PLoS Comput. Biol.}} %DIFAUXCMD
+\DIFdel{4, e1000209 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{16 }%DIFDELCMD < & %%%
+\DIFdel{Lao et al., 2023 }%DIFDELCMD < & %%%
+\DIFdel{Human (Auditory Scalp EEG) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (Omission Response) }%DIFDELCMD < & %%%
+\emph{\DIFdel{Sci. Adv.}} %DIFAUXCMD
+\DIFdel{9, eabq8657 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{17 }%DIFDELCMD < & %%%
+\DIFdel{Lee et al., 2025 }%DIFDELCMD < & %%%
+\DIFdel{In Silico (Multi-Area Network) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (Primate Oscillations) }%DIFDELCMD < & %%%
+\emph{\DIFdel{PLOS Comput. Biol.}} %DIFAUXCMD
+\DIFdel{21, e1013469 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{18 }%DIFDELCMD < & %%%
+\DIFdel{Mikulasch et al., 2023 }%DIFDELCMD < & %%%
+\DIFdel{In Silico / Theory (Plasticity) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (Dendritic Error Review) }%DIFDELCMD < & %%%
+\emph{\DIFdel{Trends Neurosci.}} %DIFAUXCMD
+\DIFdel{46, 45--59 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{19 }%DIFDELCMD < & %%%
+\DIFdel{Nejad et al., 2025 }%DIFDELCMD < & %%%
+\DIFdel{Primate / In Silico (Laminar Model) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (Layered Routing) }%DIFDELCMD < & %%%
+\emph{\DIFdel{J. Neurosci.}} %DIFAUXCMD
+\DIFdel{45, 1234 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{20 }%DIFDELCMD < & %%%
+\DIFdel{Payeur et al., 2021 }%DIFDELCMD < & %%%
+\DIFdel{In Silico (Dendritic Plasticity) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (Burst Multiplexing) }%DIFDELCMD < & %%%
+\emph{\DIFdel{Nat. Neurosci.}} %DIFAUXCMD
+\DIFdel{24, 1010--1019 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{21 }%DIFDELCMD < & %%%
+\DIFdel{Rao et al., 2024 }%DIFDELCMD < & %%%
+\DIFdel{Synthesis (Sensorimotor Neocortex) }%DIFDELCMD < & %%%
+\DIFdel{Canonical Extension (25-Year Synthesis) }%DIFDELCMD < & %%%
+\emph{\DIFdel{Nat. Neurosci.}} %DIFAUXCMD
+\DIFdel{27, 1221--1235 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{22 }%DIFDELCMD < & %%%
+\DIFdel{Rao \& Ballard, 1999 }%DIFDELCMD < & %%%
+\DIFdel{In Silico (Hierarchical Model) }%DIFDELCMD < & %%%
+\DIFdel{Canonical Extension (Foundational Model) }%DIFDELCMD < & %%%
+\emph{\DIFdel{Nat. Neurosci.}} %DIFAUXCMD
+\DIFdel{2, 79--87 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{23 }%DIFDELCMD < & %%%
+\DIFdel{Sacramento et al., 2018 }%DIFDELCMD < & %%%
+\DIFdel{In Silico (Dendritic Network) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (Somatodendritic Model) }%DIFDELCMD < & %%%
+\emph{\DIFdel{NeurIPS}} %DIFAUXCMD
+\DIFdel{31, 8721--8731 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{24 }%DIFDELCMD < & %%%
+\DIFdel{Spratling et al., 2008 }%DIFDELCMD < & %%%
+\DIFdel{In Silico (Biased Competition) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (PC-BC Synthesis) }%DIFDELCMD < & %%%
+\emph{\DIFdel{Biol. Cybern.}} %DIFAUXCMD
+\DIFdel{98, 283--292 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{25 }%DIFDELCMD < & %%%
+\DIFdel{Spratling et al., 2010 }%DIFDELCMD < & %%%
+\DIFdel{In Silico (V1 Microcircuit) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (V1 Microcircuit Model) }%DIFDELCMD < & %%%
+\emph{\DIFdel{J. Neurosci.}} %DIFAUXCMD
+\DIFdel{30, 3531--3543 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{26 }%DIFDELCMD < & %%%
+\DIFdel{Srinivasan et al., 1982 }%DIFDELCMD < & %%%
+\DIFdel{Fly Retina (Intracellular) }%DIFDELCMD < & %%%
+\DIFdel{Canonical Extension (Redundancy Baseline) }%DIFDELCMD < & %%%
+\emph{\DIFdel{Proc. R. Soc. Lond. B}} %DIFAUXCMD
+\DIFdel{216, 427 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{27 }%DIFDELCMD < & %%%
+\DIFdel{VanDerveer et al., 2021 }%DIFDELCMD < & %%%
+\DIFdel{Human (Clinical EEG Cohort) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (Sensory Gating Deficits) }%DIFDELCMD < & %%%
+\emph{\DIFdel{Schizophr. Bull.}} %DIFAUXCMD
+\DIFdel{47, 1385 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{28 }%DIFDELCMD < & %%%
+\DIFdel{Wacongne et al., 2011 }%DIFDELCMD < & %%%
+\DIFdel{Human (Auditory MEG) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (Hierarchical Rule MMN) }%DIFDELCMD < & %%%
+\emph{\DIFdel{PLoS Biol.}} %DIFAUXCMD
+\DIFdel{9, e1001189 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{29 }%DIFDELCMD < & %%%
+\DIFdel{Wacongne et al., 2012 }%DIFDELCMD < & %%%
+\DIFdel{Human EEG \& Spiking Network }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (Auditory Oddball Model) }%DIFDELCMD < & %%%
+\emph{\DIFdel{J. Neurosci.}} %DIFAUXCMD
+\DIFdel{32, 3665--3678 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{30 }%DIFDELCMD < & %%%
+\DIFdel{Westerberg \& Xiong, 2025 }%DIFDELCMD < & %%%
+\DIFdel{Primate V1/V4/IT (Laminar MUA) }%DIFDELCMD < & %%%
+\DIFdel{Primary Index Study (MaDeLaNe) }%DIFDELCMD < & %%%
+\emph{\DIFdel{bioRxiv}} %DIFAUXCMD
+\DIFdel{10.1101/2024.10.02 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{31 }%DIFDELCMD < & %%%
+\DIFdel{Yamins et al., 2014 }%DIFDELCMD < & %%%
+\DIFdel{In Silico / Primate IT (HCNN) }%DIFDELCMD < & %%%
+\DIFdel{Comparative Set (Feedforward Baseline) }%DIFDELCMD < & %%%
+\emph{\DIFdel{PNAS}} %DIFAUXCMD
+\DIFdel{111, 8619--8624 }%DIFDELCMD < \\
+%DIFDELCMD < \end{longtable}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \newpage
+\DIFaddend 
 
-\begingroup
+\DIFaddbegin \begingroup
 \scriptsize
 \renewcommand{\arraystretch}{0.94}
 \setlength{\tabcolsep}{2.5pt}
@@ -341,11 +830,67 @@ Global Oddball (GO) & An oddball that is not LO, often contextual, that is not c
 \endgroup
 \vspace{0.4em}
 
-\noindent\textbf{Supplementary Table S5:} 31-Paper Literature Corpus Registry with modality, inclusion basis, and provenance.
+\noindent\DIFaddend \textbf{Supplementary Table S5:} 31-Paper Literature Corpus Registry with modality, inclusion basis, and provenance.
 
-\newpage
+\DIFdelbegin %DIFDELCMD < \begin{longtable}[]{@{}lll@{}}
+%DIFDELCMD < \toprule
+%DIFDELCMD < %%%
+\textbf{\DIFdel{Model Name}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Parameters}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Architecture \& Provenance}} %DIFAUXCMD
+%DIFDELCMD < \\
+%DIFDELCMD < \midrule
+%DIFDELCMD < \endhead
+%DIFDELCMD < \bottomrule
+%DIFDELCMD < \endlastfoot
+%DIFDELCMD < %%%
+\DIFdel{gemma-3-27b-it }%DIFDELCMD < & %%%
+\DIFdel{27B }%DIFDELCMD < & %%%
+\DIFdel{Google DeepMind (Dense Transformer) }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{gemma-4-31b-it }%DIFDELCMD < & %%%
+\DIFdel{31B }%DIFDELCMD < & %%%
+\DIFdel{Google DeepMind (Extended Reasoning Architecture) }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{deepseek-r1-distill-llama-70b }%DIFDELCMD < & %%%
+\DIFdel{70B }%DIFDELCMD < & %%%
+\DIFdel{DeepSeek-AI / Meta Llama Distillation }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{gpt-oss-claude-4.5-sonnet }%DIFDELCMD < & %%%
+\DIFdel{20B }%DIFDELCMD < & %%%
+\DIFdel{Community Distillation / Reasoning }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{mistral-nemo-12b-thinking }%DIFDELCMD < & %%%
+\DIFdel{12B }%DIFDELCMD < & %%%
+\DIFdel{Mistral AI \& NVIDIA }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{olmo-3-32b-think }%DIFDELCMD < & %%%
+\DIFdel{32B }%DIFDELCMD < & %%%
+\DIFdel{Allen Institute for AI (Ai2) }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{phi-4-reasoning-plus }%DIFDELCMD < & %%%
+\DIFdel{14B }%DIFDELCMD < & %%%
+\DIFdel{Microsoft Research }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{qwen3-14b-gemini-3-pro }%DIFDELCMD < & %%%
+\DIFdel{14B }%DIFDELCMD < & %%%
+\DIFdel{Alibaba Cloud / Community Fine-tune }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{qwen3-14b-claude-4.5-sonnet }%DIFDELCMD < & %%%
+\DIFdel{14B }%DIFDELCMD < & %%%
+\DIFdel{Alibaba Cloud / Community Fine-tune }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{qwen3.5-40b-claude-4.5-opus }%DIFDELCMD < & %%%
+\DIFdel{40B }%DIFDELCMD < & %%%
+\DIFdel{Alibaba Cloud / High-Capacity MoE }%DIFDELCMD < \\
+%DIFDELCMD < \end{longtable}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \newpage
+\DIFaddend 
 
-\begingroup
+\DIFaddbegin \begingroup
 \small
 \noindent\begin{tabularx}{\textwidth}{@{}l c >{\raggedright\arraybackslash}X@{}}
 \toprule
@@ -366,57 +911,158 @@ qwen3.5-40b-claude-4.5-opus & 40B & Alibaba Cloud / High-Capacity MoE \\
 \endgroup
 \vspace{0.4em}
 
-\noindent\textbf{Supplementary Table S6:} Open-weight LLM evaluator models evaluated in this work.
+\noindent\DIFaddend \textbf{Supplementary Table S6:} Open-weight LLM evaluator models evaluated in this work.
 
-\vspace{1.5em}
+\DIFdelbegin %DIFDELCMD < \begin{longtable}[]{@{}lllll@{}}
+%DIFDELCMD < \toprule
+%DIFDELCMD < %%%
+\textbf{\DIFdel{Evaluator Comparison}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Paired $N$}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Pearson $r$}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{MAE}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Directional Concordance}} %DIFAUXCMD
+%DIFDELCMD < \\
+%DIFDELCMD < \midrule
+%DIFDELCMD < \endhead
+%DIFDELCMD < \bottomrule
+%DIFDELCMD < \endlastfoot
+%DIFDELCMD < %%%
+\DIFdel{Human--Human ($H_1$ vs $H_2$) }%DIFDELCMD < & %%%
+\DIFdel{299 }%DIFDELCMD < & %%%
+\DIFdel{0.390 }%DIFDELCMD < & %%%
+\DIFdel{0.308 }%DIFDELCMD < & %%%
+\DIFdel{88.96\% }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{Human Consensus vs LLM Council }%DIFDELCMD < & %%%
+\DIFdel{175 }%DIFDELCMD < & %%%
+\DIFdel{0.162 }%DIFDELCMD < & %%%
+\DIFdel{0.301 }%DIFDELCMD < & %%%
+\DIFdel{93.14\% }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{Council Inter-Model Average }%DIFDELCMD < & %%%
+\DIFdel{584 }%DIFDELCMD < & %%%
+\DIFdel{0.540 }%DIFDELCMD < & %%%
+\DIFdel{0.284 }%DIFDELCMD < & %%%
+\DIFdel{85.00\% }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{Shuffled Evidence (Null $H_0$) }%DIFDELCMD < & %%%
+\DIFdel{191 }%DIFDELCMD < & %%%
+\DIFdel{-0.087 }%DIFDELCMD < & %%%
+\DIFdel{0.662 }%DIFDELCMD < & %%%
+\DIFdel{56.54\% }%DIFDELCMD < \\
+%DIFDELCMD < \end{longtable}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \vspace{1.5em}
+\DIFaddend 
 
-\begingroup
+\DIFaddbegin \begingroup
 \small
-\setlength{\tabcolsep}{4pt}
+\setlength{\tabcolsep}{3.5pt}
 \begin{center}
-\begin{tabular}{@{}l c c c r@{}}
+\begin{tabular}{@{}l c c c c c r@{}}
 \toprule
-\textbf{Evaluator Comparison} & \textbf{Paired $N$} & \textbf{Pearson $r$} & \textbf{MAE} & \textbf{Concordance} \\
+\textbf{Evaluator Comparison} & \textbf{Level} & \textbf{Paired $N$} & \textbf{Pearson $r$} & \textbf{$p$} & \textbf{MAE} & \textbf{Concordance} \\
 \midrule
-Human--Human ($H_1$ vs $H_2$) & 299 & 0.390 & 0.308 & 88.96\% \\
-Human Consensus vs LLM Council & 175 & 0.162 & 0.301 & 93.14\% \\
-Council Inter-Model Average & 584 & 0.540 & 0.284 & 85.00\% \\
-Shuffled Evidence (Null $H_0$) & 191 & -0.087 & 0.662 & 56.54\% \\
+Human--Human ($H_1$ vs $H_2$) & Factor cell & 299 & 0.390 & $<0.0001$ & 0.308 & 88.96\% \\
+Human Consensus vs LLM Council & Study level & 25 & 0.529 & $0.0125$ & --- & --- \\
+Human Consensus vs LLM Council & Factor cell & 175 & 0.162 & $0.0322$ & 0.301 & 93.14\% \\
+Council Inter-Model Average & Factor cell & 584 & 0.540 & $<0.0001$ & 0.284 & 85.00\% \\
+Shuffled Evidence (Null $H_0$) & Factor cell & 191 & -0.087 & $0.2314$ & 0.662 & 56.54\% \\
 \bottomrule
 \end{tabular}
 \end{center}
 \endgroup
 \vspace{0.4em}
 
-\noindent\textbf{Supplementary Table S7:} Evaluator Strata Agreement and Error Hierarchy Summary ($K=2$ independent human domain experts). Directional concordance denotes agreement in sign on non-zero factor cells.
+\noindent\DIFaddend \textbf{Supplementary Table S7:} Evaluator Strata Agreement and Error Hierarchy Summary ($K=2$ independent human domain experts). \DIFaddbegin \DIFadd{The independent study-level comparison ($N=25$ papers with jointly evaluated factor ratings; Pearson $r=0.529, p=0.0125, 95\%\text{ CI } [0.169, 0.764]$) treats the independent paper as the unit of analysis. Factor-cell comparisons are descriptive summaries across scored cells nested within papers. Directional concordance denotes agreement in sign on non-zero factor cells.
+}\DIFaddend 
 
-\vspace{1.5em}
+\DIFdelbegin %DIFDELCMD < \begin{longtable}[]{@{}lllll@{}}
+%DIFDELCMD < \toprule
+%DIFDELCMD < %%%
+\textbf{\DIFdel{Adjudication Class}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Cells ($N$)}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Human Supported}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Council Supported}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Primary Failure / Divergence Mode}} %DIFAUXCMD
+%DIFDELCMD < \\
+%DIFDELCMD < \midrule
+%DIFDELCMD < \endhead
+%DIFDELCMD < \bottomrule
+%DIFDELCMD < \endlastfoot
+%DIFDELCMD < %%%
+\DIFdel{Theoretical Model / Synthesis }%DIFDELCMD < & %%%
+\DIFdel{15 }%DIFDELCMD < & %%%
+\DIFdel{100.0\% (15/15) }%DIFDELCMD < & %%%
+\DIFdel{86.7\% (13/15) }%DIFDELCMD < & %%%
+\DIFdel{Council magnitude attenuation on broad claims }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{Direct Empirical Electrophysiology }%DIFDELCMD < & %%%
+\DIFdel{7 }%DIFDELCMD < & %%%
+\DIFdel{100.0\% (7/7) }%DIFDELCMD < & %%%
+\DIFdel{71.4\% (5/7) }%DIFDELCMD < & %%%
+\DIFdel{Subtle cell-type specificity (SST vs PV gain) }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{Hierarchical / Multi-Area Studies }%DIFDELCMD < & %%%
+\DIFdel{5 }%DIFDELCMD < & %%%
+\DIFdel{80.0\% (4/5) }%DIFDELCMD < & %%%
+\DIFdel{60.0\% (3/5) }%DIFDELCMD < & %%%
+\DIFdel{Conflation of local vs global deviance scope }%DIFDELCMD < \\
+%DIFDELCMD < \midrule
+%DIFDELCMD < %%%
+\textbf{\DIFdel{Total Adjudicated Disagreements}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{27}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{96.3\% (26/27)}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{77.8\% (21/27)}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Passage-grounded technical concordance}} %DIFAUXCMD
+%DIFDELCMD < \\
+%DIFDELCMD < \end{longtable}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \vspace{1.5em}
+\DIFaddend 
 
-\begingroup
+\DIFaddbegin \begingroup
 \small
-\setlength{\tabcolsep}{3.5pt}
-\noindent\begin{tabularx}{\textwidth}{@{}p{1.8in} c c >{\raggedright\arraybackslash}X@{}}
+\setlength{\tabcolsep}{4pt}
+\noindent\begin{tabularx}{\textwidth}{@{}l c c >{\raggedright\arraybackslash}X@{}}
 \toprule
-\textbf{Adjudication Class} & \textbf{Cells ($N$)} & \textbf{Council Passage Grounding} & \textbf{Primary Divergence Mode} \\
+\textbf{Adjudication Category} & \textbf{Cells ($N$)} & \textbf{Proportion} & \textbf{Primary Disagreement / Failure Mode} \\
 \midrule
-Theoretical Model / Synthesis & 15 & 86.7\% (13/15) & Council magnitude attenuation on broad claims \\
-Direct Empirical Electrophysiology & 7 & 71.4\% (5/7) & Subtle cell-type specificity (SST vs PV gain) \\
-Hierarchical / Multi-Area Studies & 5 & 60.0\% (3/5) & Conflation of local vs global deviance scope \\
+Directly supported & 6 & 20.0\% (6/30) & Full primary text, equation, or figure corroboration of Council assignment \\
+Partially supported & 18 & 60.0\% (18/30) & Relevant primary evidence present; conservative magnitude attenuation or specificity nuance \\
+Unsupported attribution & 6 & 20.0\% (6/30) & Subtype gain conflation ($N=3$), laminar error inversion ($N=1$), untested modality penalty ($N=1$), cross-paper attribution ($N=1$) \\
 \midrule
-\textbf{Total Adjudicated Disagreements} & \textbf{27} & \textbf{77.8\% (21/27)} & \textbf{Source-grounded evidence support} \\
+\textbf{Total Audited Disagreements} & \textbf{30} & \textbf{100.0\% (30/30)} & \textbf{Diagnostic audit of $|H - C| \ge 0.50$ cells ($N=296$ eligible paired cells)} \\
 \bottomrule
 \end{tabularx}
 \endgroup
 \vspace{0.4em}
 
-\noindent\textbf{Supplementary Table S8:} Diagnostic Primary Source-Evidence Check across 27 Prespecified Disagreement Cells. Evaluates whether autonomous Council scores are grounded in explicit primary-source text rather than generative confabulation. Overall, 77.8\% (21/27) of Council scores were directly supported by primary-source text passages.
+\noindent\DIFaddend \textbf{Supplementary Table S8:} Diagnostic \DIFdelbegin \DIFdel{Passage-Support Adjudication across 27 Prespecified Disagreement Cells .
+}\DIFdelend \DIFaddbegin \DIFadd{Primary-Source Audit across 30 Numerically Selected Large Human--Council Disagreement Cells ($|H - C| \ge 0.50$ among 296 eligible paired cells; 10.1\% of paired universe). Evaluates whether large disagreements reflect unsupported evidence attribution or conservative score attenuation on genuine primary-source evidence. Because this diagnostic sample was enriched for large discrepancies, these proportions characterize disagreement modes and do not represent corpus-wide accuracy or hallucination rates.
+}\DIFaddend 
 
-\newpage
+\DIFdelbegin %DIFDELCMD < \begin{longtable}[]{@{}lllll@{}}
+%DIFDELCMD < \toprule
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \newpage
 
 \begingroup
 \small
-\setlength{\tabcolsep}{3pt}
-\noindent\begin{tabularx}{\textwidth}{@{}p{1.7in} c c c >{\raggedright\arraybackslash}X@{}}
+\setlength{\tabcolsep}{4pt}
+\noindent\begin{tabularx}{\textwidth}{@{}p{2.2in} c c c >{\raggedright\arraybackslash}X@{}}
 \toprule
 \textbf{Decoding Setting / Comparison} & \textbf{Evaluated Units ($N$)} & \textbf{Correlation} & \textbf{MAE} & \textbf{Paper Ranking Stability} \\
 \midrule
@@ -429,20 +1075,124 @@ Hierarchical / Multi-Area Studies & 5 & 60.0\% (3/5) & Conflation of local vs gl
 \quad Replicates at $T = 0.00$ & 639 triples & Mean $\bar{r} = 0.9905$ & $0.0126$ & Spearman $\rho_{\text{rank}} \ge 0.9818$ \\
 \quad Replicates at $T = 0.35$ & 619 triples & Mean $\bar{r} = 0.9724$ & $0.0384$ & Spearman $\rho_{\text{rank}} \ge 0.9782$ \\
 \quad Replicates at $T = 0.70$ & 572 triples & Mean $\bar{r} = 0.9444$ & $0.0585$ & Spearman $\rho_{\text{rank}} \ge 0.9745$ \\
-\midrule
-\textbf{Reasoning Explorations} & & & & \\
-\quad \texttt{phi-4-reasoning-plus} ($T=0$ vs $0.70$) & 104 factor cells & Pearson $r = 0.6505$ & $0.1421$ & Incomplete run (130/279 calls) \\
-\quad \texttt{olmo-3-32b-think} & 48 factor cells & Descriptive only & --- & Incomplete run (30/279 calls) \\
 \bottomrule
 \end{tabularx}
 \endgroup
 \vspace{0.4em}
 
-\noindent\textbf{Supplementary Table S9:} Factorial Robustness Analysis across Sampling Temperatures and Stochastic Replicates. Operational completion differed across architectures: the complete evaluation model \texttt{gemma-4-31b-it} achieved full coverage across all 279/279 inference attempts, providing complete factorial reliability estimates; \texttt{phi-4-reasoning-plus} (130/279) and \texttt{olmo-3-32b-think} (30/279) encountered token limits during chain-of-thought traces. Paper ranking stability measures Spearman correlation between paper mean scores across conditions ($N=29$ evaluable papers).
+\noindent\DIFaddend \textbf{\DIFdelbegin \DIFdel{Experimental Condition}\DIFdelend \DIFaddbegin \DIFadd{Supplementary Table S9:}\DIFaddend } \DIFdelbegin %DIFDELCMD < & %%%
+\textbf{\DIFdel{Calls ($N$)}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Mean Score }%DIFDELCMD < [%%%
+\DIFdel{$\pm$SD}%DIFDELCMD < ]%%%
+} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Displacement $\Delta_{\text{LO-GO}}$}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Paper Ranking Stability}} %DIFAUXCMD
+%DIFDELCMD < \\
+%DIFDELCMD < \midrule
+%DIFDELCMD < \endhead
+%DIFDELCMD < \bottomrule
+%DIFDELCMD < \endlastfoot
+%DIFDELCMD < %%%
+\DIFdel{$T = 0.00$ (Deterministic) }%DIFDELCMD < & %%%
+\DIFdelend \DIFaddbegin \DIFadd{Factorial Robustness Analysis across Sampling Temperatures and Stochastic Replicates for the Complete Evaluation Model (}\texttt{\DIFadd{gemma-4-31b-it}}\DIFadd{, }\DIFaddend 279\DIFdelbegin %DIFDELCMD < & %%%
+\DIFdel{$0.463 \pm 0.381$ }%DIFDELCMD < & %%%
+\DIFdel{$+0.041$ }%DIFDELCMD < & %%%
+\DIFdel{Spearman $\rho_{\text{rank}} = 1.000$ (Baseline) }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{$T = 0.35$ (Moderate) }%DIFDELCMD < & %%%
+\DIFdelend \DIFaddbegin \DIFadd{/}\DIFaddend 279 \DIFdelbegin %DIFDELCMD < & %%%
+\DIFdel{$0.458 \pm 0.384$ }%DIFDELCMD < & %%%
+\DIFdel{$+0.039$ }%DIFDELCMD < & %%%
+\DIFdel{Spearman $\rho_{\text{rank}} = 0.9841$ }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{$T = 0.70$ (Exploratory)}%DIFDELCMD < & %%%
+\DIFdel{279 }%DIFDELCMD < & %%%
+\DIFdel{$0.451 \pm 0.392$ }%DIFDELCMD < & %%%
+\DIFdel{$+0.036$ }%DIFDELCMD < & %%%
+\DIFdel{Spearman $\rho_{\text{rank}} = 0.9677$ }%DIFDELCMD < \\
+%DIFDELCMD < \midrule
+%DIFDELCMD < %%%
+\DIFdel{Repeat 1 }%DIFDELCMD < & %%%
+\DIFdel{279 }%DIFDELCMD < & %%%
+\DIFdel{$0.460 \pm 0.382$ }%DIFDELCMD < & %%%
+\DIFdel{$+0.040$ }%DIFDELCMD < & %%%
+\DIFdel{Spearman $\rho_{\text{rank}} = 0.9818$ }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{Repeat 2 }%DIFDELCMD < & %%%
+\DIFdel{279 }%DIFDELCMD < & %%%
+\DIFdel{$0.457 \pm 0.386$ }%DIFDELCMD < & %%%
+\DIFdel{$+0.038$ }%DIFDELCMD < & %%%
+\DIFdel{Spearman $\rho_{\text{rank}} = 0.9782$ }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{Repeat }\DIFdelend \DIFaddbegin \DIFadd{factorial conditions). Quantitative factorial statistics are reported exclusively for }\texttt{\DIFadd{gemma-4-31b-it}} \DIFadd{because it completed full factorial coverage across all 31 papers $\times$ }\DIFaddend 3 \DIFdelbegin %DIFDELCMD < & %%%
+\DIFdelend \DIFaddbegin \DIFadd{temperatures $\times$ 3 repeats. Extended chain-of-thought models (}\texttt{\DIFadd{phi-4-reasoning-plus}} \DIFadd{and }\texttt{\DIFadd{olmo-3-32b-think}}\DIFadd{) completed 130/}\DIFaddend 279 \DIFdelbegin %DIFDELCMD < & %%%
+\DIFdel{$0.455 \pm 0.389$ }%DIFDELCMD < & %%%
+\DIFdel{$+0.038$ }%DIFDELCMD < & %%%
+\DIFdel{Spearman $\rho_{\text{rank}} = 0.9745$ }%DIFDELCMD < \\
+%DIFDELCMD < \midrule
+%DIFDELCMD < %%%
+\DIFdel{Westerberg \& Xiong (2025) }%DIFDELCMD < & %%%
+\DIFdel{--- }%DIFDELCMD < & %%%
+\DIFdel{Divergent Outlier }%DIFDELCMD < & %%%
+\DIFdel{$\Delta = -0.400$ }%DIFDELCMD < & %%%
+\DIFdel{Rank 28--29/31 across all $T$ conditions }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{Leave-One-Model-Out (LOMO)}%DIFDELCMD < & %%%
+\DIFdel{10 folds }%DIFDELCMD < & %%%
+\DIFdel{$\Delta_{\text{Total}} \in [-0.105, -0.093]$ }%DIFDELCMD < & %%%
+\DIFdel{Negative throughout }%DIFDELCMD < & %%%
+\DIFdel{H2 $\Delta \in [-0.228, -0.208]$ }%DIFDELCMD < \\
+%DIFDELCMD < \end{longtable}
+%DIFDELCMD < 
 
-\vspace{1.5em}
+%DIFDELCMD < %%%
+\textbf{\DIFdel{Supplementary Table S9:}} %DIFAUXCMD
+\DIFdel{Factorial Robustness Analysis across 837 LLM inference calls including Paper Ranking and LOMO Sensitivity}\DIFdelend \DIFaddbegin \DIFadd{and 30/279 calls, respectively, but frequently exhausted dynamic generation token budgets during chain-of-thought reasoning prior to emitting the terminal JSON scoring block, precluding equivalent comparative factorial statistics. Paper ranking stability measures Spearman correlation between paper mean scores across conditions ($N=29$ evaluable papers)}\DIFaddend .
 
-\begingroup
+\DIFdelbegin %DIFDELCMD < \begin{longtable}[]{@{}lllll@{}}
+%DIFDELCMD < \toprule
+%DIFDELCMD < %%%
+\textbf{\DIFdel{Evidence Manipulation}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Calls ($N$)}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Mean LO Score}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Mean GO Score}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Displacement $\Delta_{\text{LO-GO}}$}} %DIFAUXCMD
+%DIFDELCMD < \\
+%DIFDELCMD < \midrule
+%DIFDELCMD < \endhead
+%DIFDELCMD < \bottomrule
+%DIFDELCMD < \endlastfoot
+%DIFDELCMD < %%%
+\DIFdel{Intact Evidence (FULL) }%DIFDELCMD < & %%%
+\DIFdel{18 }%DIFDELCMD < & %%%
+\DIFdel{$0.512 \pm 0.081$ }%DIFDELCMD < & %%%
+\DIFdel{$0.474 \pm 0.076$ }%DIFDELCMD < & %%%
+\DIFdel{$+0.038$ ($\text{LO} > \text{GO}$) }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{Shuffled Evidence ($H_0$) }%DIFDELCMD < & %%%
+\DIFdel{18 }%DIFDELCMD < & %%%
+\DIFdel{$0.489 \pm 0.092$ }%DIFDELCMD < & %%%
+\DIFdel{$0.493 \pm 0.088$ }%DIFDELCMD < & %%%
+\DIFdel{$-0.004$ ($\text{Neutral}$) }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{Prior Only (Zero Evidence) }%DIFDELCMD < & %%%
+\DIFdel{18 }%DIFDELCMD < & %%%
+\DIFdel{$0.450 \pm 0.110$ }%DIFDELCMD < & %%%
+\DIFdel{$0.450 \pm 0.108$ }%DIFDELCMD < & %%%
+\DIFdel{$+0.000$ ($\text{Null}$) }%DIFDELCMD < \\
+%DIFDELCMD < \end{longtable}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \vspace{1.5em}
+\DIFaddend 
+
+\DIFaddbegin \begingroup
 \small
 \setlength{\tabcolsep}{6pt}
 \begin{center}
@@ -459,11 +1209,45 @@ Prior Only (Zero Evidence) & 18 & $0.450 \pm 0.110$ & $0.450 \pm 0.108$ \\
 \endgroup
 \vspace{0.4em}
 
-\noindent\textbf{Supplementary Table S10:} Evidence Grounding vs. Prior Bias Sensitivity Analysis (54 Calls across Intact, Shuffled, and Prior-Only Controls). Under intact text, models distinguish Local vs. Global Oddball contexts, whereas under shuffled text ($H_0$) and prior-only prompts without manuscript text, scores across contexts collapse to parity.
+\noindent\DIFaddend \textbf{Supplementary Table S10:} Evidence Grounding vs. Prior Bias Sensitivity Analysis (54 Calls \DIFdelbegin \DIFdel{).
+}\DIFdelend \DIFaddbegin \DIFadd{across Intact, Shuffled, and Prior-Only Controls). Under intact text, models distinguish Local vs. Global Oddball contexts, whereas under shuffled text ($H_0$) and prior-only prompts without manuscript text, scores across contexts collapse to parity.
+}\DIFaddend 
 
-\vspace{1.5em}
+\DIFdelbegin %DIFDELCMD < \begin{longtable}[]{@{}lllll@{}}
+%DIFDELCMD < \toprule
+%DIFDELCMD < %%%
+\textbf{\DIFdel{Ablation Condition}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Paired Cells ($N$)}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Pearson $r$}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{MAE}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Displacement $\Delta_{\text{LO-GO}}$}} %DIFAUXCMD
+%DIFDELCMD < \\
+%DIFDELCMD < \midrule
+%DIFDELCMD < \endhead
+%DIFDELCMD < \bottomrule
+%DIFDELCMD < \endlastfoot
+%DIFDELCMD < %%%
+\DIFdel{FULL Baseline (With Figures) }%DIFDELCMD < & %%%
+\DIFdel{533 }%DIFDELCMD < & %%%
+\DIFdel{1.000 }%DIFDELCMD < & %%%
+\DIFdel{0.000 }%DIFDELCMD < & %%%
+\DIFdel{$+0.0408$ }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{NO\_FIGURE (Figures Stripped) }%DIFDELCMD < & %%%
+\DIFdel{533 }%DIFDELCMD < & %%%
+\DIFdel{0.8539 }%DIFDELCMD < & %%%
+\DIFdel{0.2253 }%DIFDELCMD < & %%%
+\DIFdel{$+0.0565$ }%DIFDELCMD < \\
+%DIFDELCMD < \end{longtable}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \vspace{1.5em}
+\DIFaddend 
 
-\begingroup
+\DIFaddbegin \begingroup
 \small
 \setlength{\tabcolsep}{4pt}
 \noindent\begin{tabularx}{\textwidth}{@{}l c c c >{\raggedright\arraybackslash}X@{}}
@@ -477,11 +1261,91 @@ NO\_FIGURE (Figures Stripped) & 533 & 0.8539 & 0.2253 & 99.42\% (518/521 non-zer
 \endgroup
 \vspace{0.4em}
 
-\noindent\textbf{Supplementary Table S11:} Figure-Text-Removal Sensitivity Summary ($N=31$ papers).
+\noindent\DIFaddend \textbf{Supplementary Table S11:} Figure-Text-Removal Sensitivity Summary ($N=31$ papers).
 
-\newpage
+\DIFdelbegin %DIFDELCMD < \begin{longtable}[]{@{}lllll@{}}
+%DIFDELCMD < \toprule
+%DIFDELCMD < %%%
+\textbf{\DIFdel{Dimension}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Stratum}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Papers ($N$)}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Council $\Delta_{\text{LO-GO}}$}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Directional Trend}} %DIFAUXCMD
+%DIFDELCMD < \\
+%DIFDELCMD < \midrule
+%DIFDELCMD < \endhead
+%DIFDELCMD < \bottomrule
+%DIFDELCMD < \endlastfoot
+%DIFDELCMD < %%%
+\DIFdel{Study Type }%DIFDELCMD < & %%%
+\DIFdel{Empirical }%DIFDELCMD < & %%%
+\DIFdel{13 }%DIFDELCMD < & %%%
+\DIFdel{$-0.009$ }%DIFDELCMD < & %%%
+\DIFdel{$\text{GO} > \text{LO}$ }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{Study Type }%DIFDELCMD < & %%%
+\DIFdel{Computational / Theory }%DIFDELCMD < & %%%
+\DIFdel{18 }%DIFDELCMD < & %%%
+\DIFdel{$-0.013$ }%DIFDELCMD < & %%%
+\DIFdel{$\text{GO} > \text{LO}$ }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{Modality }%DIFDELCMD < & %%%
+\DIFdel{In Silico }%DIFDELCMD < & %%%
+\DIFdel{19 }%DIFDELCMD < & %%%
+\DIFdel{$-0.013$ }%DIFDELCMD < & %%%
+\DIFdel{$\text{GO} > \text{LO}$ }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{Modality }%DIFDELCMD < & %%%
+\DIFdel{Human In Vivo }%DIFDELCMD < & %%%
+\DIFdel{7 }%DIFDELCMD < & %%%
+\DIFdel{$-0.059$ }%DIFDELCMD < & %%%
+\DIFdel{$\text{GO} > \text{LO}$ }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{Modality }%DIFDELCMD < & %%%
+\DIFdel{Animal In Vivo }%DIFDELCMD < & %%%
+\DIFdel{5 }%DIFDELCMD < & %%%
+\DIFdel{$+0.087$ }%DIFDELCMD < & %%%
+\DIFdel{$\text{LO} > \text{GO}$ }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{Publication Era }%DIFDELCMD < & %%%
+\DIFdel{1982--2014 }%DIFDELCMD < & %%%
+\DIFdel{12 }%DIFDELCMD < & %%%
+\DIFdel{$-0.024$ }%DIFDELCMD < & %%%
+\DIFdel{$\text{GO} > \text{LO}$ }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{Publication Era }%DIFDELCMD < & %%%
+\DIFdel{2015--2020 }%DIFDELCMD < & %%%
+\DIFdel{7 }%DIFDELCMD < & %%%
+\DIFdel{$-0.041$ }%DIFDELCMD < & %%%
+\DIFdel{$\text{GO} > \text{LO}$ }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{Publication Era }%DIFDELCMD < & %%%
+\DIFdel{2021--2025 }%DIFDELCMD < & %%%
+\DIFdel{12 }%DIFDELCMD < & %%%
+\DIFdel{$+0.038$ }%DIFDELCMD < & %%%
+\DIFdel{$\text{LO} > \text{GO}$ }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{Publication Status }%DIFDELCMD < & %%%
+\DIFdel{Peer-Reviewed Journal }%DIFDELCMD < & %%%
+\DIFdel{30 }%DIFDELCMD < & %%%
+\DIFdel{$-0.010$ }%DIFDELCMD < & %%%
+\DIFdel{$\text{GO} > \text{LO}$ }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{Publication Status }%DIFDELCMD < & %%%
+\DIFdel{Preprint (Westerberg \& Xiong 2025) }%DIFDELCMD < & %%%
+\DIFdel{1 }%DIFDELCMD < & %%%
+\DIFdel{$-0.400$ }%DIFDELCMD < & %%%
+\DIFdel{$\text{GO} \gg \text{LO}$ }%DIFDELCMD < \\
+%DIFDELCMD < \end{longtable}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \newpage
+\DIFaddend 
 
-\begingroup
+\DIFaddbegin \begingroup
 \small
 \setlength{\tabcolsep}{4pt}
 \noindent\begin{tabularx}{\textwidth}{@{}l >{\raggedright\arraybackslash}X c c c@{}}
@@ -503,11 +1367,62 @@ Publication Status & Preprint (Westerberg \& Xiong 2025) & 1 & $0.453$ & $0.053$
 \endgroup
 \vspace{0.4em}
 
-\noindent\textbf{Supplementary Table S12:} Corpus Subgroup Sensitivity Analysis across Taxonomic Strata. Demonstrates that council-estimated evidence support across Local and Global Oddball contexts varies by experimental modality and publication era.
+\noindent\DIFaddend \textbf{Supplementary Table S12:} Corpus Subgroup Sensitivity Analysis across Taxonomic Strata. \DIFaddbegin \DIFadd{Demonstrates that council-estimated evidence support across Local and Global Oddball contexts varies by experimental modality and publication era.
+}\DIFaddend 
 
-\vspace{1.5em}
+\DIFdelbegin %DIFDELCMD < \begin{longtable}[]{@{}lllll@{}}
+%DIFDELCMD < \toprule
+%DIFDELCMD < %%%
+\textbf{\DIFdel{Validation Axis}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Evaluated Figures ($N$)}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Correct}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Partial / Minor Error}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{Overall Accuracy Rate}} %DIFAUXCMD
+%DIFDELCMD < \\
+%DIFDELCMD < \midrule
+%DIFDELCMD < \endhead
+%DIFDELCMD < \bottomrule
+%DIFDELCMD < \endlastfoot
+%DIFDELCMD < %%%
+\DIFdel{Axis A: Numerical Trend \& Data Extraction }%DIFDELCMD < & %%%
+\DIFdel{10 }%DIFDELCMD < & %%%
+\DIFdel{9 }%DIFDELCMD < & %%%
+\DIFdel{1 (Minor plot type phrasing) }%DIFDELCMD < & %%%
+\DIFdel{100.0\% PASS ($10/10$) }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{Axis B: Empirical Effect Direction }%DIFDELCMD < & %%%
+\DIFdel{10 }%DIFDELCMD < & %%%
+\DIFdel{10 }%DIFDELCMD < & %%%
+\DIFdel{0 }%DIFDELCMD < & %%%
+\DIFdel{100.0\% Correct ($10/10$) }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{Axis C: HPC-36 Ontology Factor Mapping }%DIFDELCMD < & %%%
+\DIFdel{10 }%DIFDELCMD < & %%%
+\DIFdel{9 }%DIFDELCMD < & %%%
+\DIFdel{1 (Partial invertebrate mapping) }%DIFDELCMD < & %%%
+\DIFdel{100.0\% PASS ($10/10$) }%DIFDELCMD < \\
+%DIFDELCMD < \midrule
+%DIFDELCMD < %%%
+\textbf{\DIFdel{Overall Manual Validation Outcome}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{10 Figures}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{10/10 PASS}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{0 Fatal Inversions}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdel{100.0\% PASS}} %DIFAUXCMD
+%DIFDELCMD < \\
+%DIFDELCMD < \end{longtable}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \vspace{1.5em}
+\DIFaddend 
 
-\begingroup
+\DIFaddbegin \begingroup
 \small
 \setlength{\tabcolsep}{3pt}
 \noindent\begin{tabularx}{\textwidth}{@{}p{1.7in} c c c >{\centering\arraybackslash}X@{}}
@@ -524,7 +1439,8 @@ Axis C: HPC-36 Ontology Factor Mapping & 10 & 9 & 1 (Invertebrate) & 100.0\% PAS
 \endgroup
 \vspace{0.4em}
 
-\noindent\textbf{Supplementary Table S13:} Manual Expert Validation Summary of Generated Multimodal Figure Descriptions ($N=10$ representative figures audited against primary source PDFs). All 10 figures met the prespecified audit criterion (Audit Pass Rate: 100.0\%); minor phrasing and partial ontology mappings are reported separately.
+\noindent\DIFaddend \textbf{Supplementary Table S13:} Manual Expert Validation Summary of Generated Multimodal Figure Descriptions ($N=10$ \DIFdelbegin \DIFdel{prespecified }\DIFdelend \DIFaddbegin \DIFadd{representative }\DIFaddend figures audited against \DIFdelbegin \DIFdel{primary-source PDFs)}\DIFdelend \DIFaddbegin \DIFadd{primary source PDFs). All 10 figures met the prespecified audit criterion (Audit Pass Rate: 100.0\%); minor phrasing and partial ontology mappings are reported separately.
+}
 
 \vspace{1.5em}
 
@@ -547,34 +1463,35 @@ Axis C: HPC-36 Ontology Factor Mapping & 10 & 9 & 1 (Invertebrate) & 100.0\% PAS
 \endgroup
 \vspace{0.4em}
 
-\noindent\textbf{Supplementary Table S14:} Primary Paper-Level Hypothesis Calibration and Concordance ($K=2$ Human Consensus vs. Autonomous Council). Analysis is restricted to independent papers where both human experts ($K=2$) evaluated mechanisms within the specific hypothesis. Council models were averaged within paper first. SEM denotes standard error across independent papers ($\text{SD}/\sqrt{N}$). Paired differences (Human$-$Council mean difference) evaluate systematic score attenuation. Across-paper rank correspondence was heterogeneous: LO-$H_1$ ($\rho = 0.196, p = 0.396$), LO-$H_2$ ($\rho = 0.612, p = 0.0019$), LO-$H_3$ ($\rho = 0.467, p = 0.092$), GO-$H_1$ ($\rho = -0.136, p = 0.590$), GO-$H_2$ ($\rho = 0.492, p = 0.020$), GO-$H_3$ ($\rho = 0.218, p = 0.519$).
+\noindent\textbf{\DIFadd{Supplementary Table S14:}} \DIFadd{Primary Paper-Level Hypothesis Calibration and Concordance ($K=2$ Human Consensus vs. Autonomous Council). Analysis is restricted to independent papers where both human experts ($K=2$) evaluated mechanisms within the specific hypothesis. Council models were averaged within paper first. SEM denotes standard error across independent papers ($\text{SD}/\sqrt{N}$). Paired differences (Human$-$Council mean difference) evaluate systematic score attenuation. Across-paper rank correspondence was heterogeneous: LO-$H_1$ ($\rho = 0.196, p = 0.396$), LO-$H_2$ ($\rho = 0.612, p = 0.0019$), LO-$H_3$ ($\rho = 0.467, p = 0.092$), GO-$H_1$ ($\rho = -0.136, p = 0.590$), GO-$H_2$ ($\rho = 0.492, p = 0.020$), GO-$H_3$ ($\rho = 0.218, p = 0.519$).
+}
 
-\DIFaddbegin \vspace{1.5em}
+\vspace{1.5em}
 
 \begingroup
 \small
-\setlength{\tabcolsep}{3.5pt}
-\noindent\begin{tabularx}{\textwidth}{@{}p{2.1in} c c c >{\centering\arraybackslash}X@{}}
+\setlength{\tabcolsep}{4.5pt}
+\noindent\begin{tabularx}{\textwidth}{@{}p{2.1in} c c c c c r@{}}
 \toprule
-\textbf{Analysis Stratum} & \textbf{Size} & \textbf{Mean $\Delta_{\text{LO-GO}}$} & \textbf{Deviation} & \textbf{Cells ($N$)} \\
+\textbf{Omitted Evaluator Model} & \textbf{Paired $N$} & \textbf{Pearson $r$} & \textbf{$p$} & \textbf{Spearman $\rho$} & \textbf{$p$} & \textbf{MAE} \\
 \midrule
-Full Council Baseline (All 10 Models) & 10 & $-0.0566$ & $0.0000$ & 304 \\
-Leave-One-Out (Omit deepseek-r1-distill-llama-70b) & 9 & $-0.0512$ & $+0.0054$ & 273 \\
-Leave-One-Out (Omit gemma-3-27b) & 9 & $-0.0559$ & $+0.0007$ & 273 \\
-Leave-One-Out (Omit gemma-4-31b) & 9 & $-0.0628$ & $-0.0062$ & 274 \\
-Leave-One-Out (Omit gpt-oss-claude-4.5-sonnet) & 9 & $-0.0583$ & $-0.0017$ & 274 \\
-Leave-One-Out (Omit gpt-oss-safeguard-120b) & 9 & $-0.0628$ & $-0.0062$ & 274 \\
-Leave-One-Out (Omit mistral-nemo-12b-thinking) & 9 & $-0.0543$ & $+0.0023$ & 274 \\
-Leave-One-Out (Omit olmo-3-32b-think) & 9 & $-0.0597$ & $-0.0031$ & 274 \\
-Leave-One-Out (Omit phi-4-reasoning-plus) & 9 & $-0.0527$ & $+0.0039$ & 273 \\
-Leave-One-Out (Omit qwen3-14b-gemini-3-pro) & 9 & $-0.0560$ & $+0.0005$ & 273 \\
-Leave-One-Out (Omit qwen3.5-40b-claude-4.5-opus) & 9 & $-0.0520$ & $+0.0045$ & 274 \\
+\texttt{deepseek-r1-distill-llama-70b} & 1710 & 0.9553 & $<0.0001$ & 0.9589 & $<0.0001$ & 0.0465 \\
+\texttt{gemma-3-27b}                   & 1733 & 0.9747 & $<0.0001$ & 0.9472 & $<0.0001$ & 0.0408 \\
+\texttt{gpt-oss-claude-4.5-sonnet}     & 1801 & 0.9920 & $<0.0001$ & 0.9844 & $<0.0001$ & 0.0086 \\
+\texttt{mistral-nemo-12b-thinking}     & 1775 & 0.9732 & $<0.0001$ & 0.9698 & $<0.0001$ & 0.0239 \\
+\texttt{olmo-3-32b-think}              & 1798 & 0.9900 & $<0.0001$ & 0.9800 & $<0.0001$ & 0.0122 \\
+\texttt{phi-4-reasoning-plus}          & 1778 & 0.9825 & $<0.0001$ & 0.9735 & $<0.0001$ & 0.0255 \\
+\texttt{qwen3-14b-gemini-3-pro}        & 1800 & 0.9797 & $<0.0001$ & 0.9649 & $<0.0001$ & 0.0243 \\
+\texttt{qwen3.5-40b-claude-4.5-opus}   & 1724 & 0.9497 & $<0.0001$ & 0.9178 & $<0.0001$ & 0.0440 \\
+\midrule
+\multicolumn{7}{@{}l}{\textit{Evaluator profiles with no non-null score contributions in main Council:}} \\
+\texttt{gemma-4-31b}                   & 1816 & --- & --- & --- & --- & --- \\
+\texttt{gpt-oss-safeguard-120b}        & 1816 & --- & --- & --- & --- & --- \\
 \bottomrule
 \end{tabularx}
 \endgroup
 \vspace{0.4em}
 
-\noindent\textbf{Supplementary Table S15:} Leave-One-Model-Out Council Stability Analysis across All Ten Evaluator Architectures. Demonstrates that aggregate context displacement ($\Delta_{\text{LO-GO}} = \text{GO Mean} - \text{LO Mean}$) remains directionally negative across all single-model omissions, with mean displacement spanning the omission range $[-0.0628, -0.0512]$ (deviation from full-council baseline $\le 0.0062$). Note that this interval represents the empirical range across single-model omission conditions, not an inferential confidence interval.
-\DIFaddend 
+\noindent\textbf{\DIFadd{Supplementary Table S15:}} \DIFadd{Leave-One-Model-Out Council Score Stability Analysis across Evaluator Architectures. Evaluates the sensitivity of aggregate Council scores to single-model removal by comparing the complete Council continuous mean against the Council recomputed after omission of each contributing evaluator across matched factor cells ($N = 1710\text{--}1801$). Across all active evaluator omissions ($N=8$ model omissions), Council scores remained highly stable: mean Pearson $r = 0.9747$ (95\% CI: $[0.9619, 0.9874]$, range $0.9497\text{--}0.9920$), mean Spearman $\rho = 0.9621$ (95\% CI: $[0.9441, 0.9800]$, range $0.9178\text{--}0.9844$), and mean $\text{MAE} = 0.0282$ (95\% CI: $[0.0163, 0.0402]$, range $0.0086\text{--}0.0465$). Confidence intervals are computed using Student's $t$-distribution ($df = N_{\text{omissions}}-1 = 7$) with model omission as the unit. MAE is reported in original $[-1.0, +1.0]$ score units. Two evaluator entries (}\texttt{\DIFadd{gemma-4-31b}} \DIFadd{and }\texttt{\DIFadd{gpt-oss-safeguard-120b}}\DIFadd{) had zero non-null factor score contributions in the primary scoring table and are labeled accordingly without substantive leave-one-out metrics}\DIFaddend .
 
 \end{document}
