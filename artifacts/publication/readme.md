@@ -4,7 +4,7 @@
 - **Manuscript Title**: Ontology-constrained multi-LLM scoring of hypothesis support in the predictive processing literature
 - **Authors**: Hamed Nejat, Jacob A. Westerberg, Alexander Maier, Jesse Spencer-Smith, Andr\'e M. Bastos
 - **Target Journal**: *Scientific Reports*
-- **Persistent Archive DOI**: Zenodo (DOI to be minted upon release archive)
+- **Persistent Archive DOI**: https://doi.org/10.5281/zenodo.22182632
 - **Git Release Tag**: `v1.1.0-scientific-reports`
 - **Original Source Tree**: `content/post-sub-draft/2026_mllm_arxiv_post_sub/`
 
@@ -13,7 +13,7 @@
 ## 2. Data & Verification Scope Separation
 - `assets/data/`: Contains publication-local verification contracts and manifests (e.g., `resubmission_sealed_artifacts_manifest.csv`, `revision_statistical_claims.csv`) required to verify reported quantities, captions, and tables without duplicating raw storage.
 - `content/tables/`: Authoritative repository location for full sealed output datasets and historical evaluator passes.
-- `Zenodo`: Immutable public release archive (DOI to be minted upon release archive).
+- `Zenodo (DOI 10.5281/zenodo.22182632)`: Immutable public release archive.
 
 ---
 

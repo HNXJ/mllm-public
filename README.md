@@ -1,5 +1,6 @@
 # Ontology-Constrained Multi-LLM Literature Scoring
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22182632.svg)](https://doi.org/10.5281/zenodo.22182632)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Authoritative code, data, and publication artifacts for **"Ontology-constrained multi-LLM scoring of hypothesis support in the predictive processing literature"** (*Scientific Reports*, 2026).
@@ -41,6 +42,6 @@ All publication-facing documents are hosted in [`artifacts/publication/`](artifa
 
 ## 4. Permanent Archive & Citation
 
-- **Archival Deposition**: Zenodo (DOI to be minted upon release archive).
+- **Zenodo DOI**: [10.5281/zenodo.22182632](https://doi.org/10.5281/zenodo.22182632)
 - **License**: MIT (see [`LICENSE`](LICENSE)).
 - **Citation**: See [`CITATION.cff`](CITATION.cff).
